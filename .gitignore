@@ -1,18 +1,64 @@
-# Python virtual environments
-.venv/
-venv/
-
-# Python cache files
+# Python
 __pycache__/
-*.pyc
+*.py[cod]
+*$py.class
+*.so
+.Python
+*.egg-info/
+dist/
+build/
 
-# Jupyter checkpoints
+# Jupyter Notebooks
 .ipynb_checkpoints/
+*/.ipynb_checkpoints/*
 
-# Environment files from users
+# Environment
 .env
-*.env
+.venv
+env/
+venv/
+ENV/
 
-# OS-generated files
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
 .DS_Store
 Thumbs.db
+
+# Results (keep structure but not actual results)
+results/fba/*.csv
+results/fba/*.png
+results/essentiality/*.csv
+results/essentiality/*.png
+results/mapping/*.csv
+results/mapping/*.png
+results/comparison/*.csv
+results/comparison/*.png
+
+# Keep the directories
+!results/fba/.gitkeep
+!results/essentiality/.gitkeep
+!results/mapping/.gitkeep
+!results/comparison/.gitkeep
+
+# Model files (too large for git)
+models/*.xml
+models/*.sbml
+!models/README.md
+
+# Data files
+data/experimental/*.csv
+data/experimental/*.xlsx
+data/omics/*.csv
+data/omics/*.xlsx
+!data/experimental/README.md
+!data/omics/README.md
+
+# Temporary files
+*.tmp
+*.log
