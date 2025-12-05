@@ -1,0 +1,65 @@
+metabolic-modeling-education/
+│
+├── README.md                          # Main repository documentation (comprehensive)
+├── PROJECT_SUMMARY.md                 # Complete project overview and deliverables
+├── QUICK_START.md                     # Quick reference for getting started
+├── PACKAGING_GUIDE.md                 # Distribution and deployment instructions
+├── environment.yml                    # Conda environment specification
+├── .gitignore                         # Git ignore configuration
+│
+├── src/                               # Python source code (reusable modules)
+│   ├── __init__.py                    # Package initialization
+│   ├── model_io.py                    # Load and save SBML models
+│   ├── fba_utils.py                   # Flux Balance Analysis utilities
+│   ├── medium.py                      # Growth medium configuration
+│   ├── gene_essentiality.py           # Gene deletion and essentiality analysis
+│   └── mapping.py                     # Gene-protein-reaction mapping
+│
+├── docs/                              # Documentation and guides
+│   ├── teaching_notes.md              # Comprehensive instructor guide
+│   ├── student_guide.md               # Complete student learning guide
+│   └── figures/                       # Generated figures directory
+│       └── README.txt                 # Placeholder
+│
+├── notebooks/                         # Jupyter notebooks (educational materials)
+│   └── NOTEBOOK_CREATION_GUIDE.md     # Instructions for creating notebooks
+│   # Students/instructors create:
+│   # ├── 01_basic_fba.ipynb
+│   # ├── 02_gene_essentiality.ipynb
+│   # └── 03_experimental_comparison.ipynb
+│
+├── data/                              # Data directory
+│   ├── experimental/                  # Experimental datasets
+│   │   └── README.txt                 # Instructions for data placement
+│   └── omics/                         # Omics data (transcriptomics, proteomics)
+│       └── README.txt                 # Instructions for data placement
+│
+├── models/                            # Metabolic model files
+│   └── README.txt                     # Instructions for obtaining models
+│   # Users add their own:
+│   # └── base_model.xml               # SBML model file (user-provided)
+│
+└── results/                           # Analysis output directory
+    ├── fba/                           # FBA results
+    │   └── README.txt                 # Placeholder
+    ├── essentiality/                  # Gene essentiality results
+    │   └── README.txt                 # Placeholder
+    ├── mapping/                       # GPR mapping results
+    │   └── README.txt                 # Placeholder
+    └── comparison/                    # Experimental comparison results
+        └── README.txt                 # Placeholder
+
+
+TOTAL FILES CREATED: 22
+TOTAL DIRECTORIES: 13
+
+KEY:
+├── File/Directory name                # Description/purpose
+└── Leaf file/directory                # Last item in that level
+
+NOTES:
+- All Python modules include full docstrings and type hints
+- All documentation is comprehensive and beginner-friendly
+- Empty directories contain README.txt placeholders
+- Users must provide their own SBML model file
+- Notebooks should be created using the NOTEBOOK_CREATION_GUIDE.md
