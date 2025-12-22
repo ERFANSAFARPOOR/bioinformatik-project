@@ -46,10 +46,7 @@ results/comparison/*.png
 !results/mapping/.gitkeep
 !results/comparison/.gitkeep
 
-# Model files (too large for git)
-models/*.xml
-models/*.sbml
-!models/README.md
+
 
 # Data files
 data/experimental/*.csv
