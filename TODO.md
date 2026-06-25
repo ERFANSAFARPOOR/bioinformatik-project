@@ -24,7 +24,7 @@ Status: TODO / IN-PROGRESS / DONE / BLOCKED.
 - **Reason:** Set-repr blocks joins/mapping; integrity (don't edit raw in place).
 - **Inputs:** the CSV · **Output:** `data/processed/predicted_essentiality_default_medium.csv`
 - **Deps:** none · **Validation:** all 1054 ids match `^PA\d+$`; 166 essential preserved.
-- **Status:** TODO · **Blocker:** none
+- **Status:** DONE (commit after a47b6295; `generate_clean_predictions.py` → `data/processed/predicted_essentiality_default_medium.csv`, validated: 1054 rows, 0 non-PA ids, 166 essential) · **Blocker:** none
 
 ### R-03 · P2 · repo-recovery
 - **Task:** Reconcile/correct docs that claim model is "iPae1146"; state it is iMO1056/PAO1.
