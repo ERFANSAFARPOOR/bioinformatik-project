@@ -59,3 +59,20 @@ data/omics/*.xlsx
 # Temporary files
 *.tmp
 *.log
+
+# Large archives (do not commit without documented reason)
+*.rar
+*.zip
+*.7z
+ipynb.rar
+
+# Claude logs (keep dir, ignore contents)
+.claude/logs/*
+!.claude/logs/.gitkeep
+
+# Stray brace-expansion junk dir (scheduled for removal, R-01)
+/{data/
+
+# Scratch audit outputs (regenerable)
+model_audit_output.json
+model_audit_clean.json

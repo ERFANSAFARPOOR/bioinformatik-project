@@ -1,225 +1,104 @@
-# Metabolic Modeling Education
+# Genome-scale metabolic modeling & gene essentiality in *Pseudomonas aeruginosa*
 
-A clean, beginner-friendly repository for learning genome-scale metabolic modeling with COBRApy.
+Constraint-based analysis of the *P. aeruginosa* **PAO1** genome-scale model
+**iMO1056**, with the goal of comparing model-predicted gene essentiality against
+published experimental (Tn-seq) datasets — condition-matched and strain-mapped.
 
-## 📚 Overview
+> **Status: under revival / not yet validated.** This repository is being
+> recovered after a period of inactivity. A read-only audit has been completed
+> (`PROJECT_AUDIT.md`). **No experimental validation results exist yet** — the
+> existing experimental-comparison notebook uses *simulated* data and its metrics
+> must not be cited (see `BLOCKERS.md` B-SCI-01). Work is tracked in `TODO.md`.
 
-This repository provides a structured introduction to constraint-based metabolic modeling through three progressive Jupyter notebooks. Each notebook builds on the previous one, guiding you from basic concepts to advanced analysis.
+## Model
 
-### What You'll Learn
+| | |
+|---|---|
+| Model | **iMO1056** — Oberhardt et al. 2008, *J Bacteriol* |
+| Organism / strain | *Pseudomonas aeruginosa* **PAO1** (gene IDs `PAxxxx`) |
+| Source | BioModels `MODEL1507180020` |
+| File | `models/paeruginosa_MODEL1507180020.xml` (SBML L3 V1 + fbc) |
+| Size | 1110 reactions · 879 metabolites · 1054 genes · compartments `c`,`e` |
+| Objective | `PA_Biomass6_DM` (maximize); default growth ≈ **1.048 /h** (feasible) |
 
-- **Notebook 1**: Basic Flux Balance Analysis (FBA)
-  - Load and explore metabolic models
-  - Run FBA simulations
-  - Visualize metabolic fluxes
-  
-- **Notebook 2**: Gene Essentiality Analysis
-  - Perform single gene deletions
-  - Identify essential genes
-  - Understand condition-dependent essentiality
-  
-- **Notebook 3**: Experimental Validation
-  - Compare predictions with experimental data
-  - Calculate validation metrics
-  - Interpret model limitations
+The raw model is **read-only** and never edited in place.
 
-## 🗂️ Repository Structure
+## Repository layout (current)
 
 ```
-metabolic-modeling-education/
-├── README.md                      # This file
-├── environment.yml                # Conda environment specification
-├── data/                          # Data files
-│   ├── experimental/              # Experimental datasets
-│   └── omics/                     # Omics data (optional)
-├── models/                        # SBML model files
-│   └── base_model.xml             # Your metabolic model goes here
-├── notebooks/                     # Educational Jupyter notebooks
-│   ├── 01_basic_fba.ipynb        # Introduction to FBA
-│   ├── 02_gene_essentiality.ipynb # Gene knockout analysis
-│   └── 03_experimental_comparison.ipynb # Model validation
-├── src/                           # Python modules (reusable code)
-│   ├── __init__.py               # Package initialization
-│   ├── model_io.py               # Model loading/saving
-│   ├── fba_utils.py              # FBA utilities
-│   ├── medium.py                 # Growth medium management
-│   ├── gene_essentiality.py      # Gene deletion analysis
-│   └── mapping.py                # Gene-reaction mapping
-├── results/                       # Analysis outputs
-│   ├── fba/                      # FBA results
-│   ├── essentiality/             # Gene essentiality results
-│   ├── mapping/                  # Gene-reaction mappings
-│   └── comparison/               # Experimental comparisons
-└── docs/                          # Additional documentation
-    ├── teaching_notes.md          # Notes for instructors
-    └── figures/                   # Figures and diagrams
+models/        paeruginosa_MODEL1507180020.xml  (raw, read-only)
+conditian/     6 literature PDFs  (→ migrating to papers/; see papers/manifest.csv)
+notebooks/     01_basic_fba · 02_gene_essentiality · 03_experimental_comparison
+src/           model_io · fba_utils · medium · gene_essentiality · mapping
+data/processed/  gene_mapping.csv · literature_evidence.csv  (evidence tables)
+results/essentiality/  gene_essentiality_default_medium.csv  (real prediction output)
+docs/          teaching/dev notes
 ```
+Governance/audit: `PROJECT_AUDIT.md`, `TODO.md`, `BLOCKERS.md`, `DECISIONS.md`,
+`DATA_PROVENANCE.md`, `PUBLICATION_PLAN.md`, `REPOSITORY_MIGRATION_PLAN.md`,
+`CLAUDE.md`. Target structure in the migration plan.
 
-## 🚀 Getting Started
+## Environment
 
-### Prerequisites
-
-- **Anaconda** or **Miniconda** installed
-- Basic Python knowledge (variables, functions, loops)
-- Basic understanding of cellular metabolism (helpful but not required)
-
-### Installation
-
-1. **Clone or download this repository**
+Canonical environment is the conda env **`reccobra39`** (Python 3.9.23,
+COBRApy 0.29.1, pandas 2.3.2, GLPK). See `environment-audit.txt` and
+`requirements-current.txt`.
 
 ```bash
-git clone <repository-url>
-cd metabolic-modeling-education
+conda activate reccobra39
+# one-time (local only): add packages the notebooks need but reccobra39 lacks
+conda install -n reccobra39 matplotlib scipy networkx openpyxl
+pip install matplotlib-venn      # into reccobra39
 ```
 
-2. **Create the conda environment**
+> The committed notebooks were authored under an in-repo `.venv` (Python 3.12.6).
+> Reproducing them under `reccobra39` and locking the environment is an open task
+> (`BLOCKERS.md` B-ENV-01). Do not assume the locked env until that passes.
 
+Quick check:
 ```bash
-conda env create -f environment.yml
+conda run -n reccobra39 python -c "import cobra, pandas; print(cobra.__version__, pandas.__version__)"
 ```
 
-This installs:
-- Python 3.10+
-- COBRApy (metabolic modeling)
-- pandas (data analysis)
-- matplotlib (plotting)
-- jupyter (notebooks)
-- matplotlib-venn (Venn diagrams)
+## Notebooks
 
-3. **Activate the environment**
+1. `01_basic_fba.ipynb` — load model, run FBA, inspect fluxes.
+2. `02_gene_essentiality.ipynb` — single-gene deletion → essential genes
+   (produced the real `results/essentiality/gene_essentiality_default_medium.csv`:
+   166 essential of 1054 at a 1% growth-ratio threshold, default medium).
+3. `03_experimental_comparison.ipynb` — **demonstration only**: currently compares
+   predictions to *randomly simulated* labels. Will be replaced with real,
+   strain-mapped, condition-matched experimental data (`TODO.md` V-01).
 
+## Literature
+
+Six Tn-seq / essentiality studies (in `conditian/`, identified in
+`papers/manifest.csv`): Juhas 2015, Turner 2015 (CF sputum, PA14),
+Lee 2015 (general & condition-specific, PA14), Poulsen 2019 (core essential),
+Basta (growth-arrest fitness), Belanger (host-condition fitness). The model is
+**PAO1** while most datasets are **PA14** — cross-strain orthology mapping is
+required and not yet done (`BLOCKERS.md` B-MAP-01).
+
+## Scientific-integrity rules
+
+No fabricated values; unknowns are `PENDING_*` with a blocker. Raw model/PDF/data
+are never edited in place. PAO1 and PA14 IDs are not interchangeable. The six
+experimental phenotype classes are kept distinct. No precision/recall/F1/MCC is
+reported until labels, mappings, and condition media are validated. Full rules in
+`CLAUDE.md`.
+
+## Reproducing the current real result
 ```bash
-conda activate metabolic-modeling
+conda run -n reccobra39 jupyter nbconvert --to notebook --execute \
+  notebooks/02_gene_essentiality.ipynb   # after env packages are installed
 ```
 
-4. **Add your model file**
+## License & citation
+Model redistribution terms (BioModels) to be confirmed before public release
+(`DATA_PROVENANCE.md`). A `LICENSE` and `CITATION.cff` will be added at
+publication readiness (`TODO.md` PR-02).
 
-Place your SBML model file (`.xml` or `.sbml`) in the `models/` directory. The example uses `MODEL1507180020_url.xml` (Pseudomonas aeruginosa), but you can use any SBML model.
-
-**Where to find models:**
-- [BiGG Models](http://bigg.ucsd.edu/) - curated metabolic models
-- [BioModels](https://www.ebi.ac.uk/biomodels/) - biological models repository
-- Your own reconstructed model
-
-5. **Launch Jupyter**
-
-```bash
-jupyter notebook
-```
-
-Navigate to the `notebooks/` folder and start with `01_basic_fba.ipynb`.
-
-## 📖 Learning Path
-
-### For Beginners
-
-1. Start with **Notebook 1** - understand what FBA is and how it works
-2. Progress to **Notebook 2** - learn about gene essentiality
-3. Complete **Notebook 3** - validate predictions with data
-
-**Time estimate**: 2-4 hours total
-
-### For Instructors
-
-See `docs/teaching_notes.md` for:
-- Learning objectives for each notebook
-- Common student questions
-- Extension exercises
-- Assessment ideas
-
-## 🔧 Using the Code Modules
-
-All notebooks use functions from the `src/` package to keep code clean and reusable.
-
-Example:
-```python
-from src.model_io import load_model
-from src.fba_utils import run_fba
-
-# Load a model
-model = load_model("models/my_model.xml")
-
-# Run FBA
-solution = run_fba(model)
-print(f"Growth rate: {solution.objective_value}")
-```
-
-### Available Modules
-
-- **`model_io`**: Loading and saving models
-- **`fba_utils`**: Running FBA, analyzing fluxes
-- **`medium`**: Setting growth conditions
-- **`gene_essentiality`**: Gene deletion analysis
-- **`mapping`**: Gene-reaction associations
-
-All functions include:
-- ✓ Type hints
-- ✓ Docstrings with examples
-- ✓ Informative print statements
-- ✓ Error handling
-
-## 📊 Data Requirements
-
-### Experimental Data Format
-
-For **Notebook 3**, provide experimental data as CSV with these columns:
-
-```csv
-gene_id,is_essential
-gene001,True
-gene002,False
-gene003,True
-...
-```
-
-Place in `data/experimental/`.
-
-## 🐛 Troubleshooting
-
-### Common Issues
-
-**Problem**: `ModuleNotFoundError: No module named 'cobra'`
-- **Solution**: Activate the conda environment: `conda activate metabolic-modeling`
-
-**Problem**: Model file not found
-- **Solution**: Check the path in the notebook matches your model file location
-
-**Problem**: No growth in FBA
-- **Solution**: Check that the model has a valid growth medium configured. See Notebook 1, Step 6.
-
-**Problem**: Gene deletion analysis is slow
-- **Solution**: Large models can take time. Consider using `processes=4` to parallelize (if you have multiple CPU cores).
-
-## 🤝 Contributing
-
-This is an educational repository. Contributions welcome:
-- Bug fixes
-- Additional examples
-- Improved documentation
-- New teaching materials
-
-## 📚 Additional Resources
-
-### Learning Materials
-- [COBRApy Documentation](https://cobrapy.readthedocs.io/)
-- [Orth et al. 2010](https://doi.org/10.1038/nbt.1614) - "What is flux balance analysis?"
-- [Thiele & Palsson 2010](https://doi.org/10.1038/nprot.2009.203) - Protocol for model reconstruction
-
-### Video Tutorials
-- [Systems Biology by Jeff Orth](https://www.youtube.com/watch?v=8QBG9KhN7e8)
-- [COBRApy tutorials](https://github.com/opencobra/cobrapy)
-
-## 📄 License
-
-This educational repository is provided as-is for learning purposes.
-
-## 💬 Contact & Support
-
-For questions or issues:
-1. Check the troubleshooting section above
-2. Review the teaching notes in `docs/`
-3. Open an issue on GitHub
-
----
-
-**Happy modeling! 🧬**
+## Provenance
+Model and PDF provenance: `DATA_PROVENANCE.md`. Audit method and evidence:
+`PROJECT_AUDIT.md` (read-only; scripts `audit_model.py`, `identify_pdfs.py`,
+`generate_phasea_data.py`).

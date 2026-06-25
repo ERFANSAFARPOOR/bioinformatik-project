@@ -1,0 +1,51 @@
+{
+  "model_file": "models/paeruginosa_MODEL1507180020.xml",
+  "file_sha256": "0868a5ebb41ebb4967c3c182e686eca7552af9255cba5a6d130cf114d1212ead",
+  "model_id": "MODEL1507180020",
+  "model_name": "Oberhardt2008 - Genome-scale metabolic network of Pseudomonas aeruginosa (iMO1056)",
+  "identity": "iMO1056 (Oberhardt et al. 2008, P. aeruginosa PAO1); BioModels MODEL1507180020",
+  "strain": "PAO1 (evidence: PAxxxx locus tags + iMO1056 identity)",
+  "sbml_level": 3,
+  "sbml_version": 1,
+  "n_reactions": 1110,
+  "n_metabolites": 879,
+  "n_genes": 1054,
+  "compartments": {
+    "c": "cytosol",
+    "e": "extracellular"
+  },
+  "objective": [
+    "PA_Biomass6_DM"
+  ],
+  "objective_direction": "max",
+  "n_exchange": 121,
+  "n_demand": 102,
+  "n_sink": 0,
+  "n_reactions_without_genes": 275,
+  "n_genes_without_reactions": 0,
+  "n_metabolites_missing_formula": 565,
+  "n_metabolites_missing_charge": 0,
+  "default_growth": 1.0479285525566748,
+  "default_status": "optimal",
+  "default_medium": {
+    "EX_cd2_e": 1000.0,
+    "EX_co2_e": 1000.0,
+    "EX_cobalt2_e": 1000.0,
+    "EX_cu2_e": 1000.0,
+    "EX_fe2_e": 1000.0,
+    "EX_fe3_e": 1000.0,
+    "EX_glc_e": 10.0,
+    "EX_h_e": 1000.0,
+    "EX_h2o_e": 1000.0,
+    "EX_k_e": 1000.0,
+    "EX_mg2_e": 1000.0,
+    "EX_mn2_e": 1000.0,
+    "EX_n2_e": 1000.0,
+    "EX_na1_e": 1000.0,
+    "EX_nh4_e": 1000.0,
+    "EX_o2_e": 1000.0,
+    "EX_pi_e": 1000.0,
+    "EX_so4_e": 1000.0,
+    "EX_zn2_e": 1000.0
+  }
+}

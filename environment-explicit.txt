@@ -1,0 +1,36 @@
+# This file may be used to create an environment using:
+# $ conda create --name <env> --file <this file>
+# platform: win-64
+# created-by: conda 24.11.3
+@EXPLICIT
+https://repo.anaconda.com/pkgs/main/win-64/ca-certificates-2025.9.9-haa95532_0.conda
+https://repo.anaconda.com/pkgs/main/noarch/tzdata-2025b-h04d1e81_0.conda
+https://repo.anaconda.com/pkgs/main/win-64/ucrt-10.0.22621.0-haa95532_0.conda
+https://conda.anaconda.org/conda-forge/win-64/libwinpthread-12.0.0.r4.gg4f2fc60ca-h57928b3_9.conda
+https://repo.anaconda.com/pkgs/main/win-64/vc14_runtime-14.44.35208-h4927774_10.conda
+https://repo.anaconda.com/pkgs/main/win-64/vc-14.3-h2df5915_10.conda
+https://repo.anaconda.com/pkgs/main/win-64/vs2015_runtime-14.44.35208-ha6b5a95_10.conda
+https://repo.anaconda.com/pkgs/main/win-64/bzip2-1.0.8-h2bbff1b_6.conda
+https://repo.anaconda.com/pkgs/main/win-64/expat-2.7.1-h8ddb27b_0.conda
+https://repo.anaconda.com/pkgs/main/win-64/libffi-3.4.4-hd77b12b_1.conda
+https://conda.anaconda.org/conda-forge/win-64/libiconv-1.18-hc1393d2_2.conda
+https://repo.anaconda.com/pkgs/main/win-64/libzlib-1.3.1-h02ab6af_0.conda
+https://conda.anaconda.org/conda-forge/win-64/llvm-openmp-20.1.8-hfa2b4ca_2.conda
+https://conda.anaconda.org/conda-forge/win-64/openssl-3.5.3-h725018a_0.conda
+https://repo.anaconda.com/pkgs/main/win-64/sqlite-3.50.2-hda9a48d_1.conda
+https://repo.anaconda.com/pkgs/main/win-64/xz-5.6.4-h4754444_1.conda
+https://conda.anaconda.org/conda-forge/win-64/libxml2-2.13.8-h741aa76_1.conda
+https://repo.anaconda.com/pkgs/main/win-64/zlib-1.3.1-h02ab6af_0.conda
+https://conda.anaconda.org/conda-forge/win-64/libhwloc-2.12.1-default_h88281d1_1000.conda
+https://repo.anaconda.com/pkgs/main/win-64/tk-8.6.15-hf199647_0.conda
+https://repo.anaconda.com/pkgs/main/win-64/python-3.9.23-h716150d_0.conda
+https://conda.anaconda.org/conda-forge/win-64/tbb-2021.13.0-h18a62a1_3.conda
+https://conda.anaconda.org/conda-forge/win-64/mkl-2024.2.2-h57928b3_16.conda
+https://conda.anaconda.org/conda-forge/win-64/python_abi-3.9-2_cp39.tar.bz2
+https://repo.anaconda.com/pkgs/main/win-64/wheel-0.45.1-py39haa95532_0.conda
+https://conda.anaconda.org/conda-forge/win-64/libblas-3.9.0-35_h5709861_mkl.conda
+https://repo.anaconda.com/pkgs/main/noarch/pip-25.2-pyhc872135_0.conda
+https://conda.anaconda.org/conda-forge/win-64/libcblas-3.9.0-35_h2a3cdd5_mkl.conda
+https://conda.anaconda.org/conda-forge/win-64/liblapack-3.9.0-35_hf9ab0e9_mkl.conda
+https://conda.anaconda.org/conda-forge/win-64/numpy-2.0.2-py39h60232e0_1.conda
+https://conda.anaconda.org/conda-forge/win-64/biopython-1.85-py39ha55e580_1.conda

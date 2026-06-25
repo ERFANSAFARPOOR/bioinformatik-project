@@ -1,0 +1,97 @@
+=============================================================================
+ENVIRONMENT AUDIT  -  P. aeruginosa metabolic modeling project
+Generated: 2026-06-26  (Phase A, read-only audit)
+Branch: claude/revival-audit
+=============================================================================
+
+-----------------------------------------------------------------------------
+1. ACTIVE / CONFIRMED ENVIRONMENT
+-----------------------------------------------------------------------------
+Active conda env (this session) : reccobra39   (marked * in `conda env list`)
+sys.executable                  : C:\Users\pro\anaconda3\envs\reccobra39\python.exe
+Python version                  : 3.9.23 (main, Jun 5 2025) [MSC v.1929 64-bit]
+CONDA_DEFAULT_ENV               : reccobra39
+PowerShell default `python`     : C:\Users\pro\anaconda3\envs\reccobra39\python.exe (Python 3.9.23)
+
+Confirmed importable in reccobra39:
+    cobra   == 0.29.1
+    pandas  == 2.3.2
+    numpy   == 2.0.2
+    requests present
+
+NOTE: The session-start note said "PowerShell Python appears to be global
+Python 3.12.6". In THIS session the shell python already resolves to
+reccobra39 (3.9.23). The global 3.12.6 interpreter still exists at
+C:\Users\pro\AppData\Local\Programs\Python\Python312 and backs the .venv.
+
+-----------------------------------------------------------------------------
+2. ALL CONDA ENVIRONMENTS
+-----------------------------------------------------------------------------
+base         C:\Users\pro\anaconda3
+reccobra     C:\Users\pro\anaconda3\envs\reccobra
+reccobra39 * C:\Users\pro\anaconda3\envs\reccobra39
+(unnamed)    I:\term 8\project\Alpha_Copaene_HLA_Docking\tools\envs\copaene-docking
+
+-----------------------------------------------------------------------------
+3. IN-REPO VIRTUALENV  (.venv)  -- this is what the notebooks were saved with
+-----------------------------------------------------------------------------
+.venv\pyvenv.cfg:
+    home    = C:\Users\pro\AppData\Local\Programs\Python\Python312
+    version = 3.12.6
+    executable = ...Python312\python.exe
+.venv is git-ignored (see .gitignore line 17).
+
+-----------------------------------------------------------------------------
+4. JUPYTER KERNELSPECS
+-----------------------------------------------------------------------------
+python3      C:\Users\pro\anaconda3\envs\reccobra39\share\jupyter\kernels\python3
+.venv        C:\Users\pro\AppData\Roaming\jupyter\kernels\.venv         (Python 3.12.6)
+reccobra39   C:\Users\pro\AppData\Roaming\jupyter\kernels\reccobra39
+
+Committed notebook kernelspec metadata:
+    01_basic_fba.ipynb            -> name=".venv", display="Python (.venv)", lang ver 3.12.6
+    02_gene_essentiality.ipynb    -> name=".venv", display="Python (.venv)", lang ver 3.12.6
+    03_experimental_comparison.ipynb -> name="python3", display="Python 3"
+src\__pycache__ bytecode is cpython-312  -> src was last imported under Python 3.12.
+
+==> The committed notebooks were developed/run under .venv (Python 3.12.6),
+    NOT under the mandated reccobra39 (3.9.23). See BLOCKER B-ENV-01.
+
+-----------------------------------------------------------------------------
+5. REPRODUCIBILITY GAP IN reccobra39  (find_spec checks)
+-----------------------------------------------------------------------------
+Present in reccobra39 : numpy=True, requests=True, cobra, pandas, optlang,
+                        swiglpk, python-libsbml, sympy, ipykernel, jupyterlab
+MISSING in reccobra39 : matplotlib       = False   (needed by nb01/02/03)
+                        matplotlib_venn  = False   (needed by nb03 venn2)
+                        scipy            = False
+                        networkx         = False
+                        seaborn          = False
+                        openpyxl         = False   (needed to read paper .xlsx supplements)
+
+==> reccobra39 CANNOT currently run the notebooks as-is (no matplotlib).
+    Resolution options recorded in DECISIONS.md / BLOCKER B-ENV-01.
+
+-----------------------------------------------------------------------------
+6. SOLVER
+-----------------------------------------------------------------------------
+COBRApy solver interface: optlang.glpk_interface (GLPK via swiglpk 5.0.12)
+GLPK emits verbose "Scaling..." messages on FVA-type calls (cosmetic).
+
+-----------------------------------------------------------------------------
+7. KEY PACKAGE VERSIONS (reccobra39)  -- full list in requirements-current.txt
+-----------------------------------------------------------------------------
+cobra==0.29.1            optlang==1.8.3          python-libsbml==5.20.5
+pandas==2.3.2            swiglpk==5.0.12         sympy==1.14.0
+numpy==2.0.2             depinfo==2.2.0          ipykernel==6.30.1
+jupyterlab==4.4.7        notebook==7.4.5
+
+-----------------------------------------------------------------------------
+8. RECOMMENDATION
+-----------------------------------------------------------------------------
+Adopt reccobra39 as the canonical project environment (Python 3.9, cobra 0.29.1)
+AFTER adding matplotlib, matplotlib-venn, scipy, networkx, openpyxl into it
+locally (NOT into global Python). Then re-run all notebooks under the
+reccobra39 kernel and confirm numerical reproduction before locking
+environment.yml / requirements-lock.txt. Do not lock until confirmed (Phase B).
+=============================================================================
