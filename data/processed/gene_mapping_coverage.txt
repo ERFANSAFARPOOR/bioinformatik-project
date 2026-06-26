@@ -1,0 +1,19 @@
+PAO1<->PA14<->model gene mapping coverage
+=========================================
+date: 2026-06-26
+sources: PAO1 GCF_000006765.1_ASM676v1, PA14 GCF_000014625.1_ASM1462v1 (NCBI RefSeq feature tables)
+model genes (iMO1056, PAO1): 1054
+
+PAO1 identity (model_gene_id == PA#### locus): 1054 (high confidence)
+  not in current PAO1 RefSeq (drift/obsolete): 0
+
+PA14 mapping via RefSeq gene-symbol (annotation, NOT validated orthology):
+  1:1 unique symbol match (medium)   : 386
+  ambiguous / one-to-many (low)      : 22  [candidates retained]
+  PAO1 has no symbol (unmapped)      : 335
+  symbol w/o PA14 match (unmapped)   : 311
+
+BLOCKER B-NET: validated orthology (pseudomonas.com / OrthologueDB) and journal
+supplements (PNAS/Frontiers) are unreachable from this environment (403/timeout).
+PA14 'medium' rows are symbol-based and should be upgraded to validated orthology
+before any strain-mapped metric is reported.

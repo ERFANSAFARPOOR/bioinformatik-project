@@ -99,13 +99,13 @@ Status: TODO / IN-PROGRESS / DONE / BLOCKED.
 - **Reason:** Gene-level experimental labels live only in supplements.
 - **Inputs:** DOIs in `papers/manifest.csv` · **Output:** `data/raw/literature/<study>/...`
 - **Deps:** network + human OK · **Validation:** files present, hashed, logged in DATA_PROVENANCE.
-- **Status:** BLOCKED · **Blocker:** B-LIT-01
+- **Status:** PARTIAL — raw dirs created; DOIs verified. PNAS supplements **403-blocked** and pseudomonas.com unreachable from this environment (see B-NET). NCBI RefSeq feature tables downloaded instead (for G-01). · **Blocker:** B-LIT-01, B-NET
 
 ### L-02 · P1 · literature
 - **Task:** Verify Basta & Belanger citation/DOI/year/strain against CrossRef/journal.
 - **Reason:** Currently PENDING_VERIFY; cannot cite unverified.
 - **Inputs:** PDFs · **Output:** updated `literature_evidence.csv`, `papers/manifest.csv`
-- **Deps:** none · **Validation:** DOI resolves to matching title. · **Status:** TODO · **Blocker:** B-LIT-02
+- **Deps:** none · **Validation:** DOI resolves to matching title. · **Status:** DONE — Basta 2017 mBio `10.1128/mBio.01170-17`; Belanger 2022 Front Microbiol `10.3389/fmicb.2022.1055512` (verified ASM/Frontiers+PMC). · **Blocker:** none
 
 ### L-03 · P0 · literature
 - **Task:** Populate `data/processed/literature_evidence.csv` gene-level rows from supplements, keeping all 30 columns + 6 distinct phenotype classes; no merging.
@@ -121,7 +121,7 @@ Status: TODO / IN-PROGRESS / DONE / BLOCKED.
 - **Task:** Obtain authoritative PAO1↔PA14 ortholog table (pseudomonas.com / study homolog columns) and join into `gene_mapping.csv`; retain one-to-many & missing.
 - **Reason:** Model=PAO1, most experiments=PA14; IDs not interchangeable.
 - **Inputs:** `gene_mapping.csv`, ortholog source · **Output:** populated PA14/gene_name/uniprot + confidence
-- **Deps:** network + human OK · **Validation:** mapping coverage report; ambiguous cases listed. · **Status:** BLOCKED · **Blocker:** B-MAP-01
+- **Deps:** network + human OK · **Validation:** mapping coverage report; ambiguous cases listed. · **Status:** PARTIAL — `build_gene_mapping.py` → `gene_mapping.csv` + `gene_mapping_coverage.txt`. All 1054 model genes → PAO1 (high); 386 → PA14 unique-symbol (medium); 22 ambiguous (candidates retained); 646 PA14-unmapped. Source = NCBI RefSeq symbols (annotation, NOT validated orthology). Upgrade to pseudomonas.com orthology pending B-NET. · **Blocker:** B-MAP-01, B-NET
 
 ### G-02 · P1 · gene-mapping
 - **Task:** Add gene names / UniProt for model PAO1 genes from a versioned source.

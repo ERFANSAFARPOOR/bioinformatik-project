@@ -46,18 +46,37 @@ Filename→author inference (do not over-trust filenames; confirmed by metadata)
 
 ---
 
-## 3. Supplementary datasets (NOT yet downloaded — B-LIT-01)
+## 3. Supplementary datasets — download attempts (2026-06-26)
 
-| Study | Supplement(s) referenced in PDF | Public source | Status |
+Network egress from this environment is **restricted**: NCBI FTP and GitHub work;
+journal sites and pseudomonas.com are blocked. See BLOCKER **B-NET**.
+
+| Study | Supplement(s) | Source | Attempt result |
 |---|---|---|---|
-| Turner 2015 | `pnas.1419677112.sd01–sd04.xlsx` | PNAS DCSupplemental | PENDING_DOWNLOAD |
-| Lee 2015 | `pnas.1422186112.sd01.xlsx`, `…201422186SI.pdf` | PNAS DCSupplemental | PENDING_DOWNLOAD |
-| Poulsen 2019 | fitness data + FiTnEss code | `data.broadinstitute.org/fitness/`, `github.com/broadinstitute/FiTnEss` | PENDING_DOWNLOAD |
-| Basta | TBD | TBD | PENDING |
-| Belanger | TBD | TBD | PENDING |
+| Turner 2015 | `pnas.1419677112.sd01–sd04.xlsx` | pnas.org DCSupplemental | **403 Forbidden** (bot block) — PENDING |
+| Lee 2015 | `pnas.1422186112.sd01.xlsx` | pnas.org DCSupplemental | **403 Forbidden** — PENDING |
+| Poulsen 2019 | fitness data / FiTnEss code | `data.broadinstitute.org/fitness/` (HTTP 200, reachable); `github.com/broadinstitute/FiTnEss` (200) | Reachable but repo holds the **method**, not the P. aeruginosa core-essential gene list; specific list files PENDING |
+| Basta 2017 | TBD | mBio / PMC5705914 | PENDING |
+| Belanger 2022 | TBD | Frontiers / PMC9732424 | PENDING |
 
-When downloaded: store under `data/raw/literature/<study_id>/`, record URL +
-retrieval date + SHA-256 here, and never edit in place.
+`data/raw/literature/<study_id>/` dirs created for when these are retrieved
+(human-assisted download or different network). Never edit raw supplements in place.
+
+## 3b. Ortholog / annotation resources — downloaded (2026-06-26)
+
+| File | Source URL | Retrieved | SHA-256 | Notes |
+|---|---|---|---|---|
+| `data/raw/ortholog/pao1_feature_table.txt.gz` | https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/006/765/GCF_000006765.1_ASM676v1/GCF_000006765.1_ASM676v1_feature_table.txt.gz | 2026-06-26 | `de6c018f6396fa871da19fa285a6e764a6a7a0cd0b8cd4d8308943c5a1df7abc` | PAO1 RefSeq (ASM676v1); locus_tag = `PA####` (matches model) |
+| `data/raw/ortholog/pa14_feature_table.txt.gz` | https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/014/625/GCF_000014625.1_ASM1462v1/GCF_000014625.1_ASM1462v1_feature_table.txt.gz | 2026-06-26 | `e1ac94630b4a5962d433232ac744c0de4cf4898f323bc8d3c75649160d6bc491` | PA14 RefSeq (ASM1462v1); RefSeq locus = `PA14_RS#####`, classic `PA14_#####` in `old_locus_tag` |
+
+These feed `build_gene_mapping.py` → `data/processed/gene_mapping.csv` (the gz is
+read directly; the uncompressed `.txt` is derived and git-ignored).
+
+> **Caveat:** the PAO1↔PA14 layer built from these is **RefSeq gene-symbol
+> identity**, i.e. annotation-based, NOT validated phylogenetic orthology. The
+> authoritative ortholog source (pseudomonas.com / OrthologueDB) is unreachable
+> (B-NET). Symbol-based PA14 rows are flagged `medium`/`low` confidence with
+> candidates retained for ambiguous cases.
 
 ---
 

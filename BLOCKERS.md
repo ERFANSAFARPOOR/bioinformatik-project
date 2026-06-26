@@ -29,11 +29,11 @@ all gene-level rows are `PENDING_EXTRACTION`.
 stored under `data/raw/literature/`, and parsed. Requires network access +
 human confirmation that downloading is permitted.
 
-## B-LIT-02 — Citation/DOI/year unverified for Basta & Belanger (P1) — OPEN
-`conditian/davidW.pdf` (Basta, growth-arrest fitness) and `conditian/corrieR.pdf`
-(Belanger, host conditions) were identified by title/running-header/`/Author`
-(Hancock lab). Their **DOI, year, journal, and strain** are `PENDING_VERIFY`.
-**Unblock when:** confirmed against CrossRef/journal record. Do not cite until verified.
+## B-LIT-02 — Citation/DOI/year for Basta & Belanger (P1) — RESOLVED 2026-06-26
+Verified against authoritative sources (ASM/Frontiers + PMC):
+- Basta DW, Bergkessel M, Newman DK (2017) mBio 8(6):e01170-17, **10.1128/mBio.01170-17** (erratum 10.1128/mbio.00576-18).
+- Belanger CR, … Hancock REW (2022) Front Microbiol 13:1055512, **10.3389/fmicb.2022.1055512** (published 2022-11-25; the earlier "2020" guess was wrong).
+Strains still to confirm from each paper's methods (Basta likely PA14; Belanger TBD).
 
 ## B-MAP-01 — Cross-strain gene mapping PAO1↔PA14 not built (P0) — OPEN
 Model = **PAO1** (`PAxxxx`). Turner/Lee/Poulsen/Basta use **PA14** (`PA14_xxxxx`).
@@ -62,6 +62,17 @@ Notebooks were authored under `.venv` (Python 3.12.6). Mandated env
 (allowed; NOT global Python), notebooks re-run under the reccobra39 kernel, and
 numerical reproduction (WT growth 1.0479, 166 essential) confirmed. Only then
 lock `environment.yml`/`requirements-lock.txt`. Decision pending in DECISIONS.md D-02.
+
+## B-NET — Restricted network egress blocks key downloads (P0 for L-03/G-01-final) — OPEN
+From this environment (verified 2026-06-26 via curl):
+- **Reachable:** NCBI FTP (`ftp.ncbi.nlm.nih.gov`), GitHub (api/raw), `data.broadinstitute.org` (HTTP 200).
+- **Blocked:** `pnas.org` supplements (**403**), `pseudomonas.com` (**403 / connection timeout**), NCBI Datasets v2 API (TLS handshake fail).
+**Impact:** journal essential-gene supplements (Turner/Lee + Basta/Belanger) and the
+authoritative pseudomonas.com PAO1↔PA14 ortholog table cannot be fetched here.
+**Mitigation applied:** built a PA14 mapping from NCBI RefSeq gene **symbols**
+(annotation-based, flagged medium/low) instead. **Unblock when:** supplements +
+validated orthology are obtained via a human-assisted download or different network;
+store in `data/raw/...` with provenance. Do not fabricate the missing gene lists.
 
 ## B-MODEL-01 — Blocked reactions / gap-filling not characterized (P2) — OPEN
 `find_blocked_reactions` failed under Windows multiprocessing during the audit.

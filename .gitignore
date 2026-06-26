@@ -76,3 +76,6 @@ ipynb.rar
 # Scratch audit outputs (regenerable)
 model_audit_output.json
 model_audit_clean.json
+
+# Derived (uncompressed) NCBI feature tables — keep only the .gz raw
+data/raw/ortholog/*.txt
