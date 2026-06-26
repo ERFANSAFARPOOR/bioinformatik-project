@@ -45,7 +45,15 @@ PAO1 and PA14 locus tags are **not interchangeable**.
 (e.g. pseudomonas.com orthologs, or study-provided PAO1 homolog columns) and
 joined, retaining one-to-many and missing mappings.
 
-## B-ENV-01 — reccobra39 cannot run the notebooks as-is (P1) — OPEN
+## B-ENV-01 — reccobra39 cannot run the notebooks as-is (P1) — RESOLVED 2026-06-26
+Resolved: E-01 added matplotlib 3.9.4, matplotlib-venn 1.1.2, openpyxl 3.1.5,
+scipy 1.13.1 into reccobra39 (env-scoped; numpy/pandas/cobra unchanged). E-02
+reproduced all notebooks under Python 3.9.23: **nb02 reproduces exactly**
+(166 essential, WT 1.0479285528). Remaining follow-ups are non-blocking:
+fix nb01 `BIOMASS_PAO` bug (N-01) and correct kernelspec metadata (E-04) before
+locking `environment.yml`/`requirements-lock.txt`. Original text retained below.
+
+
 Notebooks were authored under `.venv` (Python 3.12.6). Mandated env
 `reccobra39` (Python 3.9.23) is **missing** `matplotlib`, `matplotlib_venn`,
 `scipy`, `networkx`, `seaborn`, `openpyxl`.

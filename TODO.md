@@ -46,14 +46,14 @@ Status: TODO / IN-PROGRESS / DONE / BLOCKED.
 - **Reason:** reccobra39 lacks them; notebooks/plots and `.xlsx` reading fail.
 - **Inputs:** reccobra39 · **Output:** updated local env · **Deps:** D-02
 - **Validation:** `import matplotlib, matplotlib_venn, openpyxl` succeed in reccobra39.
-- **Status:** TODO · **Blocker:** B-ENV-01
+- **Status:** DONE (matplotlib 3.9.4, matplotlib-venn 1.1.2, openpyxl 3.1.5, scipy 1.13.1 added via env-scoped pip; numpy/pandas/cobra unchanged. networkx not needed yet — defer.) · **Blocker:** none
 
 ### E-02 · P1 · environment
 - **Task:** Re-run all three notebooks under the **reccobra39** kernel; confirm numerical reproduction (WT growth 1.0479, 166 essential @1%).
 - **Reason:** Notebooks were authored under .venv/3.12.6; must reproduce in canonical env.
 - **Inputs:** notebooks, reccobra39 · **Output:** executed notebooks + reproduction note
 - **Deps:** E-01 · **Validation:** outputs match audited numbers within solver tol.
-- **Status:** BLOCKED · **Blocker:** B-ENV-01
+- **Status:** DONE — see `notebooks/reproduced/REPRODUCTION_REPORT.md`. All 3 ran under Py3.9.23. **nb02 reproduces exactly** (166 essential identical, WT 1.0479285528; only CSV row order differs). **nb01 has 1 bug** (cell14 `BIOMASS_PAO` not found → N-01). **nb03 runs but is simulated** (B-SCI-01). · **Blocker:** none (B-ENV-01 effectively resolved; lock env after E-04+N-01)
 
 ### E-03 · P1 · environment
 - **Task:** After E-02 passes, lock `environment.yml` + `requirements-lock.txt`; reconcile the 3 existing env specs.
@@ -61,8 +61,14 @@ Status: TODO / IN-PROGRESS / DONE / BLOCKED.
 - **Deps:** E-02 · **Validation:** fresh env from lock file imports cobra+matplotlib and runs nb02. · **Status:** BLOCKED
 
 ### E-04 · P2 · environment
-- **Task:** Register/clean Jupyter kernels; standardize notebooks to the reccobra39 kernel metadata.
+- **Task:** Register/clean Jupyter kernels; standardize notebooks to the reccobra39 kernel metadata (reproduced notebooks still embed `.venv` kernelspec display).
 - **Reason:** Three kernels (.venv, python3, reccobra39) cause ambiguity. · **Deps:** E-02 · **Status:** TODO
+
+### N-01 · P1 · environment / repo-recovery
+- **Task:** Create a fixed clean copy of `01_basic_fba.ipynb` correcting the hard-coded `BIOMASS_PAO` → `PA_Biomass6_DM`; keep original until verified.
+- **Reason:** E-02 found `cell14 ValueError: Reaction 'BIOMASS_PAO' not found`.
+- **Inputs:** `notebooks/01_basic_fba.ipynb`, model · **Output:** clean notebook that runs error-free
+- **Deps:** E-02 · **Validation:** nbconvert --execute returns 0 cell errors under reccobra39. · **Status:** TODO · **Blocker:** none
 
 ---
 
