@@ -17,3 +17,12 @@ BLOCKER B-NET: validated orthology (pseudomonas.com / OrthologueDB) and journal
 supplements (PNAS/Frontiers) are unreachable from this environment (403/timeout).
 PA14 'medium' rows are symbol-based and should be upgraded to validated orthology
 before any strain-mapped metric is reported.
+
+------------------------------------------------------------------
+NOTE 2026-07-01 (Cycle 2 re-audit): No new orthology source was reachable, so the
+mapping above is UNCHANGED (not fabricated). However, the PAO1 paper re-audit
+(PAO1_PAPER_RELEVANCE_AUDIT.md) reclassified the corpus: belanger2022=PAO1,
+lee2015=MPAO1, turner2015 has PAO1 rows. These join to the model by IDENTITY
+(model gene == PAO1 PAxxxx, confidence high) and DO NOT need PA14 orthology.
+Validated PAO1<->PA14 orthology (B-MAP-01) is now required only for basta2017
+(PA14) and the non-PAO1 strains of poulsen2019. See ORTHOLOGY_STATUS_REPORT.md.
