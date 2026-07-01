@@ -79,3 +79,5 @@ model_audit_clean.json
 
 # Derived (uncompressed) NCBI feature tables — keep only the .gz raw
 data/raw/ortholog/*.txt
+# Legacy / local condition files
+conditian/
