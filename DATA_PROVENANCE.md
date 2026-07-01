@@ -27,20 +27,25 @@ files are actually retrieved (B-LIT-01).
 
 ---
 
-## 2. Literature PDFs (`conditian/`)
+## 2. Literature PDFs (canonical `papers/`; legacy `conditian/`)
 
 Identified via embedded PDF metadata (Info dict `/Title`,`/Author`), XMP, and
-DOIs decompressed from PDF streams (read-only; script `identify_pdfs.py`).
-See `papers/manifest.csv` for the machine-readable manifest.
+DOIs decompressed from PDF streams (read-only; script `identify_pdfs.py`), then
+re-audited from direct PDF text (`extract_strain_evidence.py`) and verified via
+NCBI eutils. See `papers/manifest.csv` for the machine-readable manifest.
 
-| Current file | Study | First author | Year | DOI | Journal | Strain | ID confidence | Provenance |
+**`papers/` is the canonical location** for the corpus; **`conditian/` is legacy,
+preserved untouched** (byte-identical copies; do not edit — see §2b). Strain and
+year/DOI values below are the **corrected 2026-07-01 audit** (B-STRAIN-02).
+
+| papers/ file (legacy) | Study | First author | Year | DOI | Journal | Strain (corrected) | ID confidence | Provenance |
 |---|---|---|---|---|---|---|---|---|
-| `conditian/juhas2015.pdf` | *P. aeruginosa* essentials: an update on investigation of essential genes | Juhas | 2015 | 10.1099/mic.0.000161 | Microbiology | review | high (DOI in stream) | provided in repo |
-| `conditian/keith H.pdf` | Essential genome of *P. aeruginosa* in cystic fibrosis sputum | Turner | 2015 | 10.1073/pnas.1419677112 | PNAS | PA14 | high (DOI+supp in /Title) | provided in repo |
-| `conditian/samuelA.pdf` | General and condition-specific essential functions of *P. aeruginosa* | Lee | 2015 | 10.1073/pnas.1422186112 | PNAS | PA14 | high (DOI in headers) | provided in repo |
-| `conditian/polsun2019.pdf` | Defining the core essential genome of *P. aeruginosa* | Poulsen | 2019 | 10.1073/pnas.1900570116 | PNAS | PA14/multi-strain | high (DOI+title in /Title) | provided in repo |
-| `conditian/davidW.pdf` | Fitness determinants during carbon/oxygen-limited growth arrest | Basta | PENDING | PENDING_VERIFY | PENDING | PA14 (verify) | medium (headers) | provided in repo |
-| `conditian/corrieR.pdf` | Surviving the host: metabolic genes required in physiologically-relevant conditions | Belanger | PENDING | PENDING_VERIFY | PENDING (Info /Author: R.E.W. Hancock) | PAO1 (verify) | medium (Info /Title) | provided in repo |
+| `papers/juhas2015.pdf` (`conditian/juhas2015.pdf`) | *P. aeruginosa* essentials: an update on investigation of essential genes | Juhas | 2015 | 10.1099/mic.0.000161 | Microbiology | **review** | high (DOI in stream) | provided in repo |
+| `papers/turner2015.pdf` (`conditian/keith H.pdf`) | Essential genome of *P. aeruginosa* in cystic fibrosis sputum | Turner | 2015 | 10.1073/pnas.1419677112 | PNAS | **PAO1 + PA14** | high (DOI+supp in /Title) | provided in repo |
+| `papers/lee2015.pdf` (`conditian/samuelA.pdf`) | General and condition-specific essential functions of *P. aeruginosa* | Lee | 2015 | 10.1073/pnas.1422186112 | PNAS | **MPAO1** (PAO1-derived) | high (DOI in headers) | provided in repo |
+| `papers/poulsen2019.pdf` (`conditian/polsun2019.pdf`) | Defining the core essential genome of *P. aeruginosa* | Poulsen | 2019 | 10.1073/pnas.1900570116 | PNAS | **multi-strain (incl. PAO1)** | high (DOI+title in /Title) | provided in repo |
+| `papers/basta2017.pdf` (`conditian/davidW.pdf`) | Identification of fitness determinants during energy-limited growth arrest | Basta | 2017 | 10.1128/mBio.01170-17 | mBio | **PA14** (UCBPP-PA14) | high (verified) | provided in repo |
+| `papers/belanger2022.pdf` (`conditian/corrieR.pdf`) | Surviving the host: metabolic genes required in physiologically-relevant conditions | Belanger | 2022 | 10.3389/fmicb.2022.1055512 | Front Microbiol | **PAO1** | high (verified) | provided in repo |
 
 Filename→author inference (do not over-trust filenames; confirmed by metadata):
 `keith H` = Keith H. Turner · `samuelA` = (S.A.) Lee · `polsun` = Poulsen ·
@@ -49,9 +54,10 @@ Filename→author inference (do not over-trust filenames; confirmed by metadata)
 ### 2b. Canonical `papers/` copies + verified IDs (2026-07-01)
 
 The 6 PDFs were **copied** (not moved) `conditian/* → papers/<study>.pdf`, each
-SHA-256-verified byte-identical; `conditian/` left untouched. Strains re-audited
-from direct PDF text (`scripts/audit/extract_strain_evidence.py`) and IDs verified
-via NCBI eutils. See `papers/manifest.csv`, `PAO1_PAPER_RELEVANCE_AUDIT.md`.
+SHA-256-verified byte-identical; **`conditian/` left untouched (legacy, preserved).
+`papers/` is canonical.** Strains re-audited from direct PDF text
+(`scripts/audit/extract_strain_evidence.py`) and IDs verified via NCBI eutils.
+See `papers/manifest.csv`, `PAO1_PAPER_RELEVANCE_AUDIT.md`.
 
 | papers/ file | Study | PMID | PMCID | Strain (corrected) | Tier | SHA-256 (copy) |
 |---|---|---|---|---|---|---|
@@ -62,8 +68,10 @@ via NCBI eutils. See `papers/manifest.csv`, `PAO1_PAPER_RELEVANCE_AUDIT.md`.
 | `papers/basta2017.pdf` | Basta 2017 | 29184024 | PMC5705914 | **PA14** | 4 | `097a0fd57ebd5bcad63b0d7be94f4fcdbaa887d7ddb1654ee965b7dbd6d5d23d` |
 | `papers/belanger2022.pdf` | Belanger 2022 | 36504765 | PMC9732424 | **PAO1** | 1 | `f1bb27065624b43e553f53dca43e28b80c35c05e6d5306423179f10be22f011e` |
 
-**Corrections vs §2:** Turner PA14→**PAO1+PA14**; Lee PA14→**MPAO1**; Basta/Belanger
-years+strains verified (Basta 2017 PA14; Belanger 2022 PAO1).
+**Strain corrections applied 2026-07-01 (now also reflected in §2):** Turner
+PA14→**PAO1+PA14**; Lee PA14→**MPAO1**; Basta/Belanger years+strains verified
+(Basta 2017 PA14; Belanger 2022 PAO1). These supersede the earlier preliminary
+labels; see B-STRAIN-02.
 
 ---
 

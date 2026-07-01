@@ -117,9 +117,9 @@ Status: TODO / IN-PROGRESS / DONE / BLOCKED.
 
 ## E. Gene mapping
 
-### G-01 · P0 · gene-mapping
+### G-01 · P1 · gene-mapping
 - **Task:** Obtain authoritative PAO1↔PA14 ortholog table (pseudomonas.com / study homolog columns) and join into `gene_mapping.csv`; retain one-to-many & missing.
-- **Reason:** Model=PAO1, most experiments=PA14; IDs not interchangeable.
+- **Reason:** Needed **only** for the PA14-only path — Basta 2017 (PA14) and the non-PAO1 strains of Poulsen 2019 — whose gene IDs are not interchangeable with the PAO1 model. The PAO1/MPAO1 sources (Lee, Turner PAO1 rows, Belanger, meegid2022) join by identity and do **not** require this, so it is off the critical path for the first validation (downgraded P0→P1; see B-MAP-01, B-STRAIN-02).
 - **Inputs:** `gene_mapping.csv`, ortholog source · **Output:** populated PA14/gene_name/uniprot + confidence
 - **Deps:** network + human OK · **Validation:** mapping coverage report; ambiguous cases listed. · **Status:** PARTIAL — `build_gene_mapping.py` → `gene_mapping.csv` + `gene_mapping_coverage.txt`. All 1054 model genes → PAO1 (high); 386 → PA14 unique-symbol (medium); 22 ambiguous (candidates retained); 646 PA14-unmapped. Source = NCBI RefSeq symbols (annotation, NOT validated orthology). Upgrade to pseudomonas.com orthology pending B-NET. · **Blocker:** B-MAP-01, B-NET
 

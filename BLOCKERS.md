@@ -36,7 +36,8 @@ Priority order: PAO1/MPAO1 first (Lee, Turner PAO1 rows, Belanger, meegid2022).
 Verified against authoritative sources (ASM/Frontiers + PMC):
 - Basta DW, Bergkessel M, Newman DK (2017) mBio 8(6):e01170-17, **10.1128/mBio.01170-17** (erratum 10.1128/mbio.00576-18).
 - Belanger CR, … Hancock REW (2022) Front Microbiol 13:1055512, **10.3389/fmicb.2022.1055512** (published 2022-11-25; the earlier "2020" guess was wrong).
-Strains still to confirm from each paper's methods (Basta likely PA14; Belanger TBD).
+Strains are now **confirmed** from each paper's methods (Basta 2017 = PA14;
+Belanger 2022 = PAO1) — see the resolved strain-correction record **B-STRAIN-02**.
 
 ## B-MAP-01 — Validated cross-strain PAO1↔PA14 orthology not built (P1; downgraded from P0) — OPEN
 Model = **PAO1** (`PAxxxx`). `gene_mapping.csv` has the identity mapping

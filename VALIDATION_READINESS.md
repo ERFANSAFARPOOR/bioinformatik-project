@@ -14,7 +14,9 @@ be satisfied before V-01.
 are reproducible, but on the experiment side there are currently **zero validated
 experimental labels in the repository**, **no reconstructed experimental media**,
 and the strain bridge (PAO1↔PA14) is only partially built from annotation symbols.
-Four P0 blockers remain (B-SCI-01, B-LIT-01, B-NET, B-COND-01) plus B-MAP-01.
+Four P0 blockers remain (B-SCI-01, B-LIT-01, B-NET, B-COND-01). **B-MAP-01 is
+P1/secondary** — it gates only PA14-only/non-PAO1 datasets (Basta; non-PAO1
+Poulsen), **not** the first PAO1/MPAO1 validation, which joins by identity.
 
 ---
 
@@ -123,8 +125,14 @@ still PENDING).
 | **B-LIT-01** | P0 | experimental labels (supplements not downloaded) |
 | **B-NET** | P0 | the downloads above + validated orthology (403/timeout here) |
 | **B-COND-01** | P0 | per-condition media reconstruction |
-| **B-MAP-01** | P0 | validated PAO1↔PA14 orthology (only symbol-based so far) |
+| B-MAP-01 | **P1 / secondary** | validated PAO1↔PA14 orthology — gates **only** PA14-only/non-PAO1 datasets (Basta; non-PAO1 Poulsen). **Not** required for the first PAO1/MPAO1 validation (Lee, Belanger, Turner PAO1 rows, meegid2022 → identity join). |
 | B-MODEL-01/02 | P2 | blocked-reaction / formula context for interpreting FN/FP |
+
+> **First PAO1/MPAO1 validation is strain-unblocked.** Lee 2015 (MPAO1),
+> Belanger 2022 (PAO1), Turner 2015 PAO1 rows, and the new meegid2022 (PAO1) all
+> carry PAO1 (`PAxxxx`) locus tags and map to the iMO1056 model **by identity** —
+> no PA14 orthology (B-MAP-01) is needed for these. B-MAP-01 remains open only for
+> the PA14-only path (Basta 2017; non-PAO1 Poulsen strains).
 
 ## 8. What would make this READY (checklist)
 - [ ] Experimental gene lists downloaded per study, with provenance (B-LIT-01/B-NET)
