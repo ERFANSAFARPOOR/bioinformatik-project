@@ -112,3 +112,13 @@ educational docs → `docs/` or `archive/` (after correcting model-identity clai
 - Raw model, PDFs, and raw data will not be edited in place (copies only).
 - No global Python installs.
 - Unknowns recorded as `PENDING_*` + blocker; nothing fabricated.
+
+### A.8 Cycle completion note
+
+Cycle 2 completed with 6 local commits (`627eedcf`, `a8a86e85`, `db49b557`,
+`813d5f05`, `f6431dc6`, + this handoff commit) on `claude/revival-audit`. No push.
+Final git status: clean except untracked `conditian/` (preserved). Migration
+verified behavior-preserving (8 pytest pass; WT growth 1.0479285528). Strain
+re-audit corrected the corpus (Lee=MPAO1, Belanger=PAO1, Turner mixed). No new
+supplements/full text downloadable (B-NET); no validation metrics computed.
+See `NEXT_STAGE_HANDOFF_REPORT.md`.
