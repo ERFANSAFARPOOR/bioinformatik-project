@@ -18,16 +18,19 @@ Depends on B-LIT-01, B-MAP-01.
 
 ## B-LIT-01 — Supplementary gene-list datasets not downloaded (P0) — OPEN
 The experimental essential/fitness gene lists live in supplementary files, not
-in the PDFs' body:
-- Turner 2015: `pnas.1419677112.sd01–sd04.xlsx`
-- Lee 2015: `pnas.1422186112.sd01.xlsx`
-- Poulsen 2019: Broad fitness data `https://data.broadinstitute.org/fitness/` + `https://github.com/broadinstitute/FiTnEss`
-- Basta, Belanger: supplements TBD
+in the PDFs' body. Strain re-audited (B-STRAIN-02) — locus-tag system noted:
+- Turner 2015 (**PAO1+PA14**): `pnas.1419677112.sd01–sd04.xlsx` — PAO1 rows usable.
+- Lee 2015 (**MPAO1**): `pnas.1422186112.sd01.xlsx` — PAO1-tag, no orthology.
+- Belanger 2022 (**PAO1**): Frontiers supplement — PAO1-tag, no orthology.
+- Poulsen 2019 (multi-strain): PNAS SI + Broad fitness `https://data.broadinstitute.org/fitness/` + `https://github.com/broadinstitute/FiTnEss`.
+- Basta 2017 (**PA14**): mBio supplement — needs orthology.
+- NEW meegid2022 (**PAO1**, PMID 35104681): full text + supplement (not OA here).
 **Impact:** `data/processed/literature_evidence.csv` has only study-level rows;
 all gene-level rows are `PENDING_EXTRACTION`.
-**Unblock when:** datasets downloaded (record provenance in `DATA_PROVENANCE.md`),
-stored under `data/raw/literature/`, and parsed. Requires network access +
-human confirmation that downloading is permitted.
+**Unblock when:** datasets downloaded (provenance in `DATA_PROVENANCE.md`), stored
+under `data/raw/literature/<study_id>/`, and parsed. Requires network access
+(blocked here — B-NET) + human confirmation that downloading is permitted.
+Priority order: PAO1/MPAO1 first (Lee, Turner PAO1 rows, Belanger, meegid2022).
 
 ## B-LIT-02 — Citation/DOI/year for Basta & Belanger (P1) — RESOLVED 2026-06-26
 Verified against authoritative sources (ASM/Frontiers + PMC):
@@ -35,15 +38,20 @@ Verified against authoritative sources (ASM/Frontiers + PMC):
 - Belanger CR, … Hancock REW (2022) Front Microbiol 13:1055512, **10.3389/fmicb.2022.1055512** (published 2022-11-25; the earlier "2020" guess was wrong).
 Strains still to confirm from each paper's methods (Basta likely PA14; Belanger TBD).
 
-## B-MAP-01 — Cross-strain gene mapping PAO1↔PA14 not built (P0) — OPEN
-Model = **PAO1** (`PAxxxx`). Turner/Lee/Poulsen/Basta use **PA14** (`PA14_xxxxx`).
-PAO1 and PA14 locus tags are **not interchangeable**.
-`data/processed/gene_mapping.csv` currently has the identity mapping
-(model_gene_id → PAO1 locus tag, confidence high) but PA14 columns are empty.
-**Impact:** cannot compare PA14 experiments to a PAO1 model without orthology.
+## B-MAP-01 — Validated cross-strain PAO1↔PA14 orthology not built (P1; downgraded from P0) — OPEN
+Model = **PAO1** (`PAxxxx`). `gene_mapping.csv` has the identity mapping
+(model→PAO1, high) plus a symbol-based PA14 layer (386 medium, 22 low, 646
+unmapped) — NOT validated orthology.
+**Re-audit update (2026-07-01):** the strain re-audit (see B-STRAIN-02) shows the
+usable experimental data is mostly **PAO1/MPAO1** (Belanger=PAO1, Lee=MPAO1,
+Turner has PAO1 rows), which join by **identity — no orthology needed**. So this
+blocker is **no longer on the critical path** for the first PAO1-side validation.
+Validated PAO1↔PA14 orthology is now required **only** for **Basta 2017 (PA14)**
+and the **non-PAO1 strains of Poulsen 2019**. Downgraded P0→P1.
+**Impact:** cannot compare PA14-only experiments to the PAO1 model without orthology.
 **Unblock when:** an authoritative PAO1↔PA14 ortholog table is obtained
-(e.g. pseudomonas.com orthologs, or study-provided PAO1 homolog columns) and
-joined, retaining one-to-many and missing mappings.
+(pseudomonas.com orthologs, or study-provided PAO1 homolog columns) and joined,
+retaining one-to-many and missing mappings. See `ORTHOLOGY_STATUS_REPORT.md`.
 
 ## B-ENV-01 — reccobra39 cannot run the notebooks as-is (P1) — RESOLVED 2026-06-26
 Resolved: E-01 added matplotlib 3.9.4, matplotlib-venn 1.1.2, openpyxl 3.1.5,
@@ -64,9 +72,15 @@ numerical reproduction (WT growth 1.0479, 166 essential) confirmed. Only then
 lock `environment.yml`/`requirements-lock.txt`. Decision pending in DECISIONS.md D-02.
 
 ## B-NET — Restricted network egress blocks key downloads (P0 for L-03/G-01-final) — OPEN
-From this environment (verified 2026-06-26 via curl):
-- **Reachable:** NCBI FTP (`ftp.ncbi.nlm.nih.gov`), GitHub (api/raw), `data.broadinstitute.org` (HTTP 200).
-- **Blocked:** `pnas.org` supplements (**403**), `pseudomonas.com` (**403 / connection timeout**), NCBI Datasets v2 API (TLS handshake fail).
+From this environment (verified 2026-06-26 and re-checked 2026-07-01 via curl):
+- **Reachable:** NCBI **E-utilities** (`eutils.ncbi.nlm.nih.gov` esearch/esummary/
+  elink — used to verify all PMIDs/PMCIDs this cycle), GitHub, `data.broadinstitute.org`.
+- **Blocked:** `pnas.org` supplements (**403**), `pseudomonas.com` (**403/timeout**),
+  NCBI Datasets v2 API (TLS fail), **PMC OA package download** — both
+  `ftp://ftp.ncbi.nlm.nih.gov/pub/pmc/oa_package/...` (curl exit 9, access denied)
+  and `https://ftp.ncbi.nlm.nih.gov/...oa_package/...` ("Object not found"). So even
+  open-access full text (e.g. Bartell 2017 PMC5344303, GigaScience PMC6333913) is
+  not retrievable here — only metadata is.
 **Impact:** journal essential-gene supplements (Turner/Lee + Basta/Belanger) and the
 authoritative pseudomonas.com PAO1↔PA14 ortholog table cannot be fetched here.
 **Mitigation applied:** built a PA14 mapping from NCBI RefSeq gene **symbols**
@@ -96,4 +110,19 @@ citation, before computing any per-condition metric.
 ## B-STRAIN-01 — Strain of model: RESOLVED (PAO1)
 Resolved during audit: gene IDs are PAO1 `PAxxxx` locus tags and the model is
 iMO1056 (Oberhardt 2008, PAO1). Kept here as a record; **not** a blocker.
-Consequence: every PA14 dataset needs B-MAP-01 before use.
+Consequence: PA14-only datasets need B-MAP-01 before use.
+
+## B-STRAIN-02 — Experimental-paper strains re-audited & CORRECTED (record) — RESOLVED 2026-07-01
+Direct PDF-evidence re-audit (`PAO1_PAPER_RELEVANCE_AUDIT.md`,
+`scripts/audit/extract_strain_evidence.py`) corrected the earlier "mostly PA14"
+classification:
+- **Lee 2015 = MPAO1** (PAO1-derived), was "PA14" — quote: "The P. aeruginosa
+  parent strain was MPAO1".
+- **Belanger 2022 = PAO1**, was "confirm" — quote: "…transposon insertion mutant
+  pool of P. aeruginosa strain PAO1…".
+- **Turner 2015 = PAO1 + PA14** (mixed, usable PAO1 rows), was "PA14".
+- **Basta 2017 = PA14 (UCBPP-PA14)** confirmed. **Poulsen 2019** multi-strain
+  incl. PAO1. **Juhas 2015** review.
+**Consequence:** the first PAO1 validation is strain-unblocked (uses PAO1/MPAO1 by
+identity). Only Basta + non-PAO1 Poulsen strains need B-MAP-01. Not a blocker;
+recorded as a correction.

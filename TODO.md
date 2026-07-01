@@ -17,7 +17,7 @@ Status: TODO / IN-PROGRESS / DONE / BLOCKED.
 - **Reason:** Created by a bash-style `mkdir` run in PowerShell; empty, confusing.
 - **Inputs:** `{data/...` · **Output:** clean tree · **Deps:** none
 - **Validation:** `git status` clean; dirs gone; no real data lost (confirmed empty).
-- **Status:** TODO · **Blocker:** none · **Commit:** (pending Phase B)
+- **Status:** DONE 2026-07-01 (Cycle 2; verified 0 files before `rm -rf '{data'`). · **Blocker:** none
 
 ### R-02 · P2 · repo-recovery
 - **Task:** Clean `gene_id` column in `results/essentiality/gene_essentiality_default_medium.csv` (`{'PAxxxx'}` → `PAxxxx`); write cleaned copy, keep original.
@@ -30,7 +30,7 @@ Status: TODO / IN-PROGRESS / DONE / BLOCKED.
 - **Task:** Reconcile/correct docs that claim model is "iPae1146"; state it is iMO1056/PAO1.
 - **Reason:** `models/README.md` and summaries are inconsistent with the loaded model.
 - **Inputs:** model_audit_snapshot.json · **Output:** corrected READMEs/summaries
-- **Deps:** none · **Validation:** every model-identity claim matches the audit. · **Status:** TODO
+- **Deps:** none · **Validation:** every model-identity claim matches the audit. · **Status:** DONE 2026-07-01 (fixed `models/README.md` iPae1146→iMO1056; legacy docs with stale claims archived).
 
 ### R-04 · P3 · repo-recovery
 - **Task:** Decide fate of `ipynb.rar` if it reappears; keep out of git.
@@ -198,7 +198,7 @@ Status: TODO / IN-PROGRESS / DONE / BLOCKED.
 - **Task:** Add `tests/` (pytest): model loads; WT growth ≈1.0479; 166 essential @1%; medium reset/set; mapping extraction; gene_id cleaning.
 - **Reason:** Lock scientific behavior before refactor (Phase B).
 - **Inputs:** src, model · **Output:** `tests/test_*.py` · **Deps:** E-01
-- **Validation:** `pytest` green under reccobra39. · **Status:** TODO
+- **Validation:** `pytest` green under reccobra39. · **Status:** DONE 2026-07-01 (`tests/test_model_and_data.py`, 8 tests pass; pytest installed env-scoped; guard asserts no metrics file yet).
 
 ### T-02 · P2 · testing
 - **Task:** Refactor reusable notebook logic into `src/` and have notebooks call `src/` (no behavior change).
@@ -210,7 +210,7 @@ Status: TODO / IN-PROGRESS / DONE / BLOCKED.
 
 ### PR-01 · P1 · publication-readiness
 - **Task:** Migrate to target structure (`models/raw|processed`, `data/raw|processed`, `papers/`, `notebooks/`, `src/`, `tests/`, `results/`, `manuscript/`, `docs/`, `archive/`) per `REPOSITORY_MIGRATION_PLAN.md`; keep originals via git.
-- **Reason:** Target outcome #1. · **Deps:** E-02, T-01 · **Status:** TODO
+- **Reason:** Target outcome #1. · **Deps:** E-02, T-01 · **Status:** DONE 2026-07-01 (Cycle 2; structure created, scripts/docs/model/PDFs migrated, verified behavior-preserving — `REPRODUCTION_AFTER_MIGRATION.md`). Remaining: `results/essentiality/*` → `results/tables/` (deferred with R-02 clean file already in data/processed).
 
 ### PR-02 · P1 · publication-readiness
 - **Task:** Add LICENSE, CITATION.cff, verify model redistribution terms, scrub for secrets/large binaries; final audit.
@@ -221,14 +221,47 @@ Status: TODO / IN-PROGRESS / DONE / BLOCKED.
 
 ---
 
-## TOP 10 (by priority and unblock-ability)
-1. **R-01** remove `{data` junk (P1, no blocker)
-2. **R-02** clean essentiality `gene_id` set-repr (P2, no blocker) — enables joins
-3. **R-03** correct iMO1056/PAO1 model-identity claims in docs (P2)
-4. **E-01** install matplotlib/venn/openpyxl into reccobra39 (P1)
-5. **E-02** reproduce notebooks under reccobra39 (P1, after E-01)
-6. **T-01** add pytest pinning WT growth + 166 essential (P1)
-7. **M-01** compute blocked reactions / dead ends (P2)
-8. **M-02** threshold & objective sensitivity of essentiality (P2)
-9. **L-02** verify Basta & Belanger DOI/citation (P1)
-10. **L-01 / G-01** download supplements + build PAO1↔PA14 mapping (P0, needs network + human OK)
+## N. Cycle-2 additions (2026-07-01)
+
+### L-04 · P0 · literature — DONE
+- **Task:** Re-audit the six papers' strains from direct PDF evidence; correct
+  mis-classifications.
+- **Status:** DONE — `PAO1_PAPER_RELEVANCE_AUDIT.md`. Corrections: Lee=MPAO1,
+  Belanger=PAO1, Turner=PAO1+PA14. PMIDs/PMCIDs NCBI-verified. · **Blocker:** none
+
+### L-05 · P0 · literature — download PAO1/MPAO1 supplements (human-assisted)
+- **Task:** Obtain Lee 2015 `sd01.xlsx` (MPAO1), Turner 2015 `sd01–04.xlsx` (PAO1
+  rows), Belanger 2022 supplement (PAO1). Store in `data/raw/literature/<study>/`
+  with provenance + SHA-256; add `SUPPLEMENT_PARSE_NOTES.md`.
+- **Reason:** These are PAO1/MPAO1 → join by identity (no orthology) → first
+  validation labels. · **Deps:** network/human · **Status:** BLOCKED · **Blocker:** B-NET, B-LIT-01
+
+### L-06 · P1 · literature — acquire new PAO1 dataset meegid2022
+- **Task:** Obtain full text + supplement of PMID 35104681 (PAO1 insertion-seq,
+  host-infection). Not OA here. · **Status:** BLOCKED · **Blocker:** B-NET
+
+### L-07 · P2 · literature — acquire model/GEM references
+- **Task:** Obtain Oberhardt 2008 (iMO1056 source; not OA here) and optionally
+  Bartell 2017 / GigaScience 2018 PAO1 GEMs for comparison/discussion.
+- **Status:** BLOCKED (download) · **Blocker:** B-NET
+
+### C-01b · P0 · condition-reconstruction — PAO1 media first
+- **Task:** Reconstruct LB (Lee general), SCFM/MOPS-succinate (Turner), host/SCFM
+  (Belanger) as in-model exchange configs with citations. · **Deps:** L-05 · **Status:** BLOCKED · **Blocker:** B-COND-01
+
+### E-03 (update) · lock env including pytest/matplotlib/openpyxl once N-01/E-04 done.
+
+## TOP 10 (updated 2026-07-01, by priority and unblock-ability)
+1. **L-05** download PAO1/MPAO1 supplements (P0, human-assisted) — unblocks labels
+2. **L-06** acquire meegid2022 PAO1 dataset (P1, human-assisted)
+3. **L-03** parse supplements → gene-level `literature_evidence.csv` (P0, after L-05)
+4. **C-01b** reconstruct PAO1 media (LB/SCFM/MOPS) (P0, after L-05)
+5. **S-01** per-condition single-gene deletion predictions (P1, after C-01b)
+6. **M-01** blocked reactions / dead ends (P2, no blocker)
+7. **M-02** threshold & objective sensitivity of essentiality (P2, no blocker)
+8. **N-01** fix nb01 `BIOMASS_PAO`→`PA_Biomass6_DM` (P1, no blocker)
+9. **E-03/E-04** kernel cleanup + lock env (P1/P2)
+10. **G-01/B-MAP-01** validated PA14 orthology (P1 now; only for Basta/Poulsen)
+
+**Completed this cycle:** R-01, R-03, T-01, PR-01, L-02, L-04 (plus E-01, E-02, R-02 earlier).
+**Still gated (do NOT compute metrics):** V-01 (B-SCI-01/B-LIT-01/B-COND-01).

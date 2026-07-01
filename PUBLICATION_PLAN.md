@@ -17,13 +17,22 @@ The comparison must respect six distinct experimental phenotype classes
 (general, core, condition-specific essential; reduced fitness; growth-arrest
 survival; host-condition fitness) and the PAO1↔PA14 strain difference.
 
+**PAO1-first (revised 2026-07-01).** The validation is built on **PAO1/MPAO1**
+datasets that join the model by identity (Lee 2015 MPAO1; Turner 2015 PAO1 rows;
+Belanger 2022 PAO1; new meegid2022 PAO1). PA14/multi-strain data (Basta 2017;
+non-PAO1 Poulsen strains) are **background/discussion** or a **later**
+orthology-mapped comparison — never presented as PAO1 validation. No claim that
+the model validates *P. aeruginosa* across strains. See `PAO1_PROJECT_SCOPE.md`.
+
 ## 2. Model validation design (defensible)
 
 1. **Predictions:** single-gene deletion on iMO1056 per reconstructed condition;
    classify essential vs reduced-growth at multiple thresholds (0/1/5/10%).
 2. **Experimental labels:** extracted from official supplements, per study, with
    the study's own essentiality/fitness definition and threshold preserved.
-3. **Strain mapping:** PAO1↔PA14 orthology applied; one-to-many/missing retained.
+3. **Strain mapping:** PAO1/MPAO1 rows join by **identity** (high confidence);
+   PAO1↔PA14 validated orthology applied **only** to PA14/multi-strain rows, with
+   one-to-many/missing retained (not on the critical path — see D-12).
 4. **Condition matching:** compare each prediction only to the experiment whose
    medium/carbon source/electron acceptor/growth phase it reconstructs.
 5. **Metrics (only after 1–4 validated):** confusion matrix, precision, recall,
@@ -58,10 +67,11 @@ Bioinformatics*, *Microbiology*, *PLOS Comput Biol*). Decide after results.
 
 ## 6. Gating conditions (must hold before submission)
 - [ ] Real (non-simulated) experimental labels (B-SCI-01 / B-LIT-01 resolved)
-- [ ] Validated PAO1↔PA14 mapping (B-MAP-01)
 - [ ] Cited, reconstructed condition media (B-COND-01)
-- [ ] Verified citations incl. Basta & Belanger (B-LIT-02)
-- [ ] Notebooks reproduce under locked env (B-ENV-01)
+- [ ] Validated PAO1↔PA14 mapping — **only** if PA14 data are used (B-MAP-01)
+- [x] Verified citations incl. Basta & Belanger (B-LIT-02, resolved 2026-06-26;
+      strains re-verified from PDFs 2026-07-01, B-STRAIN-02)
+- [x] Notebooks reproduce under reccobra39 (B-ENV-01; env lock E-03 still open)
 - [ ] Model redistribution license confirmed (DATA_PROVENANCE §1)
 
 ## 7. Explicitly out of scope until evidence exists

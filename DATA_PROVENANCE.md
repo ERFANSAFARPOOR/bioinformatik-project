@@ -20,8 +20,10 @@ files are actually retrieved (B-LIT-01).
 | Retrieved | Present in repo at audit; original download date/source URL **not recorded by prior author** — PENDING (recommend documenting BioModels URL). |
 | License | Verify BioModels terms before redistribution (PENDING). |
 
-> Models README mentions "iPae1146 (BiGG)" — that is a *different* model and does
-> NOT match the loaded file. The loaded model is iMO1056. README to be corrected.
+> Models README previously mentioned "iPae1146 (BiGG)" — a *different* model that
+> does NOT match the loaded file. **Corrected 2026-07-01** (`models/README.md` now
+> states iMO1056/PAO1). A byte-identical raw copy is archived at
+> `models/raw/paeruginosa_MODEL1507180020.xml` (same SHA-256).
 
 ---
 
@@ -43,6 +45,25 @@ See `papers/manifest.csv` for the machine-readable manifest.
 Filename→author inference (do not over-trust filenames; confirmed by metadata):
 `keith H` = Keith H. Turner · `samuelA` = (S.A.) Lee · `polsun` = Poulsen ·
 `davidW` = David W. Basta · `corrieR` = Corrie/Hancock lab (Belanger).
+
+### 2b. Canonical `papers/` copies + verified IDs (2026-07-01)
+
+The 6 PDFs were **copied** (not moved) `conditian/* → papers/<study>.pdf`, each
+SHA-256-verified byte-identical; `conditian/` left untouched. Strains re-audited
+from direct PDF text (`scripts/audit/extract_strain_evidence.py`) and IDs verified
+via NCBI eutils. See `papers/manifest.csv`, `PAO1_PAPER_RELEVANCE_AUDIT.md`.
+
+| papers/ file | Study | PMID | PMCID | Strain (corrected) | Tier | SHA-256 (copy) |
+|---|---|---|---|---|---|---|
+| `papers/juhas2015.pdf` | Juhas 2015 | 26311069 | PMC10960635 | review | 6 | `5a8ae3a755fbbd840842cc537bd6d16c08aa66a6017a9005ae21b41a8d7cd83a` |
+| `papers/turner2015.pdf` | Turner 2015 | 25775563 | PMC4386324 | **PAO1+PA14** | 3 | `71b943435a8808e212ce8d0b353532b24d2cdb64491f9ef4405c07933ad6fb10` |
+| `papers/lee2015.pdf` | Lee 2015 | 25848053 | PMC4413342 | **MPAO1** | 2 | `f046b9d875b006dd75b0ce09f8b3c0442547be583d7595038640ceba91b14090` |
+| `papers/poulsen2019.pdf` | Poulsen 2019 | 31036669 | PMC6525520 | multi (incl PAO1) | 3/5 | `408b627032e3297d1e69056553ffe13002218ff1313f96b7783650b98da1801c` |
+| `papers/basta2017.pdf` | Basta 2017 | 29184024 | PMC5705914 | **PA14** | 4 | `097a0fd57ebd5bcad63b0d7be94f4fcdbaa887d7ddb1654ee965b7dbd6d5d23d` |
+| `papers/belanger2022.pdf` | Belanger 2022 | 36504765 | PMC9732424 | **PAO1** | 1 | `f1bb27065624b43e553f53dca43e28b80c35c05e6d5306423179f10be22f011e` |
+
+**Corrections vs §2:** Turner PA14→**PAO1+PA14**; Lee PA14→**MPAO1**; Basta/Belanger
+years+strains verified (Basta 2017 PA14; Belanger 2022 PAO1).
 
 ---
 
@@ -69,8 +90,24 @@ journal sites and pseudomonas.com are blocked. See BLOCKER **B-NET**.
 | `data/raw/ortholog/pao1_feature_table.txt.gz` | https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/006/765/GCF_000006765.1_ASM676v1/GCF_000006765.1_ASM676v1_feature_table.txt.gz | 2026-06-26 | `de6c018f6396fa871da19fa285a6e764a6a7a0cd0b8cd4d8308943c5a1df7abc` | PAO1 RefSeq (ASM676v1); locus_tag = `PA####` (matches model) |
 | `data/raw/ortholog/pa14_feature_table.txt.gz` | https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/014/625/GCF_000014625.1_ASM1462v1/GCF_000014625.1_ASM1462v1_feature_table.txt.gz | 2026-06-26 | `e1ac94630b4a5962d433232ac744c0de4cf4898f323bc8d3c75649160d6bc491` | PA14 RefSeq (ASM1462v1); RefSeq locus = `PA14_RS#####`, classic `PA14_#####` in `old_locus_tag` |
 
-These feed `build_gene_mapping.py` → `data/processed/gene_mapping.csv` (the gz is
-read directly; the uncompressed `.txt` is derived and git-ignored).
+These feed `scripts/mapping/build_gene_mapping.py` → `data/processed/gene_mapping.csv`
+(the gz is read directly; the uncompressed `.txt` is derived and git-ignored).
+
+## 3c. Literature search + download re-check (2026-07-01)
+
+- **Metadata retrieval WORKS:** NCBI eutils used to verify all corpus PMIDs/PMCIDs
+  (§2b) and to run PubMed searches (`scripts/audit/pubmed_search.py`).
+- **New candidates found** (see `docs/PAO1_LITERATURE_SEARCH_STRATEGY.md`):
+  meegid2022 (PMID 35104681, PAO1 insertion-seq, Tier 1, **not OA**),
+  Oberhardt 2008 (PMID 18192387, iMO1056 source, **not OA** — PMC2293256 not in OA
+  subset), Bartell 2017 (PMID 28266498, PMC5344303, Tier 2 GEM, OA),
+  GigaScience 2018 (PMID 29688451, PMC6333913, Tier 2 GEM, OA).
+- **Downloads BLOCKED (B-NET):** PMC OA packages fail via both
+  `ftp://ftp.ncbi.nlm.nih.gov/...oa_package/...` (access denied) and the https
+  mirror ("Object not found"); PNAS/Frontiers/mBio supplements 403. **No new PDF
+  or supplement was retrieved this cycle. Nothing fabricated.**
+- Corpus supplements (§3) remain PENDING; priority now PAO1/MPAO1 first
+  (Lee, Turner PAO1 rows, Belanger, meegid2022).
 
 > **Caveat:** the PAO1↔PA14 layer built from these is **RefSeq gene-symbol
 > identity**, i.e. annotation-based, NOT validated phylogenetic orthology. The
@@ -96,9 +133,13 @@ read directly; the uncompressed `.txt` is derived and git-ignored).
 
 | Script | Purpose |
 |---|---|
-| `audit_model.py` | Full read-only model audit → JSON. |
-| `identify_pdfs.py` | Extract PDF metadata/DOIs via stdlib zlib (no install). |
-| `generate_phasea_data.py` | Build the Phase A data artifacts above. |
-| `show_audit.py` | Pretty-print selected audit fields. |
+| `scripts/audit/audit_model.py` | Full read-only model audit → JSON. |
+| `scripts/audit/identify_pdfs.py` | Extract PDF metadata/DOIs via stdlib zlib. |
+| `scripts/audit/extract_strain_evidence.py` | Recover PDF text; report strain/method evidence (2026-07-01). |
+| `scripts/audit/pubmed_search.py` | NCBI eutils PubMed search (2026-07-01). |
+| `scripts/generate_phasea_data.py` | Build the Phase A data artifacts above. |
+| `scripts/generate_clean_predictions.py` | Clean predicted-essentiality `gene_id` (R-02). |
+| `scripts/audit/show_audit.py` | Pretty-print selected audit fields. |
+| `scripts/mapping/build_gene_mapping.py` | Build PAO1↔PA14 gene mapping. |
 
-None modify raw inputs. Recommend relocating to `src/audit/` or `scripts/` in Phase B.
+None modify raw inputs. Relocated to `scripts/` in Cycle 2 (2026-07-01, D-10).

@@ -23,20 +23,35 @@ published experimental (Tn-seq) datasets — condition-matched and strain-mapped
 
 The raw model is **read-only** and never edited in place.
 
-## Repository layout (current)
+## Repository layout
 
 ```
-models/        paeruginosa_MODEL1507180020.xml  (raw, read-only)
-conditian/     6 literature PDFs  (→ migrating to papers/; see papers/manifest.csv)
+models/        paeruginosa_MODEL1507180020.xml  (raw, read-only, canonical load path)
+  raw/         byte-identical archived copy of the raw SBML
+  processed/   derived model artifacts (none yet)
+papers/        canonical PDFs (juhas2015, turner2015, lee2015, poulsen2019,
+               basta2017, belanger2022) + manifest.csv
+conditian/     legacy raw PDF folder (untracked; left untouched, superseded by papers/)
 notebooks/     01_basic_fba · 02_gene_essentiality · 03_experimental_comparison
+  reproduced/  re-executed copies + reproduction report
 src/           model_io · fba_utils · medium · gene_essentiality · mapping
-data/processed/  gene_mapping.csv · literature_evidence.csv  (evidence tables)
-results/essentiality/  gene_essentiality_default_medium.csv  (real prediction output)
-docs/          teaching/dev notes
+scripts/       audit/ · mapping/ · generation scripts (relocated from root)
+tests/         pytest regressions (model identity, WT growth, 166 essential)
+data/
+  raw/literature/  downloaded supplements (per study; none yet — blocked)
+  raw/ortholog/    NCBI RefSeq feature tables (PAO1, PA14)
+  processed/       gene_mapping.csv · literature_evidence.csv ·
+                   predicted_essentiality_default_medium.csv (evidence/prediction)
+results/       essentiality/ (real prediction) · tables/ · figures/ · comparison/
+docs/          teaching/dev notes · PAO1_LITERATURE_SEARCH_STRATEGY.md · index.html
+manuscript/    (empty; drafted at P-01)
+archive/       superseded legacy docs
 ```
-Governance/audit: `PROJECT_AUDIT.md`, `TODO.md`, `BLOCKERS.md`, `DECISIONS.md`,
-`DATA_PROVENANCE.md`, `PUBLICATION_PLAN.md`, `REPOSITORY_MIGRATION_PLAN.md`,
-`CLAUDE.md`. Target structure in the migration plan.
+Governance/audit (root): `PROJECT_AUDIT.md`, `TODO.md`, `BLOCKERS.md`,
+`DECISIONS.md`, `DATA_PROVENANCE.md`, `PUBLICATION_PLAN.md`,
+`REPOSITORY_MIGRATION_PLAN.md`, `WORK_CYCLE_LOG.md`, `PAO1_PROJECT_SCOPE.md`,
+`PAO1_PAPER_RELEVANCE_AUDIT.md`, `PAO1_VALIDATION_DATA_INVENTORY.md`,
+`ORTHOLOGY_STATUS_REPORT.md`, `VALIDATION_READINESS.md`, `CLAUDE.md`.
 
 ## Environment
 
@@ -44,20 +59,16 @@ Canonical environment is the conda env **`reccobra39`** (Python 3.9.23,
 COBRApy 0.29.1, pandas 2.3.2, GLPK). See `environment-audit.txt` and
 `requirements-current.txt`.
 
-```bash
-conda activate reccobra39
-# one-time (local only): add packages the notebooks need but reccobra39 lacks
-conda install -n reccobra39 matplotlib scipy networkx openpyxl
-pip install matplotlib-venn      # into reccobra39
-```
+The plotting/IO packages the notebooks need are already installed env-scoped
+(matplotlib 3.9.4, matplotlib-venn 1.1.2, openpyxl 3.1.5, scipy 1.13.1; E-01),
+and `pytest` for the test suite. The notebooks were authored under an in-repo
+`.venv` (Python 3.12.6) but **reproduce under `reccobra39`** (nb02 exactly);
+locking `environment.yml`/`requirements-lock.txt` is still open (E-03).
 
-> The committed notebooks were authored under an in-repo `.venv` (Python 3.12.6).
-> Reproducing them under `reccobra39` and locking the environment is an open task
-> (`BLOCKERS.md` B-ENV-01). Do not assume the locked env until that passes.
-
-Quick check:
+Quick check + tests:
 ```bash
 conda run -n reccobra39 python -c "import cobra, pandas; print(cobra.__version__, pandas.__version__)"
+conda run -n reccobra39 python -m pytest tests/ -q          # 8 passed
 ```
 
 ## Notebooks
@@ -70,14 +81,26 @@ conda run -n reccobra39 python -c "import cobra, pandas; print(cobra.__version__
    predictions to *randomly simulated* labels. Will be replaced with real,
    strain-mapped, condition-matched experimental data (`TODO.md` V-01).
 
-## Literature
+## Literature (strain re-audited 2026-07-01)
 
-Six Tn-seq / essentiality studies (in `conditian/`, identified in
-`papers/manifest.csv`): Juhas 2015, Turner 2015 (CF sputum, PA14),
-Lee 2015 (general & condition-specific, PA14), Poulsen 2019 (core essential),
-Basta (growth-arrest fitness), Belanger (host-condition fitness). The model is
-**PAO1** while most datasets are **PA14** — cross-strain orthology mapping is
-required and not yet done (`BLOCKERS.md` B-MAP-01).
+Six studies in `papers/` (see `papers/manifest.csv` and
+`PAO1_PAPER_RELEVANCE_AUDIT.md`), classified by direct-evidence strain:
+
+| Study | Strain | Tier | Phenotype |
+|---|---|---|---|
+| Belanger 2022 | **PAO1** | 1 | host-condition fitness |
+| Lee 2015 | **MPAO1** (PAO1-derived) | 2 | general + condition-specific essential |
+| Turner 2015 | **PAO1 + PA14** (mixed) | 3 | condition-specific essential (CF sputum) |
+| Poulsen 2019 | multi-strain (incl. PAO1) | 3/5 | core essential |
+| Basta 2017 | **PA14** | 4 | growth-arrest survival determinant |
+| Juhas 2015 | review | 6 | (background) |
+
+**Correction from the earlier audit:** the corpus is *not* mostly PA14 — Lee is
+**MPAO1**, Belanger is **PAO1**, and Turner has usable **PAO1** rows. Those join
+to the model **by identity** (no orthology). Validated PAO1↔PA14 orthology
+(`BLOCKERS.md` B-MAP-01) is required only for **Basta 2017** and the non-PAO1
+strains of **Poulsen 2019**. Gene-level labels are not yet in the repo — all
+paper supplements are download-blocked here (`BLOCKERS.md` B-NET / B-LIT-01).
 
 ## Scientific-integrity rules
 
@@ -90,7 +113,7 @@ reported until labels, mappings, and condition media are validated. Full rules i
 ## Reproducing the current real result
 ```bash
 conda run -n reccobra39 jupyter nbconvert --to notebook --execute \
-  notebooks/02_gene_essentiality.ipynb   # after env packages are installed
+  notebooks/02_gene_essentiality.ipynb   # env packages already installed (E-01)
 ```
 
 ## License & citation
@@ -98,7 +121,22 @@ Model redistribution terms (BioModels) to be confirmed before public release
 (`DATA_PROVENANCE.md`). A `LICENSE` and `CITATION.cff` will be added at
 publication readiness (`TODO.md` PR-02).
 
+## Current blockers & next steps
+
+**Open P0 blockers:** B-SCI-01 (only simulated comparison exists — invalid),
+B-LIT-01 / B-NET (paper supplements + OA full text not downloadable here),
+B-COND-01 (experimental media not reconstructed), B-MAP-01 (validated PA14
+orthology, for Basta/Poulsen only). See `BLOCKERS.md`.
+
+**Next steps (see `TODO.md`, `NEXT_STAGE_HANDOFF_REPORT.md`):**
+1. Human-assisted download of PAO1/MPAO1 supplements (Lee sd01, Turner sd01–04,
+   Belanger supp) + new meegid2022 (PMID 35104681) — all PAO1-tag, no orthology.
+2. Parse to gene-level `literature_evidence.csv` rows (six classes distinct).
+3. Reconstruct per-condition media (LB, SCFM/MOPS, host) as exchange bounds.
+4. Per-condition single-gene deletion, then — only then — metrics.
+
 ## Provenance
 Model and PDF provenance: `DATA_PROVENANCE.md`. Audit method and evidence:
-`PROJECT_AUDIT.md` (read-only; scripts `audit_model.py`, `identify_pdfs.py`,
-`generate_phasea_data.py`).
+`PROJECT_AUDIT.md` (read-only; scripts under `scripts/audit/`:
+`audit_model.py`, `identify_pdfs.py`, `extract_strain_evidence.py`,
+`pubmed_search.py`).

@@ -23,7 +23,7 @@
 | **Critical integrity issue** | `notebooks/03_experimental_comparison.ipynb` computes precision/recall/F1 against **simulated random data** (`random.sample`, seed 42), explicitly labeled "Using simulated data for demonstration." **No real model-vs-experiment validation exists.** |
 | Literature | 6 relevant PDFs present (in `conditian/`), all identified. **No gene-level experimental data extracted yet**; supplementary `.xlsx` datasets not downloaded. |
 | Environment | Mandated env `reccobra39` (Py 3.9, cobra 0.29.1) is confirmed active, but notebooks were authored under `.venv` (Py 3.12.6) and `reccobra39` is **missing matplotlib/venn/openpyxl** needed to run them. |
-| Strain integrity | Model = PAO1. Most literature (Turner, Lee, Poulsen, Basta) = **PA14**. Cross-strain mapping is mandatory and **not done**. |
+| Strain integrity | Model = PAO1. **CORRECTED 2026-07-01 (B-STRAIN-02):** the corpus is *not* mostly PA14 — Lee 2015=**MPAO1**, Belanger 2022=**PAO1**, Turner 2015=**PAO1+PA14** (usable PAO1 rows); only Basta 2017=PA14 and non-PAO1 Poulsen strains need orthology. See `PAO1_PAPER_RELEVANCE_AUDIT.md`. |
 
 ---
 

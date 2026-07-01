@@ -1,9 +1,17 @@
 # REPOSITORY MIGRATION PLAN
 
-A **proposed** migration map. Nothing is moved in Phase A. Originals remain
-recoverable via git. Execute in Phase B/E after notebooks reproduce under the
-canonical environment. Use `git mv` to preserve history; copy (not move) raw
-files into `*/raw/` and keep the original until the copy is verified.
+> **STATUS: EXECUTED 2026-07-01 (Cycle 2, decision D-10).** The migration below was
+> carried out and verified behavior-preserving (`REPRODUCTION_AFTER_MIGRATION.md`,
+> 8 pytest pass). Deviations/remaining items: (a) `results/essentiality/*.csv` NOT
+> moved to `results/tables/` — the clean join-ready copy already lives at
+> `data/processed/predicted_essentiality_default_medium.csv` (R-02); (b) legacy
+> educational docs went to `archive/` (not `docs/`); (c) `conditian/` left
+> untouched (untracked); (d) `index.html` → `docs/`. See `WORK_CYCLE_LOG.md`.
+
+A migration map. Originals remain recoverable via git. Executed in Cycle 2 after
+notebooks reproduced under the canonical environment (E-02). `git mv` used to
+preserve history; raw files **copied** (not moved) into `*/raw/` with the original
+kept until the copy was SHA-256-verified.
 
 ---
 

@@ -35,14 +35,20 @@ Gap: predictions exist for only ONE medium. Condition-specific predictions
 
 ## 3. Experimental labels — NOT AVAILABLE
 
-| Study (verified) | Strain | Phenotype class | Labels in repo? | Why not |
+**Strain re-audited 2026-07-01 (B-STRAIN-02) — earlier PA14 labels corrected:**
+
+| Study (verified) | Strain (corrected) | Phenotype class | Labels in repo? | Why not |
 |---|---|---|---|---|
 | Juhas 2015 (10.1099/mic.0.000161) | review | generally essential | no | review; primary lists live in cited studies |
-| Turner 2015 (10.1073/pnas.1419677112) | **PA14** | condition-specific essential (CF sputum) | no | PNAS supplement `sd01–04.xlsx` **403-blocked** (B-NET) |
-| Lee 2015 (10.1073/pnas.1422186112) | **PA14** | general + condition-specific essential | no | PNAS supplement `sd01.xlsx` **403-blocked** (B-NET) |
-| Poulsen 2019 (10.1073/pnas.1900570116) | **PA14 / multi-strain** | core essential | no | gene list in PNAS supp / Broad fitness portal; not yet retrieved |
-| Basta 2017 (10.1128/mBio.01170-17) | PA14 (confirm) | growth-arrest survival determinant | no | supplement not yet retrieved |
-| Belanger 2022 (10.3389/fmicb.2022.1055512) | confirm | host-condition fitness | no | supplement not yet retrieved |
+| Turner 2015 (10.1073/pnas.1419677112) | **PAO1 + PA14** | condition-specific essential (CF sputum) | no | PNAS supplement `sd01–04.xlsx` **403-blocked** (B-NET); PAO1 rows usable |
+| Lee 2015 (10.1073/pnas.1422186112) | **MPAO1** (PAO1-derived) | general + condition-specific essential | no | PNAS supplement `sd01.xlsx` **403-blocked** (B-NET) |
+| Poulsen 2019 (10.1073/pnas.1900570116) | multi-strain (incl. **PAO1**) | core essential | no | PNAS supp / Broad portal not retrieved |
+| Basta 2017 (10.1128/mBio.01170-17) | **PA14** (UCBPP-PA14) | growth-arrest survival determinant | no | supplement not retrieved; needs orthology |
+| Belanger 2022 (10.3389/fmicb.2022.1055512) | **PAO1** | host-condition fitness | no | supplement not retrieved |
+
+**Key change:** Lee (MPAO1), Belanger (PAO1) and Turner's PAO1 rows join to the
+model by **identity — no orthology needed**. The first validation is therefore
+strain-unblocked; only Basta (PA14) and non-PAO1 Poulsen strains need B-MAP-01.
 
 The only "experimental" labels currently in the codebase are the **simulated
 random labels** in `notebooks/03_experimental_comparison.ipynb` — invalid
@@ -66,11 +72,12 @@ From `data/processed/gene_mapping.csv` (NCBI RefSeq symbol-based; see G-01):
 | → PA14 unmapped (no symbol) | 335 | unmapped |
 | → PA14 unmapped (symbol, no PA14 match) | 311 | unmapped |
 
-**Implication:** for the PA14 studies (Turner, Lee, Poulsen, Basta), only
-**~408/1054 (39%)** model genes currently have any PA14 handle, and those are
-annotation-symbol-based. A confusion matrix built on this alone would have large
-unmapped/uncertain mass. Validated orthology (pseudomonas.com) is required to
-raise coverage/confidence — blocked by B-NET.
+**Implication (revised 2026-07-01):** orthology is now needed only for the
+**PA14-only** rows (**Basta**; non-PAO1 **Poulsen** strains), where only
+**~408/1054 (39%)** model genes have any (symbol-based) PA14 handle — insufficient
+for metrics until validated orthology exists (B-MAP-01/B-NET). The **PAO1/MPAO1**
+sources (Lee, Turner PAO1 rows, Belanger, new meegid2022) do **not** need this
+bridge — they map by identity at high confidence. See `ORTHOLOGY_STATUS_REPORT.md`.
 
 Direction also matters: experimental lists are PA14-indexed; mapping them onto the
 PAO1 model needs the **reverse** (PA14→PAO1) join, including PA14 genes **absent

@@ -73,3 +73,54 @@ any manuscript claim.
 **Rationale:** Existing code/result use 1%; robustness to threshold is required
 for defensible essential-vs-reduced-growth classification.
 **Status:** Active; sensitivity analysis tracked in TODO.
+
+## D-10 · 2026-07-01 · Execute the repository migration (Phase B)
+**Decision:** Execute `REPOSITORY_MIGRATION_PLAN.md`: create target structure;
+`git mv` audit/generation/mapping scripts → `scripts/{audit,,mapping}`; `git mv`
+legacy educational docs → `archive/`; copy raw model → `models/raw/` and copy the
+6 PDFs `conditian/* → papers/<study>.pdf` (all SHA-256-verified); keep the
+canonical model path and `conditian/` untouched; delete only the verified-empty
+`{data` artifact.
+**Rationale:** Notebooks reproduce under reccobra39 (E-02) and behavior is now
+pinned by tests, so reorganization is safe (supersedes D-06's Phase-A deferral).
+**Status:** Active. Verified behavior-preserving (`REPRODUCTION_AFTER_MIGRATION.md`).
+
+## D-11 · 2026-07-01 · Strain re-classification from direct PDF evidence
+**Decision:** Adopt evidence-based strains: Belanger 2022 = **PAO1** (Tier 1),
+Lee 2015 = **MPAO1** (Tier 2), Turner 2015 = **PAO1+PA14** (Tier 3), Poulsen 2019
+= multi-strain incl. PAO1 (Tier 3/5), Basta 2017 = **PA14** (Tier 4), Juhas 2015
+= review (Tier 6). Overrides the earlier "mostly PA14" framing.
+**Rationale:** Recovered PDF text gives explicit strain statements (B-STRAIN-02).
+Never assume strain; cite the quote.
+**Status:** Active. Encoded in `papers/manifest.csv`, `literature_evidence.csv`,
+`PAO1_PAPER_RELEVANCE_AUDIT.md`.
+
+## D-12 · 2026-07-01 · PAO1-first validation path
+**Decision:** Do the first model validation against **PAO1/MPAO1** datasets
+(Lee, Turner PAO1 rows, Belanger, and new meegid2022) using the **identity**
+gene mapping; treat MPAO1 as PAO1-derived with a recorded caveat. Defer PA14
+(Basta) and non-PAO1 Poulsen strains until validated orthology exists.
+**Rationale:** Removes the orthology dependency from the critical path (D-11).
+**Status:** Active. B-MAP-01 downgraded P0→P1 accordingly.
+
+## D-13 · 2026-07-01 · Growth-arrest ≠ growth-essentiality (no forced comparison)
+**Decision:** Do **not** compare FBA single-gene-deletion growth-essentiality
+against Basta 2017's growth-**arrest** survival determinants as if equivalent.
+**Rationale:** FBA models growth; survival during energy-limited arrest is a
+different phenotype (integrity rule §4). Requires a tailored framework if attempted.
+**Status:** Active.
+
+## D-14 · 2026-07-01 · `pytest` added env-scoped; keep behavior regression tests
+**Decision:** Install `pytest` into reccobra39 (env-scoped) and keep
+`tests/test_model_and_data.py` pinning model identity, WT growth, and the 166/1054
+essentiality result; a guard asserts no validation-metrics file exists yet.
+**Rationale:** Lock the science before/after refactors (T-01). Fold pytest into
+the env lock at E-03.
+**Status:** Active. 8 tests pass.
+
+## D-15 · 2026-07-01 · Metadata via NCBI E-utilities; no fabricated IDs/downloads
+**Decision:** Verify all PMIDs/PMCIDs via NCBI eutils (reachable). Where full text
+or supplements are not downloadable (B-NET), record citation/DOI/PMID/PMCID only
+and mark blocked — never fabricate files or gene lists.
+**Rationale:** Integrity rules §1; honest provenance.
+**Status:** Active.
