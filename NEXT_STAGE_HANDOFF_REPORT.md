@@ -167,3 +167,21 @@ until items 1–4 above are complete and validated.
 10. `docs/PAO1_LITERATURE_SEARCH_STRATEGY.md`
 11. `BLOCKERS.md`, `TODO.md`, `DECISIONS.md`
 12. This report (`NEXT_STAGE_HANDOFF_REPORT.md`)
+
+---
+
+## 23. Cycle-2 consistency verification (2026-07-01, post-cycle)
+
+Independent re-check of the cycle outputs requested after delivery. All passed.
+
+| # | Check | Result |
+|---|---|---|
+| 1 | `data/raw/orths` folder | **Does not exist** — only `data/raw/ortholog/` is present; "orths" was shorthand in the request, not a real path. No tracked reference to `raw/orths`. **No rename needed.** |
+| 2 | meegid2022 citation | **Verified via NCBI eutils** — PMID **35104681**; DOI **10.1016/j.meegid.2022.105231**; year **2022** (Mar); journal *Infection, Genetics and Evolution*; title *"Genome-wide identification of genetic requirements of Pseudomonas aeruginosa PAO1 for rat cardiomyocyte (H9C2) infection by insertion sequencing."*; **not in PMC** (not OA). Relevance: PAO1, genome-wide insertion sequencing → gene-level PAO1 requirements → **Tier 1**. The garbled string "PMID 351Oberhardt 2008" was a **terminal-rendering artifact in the chat summary only** — it appears in **no file** (`git grep` confirms). |
+| 3 | 6 PDF SHA-256 (`conditian/` → `papers/`) | **ALL 6 MATCH** (juhas2015, turner2015, lee2015, poulsen2019, basta2017, belanger2022). |
+| 4 | `conditian/` untracked & untouched | **Yes** — `git status` shows `?? conditian/`; all 6 original PDFs intact; not staged/committed/deleted. |
+| 5 | No validation metrics generated | **Confirmed** — `results/comparison/` holds only `README.txt`; no `metrics_*`, precision/recall/confusion files anywhere; pytest no-metrics guard passes. |
+| 6 | Tests after checks | **8 passed** under reccobra39 (no path correction was required). |
+
+**Conclusion:** Cycle-2 outputs are internally consistent. No fabricated data; no
+metrics; `conditian/` preserved; no push. Nothing required correction.
