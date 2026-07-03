@@ -82,3 +82,8 @@ data/raw/ortholog/*.txt
 # Legacy / local condition files
 conditian/
 
+
+# Local AI agent/tool files
+.agents/
+.codex/
+AGENTS.md
