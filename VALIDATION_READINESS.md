@@ -60,26 +60,41 @@ Gap: predictions exist for only ONE medium. Condition-specific predictions
 
 ---
 
-## 3. Experimental labels — NOT AVAILABLE
+## 3. Experimental labels — RAW SUPPLEMENTS PRESENT; DRAFT gene-level parsed (still NOT validated for metrics)
 
-**Strain re-audited 2026-07-01 (B-STRAIN-02) — earlier PA14 labels corrected:**
+**Strain re-audited 2026-07-01 (B-STRAIN-02); supplements landed + parsed to
+DRAFT 2026-07-06.** Distinguish four states, which are NOT the same thing:
+(a) **raw supplement present**; (b) **parse notes + thresholds sourced**;
+(c) **DRAFT gene-level rows parsed** (with review flags); (d) **validated
+gene-level labels** (peer-reviewed against media + predictions). Only (a)–(c)
+exist; (d) does not — so **no metric may be computed** (B-SCI-01).
 
-| Study (verified) | Strain (corrected) | Phenotype class | Labels in repo? | Why not |
-|---|---|---|---|---|
-| Juhas 2015 (10.1099/mic.0.000161) | review | generally essential | no | review; primary lists live in cited studies |
-| Turner 2015 (10.1073/pnas.1419677112) | **PAO1 + PA14** | condition-specific essential (CF sputum) | no | PNAS supplement `sd01–04.xlsx` **403-blocked** (B-NET); PAO1 rows usable |
-| Lee 2015 (10.1073/pnas.1422186112) | **MPAO1** (PAO1-derived) | general + condition-specific essential | no | PNAS supplement `sd01.xlsx` **403-blocked** (B-NET) |
-| Poulsen 2019 (10.1073/pnas.1900570116) | multi-strain (incl. **PAO1**) | core essential | no | PNAS supp / Broad portal not retrieved |
-| Basta 2017 (10.1128/mBio.01170-17) | **PA14** (UCBPP-PA14) | growth-arrest survival determinant | no | supplement not retrieved; needs orthology |
-| Belanger 2022 (10.3389/fmicb.2022.1055512) | **PAO1** | host-condition fitness | no | supplement not retrieved |
+| Study (verified) | Strain | Phenotype class | Raw supp? | Threshold sourced? | DRAFT parsed? | Validated labels? |
+|---|---|---|---|---|---|---|
+| Juhas 2015 (10.1099/mic.0.000161) | review | generally essential | n/a (review) | n/a | no | no — review; lists live in cited studies |
+| Turner 2015 (10.1073/pnas.1419677112) | **PAO1 + PA14** | general + condition + host fitness | ✅ sd01–sd10 | ✅ (P<0.01+mclust; FC≥4,P<0.05) | ✅ PAO1 sheets (sd01/06/07/10) | **no** — draft only; paired sheets sd03/04/05/09 open (L03-B3) |
+| Lee 2015 (10.1073/pnas.1422186112) | **MPAO1** (PAO1-derived) | general + condition-specific essential | ✅ sd01 | ✅ (P<0.001; consensus pools) | ✅ (general=READY; per-medium=NEEDS_REVIEW) | **no** — draft only |
+| Poulsen 2019 (10.1073/pnas.1900570116) | multi (incl. **PAO1**) | core essential | ❌ empty | no | no | no — primary supplement missing |
+| Basta 2017 (10.1128/mBio.01170-17) | **PA14** (UCBPP-PA14) | growth-arrest survival determinant | ❌ empty | no | no | no — supplement missing; needs orthology |
+| Belanger 2022 (10.3389/fmicb.2022.1055512) | **PAO1** | general + condition + host-condition fitness | ✅ DS1/DS2 | ✅ (Gumbel/TraDIS ≥4/5, T0 ≥2/3) | ✅ | **no** — draft only |
+| Varadarajan 2020 (10.1038/s41522-020-00154-8) | **MPAO1** | (essentiality = Lee re-mapped) | ✅ DS1–4 | citation VERIFIED | **no** — derivative of Lee (double-count); mapping resource only | no |
+
+DRAFT outputs (NOT validated, NOT for metrics):
+`data/processed/literature/{lee2015,turner2015,belanger2022}_parsed_gene_evidence.csv`
+and aggregate `data/processed/literature_evidence_gene_level_DRAFT.csv` (5,093
+rows; 6 phenotype classes kept distinct). Canonical
+`data/processed/literature_evidence.csv` (study-level) is unchanged. Thresholds
+sourced in `THRESHOLD_METHOD_AUDIT.md`.
 
 **Key change:** Lee (MPAO1), Belanger (PAO1) and Turner's PAO1 rows join to the
 model by **identity — no orthology needed**. The first validation is therefore
 strain-unblocked; only Basta (PA14) and non-PAO1 Poulsen strains need B-MAP-01.
 
-The only "experimental" labels currently in the codebase are the **simulated
-random labels** in `notebooks/03_experimental_comparison.ipynb` — invalid
-(B-SCI-01). They must not be used.
+DRAFT parsed gene-level labels now exist (§3 above) but are **not validated** and
+must not be fed to any metric. The only labels ever used in a metric so far are
+the **simulated random labels** in `notebooks/03_experimental_comparison.ipynb`
+— invalid (B-SCI-01). Neither the simulated labels nor the unreviewed DRAFT may
+be used to compute precision/recall/F1/MCC.
 
 **Six phenotype classes remain distinct** (general / core / condition-specific
 essential; reduced-fitness; growth-arrest survival; host-condition fitness) and
@@ -146,9 +161,9 @@ still PENDING).
 
 | Blocker | P | Blocks |
 |---|---|---|
-| **B-SCI-01** | P0 | any real metric (current comparison is simulated) |
-| **B-LIT-01** | P0 | experimental labels (supplements not downloaded) |
-| **B-NET** | P0 | the downloads above + validated orthology (403/timeout here) |
+| **B-SCI-01** | P0 | any real metric (current comparison is simulated; DRAFT labels unvalidated) |
+| **B-LIT-01** | P0 | **NARROWED** — Lee/Turner/Belanger supplements present + parsed to DRAFT; still blocks meegid2022/poulsen2019/basta2017 (supplements absent) and promotion of DRAFT → validated evidence |
+| **B-NET** | P0 | missing supplements (meegid2022/poulsen2019/basta2017) + validated orthology + `SOURCE_URL_PENDING` for obtained files (403/timeout here) |
 | **B-COND-01** | P0 | per-condition media reconstruction |
 | B-MAP-01 | **P1 / secondary** | validated PAO1↔PA14 orthology — gates **only** PA14-only/non-PAO1 datasets (Basta; non-PAO1 Poulsen). **Not** required for the first PAO1/MPAO1 validation (Lee, Belanger, Turner PAO1 rows, meegid2022 → identity join). |
 | B-MODEL-01/02 | P2 | blocked-reaction / formula context for interpreting FN/FP |
@@ -160,8 +175,11 @@ still PENDING).
 > the PA14-only path (Basta 2017; non-PAO1 Poulsen strains).
 
 ## 8. What would make this READY (checklist)
-- [ ] Experimental gene lists downloaded per study, with provenance (B-LIT-01/B-NET)
-- [ ] `literature_evidence.csv` gene-level rows populated, six classes kept distinct (L-03)
+- [~] Experimental gene lists downloaded per study, with provenance (B-LIT-01/B-NET)
+      — DONE for Lee/Turner/Belanger/Varadarajan; PENDING meegid2022/poulsen2019/basta2017 + source URLs
+- [~] `literature_evidence.csv` gene-level rows populated, six classes kept distinct (L-03)
+      — DRAFT parsed to `literature_evidence_gene_level_DRAFT.csv` (Lee/Turner/Belanger);
+      needs human review + promotion; Varadarajan excluded (Lee-derivative), Turner paired sheets pending (L03-B3)
 - [ ] Validated PAO1↔PA14 orthology merged; coverage + ambiguity reported (B-MAP-01)
 - [ ] Per-study media reconstructed and cited; model feasible per condition (C-01)
 - [ ] Per-condition predictions generated at multiple thresholds (S-01)
