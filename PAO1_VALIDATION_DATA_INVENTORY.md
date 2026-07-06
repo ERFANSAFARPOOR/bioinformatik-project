@@ -15,9 +15,10 @@ whether it is currently in the repo (it is not — supplements are blocked).
 
 | study_id | Strain | Tier | Phenotype class | Gene-level labels exist? | Supplement in repo? | Locus tags | Direct PAO1 map? | PA14→PAO1 orthology needed? | Model can simulate condition? | Priority |
 |---|---|---|---|---|---|---|---|---|---|---|
-| **belanger2022** | PAO1 | 1 | host-condition-fitness | yes (supp) | **no** (B-NET) | PAxxxx | **yes** | no | partial (host media reconstructable; some conditions non-metabolic) | **P0 (highest)** |
-| **lee2015** | MPAO1 | 2 | general + condition-specific essential | yes (sd01) | **no** (B-NET) | PAxxxx (MPAO1) | **yes** (MPAO1 caveat) | no | yes (LB + defined media) | **P0 (highest)** |
-| **turner2015** | PAO1+PA14 | 3 | condition-specific essential (CF sputum) | yes (sd01–04) | **no** (B-NET) | PAxxxx + PA14 | yes (PAO1 rows) | only PA14 rows | yes (SCFM/MOPS reconstructable) | **P0** |
+| **belanger2022** | PAO1 | 1 | host-condition-fitness | yes (supp) | **YES 2026-07-06** | PAxxxx | **yes** | no | partial (host media reconstructable; some conditions non-metabolic) | **P0 (highest)** |
+| **lee2015** | MPAO1 | 2 | general + condition-specific essential | yes (sd01) | **YES 2026-07-06** | PAxxxx (MPAO1) | **yes** (MPAO1 caveat) | no | yes (LB + defined media) | **P0 (highest)** |
+| **turner2015** | PAO1+PA14 | 3 | condition-specific essential (CF sputum) | yes (sd01–10) | **YES 2026-07-06** | PAxxxx + PA14 | yes (PAO1 rows) | only PA14 rows | yes (SCFM/MOPS reconstructable) | **P0** |
+| **varadarajan2020** (NEW) | MPAO1 | 2 (candidate) | general + condition-specific essential | yes (Dataset 4) | **YES 2026-07-06** | MPAO1_xxxxx (+PAO1 map in supp) | indirect (in-supp map) | no (MPAO1→PAO1) | yes (LB/minimal/sputum/serum) | P1 (verify DOI/PMID first) |
 | meegid2022 (NEW) | PAO1 | 1 | condition-specific fitness (host infection) | yes (supp) | **no** (not OA) | PAxxxx | yes | no | partial (intracellular infection hard to model) | P1 |
 | poulsen2019 | multi (incl PAO1) | 3/5 | core-essential | yes (supp/Broad) | **no** | multi | partial (PAO1-strain rows if separable) | for non-PAO1 strains | yes (rich medium) | P1 |
 | basta2017 | PA14 | 4 | growth-arrest survival determinant | yes (supp) | **no** | PA14_xxxxx | no | **yes** | **no** — FBA models growth, not survival during arrest | P2 (needs orthology + concept caveat) |
@@ -30,11 +31,13 @@ whether it is currently in the repo (it is not — supplements are blocked).
   new). → These are the **primary validation targets**.
 - **Multi-strain (partial PAO1):** poulsen2019 (usable if PAO1-only list separable).
 - **PA14-only (orthology required):** basta2017.
-- **Gene-level labels currently in the repo:** **none** — every supplement is
-  blocked (B-NET/B-LIT-01). Do not invent them.
-- **Supplements downloaded:** none this cycle.
-- **Blocked downloads:** all six corpus supplements + meegid2022 + the OA GEM
-  packages (see `BLOCKERS.md` B-NET).
+- **Raw supplements now in the repo (2026-07-06):** lee2015, turner2015 (sd01–10),
+  belanger2022, varadarajan2020 — audited + provenance-logged. **Still absent:**
+  meegid2022 (no folder), poulsen2019 (empty), basta2017 (empty).
+- **Gene-level labels parsed into the evidence table:** **none yet** — raw
+  supplements are present but not yet extracted (Phase E gate; do not invent).
+- **Blocked downloads (still):** meegid2022 + poulsen2019 + basta2017 supplements,
+  pseudomonas.com orthology, OA GEM packages, and all source URLs (see B-NET).
 
 ## 3. Phenotype class per dataset (kept distinct — never merged)
 

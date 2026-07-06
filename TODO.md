@@ -111,7 +111,14 @@ Status: TODO / IN-PROGRESS / DONE / BLOCKED.
 - **Task:** Populate `data/processed/literature_evidence.csv` gene-level rows from supplements, keeping all 30 columns + 6 distinct phenotype classes; no merging.
 - **Reason:** Core evidence table for validation; integrity rules §3,§5.
 - **Inputs:** downloaded supplements · **Output:** complete evidence table
-- **Deps:** L-01 · **Validation:** each row has citation+strain+condition+method+threshold+source locator; phenotype_type ∈ {6 classes}. · **Status:** BLOCKED · **Blocker:** B-LIT-01
+- **Deps:** L-01 · **Validation:** each row has citation+strain+condition+method+threshold+source locator; phenotype_type ∈ {6 classes}.
+- **Status:** **IN-PROGRESS 2026-07-06** — supplements now present for lee2015/
+  turner2015/belanger2022/varadarajan2020; per-study `SUPPLEMENT_PARSE_NOTES.md`
+  written (Phase D) identifying gene/strain/condition/essentiality/threshold columns
+  and source locators. Gene-level extraction gated on the Phase E readiness check
+  (see each parse note's readiness tag). Not yet populated into
+  `literature_evidence.csv`. · **Blocker:** partially unblocked (files present);
+  extraction pending Phase E gate + threshold-definition confirmation.
 
 ---
 
@@ -234,7 +241,16 @@ Status: TODO / IN-PROGRESS / DONE / BLOCKED.
   rows), Belanger 2022 supplement (PAO1). Store in `data/raw/literature/<study>/`
   with provenance + SHA-256; add `SUPPLEMENT_PARSE_NOTES.md`.
 - **Reason:** These are PAO1/MPAO1 → join by identity (no orthology) → first
-  validation labels. · **Deps:** network/human · **Status:** BLOCKED · **Blocker:** B-NET, B-LIT-01
+  validation labels. · **Deps:** network/human
+- **Status:** **PARTIAL/DONE 2026-07-06** — Lee sd01 (+SI PDF), **Turner sd01–sd10**
+  (all 10, not just sd01–04), and **Belanger** Data_Sheet_1/2 (.XLSX) + Data_Sheet_3
+  (.docx) are present, SHA-256-logged (`DATA_PROVENANCE.md §3d`,
+  `data/processed/literature/supplement_inventory.tsv`), audited
+  (`SUPPLEMENT_INVENTORY_AUDIT.md`), and parse notes added (Phase D). **Bonus:**
+  `varadarajan2020` (MPAO1 TnSeq + MPAO1→PAO1 map) also obtained. **Still missing:**
+  meegid2022 (no folder), poulsen2019 (empty), basta2017 (empty, deferred).
+  · **Blocker:** narrowed — B-LIT-01 now open only for meegid2022/poulsen2019/basta2017;
+  B-NET still open for those + source URLs.
 
 ### L-06 · P1 · literature — acquire new PAO1 dataset meegid2022
 - **Task:** Obtain full text + supplement of PMID 35104681 (PAO1 insertion-seq,
@@ -265,3 +281,16 @@ Status: TODO / IN-PROGRESS / DONE / BLOCKED.
 
 **Completed this cycle:** R-01, R-03, T-01, PR-01, L-02, L-04 (plus E-01, E-02, R-02 earlier).
 **Still gated (do NOT compute metrics):** V-01 (B-SCI-01/B-LIT-01/B-COND-01).
+
+## Update 2026-07-06 (L-section supplements landed)
+- **Model raw-copy test failure RESOLVED** (CRLF→LF; `MODEL_COPY_DISCREPANCY_REPORT.md`);
+  tests 8/8. `.gitattributes` pins `*.xml text eol=lf`.
+- **L-05 PARTIAL/DONE:** lee2015, turner2015 (sd01–10), belanger2022, varadarajan2020
+  supplements present + audited (`SUPPLEMENT_INVENTORY_AUDIT.md`) + provenance logged
+  (`DATA_PROVENANCE.md §3d`). meegid2022/poulsen2019/basta2017 still missing.
+- **L-03 IN-PROGRESS:** parse notes written; gene-level extraction gated on Phase E.
+- **Next scientific stage:** (1) L-03 parse supplements → gene-level
+  `literature_evidence_gene_level_DRAFT.csv`; (2) C-01b reconstruct PAO1 media
+  (LB / MOPS-succinate / SCFM2 [Turner sd08 recipe] / RPMI±serum); (3) S-01
+  per-condition gene deletion; (4) V-01 metrics — still **forbidden** until real
+  labels + media + predictions exist.

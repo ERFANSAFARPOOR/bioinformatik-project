@@ -1,6 +1,6 @@
 # VALIDATION-READINESS REPORT
 
-**Date:** 2026-06-26 · **Branch:** `claude/revival-audit`
+**Date:** 2026-06-26 (updated **2026-07-06**) · **Branch:** `claude/revival-audit`
 **Purpose:** State exactly what exists and what is missing before any
 model-vs-experiment validation metric is computed. **No metrics are computed
 here** (per instruction and BLOCKER B-SCI-01). This report is the gate that must
@@ -8,13 +8,38 @@ be satisfied before V-01.
 
 ---
 
+## 0. Update 2026-07-06 — raw supplements now physically present (still NOT ready for metrics)
+
+**What changed:** the L-section human-assisted downloads mean the experimental
+labels now **physically exist as raw supplements** in the repo for:
+- **lee2015** (MPAO1) — `pnas.1422186112.sd01.xlsx` (general + condition-specific essential)
+- **turner2015** (PAO1+PA14) — `sd01–sd10.xlsx` (PAO1 essentiality + condition/fitness)
+- **belanger2022** (PAO1) — `Data_Sheet_1/2.XLSX` (essential + host-condition)
+- **varadarajan2020** (MPAO1, bonus) — `Supplementary Dataset 1–4` (per-condition essentiality + MPAO1→PAO1 map)
+
+Audited (`SUPPLEMENT_INVENTORY_AUDIT.md`), provenance-logged (`DATA_PROVENANCE.md §3d`),
+parse notes written (`data/raw/literature/<study>/SUPPLEMENT_PARSE_NOTES.md`).
+
+**What has NOT changed — still NOT READY for any metric.** "Raw supplement present"
+≠ "validated gene-level label parsed." All of the following are still required and
+absent: (a) gene-level rows parsed into the evidence table with per-study
+essentiality **definition + threshold** confirmed; (b) reconstructed per-condition
+**media** (B-COND-01); (c) per-condition **predictions** (S-01); (d) for MPAO1
+sources, the MPAO1→PAO1 mapping validated. **No precision/recall/F1/MCC/specificity/
+confusion matrix may be computed.** B-SCI-01, B-COND-01 remain OPEN; B-LIT-01
+narrowed (meegid2022/poulsen2019/basta2017 still missing); B-NET open (source URLs
++ missing studies).
+
+---
+
 ## 1. Verdict
 
 **NOT READY to compute validation metrics.** The model-side predictions exist and
-are reproducible, but on the experiment side there are currently **zero validated
-experimental labels in the repository**, **no reconstructed experimental media**,
-and the strain bridge (PAO1↔PA14) is only partially built from annotation symbols.
-Four P0 blockers remain (B-SCI-01, B-LIT-01, B-NET, B-COND-01). **B-MAP-01 is
+are reproducible; experimental labels are now **physically present** as raw
+supplements for 4 studies (see §0) but are **not yet parsed into validated
+gene-level rows**, there is **no reconstructed experimental media**, and the strain
+bridge (PAO1↔PA14) is only partially built from annotation symbols. P0 blockers
+remain (B-SCI-01, B-COND-01; B-LIT-01 narrowed; B-NET open). **B-MAP-01 is
 P1/secondary** — it gates only PA14-only/non-PAO1 datasets (Basta; non-PAO1
 Poulsen), **not** the first PAO1/MPAO1 validation, which joins by identity.
 

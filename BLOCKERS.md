@@ -16,21 +16,30 @@ explicitly labeled "Using simulated data for demonstration."
 papers' supplementary datasets, mapped to model gene IDs, and validated.
 Depends on B-LIT-01, B-MAP-01.
 
-## B-LIT-01 — Supplementary gene-list datasets not downloaded (P0) — OPEN
+## B-LIT-01 — Supplementary gene-list datasets not downloaded (P0) — NARROWED 2026-07-06
 The experimental essential/fitness gene lists live in supplementary files, not
-in the PDFs' body. Strain re-audited (B-STRAIN-02) — locus-tag system noted:
-- Turner 2015 (**PAO1+PA14**): `pnas.1419677112.sd01–sd04.xlsx` — PAO1 rows usable.
-- Lee 2015 (**MPAO1**): `pnas.1422186112.sd01.xlsx` — PAO1-tag, no orthology.
-- Belanger 2022 (**PAO1**): Frontiers supplement — PAO1-tag, no orthology.
-- Poulsen 2019 (multi-strain): PNAS SI + Broad fitness `https://data.broadinstitute.org/fitness/` + `https://github.com/broadinstitute/FiTnEss`.
-- Basta 2017 (**PA14**): mBio supplement — needs orthology.
-- NEW meegid2022 (**PAO1**, PMID 35104681): full text + supplement (not OA here).
-**Impact:** `data/processed/literature_evidence.csv` has only study-level rows;
-all gene-level rows are `PENDING_EXTRACTION`.
-**Unblock when:** datasets downloaded (provenance in `DATA_PROVENANCE.md`), stored
-under `data/raw/literature/<study_id>/`, and parsed. Requires network access
-(blocked here — B-NET) + human confirmation that downloading is permitted.
-Priority order: PAO1/MPAO1 first (Lee, Turner PAO1 rows, Belanger, meegid2022).
+in the PDFs' body. Strain re-audited (B-STRAIN-02) — locus-tag system noted.
+
+**OBTAINED 2026-07-06 (human-assisted; now physically present + audited):**
+- Turner 2015 (**PAO1+PA14**): `pnas.1419677112.sd01–sd10.xlsx` — PAO1 rows usable ✅
+- Lee 2015 (**MPAO1**): `pnas.1422186112.sd01.xlsx` — PAO1-tag, identity join ✅
+- Belanger 2022 (**PAO1**): `Data_Sheet_1/2.XLSX` (+`_3.docx`) — PAO1-tag ✅
+- Varadarajan 2020 (**MPAO1**, bonus): `Supplementary Dataset 1–4` — MPAO1 essentiality
+  + in-supplement MPAO1→PAO1 map ✅ (citation DOI/PMID still `PENDING`).
+
+Provenance: `DATA_PROVENANCE.md §3d` + `data/processed/literature/supplement_inventory.tsv`
+(SHA-256 per file). Audit: `SUPPLEMENT_INVENTORY_AUDIT.md`. Parse notes:
+`data/raw/literature/<study>/SUPPLEMENT_PARSE_NOTES.md`.
+
+**STILL MISSING (blocker remains OPEN only for these):**
+- Poulsen 2019 (multi-strain): PNAS SI + Broad fitness — folder empty.
+- Basta 2017 (**PA14**): mBio supplement — folder empty (deferred; needs orthology).
+- meegid2022 (**PAO1**, PMID 35104681): full text + supplement — no folder.
+
+**Impact:** gene-level rows for obtained studies can now be drafted (Phase D/E);
+`literature_evidence.csv` gene-level rows remain `PENDING_EXTRACTION` until the
+Phase E parse gate is satisfied. **Unblock fully when:** the three missing studies
+are downloaded/parsed AND source URLs recorded (currently `SOURCE_URL_PENDING`).
 
 ## B-LIT-02 — Citation/DOI/year for Basta & Belanger (P1) — RESOLVED 2026-06-26
 Verified against authoritative sources (ASM/Frontiers + PMC):
@@ -88,6 +97,11 @@ authoritative pseudomonas.com PAO1↔PA14 ortholog table cannot be fetched here.
 (annotation-based, flagged medium/low) instead. **Unblock when:** supplements +
 validated orthology are obtained via a human-assisted download or different network;
 store in `data/raw/...` with provenance. Do not fabricate the missing gene lists.
+**Update 2026-07-06:** the Lee/Turner/Belanger/Varadarajan supplements were obtained
+via **human-assisted download** (partly resolving the L-section blockers), but
+B-NET stays **OPEN**: meegid2022/poulsen2019/basta2017 supplements, the
+pseudomonas.com ortholog table, and the **source URLs** of the obtained files
+(`SOURCE_URL_PENDING`) are all still outstanding.
 
 ## B-MODEL-01 — Blocked reactions / gap-filling not characterized (P2) — OPEN
 `find_blocked_reactions` failed under Windows multiprocessing during the audit.

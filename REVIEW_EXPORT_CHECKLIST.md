@@ -128,3 +128,26 @@ For the human-assisted download/parse handoff (context + targets):
 Purpose of the handoff: obtain the six PAO1/MPAO1-first supplements above via a
 human/unblocked network, with provenance, so L-03 → C-01b → S-01 → V-01 can proceed.
 Do **not** fabricate any gene list, orthology, or metric.
+
+---
+
+## 7. Update 2026-07-06 — L-section downloads received & audited
+
+The §5 human-assisted download handoff has **partly completed**. Status of the §5 table:
+
+| # | Study | Obtained? | Notes |
+|---|-------|:---------:|-------|
+| 1 | Lee 2015 (MPAO1) | ✅ | `sd01.xlsx` + Supporting Information PDF |
+| 2 | Turner 2015 (PAO1) | ✅ **+extra** | `sd01–sd10.xlsx` (all 10; sd08 = SCFM2 media recipe → C-01b) |
+| 3 | Belanger 2022 (PAO1) | ✅ | `Data_Sheet_1/2.XLSX` + `Data_Sheet_3.docx` |
+| — | Varadarajan 2020 (MPAO1) | ✅ **bonus** | `Supplementary Dataset 1–4`; **DOI/PMID PENDING verification** |
+| 4 | meegid2022 (PAO1) | ❌ | no folder — still needed |
+| 5 | Poulsen 2019 | ❌ | folder empty — still needed |
+| 6 | Basta 2017 (PA14) | ❌ | folder empty — deferred (orthology) |
+
+Done this cycle: model raw-copy line-ending fix (tests 8/8); supplement inventory
+audit (`SUPPLEMENT_INVENTORY_AUDIT.md`); provenance (`DATA_PROVENANCE.md §3d` +
+`data/processed/literature/supplement_inventory.tsv`); parse notes per study
+(`data/raw/literature/<study>/SUPPLEMENT_PARSE_NOTES.md`). **Still outstanding for
+the human:** source download URLs (`SOURCE_URL_PENDING`), varadarajan2020 citation,
+and the 3 missing studies. **Metrics remain forbidden** (B-SCI-01/B-COND-01).

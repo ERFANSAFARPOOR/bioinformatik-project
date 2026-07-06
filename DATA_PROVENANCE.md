@@ -133,6 +133,38 @@ These feed `scripts/mapping/build_gene_mapping.py` → `data/processed/gene_mapp
 > (B-NET). Symbol-based PA14 rows are flagged `medium`/`low` confidence with
 > candidates retained for ambiguous cases.
 
+## 3d. Supplementary datasets — NOW PRESENT (human-assisted download, logged 2026-07-06)
+
+The L-section human-assisted downloads landed the following raw supplements under
+`data/raw/literature/<study_id>/`. **Retrieval:** manual/human-assisted; committed
+to the repo 2026-07-03…07-06 (git commits `7ac68134`, `4c2a297e`, `d7f6f1cd`); the
+exact download timestamp was not separately recorded → `RETRIEVAL_DATE_APPROX`.
+**Source URLs were not captured at download time → `SOURCE_URL_PENDING`** (do not
+invent; DOIs/PMIDs below are verified identifiers, not the download URLs).
+**Full per-file SHA-256 + size manifest:**
+`data/processed/literature/supplement_inventory.tsv` (54 files; generated
+read-only by the Phase B inventory). Files verified readable via openpyxl; none
+modified. Full audit + column structure: `SUPPLEMENT_INVENTORY_AUDIT.md`.
+
+| study_id | strain | DOI | PMID / PMCID | files (local path `data/raw/literature/…`) | source status | reason for inclusion |
+|---|---|---|---|---|---|---|
+| lee2015 | MPAO1 | 10.1073/pnas.1422186112 | 25848053 / PMC4413342 | `lee2015/pnas.1422186112.sd01.xlsx` (156,343 B, sha `14557cee…`); `lee2015/Supporting Information.pdf` (445,067 B, sha `2e1ad4cb…`) | MANUAL_DOWNLOAD, SOURCE_URL_PENDING | P0 general+condition-specific essential labels (PAO1-tag, identity join) |
+| turner2015 | PAO1+PA14 | 10.1073/pnas.1419677112 | 25775563 / PMC4386324 | `turner2015/pnas.1419677112.sd01–sd10.xlsx` (10 files; sd01 sha `53f373af…`, sd03 `4723c701…`, sd04 `a1ec2e2d…`) | MANUAL_DOWNLOAD, SOURCE_URL_PENDING | P0 PAO1 essentiality (sd01) + condition/fitness (sd03–10); sd08 = SCFM2 media recipe (for C-01b) |
+| belanger2022 | PAO1 | 10.3389/fmicb.2022.1055512 | 36504765 / PMC9732424 | `belanger2022/Data_Sheet_1.XLSX` (143,782 B, sha `7f5c6eb9…`); `Data_Sheet_2.XLSX` (56,441 B, sha `1052c75a…`); `Data_Sheet_3.docx` (460,332 B, sha `4dbc9392…`) | MANUAL_DOWNLOAD, SOURCE_URL_PENDING | P0 PAO1 essential + host-condition (RPMI/serum/abscess/skin) labels |
+| varadarajan2020 | MPAO1 | PENDING_DOI | PENDING_PMID | `varadarajan2020/Supplementary Dataset 1–4 (MPAO1).xlsx` (DS4 essentiality sha `7c0beb3a…`; DS1 mapping `ab35311b…`; DS3 `99f75b40…`; DS2 SNPs `954e3763…`); + 2 context PDFs | MANUAL_DOWNLOAD, SOURCE_URL_PENDING, DOI/PMID **PENDING** | Candidate P0/P1 MPAO1 per-condition essentiality + in-supplement MPAO1→PAO1 mapping; **citation not yet verified** |
+| zhu2018 | iPAO1 (model) | 10.1093/gigascience/giy021 (PENDING_VERIFY) | PMC6333913 (PENDING_VERIFY) | `zhu2018/` — 2 MS PDFs, 4 review/response PDFs, 1 docx, `giy021_supp/additionalFile2–27.xlsx` (EV1–EV26) | MANUAL_DOWNLOAD, SOURCE_URL_PENDING | **Background** — genome-scale *reconstruction* (iPAO1), NOT experimental essentiality; out-of-scope for L-03 labels |
+| basta2017 | PA14 | 10.1128/mBio.01170-17 | 29184024 / PMC5705914 | (empty — only `.gitkeep`) | NOT_PRESENT | deferred (PA14, needs orthology) |
+| poulsen2019 | multi (incl. PAO1) | 10.1073/pnas.1900570116 | 31036669 / PMC6525520 | (empty — only `.gitkeep`) | NOT_PRESENT | P1 core-essential; primary supplement still missing |
+| meegid2022 | PAO1 | PENDING | 35104681 | (no folder) | NOT_PRESENT | P1 PAO1 insertion-seq; not downloaded |
+
+**PENDING items requiring human input (do not fabricate):**
+- Source download **URLs** for all obtained supplements (`SOURCE_URL_PENDING`).
+- **varadarajan2020 DOI/PMID** and full citation (`PENDING_DOI`/`PENDING_PMID`) —
+  new study not in the original 6-paper corpus; must be verified before use.
+- zhu2018 DOI/PMCID marked `PENDING_VERIFY` (inferred from `GIGA-D-17-00272` /
+  `giy021`, not yet confirmed via eutils).
+- meegid2022, poulsen2019, basta2017 supplements still absent.
+
 ---
 
 ## 4. Derived / generated data (this repo)
