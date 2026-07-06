@@ -75,8 +75,8 @@ exist; (d) does not — so **no metric may be computed** (B-SCI-01).
 | Juhas 2015 (10.1099/mic.0.000161) | review | generally essential | n/a (review) | n/a | no | no — review; lists live in cited studies |
 | Turner 2015 (10.1073/pnas.1419677112) | **PAO1 + PA14** | general + condition + host fitness | ✅ sd01–sd10 | ✅ (P<0.01+mclust; FC≥4,P<0.05) | ✅ PAO1 sheets (sd01/06/07/10) | **no** — draft only; paired sheets sd03/04/05/09 open (L03-B3) |
 | Lee 2015 (10.1073/pnas.1422186112) | **MPAO1** (PAO1-derived) | general + condition-specific essential | ✅ sd01 | ✅ (P<0.001; consensus pools) | ✅ (general=READY; per-medium=NEEDS_REVIEW) | **no** — draft only |
-| Poulsen 2019 (10.1073/pnas.1900570116) | multi (incl. **PAO1**; PA14_ID/Cluster_ID) | core essential | ✅ sd01–07 (2026-07-06) | no (Methods threshold not sourced) | no | no — needs PA14→PAO1 orthology + threshold |
-| Basta 2017 (10.1128/mBio.01170-17) | **PA14** (UCBPP-PA14) | growth-arrest survival determinant | ✅ sd1–4+tif (2026-07-06) | no (raw read counts) | no | no — needs analysis + orthology |
+| Poulsen 2019 (10.1073/pnas.1900570116) | multi (PA14_ID/Cluster_ID; **9 strains exclude PAO1**) | core essential | ✅ sd01–07 (2026-07-06) | **yes** (FiTnEss adj. P<0.05 both reps; FWER/FDR) | no | no — **mapping-blocked**: needs PA14→PAO1 orthology (no PAO1 in supplement) |
+| Basta 2017 (10.1128/mBio.01170-17) | **PA14** (UCBPP-PA14) | growth-arrest survival determinant | ✅ sd1–4+tif (2026-07-06) | **yes** (read ratio ≤0.25 & Fisher P≤0.05) | no | no — needs call derivation + PA14→PAO1 orthology; phenotype ≠ FBA growth |
 | Belanger 2022 (10.3389/fmicb.2022.1055512) | **PAO1** | general + condition + host-condition fitness | ✅ DS1/DS2 | ✅ (Gumbel/TraDIS ≥4/5, T0 ≥2/3) | ✅ | **no** — draft only |
 | Varadarajan 2020 (10.1038/s41522-020-00154-8) | **MPAO1** | (essentiality = Lee re-mapped) | ✅ DS1–4 | citation VERIFIED | **no** — derivative of Lee (double-count); mapping resource only | no |
 
@@ -142,6 +142,13 @@ from the model** (the model covers metabolism only, ~1054 of ~5600 genes).
 No experimental medium is reconstructed yet (B-COND-01). Comparing essentiality
 across mismatched media is invalid, so per-condition media must be built (with
 cited composition → exchange bounds) before per-study metrics.
+
+**Media-source audit (2026-07-07):** `MEDIA_SOURCE_AUDIT.md` now records, per
+study, each condition's supplement/paper locator and whether composition is
+DEFINED (MOPS-pyruvate, MOPS-succinate, RPMI-1640, M9, pyruvate-minimal), PARTIAL
+(SCFM2 — recipe in Turner sd08 but mucin/DNA polymers; LB/BHI/MHB; RPMI+serum), or
+MEDIA_GAP_PENDING (native sputum, serum/FBS, urine, abscess, skin, and Basta's
+carbon/oxygen-limited arrest). **C-01b not started; no exchange bounds invented.**
 
 ---
 

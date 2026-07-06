@@ -1,73 +1,64 @@
 # NEXT_CLAUDE_PROMPT.md — ready-to-paste prompt for the next run
 
+*(Rewritten 2026-07-07. Supersedes all earlier versions.)*
+
 ---
 
-You are continuing the PAO1-focused iMO1056 / MODEL1507180020 metabolic-modeling
-validation project. Pick up exactly where the last cycle stopped.
+You are continuing the PAO1-focused iMO1056 / MODEL1507180020 metabolic-model
+validation project. Work conservatively — a scientific validation repo, not a demo.
+Do not fabricate data, source URLs, media, thresholds, mappings, orthology, labels,
+or metrics.
 
-## Current state (verify before acting)
-- **Branch:** `claude/revival-audit` (work only here; never push; never change remotes).
-- **Env:** `reccobra39`. `conda` is NOT on the Bash-tool PATH — invoke the interpreter
-  directly: `C:/Users/pro/anaconda3/envs/reccobra39/python.exe`. Tests: run
-  `.../reccobra39/python.exe -m pytest tests/ -q` (must be 8/8 before any new work).
-- **Latest commit:** run `git log --oneline -6`; the last cycle ended with the
-  "L-03 parse-blockers + handoff" commit on top of `422e8c16`, `10920e7a`, `5695d99f`.
-- The model raw-copy line-ending issue is RESOLVED (`.gitattributes *.xml text eol=lf`).
+## Fixed facts
+- **Path:** `I:\Bioinfo\karvarzi\ipynb` · **Branch:** `claude/revival-audit` (only).
+- **Env:** `reccobra39`. If `conda` isn't on PATH, use
+  `C:/Users/pro/anaconda3/envs/reccobra39/python.exe`. Tests:
+  `.../reccobra39/python.exe -m pytest tests/ -q` (must be **8/8** before any work).
+- **Never** push, change remotes, edit raw supplements/PDFs/model in place, touch
+  `conditian/`, or overwrite `data/processed/literature_evidence.csv`. A guard
+  blocks writes under `data/raw/` and `models/raw/` — do not bypass it.
+- **No validation metrics** (precision/recall/F1/MCC/specificity/confusion) until
+  reviewed evidence + reconstructed media + per-condition predictions all exist.
 
-## Read first (in this order)
-1. `NEXT_STAGE_SUPPLEMENT_HANDOFF.md` — full state of the last cycle.
-2. `L03_PARSE_BLOCKERS.md` — exactly what blocks gene-level parsing (L03-B1..B8).
-3. `SUPPLEMENT_INVENTORY_AUDIT.md` + each
-   `data/raw/literature/<study>/SUPPLEMENT_PARSE_NOTES.md`.
-4. `BLOCKERS.md`, `VALIDATION_READINESS.md`, `TODO.md`, `CLAUDE.md` (hard rules).
+## Current state (verify with `git log --oneline -8`)
+- **Active studies:** Lee 2015 (MPAO1), Turner 2015 (PAO1+PA14), Belanger 2022
+  (PAO1), Poulsen 2019 (multi-strain, PA14-referenced), Basta 2017 (PA14).
+  Varadarajan 2020 = verified but **derivative of Lee** (mapping resource only).
+  Zhu 2018 = background/model. **meegid2022 removed from active scope.**
+- **L-03 DRAFT parsed** (Lee/Turner/Belanger) →
+  `data/processed/literature_evidence_gene_level_DRAFT.csv` (5,093 rows, 6
+  phenotype classes distinct, review flags). Not yet human-reviewed/promoted.
+- **Poulsen + Basta:** raw supplements present, thresholds sourced
+  (`THRESHOLD_METHOD_AUDIT.md`), but **not parsed** — PA14-indexed, no PAO1 in
+  either supplement (Poulsen's 9 strains exclude PAO1) → blocked on validated
+  PA14→PAO1 orthology (`POULSEN_BASTA_MAPPING_PLAN.md`). Basta also needs its call
+  column derived and a non-growth comparison framework.
+- **Media:** `MEDIA_SOURCE_AUDIT.md` done (DEFINED / PARTIAL / MEDIA_GAP_PENDING).
+  C-01b **not started**.
 
-## Next task (L-03, gated)
-Unblock and perform gene-level literature parsing **for the PAO1/MPAO1 studies only**:
-1. **Extract essentiality definitions + numeric thresholds** from the Methods of
-   Lee 2015, Turner 2015, Belanger 2022 (read-only PDF text; do NOT edit PDFs) →
-   resolves L03-B1/B2/B4/B8. Record the exact cutoff (fold-change/P/insertion-density,
-   N-of-M-replicate rule) per study, with page/section locator.
-2. **Verify varadarajan2020 DOI/PMID** via NCBI eutils (L03-B6) before using it.
-   If unverifiable, leave it `PENDING` and exclude from the draft.
-3. Write `scripts/literature/parse_supplements.py` that reads raw supplements only
-   (no writes to `data/raw/`), and outputs
-   `data/processed/literature/<study_id>_parsed_gene_evidence.csv` preserving
-   `source_file`, `source_sheet`, `source_row`, strain, condition/media, phenotype
-   class (keep all 6 classes distinct — never collapse to binary), original gene ID,
-   mapped PAO1 ID (only when safe; MPAO1→PAO1 via in-supplement best-hit, retain
-   one-to-many/missing), `essentiality_definition`, `threshold`; mark uncertain rows
-   `NEEDS_REVIEW`.
-4. Aggregate into `data/processed/literature_evidence_gene_level_DRAFT.csv` (clearly
-   DRAFT). **Do NOT overwrite** canonical `data/processed/literature_evidence.csv`.
-5. Handle: Turner paired PAO1+PA14 sheets (extract PAO1 block only — L03-B3);
-   Belanger Data_Sheet_2 two-row header merge (L03-B5); exclude Lee noncoding sheet;
-   treat zhu2018 as NOT_RELEVANT (iPAO1 model).
+## Read first
+`THRESHOLD_METHOD_AUDIT.md`, `L03_PARSE_BLOCKERS.md`, `POULSEN_BASTA_MAPPING_PLAN.md`,
+`MEDIA_SOURCE_AUDIT.md`, `VALIDATION_READINESS.md`, `BLOCKERS.md`, `TODO.md`,
+`DATA_PROVENANCE.md`, `SUPPLEMENT_INVENTORY_AUDIT.md`, `CLAUDE.md`.
 
-## Hard safety rules (do not violate)
-- Never fabricate gene lists, orthology, media, thresholds, or metrics. Unknown →
-  `PENDING_*` + a blocker entry.
-- **Do NOT compute any validation metric** (precision/recall/F1/MCC/specificity/
-  confusion matrix). V-01 stays blocked until real labels + reconstructed media +
-  per-condition predictions all exist.
-- Read-only raw files: never edit the SBML model, PDFs, or raw supplements in place.
-  Derived files go under `data/processed/`. `conditian/` stays untouched.
-- The PreToolUse guard denies the Write/Edit tools under `data/raw/`, `models/raw/`,
-  and on PDFs by design. For *authorized new derived files* only, a Python helper may
-  write them (transparently; not `bypassPermissions`). Never write INTO raw supplements.
-- Small local commits after each validated checkpoint. Never push. End commit messages
-  with the project's Co-Authored-By line.
+## Candidate next tasks (pick per instruction; all gated)
+1. **L-03c (review/promote):** human-review the Lee/Turner/Belanger DRAFT
+   (esp. Lee per-medium `NEEDS_REVIEW` rows); promote reviewed rows to a validated
+   table — never overwriting canonical `literature_evidence.csv`.
+2. **L03-B3 (Turner paired sheets):** confirm PAO1 column blocks in sd03/04/05/09
+   and extend the parser to extract PAO1-only columns.
+3. **G-01b (orthology):** obtain a validated PA14→PAO1 ortholog table
+   (pseudomonas.com / study homolog columns) — unblocks Poulsen + Basta. Blocked by
+   B-NET (human-assisted/different-network download); store in `data/raw/ortholog/`
+   with provenance. Then L-03b: draft-parse Poulsen (sd05/sd02) and Basta (derive
+   calls from sd1/sd2 via read-ratio ≤0.25 & Fisher P≤0.05), keeping
+   one-to-many/missing explicit.
+4. **C-01b (only when asked):** begin media reconstruction from the DEFINED/PARTIAL
+   sources in `MEDIA_SOURCE_AUDIT.md` (MOPS-pyruvate, MOPS-succinate, RPMI-1640,
+   M9, pyruvate-minimal; SCFM2 from Turner sd08). Cite every component; do not
+   invent bounds. **Stop before** final condition JSON / S-01 / V-01.
 
 ## Stop conditions
-- If tests fail at start → stop, report, do not parse.
-- If a study's threshold/definition cannot be sourced from its Methods → do NOT emit
-  its gene rows; extend `L03_PARSE_BLOCKERS.md` and continue with the studies that are
-  fully sourced.
-- After L-03 draft: STOP before C-01b/S-01/V-01 and report; do not compute metrics.
-
-## Also outstanding (not this task unless asked)
-- All corpus supplements now present (Poulsen/Basta added 2026-07-06). meegid2022
-  removed from active scope by user decision 2026-07-06 (no local files; no
-  validation dependency). (This prompt file is superseded — see the fresh version
-  written at the end of the 2026-07-07 cycle.)
-- `SOURCE_URL_PENDING` for all obtained supplements (ask the human).
-- varadarajan2020 citation verification.
+Tests fail at start → stop. A study's threshold/mapping cannot be sourced → do not
+emit its rows; record in `L03_PARSE_BLOCKERS.md`. Never compute a metric. End
+commit messages with the project's Co-Authored-By line.

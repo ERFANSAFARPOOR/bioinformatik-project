@@ -302,3 +302,23 @@ Status: TODO / IN-PROGRESS / DONE / BLOCKED.
   (LB / MOPS-succinate / SCFM2 [Turner sd08 recipe] / RPMI±serum); (3) S-01
   per-condition gene deletion; (4) V-01 metrics — still **forbidden** until real
   labels + media + predictions exist.
+
+## Update 2026-07-07 (Poulsen/Basta audited; meegid removed; media-source audit)
+- **meegid2022 removed from active scope** (user decision) across all active docs.
+- **Poulsen 2019 + Basta 2017 audited to L-03 readiness** but **not parsed**:
+  thresholds sourced (`THRESHOLD_METHOD_AUDIT.md`), but both are PA14-indexed with
+  **no PAO1 in either supplement** (Poulsen's 9 strains exclude PAO1) → blocked on
+  validated PA14→PAO1 orthology (`POULSEN_BASTA_MAPPING_PLAN.md`; L03-B9/B10).
+  Basta additionally needs its call column derived and a non-growth comparison
+  framework. Parse notes: `SUPPLEMENT_PARSE_NOTES_{POULSEN2019,BASTA2017}.md`.
+- **MEDIA_SOURCE_AUDIT.md created** (Phase 7): per-study media locators +
+  reconstructability (DEFINED / PARTIAL / MEDIA_GAP_PENDING). **C-01b NOT started;
+  no exchange bounds invented; no simulation.**
+- **New TODO items:**
+  - **G-01b · P1 · gene-mapping** — obtain validated PA14→PAO1 orthology
+    (pseudomonas.com / study homolog table); unblocks Basta + Poulsen. Blocker: B-NET.
+  - **L-03b · P1 · literature** — after orthology, draft-parse Poulsen (sd05/sd02)
+    and Basta (derive calls from sd1/sd2), keeping one-to-many/missing explicit.
+  - **L-03c · P1 · literature** — human-review the Lee/Turner/Belanger DRAFT and
+    promote reviewed rows (never overwrite canonical `literature_evidence.csv`).
+- Metrics remain **forbidden** (B-SCI-01).

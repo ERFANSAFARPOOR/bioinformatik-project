@@ -93,6 +93,27 @@ rows, no DRAFT, nothing fabricated.
 3. **S-01:** per-condition single-gene deletion predictions.
 4. **V-01:** metrics — **still forbidden** until real labels + media + predictions exist.
 
+## Update 2026-07-07 (this cycle)
+- **L-03 DRAFT parsed** for Lee/Turner/Belanger (`literature_evidence_gene_level_DRAFT.csv`,
+  5,093 rows). Varadarajan verified but derivative (mapping resource only). Zhu out of scope.
+- **meegid2022 removed from active scope** (user decision) — no local files, no dependency.
+- **Poulsen 2019 + Basta 2017 audited** (thresholds sourced) but **not parsed** —
+  PA14-indexed, no PAO1 in either supplement (Poulsen's 9 strains exclude PAO1) →
+  blocked on validated PA14→PAO1 orthology (`POULSEN_BASTA_MAPPING_PLAN.md`, L03-B9/B10).
+- **`MEDIA_SOURCE_AUDIT.md` created** (per-study media locators + reconstructability).
+  C-01b **not started**; no exchange bounds invented; no simulation.
+- Fresh next-run prompt: `NEXT_CLAUDE_PROMPT.md` (rewritten 2026-07-07).
+
+## Next recommended scientific stage (superseded by the 2026-07-07 update above)
+1. **L-03 (unblock then parse):** extract thresholds from Methods PDFs (read-only) →
+   `scripts/literature/parse_supplements.py` →
+   `data/processed/literature/<study>_parsed_gene_evidence.csv` →
+   `literature_evidence_gene_level_DRAFT.csv` (6 phenotype classes distinct).
+2. **C-01b:** reconstruct PAO1 media (LB, MOPS-succinate, **SCFM2 from Turner sd08**,
+   RPMI±serum from Belanger) as exchange configs with citations.
+3. **S-01:** per-condition single-gene deletion predictions.
+4. **V-01:** metrics — **still forbidden** until real labels + media + predictions exist.
+
 ## Guardrails held all cycle
 No push; no remote change; no raw deletion; no in-place edit of raw model/PDF/
 supplement; `conditian/` preserved; no metrics; nothing fabricated; unknowns kept as

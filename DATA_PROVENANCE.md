@@ -189,6 +189,18 @@ All `original_gene_id` and `mapped_pao1_gene_id` match `^PA\d+$` (identity join;
 0 PA14 leakage). Canonical `data/processed/literature_evidence.csv` (study-level)
 is **unchanged**.
 
+**Poulsen 2019 + Basta 2017 (2026-07-07):** audited to L-03 readiness level
+(structure + Methods thresholds sourced — `THRESHOLD_METHOD_AUDIT.md`,
+`SUPPLEMENT_PARSE_NOTES_{POULSEN2019,BASTA2017}.md`) but **not parsed to
+gene-level evidence**: both are PA14-indexed and neither supplement contains PAO1
+identifiers (Poulsen's 9 strains exclude PAO1), so both are blocked on validated
+PA14→PAO1 orthology (`POULSEN_BASTA_MAPPING_PLAN.md`). No derived evidence file
+was written for them.
+
+**Media sources (2026-07-07):** `MEDIA_SOURCE_AUDIT.md` records per-study
+condition/media locators and reconstructability (DEFINED / PARTIAL /
+MEDIA_GAP_PENDING). C-01b not started; no exchange bounds invented.
+
 ---
 
 ## 4. Derived / generated data (this repo)
