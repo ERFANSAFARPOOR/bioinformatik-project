@@ -102,10 +102,12 @@ Details + PMIDs: `docs/PAO1_LITERATURE_SEARCH_STRATEGY.md`.
 ## 12. Supplementary datasets downloaded
 **None.** No supplement or full-text PDF was retrievable this cycle.
 
-## 13. Supplementary datasets blocked
+## 13. Supplementary datasets blocked *(historical snapshot; superseded)*
 All corpus supplements (PNAS/Frontiers/mBio 403) and PMC OA packages
-(ftp denied / https 404) — B-NET. meegid2022 + Oberhardt 2008 not OA. Only
-metadata (PMID/PMCID/DOI) was obtainable (NCBI eutils works).
+(ftp denied / https 404) — B-NET. Oberhardt 2008 not OA. Only metadata
+(PMID/PMCID/DOI) was obtainable (NCBI eutils works). *(meegid2022 removed from
+active scope by user decision; no local files; no validation dependency. Corpus
+supplements were subsequently obtained — see `DATA_PROVENANCE.md §3d`.)*
 
 ## 14. PAO1/MPAO1 datasets available for future validation
 Belanger 2022 (PAO1), Lee 2015 (MPAO1), Turner 2015 (PAO1 rows). **All join to
@@ -178,7 +180,7 @@ Independent re-check of the cycle outputs requested after delivery. All passed.
 | # | Check | Result |
 |---|---|---|
 | 1 | `data/raw/orths` folder | **Does not exist** — only `data/raw/ortholog/` is present; "orths" was shorthand in the request, not a real path. No tracked reference to `raw/orths`. **No rename needed.** |
-| 2 | meegid2022 citation | **Verified via NCBI eutils** — PMID **35104681**; DOI **10.1016/j.meegid.2022.105231**; year **2022** (Mar); journal *Infection, Genetics and Evolution*; title *"Genome-wide identification of genetic requirements of Pseudomonas aeruginosa PAO1 for rat cardiomyocyte (H9C2) infection by insertion sequencing."*; **not in PMC** (not OA). Relevance: PAO1, genome-wide insertion sequencing → gene-level PAO1 requirements → **Tier 1**. The garbled string "PMID 351Oberhardt 2008" was a **terminal-rendering artifact in the chat summary only** — it appears in **no file** (`git grep` confirms). |
+| 2 | meegid2022 citation *(historical check; study since **removed from active scope by user decision — no local files; no validation dependency**)* | Historical record only: was verified via NCBI eutils (PMID 35104681, DOI 10.1016/j.meegid.2022.105231, 2022, *Infection, Genetics and Evolution*). No longer a target, blocker, or dependency. |
 | 3 | 6 PDF SHA-256 (`conditian/` → `papers/`) | **ALL 6 MATCH** (juhas2015, turner2015, lee2015, poulsen2019, basta2017, belanger2022). |
 | 4 | `conditian/` untracked & untouched | **Yes** — `git status` shows `?? conditian/`; all 6 original PDFs intact; not staged/committed/deleted. |
 | 5 | No validation metrics generated | **Confirmed** — `results/comparison/` holds only `README.txt`; no `metrics_*`, precision/recall/confusion files anywhere; pytest no-metrics guard passes. |

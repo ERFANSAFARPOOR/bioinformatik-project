@@ -75,6 +75,11 @@ blocker is **no longer on the critical path** for the first PAO1-side validation
 Validated PAO1↔PA14 orthology is now required **only** for **Basta 2017 (PA14)**
 and the **non-PAO1 strains of Poulsen 2019**. Downgraded P0→P1.
 **Impact:** cannot compare PA14-only experiments to the PAO1 model without orthology.
+**Update 2026-07-07:** the raw supplements for **Basta 2017 (PA14)** and **Poulsen
+2019** are present but **cannot be parsed** — both are PA14-referenced and neither
+contains PAO1 ids (**Poulsen's 9 strains exclude PAO1**, verified). No validated
+orthology source exists here (only the RefSeq symbol layer, which is inadequate).
+See `ORTHOLOGY_READINESS_AUDIT.md`, `POULSEN_BASTA_MAPPING_PLAN.md`.
 **Unblock when:** an authoritative PAO1↔PA14 ortholog table is obtained
 (pseudomonas.com orthologs, or study-provided PAO1 homolog columns) and joined,
 retaining one-to-many and missing mappings. See `ORTHOLOGY_STATUS_REPORT.md`.
