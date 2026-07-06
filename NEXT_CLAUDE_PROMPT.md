@@ -65,6 +65,9 @@ Unblock and perform gene-level literature parsing **for the PAO1/MPAO1 studies o
 - After L-03 draft: STOP before C-01b/S-01/V-01 and report; do not compute metrics.
 
 ## Also outstanding (not this task unless asked)
-- Missing supplements: meegid2022 (PMID 35104681), poulsen2019, basta2017.
+- All corpus supplements now present (Poulsen/Basta added 2026-07-06). meegid2022
+  removed from active scope by user decision 2026-07-06 (no local files; no
+  validation dependency). (This prompt file is superseded — see the fresh version
+  written at the end of the 2026-07-07 cycle.)
 - `SOURCE_URL_PENDING` for all obtained supplements (ask the human).
 - varadarajan2020 citation verification.

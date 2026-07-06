@@ -97,9 +97,10 @@ Never assume strain; cite the quote.
 
 ## D-12 · 2026-07-01 · PAO1-first validation path
 **Decision:** Do the first model validation against **PAO1/MPAO1** datasets
-(Lee, Turner PAO1 rows, Belanger, and new meegid2022) using the **identity**
-gene mapping; treat MPAO1 as PAO1-derived with a recorded caveat. Defer PA14
-(Basta) and non-PAO1 Poulsen strains until validated orthology exists.
+(Lee, Turner PAO1 rows, Belanger) using the **identity** gene mapping; treat
+MPAO1 as PAO1-derived with a recorded caveat. Defer PA14 (Basta) and non-PAO1
+Poulsen strains until validated orthology exists. (meegid2022, formerly listed
+here, removed from active scope by user decision 2026-07-06.)
 **Rationale:** Removes the orthology dependency from the critical path (D-11).
 **Status:** Active. B-MAP-01 downgraded P0→P1 accordingly.
 

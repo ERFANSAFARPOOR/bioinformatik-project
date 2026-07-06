@@ -15,7 +15,7 @@
 | 1 | lee2015 (MPAO1, P0) | `pnas.1422186112.sd01.xlsx` | ✅ | present + Supporting Information PDF |
 | 2 | turner2015 (PAO1+PA14, P0) | sd01–sd04 | ✅ **+extra** | sd01–**sd10** all present (10 files) |
 | 3 | belanger2022 (PAO1, P0) | Frontiers suppl. (DOI 10.3389/fmicb.2022.1055512) | ✅ | Data_Sheet_1/2 (.XLSX) + Data_Sheet_3 (.docx) |
-| 4 | meegid2022 (PAO1, P1) | full text / suppl. (PMID 35104681) | ❌ **MISSING** | **no `meegid2022/` folder exists at all** |
+| 4 | ~~meegid2022~~ | — | **REMOVED** | removed from active scope by user decision 2026-07-06; no local files; no validation dependency |
 | 5 | poulsen2019 (P1) | PNAS SI / Broad fitness | ✅ **2026-07-06** | `pnas.1900570116.sd01–sd07.xlsx` + `sapp.pdf` present (PA14_ID/Cluster_ID; needs orthology) |
 | 6 | basta2017 (PA14, P2 deferred) | mBio suppl. | ✅ **2026-07-06** | `mbo006173591sd1–sd4.xlsx` + 2 `.tif` present (PA14 read counts; needs orthology) |
 
@@ -162,8 +162,8 @@ the primary data — which is now present here.)
 ---
 
 ## Warnings / follow-ups
-1. **meegid2022 folder is entirely absent** (not just empty). If Meegid 2022
-   (PMID 35104681) is still in scope, the folder + files must be provided.
+1. **meegid2022 removed from active scope** by user decision 2026-07-06; no local
+   files; no validation dependency. (No longer a missing-supplement follow-up.)
 2. ~~poulsen2019 and basta2017 are empty~~ **NOW PRESENT (user-added 2026-07-06)**
    — audited above; both still need PA14→PAO1 orthology (+ Poulsen threshold
    sourcing) before use, so kept deferred (not parsed as evidence).

@@ -69,8 +69,8 @@ validation, which uses PAO1/MPAO1 datasets by identity.
 ## 6. Next steps
 
 1. Proceed with PAO1/MPAO1 validation (lee2015, turner2015 PAO1 rows,
-   belanger2022, meegid2022) using the **identity** mapping once supplements arrive
-   — no orthology dependency.
+   belanger2022) using the **identity** mapping — no orthology dependency.
+   (meegid2022 removed from active scope by user decision 2026-07-06.)
 2. Obtain authoritative PAO1↔PA14 orthology (pseudomonas.com "Ortholog" export or
    the studies' own PAO1-homolog columns) via human-assisted/different-network
    download; store in `data/raw/ortholog/` with provenance.

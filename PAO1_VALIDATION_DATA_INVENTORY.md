@@ -19,30 +19,31 @@ whether it is currently in the repo (it is not — supplements are blocked).
 | **lee2015** | MPAO1 | 2 | general + condition-specific essential | yes (sd01) | **YES 2026-07-06** | PAxxxx (MPAO1) | **yes** (MPAO1 caveat) | no | yes (LB + defined media) | **P0 (highest)** |
 | **turner2015** | PAO1+PA14 | 3 | condition-specific essential (CF sputum) | yes (sd01–10) | **YES 2026-07-06** | PAxxxx + PA14 | yes (PAO1 rows) | only PA14 rows | yes (SCFM/MOPS reconstructable) | **P0** |
 | **varadarajan2020** (NEW) | MPAO1 | 2 (candidate) | general + condition-specific essential | yes (Dataset 4) | **YES 2026-07-06** | MPAO1_xxxxx (+PAO1 map in supp) | indirect (in-supp map) | no (MPAO1→PAO1) | yes (LB/minimal/sputum/serum) | P1 (verify DOI/PMID first) |
-| meegid2022 (NEW) | PAO1 | 1 | condition-specific fitness (host infection) | yes (supp) | **no** (not OA) | PAxxxx | yes | no | partial (intracellular infection hard to model) | P1 |
-| poulsen2019 | multi (incl PAO1) | 3/5 | core-essential | yes (supp/Broad) | **no** | multi | partial (PAO1-strain rows if separable) | for non-PAO1 strains | yes (rich medium) | P1 |
-| basta2017 | PA14 | 4 | growth-arrest survival determinant | yes (supp) | **no** | PA14_xxxxx | no | **yes** | **no** — FBA models growth, not survival during arrest | P2 (needs orthology + concept caveat) |
+| poulsen2019 | multi (incl PAO1) | 3/5 | core-essential | yes (sd01–07) | **YES 2026-07-06** | PA14_ID / Cluster_ID | partial (via Cluster_ID PAO1 members) | for PA14-indexed rows | yes (rich medium) | P1 |
+| basta2017 | PA14 | 4 | growth-arrest survival determinant | yes (sd1–4) | **YES 2026-07-06** | PA14 (Q010_/PA14) | no | **yes** | **no** — FBA models growth, not survival during arrest | P2 (needs orthology + concept caveat) |
 | juhas2015 | review | 6 | (review) | n/a | n/a (review) | n/a | n/a | n/a | n/a | background only |
 
 ## 2. By availability
 
 - **PAO1/MPAO1 datasets now available (strain-ready, no orthology):**
-  belanger2022 (PAO1), lee2015 (MPAO1), turner2015 (PAO1 rows), meegid2022 (PAO1,
-  new). → These are the **primary validation targets**.
-- **Multi-strain (partial PAO1):** poulsen2019 (usable if PAO1-only list separable).
+  belanger2022 (PAO1), lee2015 (MPAO1), turner2015 (PAO1 rows). → These are the
+  **primary validation targets**. (meegid2022 removed from active scope by user
+  decision 2026-07-06; no local files; no validation dependency.)
+- **Multi-strain (partial PAO1):** poulsen2019 (usable via Cluster_ID PAO1 members).
 - **PA14-only (orthology required):** basta2017.
 - **Raw supplements now in the repo (2026-07-06):** lee2015, turner2015 (sd01–10),
-  belanger2022, varadarajan2020 — audited + provenance-logged. **Still absent:**
-  meegid2022 (no folder), poulsen2019 (empty), basta2017 (empty).
-- **Gene-level labels parsed into the evidence table:** **none yet** — raw
-  supplements are present but not yet extracted (Phase E gate; do not invent).
-- **Blocked downloads (still):** meegid2022 + poulsen2019 + basta2017 supplements,
-  pseudomonas.com orthology, OA GEM packages, and all source URLs (see B-NET).
+  belanger2022, varadarajan2020, **poulsen2019 (sd01–07), basta2017 (sd1–4+tif)**
+  — audited + provenance-logged. **No corpus supplements remain absent.**
+- **Gene-level labels parsed into the evidence table:** DRAFT for Lee/Turner/
+  Belanger (`literature_evidence_gene_level_DRAFT.csv`); Poulsen/Basta not yet
+  parsed (orthology + threshold gate). Canonical `literature_evidence.csv` unchanged.
+- **Blocked (still):** pseudomonas.com orthology (for Basta/Poulsen), OA GEM
+  packages, and all source URLs (see B-NET).
 
 ## 3. Phenotype class per dataset (kept distinct — never merged)
 
 generally-essential (juhas review) · core-essential (poulsen) ·
-condition-specific-essential (turner, lee, meegid) · general-essential (lee LB) ·
+condition-specific-essential (turner, lee) · general-essential (lee LB) ·
 growth-arrest-survival-determinant (basta) · host-condition-fitness (belanger).
 
 ## 4. Media / conditions per dataset
@@ -52,7 +53,6 @@ growth-arrest-survival-determinant (basta) · host-condition-fitness (belanger).
 | belanger2022 | host/physiologically-relevant (incl. SCFM) | enumerate exact media from methods |
 | lee2015 | LB (general); defined/nutrient (condition-specific) | LB aerobic straightforward |
 | turner2015 | SCFM/SCFM2, MOPS-sputum vs MOPS-succinate minimal | SCFM amino-acid recipe published |
-| meegid2022 | rat cardiomyocyte (H9C2) intracellular infection | intracellular niche — hard to represent as exchange medium |
 | poulsen2019 | rich medium | aerobic rich |
 | basta2017 | minimal + 40 mM pyruvate; C-/O2-limited arrest | non-growth arrest state |
 
@@ -74,8 +74,6 @@ growth-arrest-survival-determinant (basta) · host-condition-fitness (belanger).
   single-gene-deletion growth-essentiality is **not the matching prediction**;
   comparison would be conceptually invalid without a tailored maintenance/ATP
   framework. Flag, do not force.
-- **Intracellular infection** (meegid2022) requires assumptions about the host
-  niche's nutrient availability; only approximate media possible.
 - **Host-condition fitness** (belanger2022) is partly metabolic (SCFM etc.,
   reconstructable) and partly non-metabolic (out of model scope).
 
@@ -86,10 +84,11 @@ growth-arrest-survival-determinant (basta) · host-condition-fitness (belanger).
 2. **turner2015 (PAO1 rows, SCFM vs minimal)** — condition-specific, media
    reconstructable.
 3. **belanger2022 (PAO1, host/SCFM subset)** — metabolic host-condition fitness.
-4. **meegid2022 (PAO1, host infection)** — new; obtain full text first.
-5. **poulsen2019 (PAO1-strain core)** — if PAO1-only list separable.
-6. **basta2017 (PA14 growth-arrest)** — lowest: needs orthology *and* a
+4. **poulsen2019 (core-essential)** — via Cluster_ID PAO1 members / PA14→PAO1 orthology.
+5. **basta2017 (PA14 growth-arrest)** — lowest: needs orthology *and* a
    non-growth comparison framework.
+
+(meegid2022 removed from active scope by user decision 2026-07-06.)
 
 **Gate:** none of the above proceeds to metrics until supplements are downloaded,
 parsed with provenance, media reconstructed, and (for PA14 rows) orthology

@@ -131,7 +131,7 @@ Status: TODO / IN-PROGRESS / DONE / BLOCKED.
 
 ### G-01 · P1 · gene-mapping
 - **Task:** Obtain authoritative PAO1↔PA14 ortholog table (pseudomonas.com / study homolog columns) and join into `gene_mapping.csv`; retain one-to-many & missing.
-- **Reason:** Needed **only** for the PA14-only path — Basta 2017 (PA14) and the non-PAO1 strains of Poulsen 2019 — whose gene IDs are not interchangeable with the PAO1 model. The PAO1/MPAO1 sources (Lee, Turner PAO1 rows, Belanger, meegid2022) join by identity and do **not** require this, so it is off the critical path for the first validation (downgraded P0→P1; see B-MAP-01, B-STRAIN-02).
+- **Reason:** Needed **only** for the PA14-only path — Basta 2017 (PA14) and the non-PAO1 strains of Poulsen 2019 — whose gene IDs are not interchangeable with the PAO1 model. The PAO1/MPAO1 sources (Lee, Turner PAO1 rows, Belanger) join by identity and do **not** require this, so it is off the critical path for the first validation (downgraded P0→P1; see B-MAP-01, B-STRAIN-02).
 - **Inputs:** `gene_mapping.csv`, ortholog source · **Output:** populated PA14/gene_name/uniprot + confidence
 - **Deps:** network + human OK · **Validation:** mapping coverage report; ambiguous cases listed. · **Status:** PARTIAL — `build_gene_mapping.py` → `gene_mapping.csv` + `gene_mapping_coverage.txt`. All 1054 model genes → PAO1 (high); 386 → PA14 unique-symbol (medium); 22 ambiguous (candidates retained); 646 PA14-unmapped. Source = NCBI RefSeq symbols (annotation, NOT validated orthology). Upgrade to pseudomonas.com orthology pending B-NET. · **Blocker:** B-MAP-01, B-NET
 
@@ -256,13 +256,13 @@ Status: TODO / IN-PROGRESS / DONE / BLOCKED.
   2026-07-06 (user-added):** `poulsen2019` (sd01–07 + SI PDF) and `basta2017`
   (sd1–4 + 2 tif) now **present** and audited (`SUPPLEMENT_INVENTORY_AUDIT.md`,
   `DATA_PROVENANCE.md §3d`) — both still deferred (PA14_ID/Cluster_ID & PA14; need
-  orthology + threshold sourcing; not parsed as evidence). **Still missing:**
-  meegid2022 (no folder). · **Blocker:** narrowed — B-LIT-01 now open only for
-  meegid2022 + DRAFT promotion + `SOURCE_URL_PENDING`.
+  orthology + threshold sourcing; not parsed as evidence). **No corpus supplements
+  remain missing.** · **Blocker:** narrowed — B-LIT-01 now gates only DRAFT
+  promotion + Poulsen/Basta orthology-threshold gate + `SOURCE_URL_PENDING`.
 
-### L-06 · P1 · literature — acquire new PAO1 dataset meegid2022
-- **Task:** Obtain full text + supplement of PMID 35104681 (PAO1 insertion-seq,
-  host-infection). Not OA here. · **Status:** BLOCKED · **Blocker:** B-NET
+### L-06 · REMOVED FROM SCOPE
+- meegid2022 removed from active scope by user decision 2026-07-06; no local
+  files; no validation dependency. (Formerly: acquire PMID 35104681.)
 
 ### L-07 · P2 · literature — acquire model/GEM references
 - **Task:** Obtain Oberhardt 2008 (iMO1056 source; not OA here) and optionally
@@ -276,9 +276,8 @@ Status: TODO / IN-PROGRESS / DONE / BLOCKED.
 ### E-03 (update) · lock env including pytest/matplotlib/openpyxl once N-01/E-04 done.
 
 ## TOP 10 (updated 2026-07-01, by priority and unblock-ability)
-1. **L-05** download PAO1/MPAO1 supplements (P0, human-assisted) — unblocks labels
-2. **L-06** acquire meegid2022 PAO1 dataset (P1, human-assisted)
-3. **L-03** parse supplements → gene-level `literature_evidence.csv` (P0, after L-05)
+1. **L-05** download PAO1/MPAO1 supplements (P0, human-assisted) — DONE (all present)
+2. **L-03** parse supplements → gene-level `literature_evidence.csv` (P0, after L-05)
 4. **C-01b** reconstruct PAO1 media (LB/SCFM/MOPS) (P0, after L-05)
 5. **S-01** per-condition single-gene deletion predictions (P1, after C-01b)
 6. **M-01** blocked reactions / dead ends (P2, no blocker)
@@ -293,9 +292,10 @@ Status: TODO / IN-PROGRESS / DONE / BLOCKED.
 ## Update 2026-07-06 (L-section supplements landed)
 - **Model raw-copy test failure RESOLVED** (CRLF→LF; `MODEL_COPY_DISCREPANCY_REPORT.md`);
   tests 8/8. `.gitattributes` pins `*.xml text eol=lf`.
-- **L-05 PARTIAL/DONE:** lee2015, turner2015 (sd01–10), belanger2022, varadarajan2020
-  supplements present + audited (`SUPPLEMENT_INVENTORY_AUDIT.md`) + provenance logged
-  (`DATA_PROVENANCE.md §3d`). meegid2022/poulsen2019/basta2017 still missing.
+- **L-05 DONE:** lee2015, turner2015 (sd01–10), belanger2022, varadarajan2020,
+  poulsen2019, basta2017 supplements present + audited (`SUPPLEMENT_INVENTORY_AUDIT.md`)
+  + provenance logged (`DATA_PROVENANCE.md §3d`). No corpus supplements missing
+  (meegid2022 removed from active scope by user decision 2026-07-06).
 - **L-03 IN-PROGRESS:** parse notes written; gene-level extraction gated on Phase E.
 - **Next scientific stage:** (1) L-03 parse supplements → gene-level
   `literature_evidence_gene_level_DRAFT.csv`; (2) C-01b reconstruct PAO1 media

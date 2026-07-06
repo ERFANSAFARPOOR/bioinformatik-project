@@ -129,8 +129,9 @@ B-COND-01 (experimental media not reconstructed), B-MAP-01 (validated PA14
 orthology, for Basta/Poulsen only). See `BLOCKERS.md`.
 
 **Next steps (see `TODO.md`, `NEXT_STAGE_HANDOFF_REPORT.md`):**
-1. Human-assisted download of PAO1/MPAO1 supplements (Lee sd01, Turner sd01–04,
-   Belanger supp) + new meegid2022 (PMID 35104681) — all PAO1-tag, no orthology.
+1. Human-assisted download of PAO1/MPAO1 supplements — **DONE** (Lee, Turner,
+   Belanger, Varadarajan, Poulsen, Basta all present). Review the L-03 DRAFT and
+   obtain validated PA14→PAO1 orthology for Basta/Poulsen.
 2. Parse to gene-level `literature_evidence.csv` rows (six classes distinct).
 3. Reconstruct per-condition media (LB, SCFM/MOPS, host) as exchange bounds.
 4. Per-condition single-gene deletion, then — only then — metrics.

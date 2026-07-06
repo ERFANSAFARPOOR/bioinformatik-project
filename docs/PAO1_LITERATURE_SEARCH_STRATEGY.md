@@ -44,11 +44,11 @@ in principle but not fetched this cycle.
 
 ### Tier 1 — PAO1/MPAO1 gene-level (highest priority)
 
-| PMID | Year | Journal | DOI | OA? | Note |
-|---|---|---|---|---|---|
-| 35104681 | 2022 | Infect Genet Evol | 10.1016/j.meegid.2022.105231 | **no** (not in PMC OA) | *Genome-wide identification of genetic requirements of P. aeruginosa **PAO1** for rat cardiomyocyte (H9C2) infection by **insertion sequencing**.* Direct PAO1 Tn-seq, host-infection condition. **Strong Tier 1 candidate**; full text/supplement not retrievable here → citation-only, needs human-assisted download. |
+> **meegid2022 (PMID 35104681) removed from active scope by user decision
+> 2026-07-06** — no local files; no validation dependency. (Formerly listed here
+> as a Tier 1 candidate PAO1 insertion-sequencing host-infection dataset.)
 
-*(The two existing PAO1/mixed sources — Turner 2015, Belanger 2022 — reappear in
+*(The existing PAO1/mixed sources — Turner 2015, Belanger 2022 — reappear in
 these queries and are already in the corpus.)*
 
 ### Tier 2 — PAO1 metabolic models / FBA (background & comparison)
@@ -88,12 +88,11 @@ validation labels and were not selected merely to inflate count.
 
 ## 7. Recommended next actions (human-assisted / different network)
 
-1. **Highest value:** obtain **meegid 2022 (PMID 35104681)** full text +
-   supplement — a direct PAO1 insertion-sequencing dataset (host-infection
-   condition), gene-level, PAO1 locus tags → Tier 1.
-2. Download the **existing corpus supplements** (Turner sd01–04, Lee sd01,
-   Belanger supp) — now known to include **PAO1/MPAO1** labels (no orthology
-   needed). See `PAO1_PAPER_RELEVANCE_AUDIT.md`.
+1. All corpus supplements are now present (Lee, Turner, Belanger, Varadarajan,
+   Poulsen, Basta). (meegid2022 removed from active scope by user decision
+   2026-07-06 — no longer a target.)
+2. Obtain the authoritative **pseudomonas.com PAO1↔PA14 orthology** table (needed
+   for Basta/Poulsen) via human-assisted/different-network download.
 3. Retrieve **Oberhardt 2008** (model source) for methods/medium details.
 4. Optional Tier 2: Bartell 2017 / GigaScience 2018 GEMs for comparison.
 5. Store PDFs in `papers/`, supplements in `data/raw/literature/<study_id>/`,

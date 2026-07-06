@@ -47,8 +47,11 @@ mapping resource: optional/later.
    canonical `literature_evidence.csv`).
 2. **L03-B3:** confirm PAO1 column blocks in Turner sd03/04/05/09 and extract PAO1
    columns (adds general/condition rows from the paired sheets).
-3. **Missing studies** (B-LIT-01/B-NET): meegid2022 / poulsen2019 (core-essential)
-   / basta2017 (PA14 growth-arrest, needs orthology) supplements still absent.
+3. **Poulsen 2019 / Basta 2017** supplements are now **present** (user-added
+   2026-07-06) but not yet parsed as evidence — gated on PA14→PAO1 orthology
+   (both) + threshold sourcing (Poulsen). See `POULSEN_BASTA_MAPPING_PLAN.md`,
+   `THRESHOLD_METHOD_AUDIT.md`. (meegid2022 removed from active scope by user
+   decision 2026-07-06; no local files; no validation dependency.)
 4. Optionally build the varadarajan2020 MPAO1→PAO1 reference map (not evidence).
 
 ## Guardrails held

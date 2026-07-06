@@ -25,8 +25,8 @@ corrected 2026-07-01 strain audit (B-STRAIN-02) before the next validation stage
      B-MAP-01 called out as P1/secondary (PA14-only / non-PAO1 only).
    - §7 blocker table: B-MAP-01 row changed P0 → **P1 / secondary** with scope note.
    - Added a callout: the first PAO1/MPAO1 validation is strain-unblocked because
-     Lee (MPAO1), Belanger (PAO1), Turner PAO1 rows, and meegid2022 (PAO1) map by
-     **identity** — no PA14 orthology needed.
+     Lee (MPAO1), Belanger (PAO1), and Turner PAO1 rows map by **identity** — no
+     PA14 orthology needed.
 
 3. **TODO.md G-01** — **P0 → P1**; reason rewritten. No longer says "most
    experiments are PA14". Now: needed only for the PA14-only path (Basta 2017;
@@ -104,7 +104,6 @@ PAO1/MPAO1 first (join by identity — no orthology). Store each under
 | 1 | **Lee 2015** | MPAO1 | `pnas.1422186112.sd01.xlsx` | PNAS DCSupplemental (DOI 10.1073/pnas.1422186112) |
 | 2 | **Turner 2015** | PAO1 rows | `pnas.1419677112.sd01–sd04.xlsx` | PNAS DCSupplemental (DOI 10.1073/pnas.1419677112) |
 | 3 | **Belanger 2022** | PAO1 | Frontiers supplementary data files | Frontiers (DOI 10.3389/fmicb.2022.1055512) |
-| 4 | **meegid2022** | PAO1 | full text + supplement | PMID 35104681 (not OA here) |
 | 5 | **Poulsen 2019** | PAO1 per-strain | PNAS SI + fitness data | PNAS + `data.broadinstitute.org/fitness/` + `github.com/broadinstitute/FiTnEss` |
 | 6 | **Basta 2017** | PA14 (needs orthology) | mBio supplement | mBio (DOI 10.1128/mBio.01170-17) — deferred; requires B-MAP-01 |
 
@@ -122,7 +121,7 @@ For the human-assisted download/parse handoff (context + targets):
 3. `DATA_PROVENANCE.md` (§2b verified IDs; §3 download-attempt log)
 4. `VALIDATION_READINESS.md` (what is missing before metrics; blocker gate)
 5. `PAO1_PAPER_RELEVANCE_AUDIT.md` (strain re-audit evidence)
-6. `docs/PAO1_LITERATURE_SEARCH_STRATEGY.md` (candidate datasets incl. meegid2022)
+6. `docs/PAO1_LITERATURE_SEARCH_STRATEGY.md` (candidate datasets)
 7. `BLOCKERS.md` (B-NET/B-LIT-01/B-COND-01 exact scope) and `TODO.md` (L-05/L-03/C-01b/S-01 path)
 
 Purpose of the handoff: obtain the six PAO1/MPAO1-first supplements above via a
@@ -140,10 +139,12 @@ The §5 human-assisted download handoff has **partly completed**. Status of the 
 | 1 | Lee 2015 (MPAO1) | ✅ | `sd01.xlsx` + Supporting Information PDF |
 | 2 | Turner 2015 (PAO1) | ✅ **+extra** | `sd01–sd10.xlsx` (all 10; sd08 = SCFM2 media recipe → C-01b) |
 | 3 | Belanger 2022 (PAO1) | ✅ | `Data_Sheet_1/2.XLSX` + `Data_Sheet_3.docx` |
-| — | Varadarajan 2020 (MPAO1) | ✅ **bonus** | `Supplementary Dataset 1–4`; **DOI/PMID PENDING verification** |
-| 4 | meegid2022 (PAO1) | ❌ | no folder — still needed |
-| 5 | Poulsen 2019 | ❌ | folder empty — still needed |
-| 6 | Basta 2017 (PA14) | ❌ | folder empty — deferred (orthology) |
+| — | Varadarajan 2020 (MPAO1) | ✅ **bonus** | `Supplementary Dataset 1–4`; **citation VERIFIED** (DOI 10.1038/s41522-020-00154-8); essentiality is Lee-derivative → mapping resource only |
+| 5 | Poulsen 2019 | ✅ **2026-07-06** | `sd01–sd07.xlsx` + `sapp.pdf` (PA14_ID/Cluster_ID; needs orthology + threshold) |
+| 6 | Basta 2017 (PA14) | ✅ **2026-07-06** | `sd1–sd4.xlsx` + 2 tif (raw read counts; deferred — orthology) |
+
+(meegid2022 removed from active scope by user decision 2026-07-06; no local files;
+no validation dependency.)
 
 Done this cycle: model raw-copy line-ending fix (tests 8/8); supplement inventory
 audit (`SUPPLEMENT_INVENTORY_AUDIT.md`); provenance (`DATA_PROVENANCE.md §3d` +

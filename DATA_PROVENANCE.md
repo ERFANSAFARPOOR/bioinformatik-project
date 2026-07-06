@@ -116,16 +116,17 @@ These feed `scripts/mapping/build_gene_mapping.py` → `data/processed/gene_mapp
 - **Metadata retrieval WORKS:** NCBI eutils used to verify all corpus PMIDs/PMCIDs
   (§2b) and to run PubMed searches (`scripts/audit/pubmed_search.py`).
 - **New candidates found** (see `docs/PAO1_LITERATURE_SEARCH_STRATEGY.md`):
-  meegid2022 (PMID 35104681, PAO1 insertion-seq, Tier 1, **not OA**),
   Oberhardt 2008 (PMID 18192387, iMO1056 source, **not OA** — PMC2293256 not in OA
   subset), Bartell 2017 (PMID 28266498, PMC5344303, Tier 2 GEM, OA),
   GigaScience 2018 (PMID 29688451, PMC6333913, Tier 2 GEM, OA).
+  (meegid2022 was previously a candidate here but was **removed from active scope
+  by user decision 2026-07-06** — no local files; no validation dependency.)
 - **Downloads BLOCKED (B-NET):** PMC OA packages fail via both
   `ftp://ftp.ncbi.nlm.nih.gov/...oa_package/...` (access denied) and the https
   mirror ("Object not found"); PNAS/Frontiers/mBio supplements 403. **No new PDF
   or supplement was retrieved this cycle. Nothing fabricated.**
 - Corpus supplements (§3) remain PENDING; priority now PAO1/MPAO1 first
-  (Lee, Turner PAO1 rows, Belanger, meegid2022).
+  (Lee, Turner PAO1 rows, Belanger).
 
 > **Caveat:** the PAO1↔PA14 layer built from these is **RefSeq gene-symbol
 > identity**, i.e. annotation-based, NOT validated phylogenetic orthology. The
@@ -155,7 +156,10 @@ modified. Full audit + column structure: `SUPPLEMENT_INVENTORY_AUDIT.md`.
 | zhu2018 | iPAO1 (model) | 10.1093/gigascience/giy021 (PENDING_VERIFY) | PMC6333913 (PENDING_VERIFY) | `zhu2018/` — 2 MS PDFs, 4 review/response PDFs, 1 docx, `giy021_supp/additionalFile2–27.xlsx` (EV1–EV26) | MANUAL_DOWNLOAD, SOURCE_URL_PENDING | **Background** — genome-scale *reconstruction* (iPAO1), NOT experimental essentiality; out-of-scope for L-03 labels |
 | basta2017 | PA14 (UCBPP-PA14) | 10.1128/mBio.01170-17 | 29184024 / PMC5705914 | `basta2017/mbo006173591sd1–sd4.xlsx` (sd1 `765a4200…`, sd2 `81f9d4a3…`, sd3 `1a6f6e5d…`, sd4 `9ad152b1…`) + `sf1_2.tif` `8b11f3c6…`, `sf2.tif` `7c969777…` | MANUAL_DOWNLOAD 2026-07-06, SOURCE_URL_PENDING | **PRESENT 2026-07-06.** Growth-arrest survival read counts (sd1/sd3 Carbon-limited, sd2/sd4 Oxygen-limited). **PA14 raw read counts** → deferred (needs orthology + analysis; not parsed as evidence). |
 | poulsen2019 | multi-strain (PA14_ID / Cluster_ID reference) | 10.1073/pnas.1900570116 | 31036669 / PMC6525520 | `poulsen2019/pnas.1900570116.sd01–sd07.xlsx` (sd02 core `34dab33b…`, sd05 Essential Genes `1a300967…`, sd04 borderline `cda79a4f…`, sd03 raw 23 MB `77c7176c…`, …) + `sapp.pdf` `5b42e87b…` | MANUAL_DOWNLOAD 2026-07-06, SOURCE_URL_PENDING | **PRESENT 2026-07-06.** Core-essential (sd05 = 528 genes; sd02 = 120 new core). **PA14_ID/Cluster_ID-indexed multi-strain** → needs PA14→PAO1 orthology (B-MAP-01) + Methods threshold sourcing; not parsed as evidence. |
-| meegid2022 | PAO1 | PENDING | 35104681 | (no folder) | NOT_PRESENT | P1 PAO1 insertion-seq; not downloaded |
+
+> **meegid2022 removed from active scope by user decision 2026-07-06; no local
+> files; no validation dependency.** (Formerly listed here as a candidate PAO1
+> insertion-seq dataset, PMID 35104681.)
 
 **PENDING items requiring human input (do not fabricate):**
 - Source download **URLs** for all obtained supplements (`SOURCE_URL_PENDING`).
@@ -164,7 +168,8 @@ modified. Full audit + column structure: `SUPPLEMENT_INVENTORY_AUDIT.md`.
   not in repo (only the two supplement PDFs).
 - zhu2018 DOI/PMCID marked `PENDING_VERIFY` (inferred from `GIGA-D-17-00272` /
   `giy021`, not yet confirmed via eutils).
-- meegid2022, poulsen2019, basta2017 supplements still absent.
+- No corpus supplements remain absent: Poulsen 2019 and Basta 2017 are now present
+  (§3d). meegid2022 removed from active scope (user decision 2026-07-06).
 
 ## 3e. L-03 DRAFT gene-level evidence — derived 2026-07-06 (read-only parse)
 

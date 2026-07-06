@@ -19,7 +19,7 @@ survival; host-condition fitness) and the PAO1↔PA14 strain difference.
 
 **PAO1-first (revised 2026-07-01).** The validation is built on **PAO1/MPAO1**
 datasets that join the model by identity (Lee 2015 MPAO1; Turner 2015 PAO1 rows;
-Belanger 2022 PAO1; new meegid2022 PAO1). PA14/multi-strain data (Basta 2017;
+Belanger 2022 PAO1). PA14/multi-strain data (Basta 2017;
 non-PAO1 Poulsen strains) are **background/discussion** or a **later**
 orthology-mapped comparison — never presented as PAO1 validation. No claim that
 the model validates *P. aeruginosa* across strains. See `PAO1_PROJECT_SCOPE.md`.

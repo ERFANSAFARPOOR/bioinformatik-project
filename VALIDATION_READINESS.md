@@ -27,8 +27,9 @@ essentiality **definition + threshold** confirmed; (b) reconstructed per-conditi
 **media** (B-COND-01); (c) per-condition **predictions** (S-01); (d) for MPAO1
 sources, the MPAO1→PAO1 mapping validated. **No precision/recall/F1/MCC/specificity/
 confusion matrix may be computed.** B-SCI-01, B-COND-01 remain OPEN; B-LIT-01
-narrowed (meegid2022/poulsen2019/basta2017 still missing); B-NET open (source URLs
-+ missing studies).
+narrowed (all corpus supplements now present — Poulsen/Basta added 2026-07-06;
+meegid2022 removed from active scope); B-NET open (source URLs + pseudomonas.com
+orthology).
 
 ---
 
@@ -118,7 +119,7 @@ From `data/processed/gene_mapping.csv` (NCBI RefSeq symbol-based; see G-01):
 **PA14-only** rows (**Basta**; non-PAO1 **Poulsen** strains), where only
 **~408/1054 (39%)** model genes have any (symbol-based) PA14 handle — insufficient
 for metrics until validated orthology exists (B-MAP-01/B-NET). The **PAO1/MPAO1**
-sources (Lee, Turner PAO1 rows, Belanger, new meegid2022) do **not** need this
+sources (Lee, Turner PAO1 rows, Belanger) do **not** need this
 bridge — they map by identity at high confidence. See `ORTHOLOGY_STATUS_REPORT.md`.
 
 Direction also matters: experimental lists are PA14-indexed; mapping them onto the
@@ -162,21 +163,21 @@ still PENDING).
 | Blocker | P | Blocks |
 |---|---|---|
 | **B-SCI-01** | P0 | any real metric (current comparison is simulated; DRAFT labels unvalidated) |
-| **B-LIT-01** | P0 | **NARROWED** — Lee/Turner/Belanger supplements present + parsed to DRAFT; still blocks meegid2022/poulsen2019/basta2017 (supplements absent) and promotion of DRAFT → validated evidence |
-| **B-NET** | P0 | missing supplements (meegid2022/poulsen2019/basta2017) + validated orthology + `SOURCE_URL_PENDING` for obtained files (403/timeout here) |
+| **B-LIT-01** | P0 | **NARROWED** — all corpus supplements now present (Poulsen/Basta added 2026-07-06); Lee/Turner/Belanger parsed to DRAFT; still blocks Poulsen/Basta DRAFT (orthology+threshold gate) and promotion of DRAFT → validated evidence. (meegid2022 removed from active scope.) |
+| **B-NET** | P0 | pseudomonas.com validated orthology (for Basta/Poulsen) + `SOURCE_URL_PENDING` for obtained files (403/timeout here) |
 | **B-COND-01** | P0 | per-condition media reconstruction |
-| B-MAP-01 | **P1 / secondary** | validated PAO1↔PA14 orthology — gates **only** PA14-only/non-PAO1 datasets (Basta; non-PAO1 Poulsen). **Not** required for the first PAO1/MPAO1 validation (Lee, Belanger, Turner PAO1 rows, meegid2022 → identity join). |
+| B-MAP-01 | **P1 / secondary** | validated PAO1↔PA14 orthology — gates **only** PA14-only/non-PAO1 datasets (Basta; non-PAO1 Poulsen). **Not** required for the first PAO1/MPAO1 validation (Lee, Belanger, Turner PAO1 rows → identity join). |
 | B-MODEL-01/02 | P2 | blocked-reaction / formula context for interpreting FN/FP |
 
 > **First PAO1/MPAO1 validation is strain-unblocked.** Lee 2015 (MPAO1),
-> Belanger 2022 (PAO1), Turner 2015 PAO1 rows, and the new meegid2022 (PAO1) all
-> carry PAO1 (`PAxxxx`) locus tags and map to the iMO1056 model **by identity** —
-> no PA14 orthology (B-MAP-01) is needed for these. B-MAP-01 remains open only for
-> the PA14-only path (Basta 2017; non-PAO1 Poulsen strains).
+> Belanger 2022 (PAO1), and Turner 2015 PAO1 rows all carry PAO1 (`PAxxxx`) locus
+> tags and map to the iMO1056 model **by identity** — no PA14 orthology (B-MAP-01)
+> is needed for these. B-MAP-01 remains open only for the PA14-only path
+> (Basta 2017; non-PAO1 Poulsen strains).
 
 ## 8. What would make this READY (checklist)
 - [~] Experimental gene lists downloaded per study, with provenance (B-LIT-01/B-NET)
-      — DONE for Lee/Turner/Belanger/Varadarajan; PENDING meegid2022/poulsen2019/basta2017 + source URLs
+      — DONE for Lee/Turner/Belanger/Varadarajan/Poulsen/Basta; PENDING source URLs. (meegid2022 removed from active scope.)
 - [~] `literature_evidence.csv` gene-level rows populated, six classes kept distinct (L-03)
       — DRAFT parsed to `literature_evidence_gene_level_DRAFT.csv` (Lee/Turner/Belanger);
       needs human review + promotion; Varadarajan excluded (Lee-derivative), Turner paired sheets pending (L03-B3)

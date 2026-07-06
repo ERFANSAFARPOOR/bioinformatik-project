@@ -85,8 +85,9 @@ Corrections from PDF evidence: **Lee=MPAO1 (was PA14)**, **Belanger=PAO1**,
 **Turner=mixed (was PA14)**. Details: `PAO1_PAPER_RELEVANCE_AUDIT.md`.
 
 ## 10. New papers found (and why)
-- **meegid2022** (PMID 35104681, Infect Genet Evol 2022): PAO1 insertion-seq,
-  host-infection → **Tier 1** direct PAO1 dataset.
+- ~~meegid2022 (PMID 35104681)~~ **removed from active scope by user decision
+  2026-07-06** (no local files; no validation dependency). *(Historical note; was
+  formerly a Tier 1 candidate.)*
 - **Oberhardt 2008** (PMID 18192387): the **iMO1056 source** paper.
 - **Bartell 2017** (PMID 28266498, PMC5344303) & **GigaScience 2018** (PMID
   29688451, PMC6333913): alternative PAO1 GEMs → Tier 2 comparison.
@@ -107,10 +108,10 @@ All corpus supplements (PNAS/Frontiers/mBio 403) and PMC OA packages
 metadata (PMID/PMCID/DOI) was obtainable (NCBI eutils works).
 
 ## 14. PAO1/MPAO1 datasets available for future validation
-Belanger 2022 (PAO1), Lee 2015 (MPAO1), Turner 2015 (PAO1 rows), meegid2022
-(PAO1). **All join to the model by identity — no orthology needed.** Gene lists
-are in supplements not yet downloaded. Priority order in
-`PAO1_VALIDATION_DATA_INVENTORY.md`.
+Belanger 2022 (PAO1), Lee 2015 (MPAO1), Turner 2015 (PAO1 rows). **All join to
+the model by identity — no orthology needed.** Supplements now downloaded +
+parsed to DRAFT. Priority order in `PAO1_VALIDATION_DATA_INVENTORY.md`.
+(meegid2022 removed from active scope by user decision 2026-07-06.)
 
 ## 15. PA14-only datasets requiring orthology
 Basta 2017 (PA14, growth-arrest — also conceptually non-growth) and the non-PAO1
@@ -139,9 +140,9 @@ kernels), B-MAP-01 (orthology). P2: M-01 (blocked reactions), M-02 (threshold
 sensitivity), M-03 (formulas), results→results/tables migration.
 
 ## 20. What to do next, in order
-1. **Human-assisted download** of PAO1/MPAO1 supplements: Lee `sd01.xlsx`,
-   Turner `sd01–04.xlsx` (PAO1 rows), Belanger supp, and meegid2022 full text.
-   Store in `data/raw/literature/<study>/`, hash, add `SUPPLEMENT_PARSE_NOTES.md`.
+1. **Human-assisted download** of PAO1/MPAO1 supplements — **DONE** (Lee, Turner,
+   Belanger, Varadarajan, Poulsen, Basta all present, hashed, audited).
+   (meegid2022 removed from active scope by user decision 2026-07-06.)
 2. Parse to gene-level `literature_evidence.csv` (keep 6 classes distinct).
 3. Reconstruct PAO1 media (LB; SCFM/MOPS-succinate; host/SCFM) as exchange bounds.
 4. Per-condition single-gene deletion at thresholds 0/1/5/10%.

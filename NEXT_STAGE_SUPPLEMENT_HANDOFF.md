@@ -34,9 +34,10 @@ working copy to LF (both SHA `0868a5eb…1212ead`); added `.gitattributes`
 - **belanger2022** (PAO1, P0): `Data_Sheet_1/2.XLSX` ✅ (+ `Data_Sheet_3.docx`).
 
 ### Expected files missing
-- **meegid2022** (PMID 35104681) — **no folder at all**.
-- **poulsen2019** — folder exists but **empty** (`.gitkeep` only).
-- **basta2017** — folder **empty** (deferred; PA14 + orthology).
+- (Historical snapshot; superseded 2026-07-06.) **poulsen2019** and **basta2017**
+  are now **present** (user-added; see `SUPPLEMENT_INVENTORY_AUDIT.md`,
+  `DATA_PROVENANCE.md §3d`). **meegid2022** was **removed from active scope by user
+  decision 2026-07-06** (no local files; no validation dependency).
 
 ### Unexpected folders/files
 - **varadarajan2020** (MPAO1) — TnSeq essentiality (`Supplementary Dataset 4`) +
@@ -77,8 +78,9 @@ rows, no DRAFT, nothing fabricated.
 ## Remaining P0 blockers
 - **B-SCI-01** (no real metric; nb03 simulated) — OPEN.
 - **B-COND-01** (per-condition media not reconstructed) — OPEN.
-- **B-LIT-01** — narrowed: OPEN only for meegid2022/poulsen2019/basta2017.
-- **B-NET** — OPEN (missing studies + all `SOURCE_URL_PENDING`).
+- **B-LIT-01** — narrowed: all corpus supplements now present; OPEN only for
+  Poulsen/Basta orthology-threshold gate + DRAFT promotion (meegid2022 out of scope).
+- **B-NET** — OPEN (pseudomonas.com orthology + all `SOURCE_URL_PENDING`).
 - B-MAP-01 — P1/secondary (PA14-only path).
 
 ## Next recommended scientific stage

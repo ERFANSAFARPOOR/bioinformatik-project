@@ -46,14 +46,16 @@ sd03/04/05/09 not parsed (L03-B3 open). See `L03_PARSE_BLOCKERS.md`.
 - Basta 2017 (**PA14**): `mbo006173591sd1–sd4.xlsx` + 2 `.tif` ✅ — raw growth-arrest
   read counts; needs analysis + orthology. Deferred.
 
-**STILL MISSING:**
-- meegid2022 (**PAO1**, PMID 35104681): full text + supplement — no folder.
+**STILL MISSING:** none. (meegid2022 removed from active scope by user decision
+2026-07-06; no local files; no validation dependency.)
 
-**Impact:** gene-level DRAFT rows now exist for Lee/Turner/Belanger; canonical
-`literature_evidence.csv` gene-level rows remain `PENDING_EXTRACTION` until the
-DRAFT is human-reviewed and promoted. **Unblock fully when:** the DRAFT is
-reviewed/promoted, the three missing studies are downloaded/parsed, AND source
-URLs recorded (currently `SOURCE_URL_PENDING`).
+**Impact:** gene-level DRAFT rows now exist for Lee/Turner/Belanger; Poulsen/Basta
+raw supplements are present and audited (readiness gated — see
+`L03_PARSE_BLOCKERS.md`). Canonical `literature_evidence.csv` gene-level rows
+remain `PENDING_EXTRACTION` until the DRAFT is human-reviewed and promoted.
+**Unblock fully when:** the DRAFT is reviewed/promoted, Poulsen/Basta pass the
+mapping/threshold gate and are parsed, AND source URLs recorded (currently
+`SOURCE_URL_PENDING`).
 
 ## B-LIT-02 — Citation/DOI/year for Basta & Belanger (P1) — RESOLVED 2026-06-26
 Verified against authoritative sources (ASM/Frontiers + PMC):
@@ -111,11 +113,13 @@ authoritative pseudomonas.com PAO1↔PA14 ortholog table cannot be fetched here.
 (annotation-based, flagged medium/low) instead. **Unblock when:** supplements +
 validated orthology are obtained via a human-assisted download or different network;
 store in `data/raw/...` with provenance. Do not fabricate the missing gene lists.
-**Update 2026-07-06:** the Lee/Turner/Belanger/Varadarajan supplements were obtained
-via **human-assisted download** (partly resolving the L-section blockers), but
-B-NET stays **OPEN**: meegid2022/poulsen2019/basta2017 supplements, the
-pseudomonas.com ortholog table, and the **source URLs** of the obtained files
-(`SOURCE_URL_PENDING`) are all still outstanding.
+**Update 2026-07-06:** the Lee/Turner/Belanger/Varadarajan **and now
+Poulsen/Basta** supplements were obtained via **human-assisted download**
+(resolving the L-section download blockers), but B-NET stays **OPEN** for: the
+authoritative pseudomonas.com PAO1↔PA14 ortholog table (needed for Basta/Poulsen),
+and the **source URLs** of the obtained files (`SOURCE_URL_PENDING`). No
+supplement is now "missing" (meegid2022 removed from active scope by user
+decision).
 
 ## B-MODEL-01 — Blocked reactions / gap-filling not characterized (P2) — OPEN
 `find_blocked_reactions` failed under Windows multiprocessing during the audit.
