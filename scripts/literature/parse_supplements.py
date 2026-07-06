@@ -307,6 +307,104 @@ def parse_turner():
                      notes=f"Table S10; gene symbol={gname}")
             rows.append(r)
     wb.close()
+
+    # --- L03-B3: paired PAO1+PA14 sheets, PAO1 column block only ------------ #
+    # sd03 (initial libraries) is REDUNDANT with sd01 -> not parsed.
+    # sd04 (MOPS-sputum) mixes general + condition-specific essentials -> not
+    #   parsed to avoid mislabeling generals; sd05 is the condition-specific set.
+    # Parse: sd05 (sputum condition-specific essential) + sd09 (SCFM2-vs-sputum
+    #   fitness). PAO1 columns only, identified by header; guarded so a layout
+    #   mismatch skips (leaving L03-B3 open) rather than misparsing.
+
+    def hdr(ws):
+        r1 = [("" if v is None else str(v).strip())
+              for v in next(ws.iter_rows(min_row=2, max_row=2, values_only=True))]
+        r2 = [("" if v is None else str(v).strip())
+              for v in next(ws.iter_rows(min_row=3, max_row=3, values_only=True))]
+        return r1, r2
+
+    # sd05: Genes essential in sputum in both strains but NOT initial libraries.
+    p = d / "pnas.1419677112.sd05.xlsx"
+    wb = openpyxl.load_workbook(p, read_only=True, data_only=True)
+    ws = wb["Sheet1"]
+    r1, r2 = hdr(ws)
+    # PAO1 region cols 0..15; two Essential? blocks (Initial col6, Sputum col13)
+    ok = (len(r1) > 16 and r1[0] == "PAO1 Locus ID" and r1[6] == "Essential?"
+          and r1[13] == "Essential?" and r1[16] == "PA14 Locus ID"
+          and len(r2) > 14 and r2[14] == "Sputum")
+    if ok:
+        for xlrow, row in enumerate(ws.iter_rows(min_row=4, values_only=True), start=4):
+            gid = row[0] if row else None
+            if not is_pa(gid):
+                continue
+            gid = gid.strip()
+            gname = row[1] if len(row) > 1 and row[1] else ""
+            ess = str(row[13]).strip() if len(row) > 13 and row[13] is not None else ""
+            if ess.lower() != "essential":
+                continue
+            mode = str(row[11]).strip() if len(row) > 11 and row[11] is not None else ""
+            log2fc = row[9] if len(row) > 9 else ""
+            pfc = row[10] if len(row) > 10 else ""
+            r = base_row("turner2015")
+            r.update(phenotype_class="condition-specific-essential",
+                     condition="CF sputum (MOPS-sputum) — essential in sputum, not initial",
+                     medium="CF sputum / MOPS-sputum",
+                     original_gene_id=gid, mapped_pao1_gene_id=gid,
+                     essentiality_call="essential",
+                     essentiality_definition=TURNER_ESS_DEF, threshold=TURNER_ESS_THRESH,
+                     statistical_rule=f"Sputum block: Mode={mode}; Log2FC={log2fc}; P(FC)={pfc} (P<0.01 + mclust)",
+                     source_file=p.name, source_sheet="Sheet1", source_row=str(xlrow),
+                     source_column="PAO1 Locus ID (col A); Essential? sputum block (col N)",
+                     source_locator=f"{p.name}!Sheet1!A{xlrow} PAO1-sputum-block ({gid} {gname})",
+                     review_status="READY",
+                     notes=("L03-B3: PAO1 columns only. Author-curated set = essential in "
+                            "sputum in BOTH PAO1+PA14 but not initial (both-strain "
+                            "intersection; PAO1-only sputum-specific essentials are in sd04, "
+                            f"not here). gene symbol={gname}"))
+            rows.append(r)
+    else:
+        print("WARN sd05 PAO1 header mismatch -> L03-B3 sd05 skipped (unchanged)")
+    wb.close()
+
+    # sd09: PAO1 relative mutant abundance CF sputum vs SCFM2 (fitness).
+    p = d / "pnas.1419677112.sd09.xlsx"
+    wb = openpyxl.load_workbook(p, read_only=True, data_only=True)
+    ws = wb["Sheet1"]
+    r1, r2 = hdr(ws)
+    ok = (len(r1) > 6 and r1[0] == "PAO1 Locus ID"
+          and str(r1[2]).startswith("Fold Change") and r1[3] == "P"
+          and r1[6] == "PA14 Locus ID")
+    if ok:
+        for xlrow, row in enumerate(ws.iter_rows(min_row=4, values_only=True), start=4):
+            gid = row[0] if row else None
+            if not is_pa(gid):
+                continue
+            gid = gid.strip()
+            gname = row[1] if len(row) > 1 and row[1] else ""
+            fc = row[2] if len(row) > 2 else None
+            pv = row[3] if len(row) > 3 else None
+            try:
+                fcf = float(fc); pvf = float(pv)
+            except (TypeError, ValueError):
+                continue
+            if not (abs(fcf) >= 4 and pvf < 0.05):
+                continue
+            r = base_row("turner2015")
+            r.update(phenotype_class="reduced-fitness",
+                     condition="CF sputum vs SCFM2", medium="CF sputum / SCFM2",
+                     original_gene_id=gid, mapped_pao1_gene_id=gid,
+                     essentiality_call="reduced_fitness",
+                     essentiality_definition=TURNER_FIT_DEF, threshold=TURNER_FIT_THRESH,
+                     statistical_rule=f"FoldChange(sputum/SCFM2)={fc}; P={pv} (|FC|>=4, P<0.05)",
+                     source_file=p.name, source_sheet="Sheet1", source_row=str(xlrow),
+                     source_column="PAO1 Locus ID (col A); Fold Change (col C); P (col D)",
+                     source_locator=f"{p.name}!Sheet1!A{xlrow} PAO1-block ({gid} {gname})",
+                     review_status="READY",
+                     notes=f"L03-B3: PAO1 columns only; Table S9 SCFM2 vs sputum. gene symbol={gname}")
+            rows.append(r)
+    else:
+        print("WARN sd09 PAO1 header mismatch -> L03-B3 sd09 skipped (unchanged)")
+    wb.close()
     return rows
 
 

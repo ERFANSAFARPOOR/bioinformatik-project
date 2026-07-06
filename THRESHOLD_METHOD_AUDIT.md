@@ -105,11 +105,18 @@ Readiness legend: `READY_FOR_DRAFT_PARSE` · `PARTIAL_READY` · `STILL_BLOCKED`.
   `Essential?`=='Essential' (initial block). sd06/sd07 → reduced-fitness where
   |FC|≥4 & P<0.05. sd10 block-2 → host-condition-fitness (chronic wound) where
   |FC|≥4 & P<0.05.
-- **unresolved uncertainties:** paired PAO1+PA14 sheets **sd03/sd04/sd05/sd09**
-  need PAO1 column-block confirmation before extraction (**L03-B3 STILL OPEN**);
-  sd02 (QC) and sd08 (SCFM2 media recipe → C-01b) are not gene labels.
-- **L-03 readiness:** **READY_FOR_DRAFT_PARSE** for PAO1 single-strain sheets
-  (sd01/06/07/10). Resolves **L03-B2**; **L03-B3 remains OPEN** for paired sheets.
+- **paired PAO1+PA14 sheets — L03-B3 RESOLVED 2026-07-07:** PAO1 blocks are
+  unambiguous (each paired sheet has a `PAO1 Locus ID` header; layout verified,
+  parser header-guarded). Extracted PAO1 columns only: **sd05** → condition-
+  specific-essential (sputum, "essential in sputum not initial"; 0 overlap with
+  sd01 generals), **sd09** → reduced-fitness (SCFM2 vs sputum, FC≥4 & P<0.05).
+  **sd03** skipped (initial libraries = redundant with sd01) and **sd04** skipped
+  (MOPS-sputum superset would mislabel general essentials; sd05 is the condition-
+  specific subset). sd02 (QC) and sd08 (SCFM2 media recipe → C-01b) are not gene
+  labels.
+- **L-03 readiness:** **READY_FOR_DRAFT_PARSE** — PAO1 single-strain sheets
+  (sd01/06/07/10) **and** PAO1 blocks of paired sheets (sd05/sd09). Resolves
+  **L03-B2 and L03-B3**.
 
 ---
 
@@ -310,7 +317,7 @@ Readiness legend: `READY_FOR_DRAFT_PARSE` · `PARTIAL_READY` · `STILL_BLOCKED`.
 | study | citation | threshold sourced? | L-03 readiness | blockers resolved |
 |---|---|---|---|---|
 | lee2015 | VERIFIED | YES (P<0.001; consensus pools) | READY_FOR_DRAFT_PARSE (cond=PARTIAL) | L03-B1 |
-| turner2015 | VERIFIED | YES (P<0.01 + mclust; FC≥4,P<0.05) | READY_FOR_DRAFT_PARSE (PAO1 sheets) | L03-B2 (L03-B3 open) |
+| turner2015 | VERIFIED | YES (P<0.01 + mclust; FC≥4,P<0.05) | READY_FOR_DRAFT_PARSE (PAO1 single + paired sheets) | L03-B2, **L03-B3 (resolved 2026-07-07)** |
 | belanger2022 | VERIFIED | YES (Gumbel/TraDIS ≥4/5, T0 ≥2/3) | READY_FOR_DRAFT_PARSE | L03-B4, L03-B5 |
 | varadarajan2020 | VERIFIED | Lee-derived (not independent) | STILL_BLOCKED as evidence (mapping resource only) | L03-B6 (B7/B8 reframed) |
 | poulsen2019 | VERIFIED | YES (FiTnEss adj. P<0.05 both reps; FWER/FDR) | METHODS_READY_BUT_MAPPING_BLOCKED (PA14→PAO1 orthology) | threshold sourced |

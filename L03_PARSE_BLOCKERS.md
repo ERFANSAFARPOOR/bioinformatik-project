@@ -23,7 +23,7 @@ untouched; all raw files read-only.
 |----|-------|-------------|--------|
 | **L03-B1** | lee2015 | essentiality definition + per-medium threshold | **RESOLVED** — P<0.001 log2-normal fit; consensus ≥2/3 LB, ≥2/3 MOPS-pyruvate, ≥3/4 sputum pools (SI). General essential parsed READY; per-medium parsed NEEDS_REVIEW (pool↔assay mapping). |
 | **L03-B2** | turner2015 | `Essential?`/`Mode` + fitness cutoffs | **RESOLVED** — Essential = P<0.01 (neg binom, obs vs Monte-Carlo pseudodata) AND essential-like mclust mode (P<0.01 MLE); `Mode`=mclust category. Fitness = FC≥4 & P<0.05. sd01/06/07/10 parsed. |
-| **L03-B3** | turner2015 | PAO1 column blocks in paired sheets sd03/04/05/09 | **OPEN** — paired PAO1+PA14 sheets not parsed; needs column-block confirmation before extracting PAO1-only columns. |
+| **L03-B3** | turner2015 | PAO1 column blocks in paired sheets sd03/04/05/09 | **RESOLVED 2026-07-07** — PAO1 blocks are unambiguous (each has a `PAO1 Locus ID` header; layout verified + parser header-guarded, skips on mismatch). Parsed PAO1-only: **sd05** → 46 condition-specific-essential (sputum, not-initial; 0 overlap with sd01 generals), **sd09** → 9 reduced-fitness (SCFM2 vs sputum). **sd03** skipped (redundant with sd01), **sd04** skipped (superset would mislabel generals; sd05 is the condition-specific subset). PA14 columns excluded. |
 | **L03-B4** | belanger2022 | meaning/threshold of Tradis/Transit/Both/NE | **RESOLVED** — essential if Gumbel(TRANSIT) OR TraDIS calls it in ≥4/5 experimental reps (≥2/3 for T0). Single-tool call counts; Both=both tools; NE=not essential. |
 | **L03-B5** | belanger2022 | two-row-header merge for Data_Sheet_2 | **RESOLVED** — parser reads row-2 sub-headers per sheet (condition column order differs per sheet) and maps RPMI/Serum, RPMI, Abscess, Skin correctly. |
 | **L03-B6** | varadarajan2020 | verify DOI/PMID | **RESOLVED** — npj Biofilms Microbiomes 6:46 (2020), DOI 10.1038/s41522-020-00154-8, PMID 33127897, PMCID PMC7603352 (`VARADARAJAN2020_CITATION_CHECK.md`). |
@@ -59,11 +59,13 @@ mapping resource: optional/later.
    especially Lee per-medium NEEDS_REVIEW rows (confirm the sum→essential mapping),
    then promote reviewed rows to a validated table (still never overwriting
    canonical `literature_evidence.csv`).
-2. **L03-B3:** confirm PAO1 column blocks in Turner sd03/04/05/09 and extract PAO1
-   columns (adds general/condition rows from the paired sheets).
-3. **Poulsen 2019 / Basta 2017** supplements are now **present** (user-added
-   2026-07-06) but not yet parsed as evidence — gated on PA14→PAO1 orthology
-   (both) + threshold sourcing (Poulsen). See `POULSEN_BASTA_MAPPING_PLAN.md`,
+2. ~~L03-B3~~ **RESOLVED 2026-07-07** — Turner paired-sheet PAO1 blocks parsed
+   (sd05 condition-specific-essential + sd09 reduced-fitness; sd03/sd04 skipped
+   with reasons). See the blocker table above and `L03_DRAFT_REVIEW_AUDIT.md`.
+3. **Poulsen 2019 / Basta 2017** supplements are **present** but not parsed as
+   evidence — gated on **validated PA14→PAO1 orthology** (both; neither supplement
+   contains PAO1 ids — Poulsen's 9 strains exclude PAO1). Thresholds already
+   sourced. See `ORTHOLOGY_READINESS_AUDIT.md`, `POULSEN_BASTA_MAPPING_PLAN.md`,
    `THRESHOLD_METHOD_AUDIT.md`. (meegid2022 removed from active scope by user
    decision 2026-07-06; no local files; no validation dependency.)
 4. Optionally build the varadarajan2020 MPAO1→PAO1 reference map (not evidence).
