@@ -16,8 +16,8 @@
 | 2 | turner2015 (PAO1+PA14, P0) | sd01–sd04 | ✅ **+extra** | sd01–**sd10** all present (10 files) |
 | 3 | belanger2022 (PAO1, P0) | Frontiers suppl. (DOI 10.3389/fmicb.2022.1055512) | ✅ | Data_Sheet_1/2 (.XLSX) + Data_Sheet_3 (.docx) |
 | 4 | meegid2022 (PAO1, P1) | full text / suppl. (PMID 35104681) | ❌ **MISSING** | **no `meegid2022/` folder exists at all** |
-| 5 | poulsen2019 (P1) | PNAS SI / Broad fitness | ❌ **MISSING** | folder exists but only `.gitkeep` (empty) |
-| 6 | basta2017 (PA14, P2 deferred) | mBio suppl. | ❌ empty | folder exists, only `.gitkeep`; deferred (PA14) |
+| 5 | poulsen2019 (P1) | PNAS SI / Broad fitness | ✅ **2026-07-06** | `pnas.1900570116.sd01–sd07.xlsx` + `sapp.pdf` present (PA14_ID/Cluster_ID; needs orthology) |
+| 6 | basta2017 (PA14, P2 deferred) | mBio suppl. | ✅ **2026-07-06** | `mbo006173591sd1–sd4.xlsx` + 2 `.tif` present (PA14 read counts; needs orthology) |
 
 **Unexpected study folders present (audited below):**
 - `varadarajan2020` (MPAO1) — TnSeq essentiality + MPAO1↔PAO1 mapping. **Strong P0/P1 candidate.**
@@ -122,21 +122,51 @@ not as an experimental essentiality source. All files: `NOT_RELEVANT_FOR_L03`
 (readable, retained, provenance logged). Full SHA-256 list in
 `data/processed/literature/supplement_inventory.tsv` (machine-readable export).
 
-## basta2017 / poulsen2019 — empty
-- `basta2017/` — only `.gitkeep`. Expected mBio supplement **not present**. Deferred
-  (PA14; needs validated orthology) — keep blocker.
-- `poulsen2019/` — only `.gitkeep`. Expected PNAS SI / Broad PA14 fitness **not
-  present**. (Note: Poulsen PA14 essentiality is embedded as a **+/-** citation
-  column inside belanger2022 Data_Sheet_1, but the primary Poulsen supplement
-  itself is missing.)
+## basta2017 — Basta et al. 2017, mBio (PA14) · **PRESENT 2026-07-06** (P2, deferred)
+User-added raw supplement. Full SHA-256 + sizes in
+`data/processed/literature/supplement_inventory.tsv`.
+| File | sheet | content | parse-readiness |
+|------|-------|---------|-----------------|
+| `mbo006173591sd1.xlsx` | `Carbon limited` | Dataset S1 read counts, Rep1/Rep2 | NEEDS_ANALYSIS |
+| `mbo006173591sd2.xlsx` | `Oxygen limited` | Dataset S2 read counts | NEEDS_ANALYSIS |
+| `mbo006173591sd3.xlsx` | `Carbon limited` | Dataset S3 raw reads (65k rows) | NEEDS_ANALYSIS |
+| `mbo006173591sd4.xlsx` | `Oxygen limited` | Dataset S4 raw reads | NEEDS_ANALYSIS |
+| `mbo006173591sf1_2.tif`, `sf2.tif` | — | supplementary figures | context (image) |
+
+Strain **PA14 (UCBPP-PA14)**; phenotype = **growth-arrest-survival-determinant**
+(energy-limited growth arrest, carbon- and oxygen-limited). These are **raw
+Tn-seq read counts**, not pre-computed gene-level essential/fitness calls, and are
+PA14-indexed. **Not parsed as evidence:** requires (a) the paper's fitness-call
+analysis/threshold and (b) validated PA14→PAO1 orthology (B-MAP-01). Keep
+deferred.
+
+## poulsen2019 — Poulsen et al. 2019, PNAS (multi-strain core essential) · **PRESENT 2026-07-06** (P1)
+User-added raw supplement. Gene identity is **`PA14_ID` + `Cluster_ID`**
+(ortholog clusters across the 9 study strains), not PAO1 `PAxxxx`.
+| File | key sheet | content | parse-readiness |
+|------|-----------|---------|-----------------|
+| `pnas.1900570116.sd02.xlsx` | `…new_core_0TA_g` | 120 newly-defined core-essential genes | NEEDS_MAPPING |
+| `pnas.1900570116.sd04.xlsx` | `all strain-medium data 13 genes` | borderline genes; `Essential Call (FWER)` per strain×medium | NEEDS_MAPPING |
+| `pnas.1900570116.sd05.xlsx` | `Essential Genes` | **528 core-essential genes** (`PA14_ID`, `# media/# strains essential`) | NEEDS_MAPPING |
+| `pnas.1900570116.sd01/03/06/07.xlsx` | various | raw/aux data (sd03 = 23 MB raw) | context / NEEDS_MAPPING |
+| `pnas.1900570116.sapp.pdf` | — | supplementary appendix (methods/context) | context |
+
+Strain: multi-strain (incl. PAO1 in the clusters) but the primary reference tags
+are **PA14_ID**; phenotype = **core-essential**. **Not parsed as evidence:**
+requires (a) sourcing the core-essential definition/threshold (FiTnEss / FWER
+rule) from Methods and (b) PA14→PAO1 orthology, or use of the Cluster_ID PAO1
+members (B-MAP-01). (Note: Poulsen PA14 essentiality is also embedded as a **+/-**
+citation column inside belanger2022 Data_Sheet_1, but that is a re-citation, not
+the primary data — which is now present here.)
 
 ---
 
 ## Warnings / follow-ups
 1. **meegid2022 folder is entirely absent** (not just empty). If Meegid 2022
    (PMID 35104681) is still in scope, the folder + files must be provided.
-2. **poulsen2019 and basta2017 are empty** (`.gitkeep` only). Provide supplements
-   or keep deferred.
+2. ~~poulsen2019 and basta2017 are empty~~ **NOW PRESENT (user-added 2026-07-06)**
+   — audited above; both still need PA14→PAO1 orthology (+ Poulsen threshold
+   sourcing) before use, so kept deferred (not parsed as evidence).
 3. **turner2015 has sd05–sd10** beyond the expected sd01–sd04 — audited and mostly
    useful (extra PAO1 fitness/condition tables); sd08 is a media recipe (not gene
    data, but useful for **C-01b** SCFM2 media reconstruction).

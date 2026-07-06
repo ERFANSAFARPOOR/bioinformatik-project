@@ -39,9 +39,14 @@ distinct, review flags). Varadarajan **not** parsed as evidence (DS4 essentialit
 = Lee 2015 re-mapped → double-count; mapping resource only). Turner paired sheets
 sd03/04/05/09 not parsed (L03-B3 open). See `L03_PARSE_BLOCKERS.md`.
 
-**STILL MISSING (blocker remains OPEN only for these):**
-- Poulsen 2019 (multi-strain): PNAS SI + Broad fitness — folder empty.
-- Basta 2017 (**PA14**): mBio supplement — folder empty (deferred; needs orthology).
+**NEWLY PRESENT 2026-07-06 (user-added; audited, NOT yet parsed as evidence):**
+- Poulsen 2019 (multi-strain core-essential): `pnas.1900570116.sd01–sd07.xlsx`
+  + `sapp.pdf` ✅ — PA14_ID/Cluster_ID indexed; needs PA14→PAO1 orthology
+  (B-MAP-01) + Methods threshold sourcing before use.
+- Basta 2017 (**PA14**): `mbo006173591sd1–sd4.xlsx` + 2 `.tif` ✅ — raw growth-arrest
+  read counts; needs analysis + orthology. Deferred.
+
+**STILL MISSING:**
 - meegid2022 (**PAO1**, PMID 35104681): full text + supplement — no folder.
 
 **Impact:** gene-level DRAFT rows now exist for Lee/Turner/Belanger; canonical

@@ -252,10 +252,13 @@ Status: TODO / IN-PROGRESS / DONE / BLOCKED.
   (.docx) are present, SHA-256-logged (`DATA_PROVENANCE.md §3d`,
   `data/processed/literature/supplement_inventory.tsv`), audited
   (`SUPPLEMENT_INVENTORY_AUDIT.md`), and parse notes added (Phase D). **Bonus:**
-  `varadarajan2020` (MPAO1 TnSeq + MPAO1→PAO1 map) also obtained. **Still missing:**
-  meegid2022 (no folder), poulsen2019 (empty), basta2017 (empty, deferred).
-  · **Blocker:** narrowed — B-LIT-01 now open only for meegid2022/poulsen2019/basta2017;
-  B-NET still open for those + source URLs.
+  `varadarajan2020` (MPAO1 TnSeq + MPAO1→PAO1 map) also obtained. **Update
+  2026-07-06 (user-added):** `poulsen2019` (sd01–07 + SI PDF) and `basta2017`
+  (sd1–4 + 2 tif) now **present** and audited (`SUPPLEMENT_INVENTORY_AUDIT.md`,
+  `DATA_PROVENANCE.md §3d`) — both still deferred (PA14_ID/Cluster_ID & PA14; need
+  orthology + threshold sourcing; not parsed as evidence). **Still missing:**
+  meegid2022 (no folder). · **Blocker:** narrowed — B-LIT-01 now open only for
+  meegid2022 + DRAFT promotion + `SOURCE_URL_PENDING`.
 
 ### L-06 · P1 · literature — acquire new PAO1 dataset meegid2022
 - **Task:** Obtain full text + supplement of PMID 35104681 (PAO1 insertion-seq,
