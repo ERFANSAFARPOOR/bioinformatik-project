@@ -25,21 +25,30 @@ in the PDFs' body. Strain re-audited (B-STRAIN-02) — locus-tag system noted.
 - Lee 2015 (**MPAO1**): `pnas.1422186112.sd01.xlsx` — PAO1-tag, identity join ✅
 - Belanger 2022 (**PAO1**): `Data_Sheet_1/2.XLSX` (+`_3.docx`) — PAO1-tag ✅
 - Varadarajan 2020 (**MPAO1**, bonus): `Supplementary Dataset 1–4` — MPAO1 essentiality
-  + in-supplement MPAO1→PAO1 map ✅ (citation DOI/PMID still `PENDING`).
+  + in-supplement MPAO1→PAO1 map ✅. **Citation VERIFIED 2026-07-06** (DOI
+  10.1038/s41522-020-00154-8, PMID 33127897; `VARADARAJAN2020_CITATION_CHECK.md`).
 
-Provenance: `DATA_PROVENANCE.md §3d` + `data/processed/literature/supplement_inventory.tsv`
-(SHA-256 per file). Audit: `SUPPLEMENT_INVENTORY_AUDIT.md`. Parse notes:
-`data/raw/literature/<study>/SUPPLEMENT_PARSE_NOTES.md`.
+Provenance: `DATA_PROVENANCE.md §3d/§3e` + `data/processed/literature/supplement_inventory.tsv`
+(SHA-256 per file). Audit: `SUPPLEMENT_INVENTORY_AUDIT.md`. Thresholds:
+`THRESHOLD_METHOD_AUDIT.md`. Parse notes: `data/raw/literature/<study>/SUPPLEMENT_PARSE_NOTES.md`.
+
+**DRAFT PARSED 2026-07-06** (Phase E/6 gate satisfied — thresholds sourced from
+Methods): Lee/Turner(PAO1 sheets)/Belanger → `data/processed/literature/*_parsed_gene_evidence.csv`
++ `data/processed/literature_evidence_gene_level_DRAFT.csv` (5,093 rows, 6 classes
+distinct, review flags). Varadarajan **not** parsed as evidence (DS4 essentiality
+= Lee 2015 re-mapped → double-count; mapping resource only). Turner paired sheets
+sd03/04/05/09 not parsed (L03-B3 open). See `L03_PARSE_BLOCKERS.md`.
 
 **STILL MISSING (blocker remains OPEN only for these):**
 - Poulsen 2019 (multi-strain): PNAS SI + Broad fitness — folder empty.
 - Basta 2017 (**PA14**): mBio supplement — folder empty (deferred; needs orthology).
 - meegid2022 (**PAO1**, PMID 35104681): full text + supplement — no folder.
 
-**Impact:** gene-level rows for obtained studies can now be drafted (Phase D/E);
+**Impact:** gene-level DRAFT rows now exist for Lee/Turner/Belanger; canonical
 `literature_evidence.csv` gene-level rows remain `PENDING_EXTRACTION` until the
-Phase E parse gate is satisfied. **Unblock fully when:** the three missing studies
-are downloaded/parsed AND source URLs recorded (currently `SOURCE_URL_PENDING`).
+DRAFT is human-reviewed and promoted. **Unblock fully when:** the DRAFT is
+reviewed/promoted, the three missing studies are downloaded/parsed, AND source
+URLs recorded (currently `SOURCE_URL_PENDING`).
 
 ## B-LIT-02 — Citation/DOI/year for Basta & Belanger (P1) — RESOLVED 2026-06-26
 Verified against authoritative sources (ASM/Frontiers + PMC):

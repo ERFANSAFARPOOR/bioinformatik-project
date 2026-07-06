@@ -112,13 +112,18 @@ Status: TODO / IN-PROGRESS / DONE / BLOCKED.
 - **Reason:** Core evidence table for validation; integrity rules §3,§5.
 - **Inputs:** downloaded supplements · **Output:** complete evidence table
 - **Deps:** L-01 · **Validation:** each row has citation+strain+condition+method+threshold+source locator; phenotype_type ∈ {6 classes}.
-- **Status:** **IN-PROGRESS 2026-07-06** — supplements now present for lee2015/
-  turner2015/belanger2022/varadarajan2020; per-study `SUPPLEMENT_PARSE_NOTES.md`
-  written (Phase D) identifying gene/strain/condition/essentiality/threshold columns
-  and source locators. Gene-level extraction gated on the Phase E readiness check
-  (see each parse note's readiness tag). Not yet populated into
-  `literature_evidence.csv`. · **Blocker:** partially unblocked (files present);
-  extraction pending Phase E gate + threshold-definition confirmation.
+- **Status:** **DRAFT-PARSED 2026-07-06** — thresholds sourced from Methods
+  (`THRESHOLD_METHOD_AUDIT.md`; L03-B1/B2/B4/B5/B6 resolved), then
+  `scripts/literature/parse_supplements.py` emitted DRAFT gene-level evidence for
+  lee2015, turner2015 (PAO1 single-strain sheets sd01/06/07/10) and belanger2022 →
+  `data/processed/literature/*_parsed_gene_evidence.csv` +
+  `data/processed/literature_evidence_gene_level_DRAFT.csv` (5,093 rows; 6 classes
+  distinct; validation Turner=336 exact, Lee=351≈352). **varadarajan2020 NOT parsed
+  as evidence** (DS4 essentiality = Lee re-mapped → double-count; citation verified,
+  mapping resource only). Remaining: human review + promote DRAFT; Turner paired
+  sheets sd03/04/05/09 (L03-B3); canonical `literature_evidence.csv` still not
+  populated (intentionally — DRAFT is unreviewed). · **Blocker:** L03-B3 open;
+  B-SCI-01 (no metrics on unvalidated draft).
 
 ---
 

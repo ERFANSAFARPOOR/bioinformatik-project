@@ -151,7 +151,7 @@ modified. Full audit + column structure: `SUPPLEMENT_INVENTORY_AUDIT.md`.
 | lee2015 | MPAO1 | 10.1073/pnas.1422186112 | 25848053 / PMC4413342 | `lee2015/pnas.1422186112.sd01.xlsx` (156,343 B, sha `14557cee…`); `lee2015/Supporting Information.pdf` (445,067 B, sha `2e1ad4cb…`) | MANUAL_DOWNLOAD, SOURCE_URL_PENDING | P0 general+condition-specific essential labels (PAO1-tag, identity join) |
 | turner2015 | PAO1+PA14 | 10.1073/pnas.1419677112 | 25775563 / PMC4386324 | `turner2015/pnas.1419677112.sd01–sd10.xlsx` (10 files; sd01 sha `53f373af…`, sd03 `4723c701…`, sd04 `a1ec2e2d…`) | MANUAL_DOWNLOAD, SOURCE_URL_PENDING | P0 PAO1 essentiality (sd01) + condition/fitness (sd03–10); sd08 = SCFM2 media recipe (for C-01b) |
 | belanger2022 | PAO1 | 10.3389/fmicb.2022.1055512 | 36504765 / PMC9732424 | `belanger2022/Data_Sheet_1.XLSX` (143,782 B, sha `7f5c6eb9…`); `Data_Sheet_2.XLSX` (56,441 B, sha `1052c75a…`); `Data_Sheet_3.docx` (460,332 B, sha `4dbc9392…`) | MANUAL_DOWNLOAD, SOURCE_URL_PENDING | P0 PAO1 essential + host-condition (RPMI/serum/abscess/skin) labels |
-| varadarajan2020 | MPAO1 | PENDING_DOI | PENDING_PMID | `varadarajan2020/Supplementary Dataset 1–4 (MPAO1).xlsx` (DS4 essentiality sha `7c0beb3a…`; DS1 mapping `ab35311b…`; DS3 `99f75b40…`; DS2 SNPs `954e3763…`); + 2 context PDFs | MANUAL_DOWNLOAD, SOURCE_URL_PENDING, DOI/PMID **PENDING** | Candidate P0/P1 MPAO1 per-condition essentiality + in-supplement MPAO1→PAO1 mapping; **citation not yet verified** |
+| varadarajan2020 | MPAO1 | 10.1038/s41522-020-00154-8 | 33127897 / PMC7603352 | `varadarajan2020/Supplementary Dataset 1–4 (MPAO1).xlsx` (DS4 essentiality sha `7c0beb3a…`; DS1 mapping `ab35311b…`; DS3 `99f75b40…`; DS2 SNPs `954e3763…`); + 2 context PDFs | MANUAL_DOWNLOAD, SOURCE_URL_PENDING | **Citation VERIFIED 2026-07-06** (Varadarajan AR et al., npj Biofilms Microbiomes 6:46; `VARADARAJAN2020_CITATION_CHECK.md`). Essentiality (DS4) = **Lee 2015 Tn-seq re-mapped to MPAO1** → derivative, **not independent evidence** (double-count). MPAO1→PAO1 map (DS1/DS3) = reference resource only. |
 | zhu2018 | iPAO1 (model) | 10.1093/gigascience/giy021 (PENDING_VERIFY) | PMC6333913 (PENDING_VERIFY) | `zhu2018/` — 2 MS PDFs, 4 review/response PDFs, 1 docx, `giy021_supp/additionalFile2–27.xlsx` (EV1–EV26) | MANUAL_DOWNLOAD, SOURCE_URL_PENDING | **Background** — genome-scale *reconstruction* (iPAO1), NOT experimental essentiality; out-of-scope for L-03 labels |
 | basta2017 | PA14 | 10.1128/mBio.01170-17 | 29184024 / PMC5705914 | (empty — only `.gitkeep`) | NOT_PRESENT | deferred (PA14, needs orthology) |
 | poulsen2019 | multi (incl. PAO1) | 10.1073/pnas.1900570116 | 31036669 / PMC6525520 | (empty — only `.gitkeep`) | NOT_PRESENT | P1 core-essential; primary supplement still missing |
@@ -159,11 +159,30 @@ modified. Full audit + column structure: `SUPPLEMENT_INVENTORY_AUDIT.md`.
 
 **PENDING items requiring human input (do not fabricate):**
 - Source download **URLs** for all obtained supplements (`SOURCE_URL_PENDING`).
-- **varadarajan2020 DOI/PMID** and full citation (`PENDING_DOI`/`PENDING_PMID`) —
-  new study not in the original 6-paper corpus; must be verified before use.
+- ~~varadarajan2020 DOI/PMID~~ **RESOLVED 2026-07-06** — DOI 10.1038/s41522-020-00154-8,
+  PMID 33127897, PMC7603352 (`VARADARAJAN2020_CITATION_CHECK.md`). Article body PDF
+  not in repo (only the two supplement PDFs).
 - zhu2018 DOI/PMCID marked `PENDING_VERIFY` (inferred from `GIGA-D-17-00272` /
   `giy021`, not yet confirmed via eutils).
 - meegid2022, poulsen2019, basta2017 supplements still absent.
+
+## 3e. L-03 DRAFT gene-level evidence — derived 2026-07-06 (read-only parse)
+
+`scripts/literature/parse_supplements.py` read the raw supplements **read-only**
+(no raw file modified) and emitted DRAFT gene-level evidence. Thresholds sourced
+in `THRESHOLD_METHOD_AUDIT.md`. These are DRAFT (with `review_status` flags), NOT
+validated labels, and **must not** be used for any metric (B-SCI-01).
+
+| Derived file | Rows | Content |
+|---|---|---|
+| `data/processed/literature/lee2015_parsed_gene_evidence.csv` | 2,892 | general essential (READY) + per-medium condition (NEEDS_REVIEW) |
+| `data/processed/literature/turner2015_parsed_gene_evidence.csv` | 531 | sd01 general essential (336) + sd06/07 reduced-fitness + sd10 host fitness |
+| `data/processed/literature/belanger2022_parsed_gene_evidence.csv` | 1,670 | DS1 general essential + DS2 condition/host (RPMI/serum/abscess/skin) |
+| `data/processed/literature_evidence_gene_level_DRAFT.csv` | 5,093 | aggregate of the three; 6 phenotype classes kept distinct |
+
+All `original_gene_id` and `mapped_pao1_gene_id` match `^PA\d+$` (identity join;
+0 PA14 leakage). Canonical `data/processed/literature_evidence.csv` (study-level)
+is **unchanged**.
 
 ---
 
