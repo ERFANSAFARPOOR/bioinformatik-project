@@ -1,0 +1,6 @@
+# Root cause: core.autocrlf=true was converting the LF-stored SBML blob to CRLF
+# on checkout, so the working copy of models/raw/paeruginosa_MODEL1507180020.xml
+# failed test_raw_copy_is_byte_identical. Pin LF for XML so the archived raw copy
+# stays byte-identical to the canonical model across checkouts/platforms.
+# (See MODEL_COPY_DISCREPANCY_REPORT.md.)
+*.xml text eol=lf

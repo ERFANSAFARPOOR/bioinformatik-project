@@ -25,6 +25,16 @@ files are actually retrieved (B-LIT-01).
 > states iMO1056/PAO1). A byte-identical raw copy is archived at
 > `models/raw/paeruginosa_MODEL1507180020.xml` (same SHA-256).
 
+> **Line-ending drift resolved 2026-07-06.** The archived raw copy had drifted to
+> CRLF line endings (SHA `1b9cdd98…868b4b0`, 1,685,085 bytes), failing
+> `test_raw_copy_is_byte_identical`. It was proven **semantically identical** to
+> the canonical model (same id/name, 1110 rxn / 879 met / 1054 genes, objective
+> `PA_Biomass6_DM`, WT growth 1.0479285528184004, all PAO1 `PAxxxx`, no PA14 IDs;
+> LF-normalized content byte-for-byte equal — see `MODEL_COPY_DISCREPANCY_REPORT.md`).
+> Under explicit user approval (Option A) the raw copy was rewritten byte-identical
+> to the canonical (now SHA `0868a5eb…1212ead`, 1,668,096 bytes); `.gitattributes`
+> pins `*.xml text eol=lf`. Canonical model unchanged. Tests: 8/8 pass.
+
 ---
 
 ## 2. Literature PDFs (canonical `papers/`; legacy `conditian/`)
