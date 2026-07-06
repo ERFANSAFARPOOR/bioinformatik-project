@@ -303,6 +303,23 @@ Status: TODO / IN-PROGRESS / DONE / BLOCKED.
   per-condition gene deletion; (4) V-01 metrics — still **forbidden** until real
   labels + media + predictions exist.
 
+## Update 2026-07-07c (DRAFT review export; Lee per-medium review; C-01b plan)
+- **Review exports created** (derived; canonical untouched):
+  `data/processed/literature_evidence_gene_level_READY_ONLY.csv` (2,607) and
+  `..._NEEDS_REVIEW.csv` (2,541, all Lee per-medium). Summary:
+  `L03_REVIEWED_EVIDENCE_SUMMARY.md`.
+- **`LEE2015_PER_MEDIUM_REVIEW.md`:** per-condition decision. Min (of 3) & Sputum
+  (of 4) denominators match Lee-SI pool counts (near-resolvable); LB (of 6) stays
+  ambiguous; BHI/0.1×LB/serum single-replicate. **Conservative: keep all Lee
+  per-medium NEEDS_REVIEW; exclude from first validation.**
+- **`C01B_MEDIA_RECONSTRUCTION_PLAN.md`:** grounded in iMO1056 exchanges (all 20 AA
+  + EX_pyr_e/EX_succ_e/EX_lac__L_e present). First batch = MOPS-pyruvate,
+  MOPS-succinate (DEFINED), SCFM2 + LB-approx (PARTIAL); RPMI held on vitamin gap;
+  serum/sputum/abscess/skin/Basta-arrest/Poulsen excluded. **C-01b NOT started; no
+  JSON; no bounds; no simulation.**
+- New task **C-01b (planned, gated):** when authorized, build the first-batch media
+  as exchange configs from the plan, citing component→flux conversions.
+
 ## Update 2026-07-07b (L03-B3 resolved; DRAFT reviewed; orthology audit)
 - **L03-B3 RESOLVED:** Turner paired-sheet PAO1 blocks parsed (sd05 → 46
   condition-specific-essential sputum; sd09 → 9 reduced-fitness SCFM2-vs-sputum;

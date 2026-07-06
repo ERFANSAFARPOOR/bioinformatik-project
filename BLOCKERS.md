@@ -144,6 +144,11 @@ aerobic. Comparing essentiality across mismatched media is invalid.
 **Unblock when:** each study's medium is reconstructed as an in-model exchange
 configuration (documented carbon source, electron acceptor, supplements) with a
 citation, before computing any per-condition metric.
+**Update 2026-07-07:** planning done in `C01B_MEDIA_RECONSTRUCTION_PLAN.md`
+(iMO1056 exchange coverage assessed; DEFINED: MOPS-pyruvate/MOPS-succinate;
+PARTIAL: SCFM2/LB-approx/RPMI; GAP: serum/sputum/abscess/skin; Basta arrest =
+NOT_RECONSTRUCTABLE_AS_GROWTH_MEDIUM). **C-01b still not started — no exchange
+bounds set, no condition JSON, no simulation.** Blocker stays OPEN.
 
 ## B-STRAIN-01 — Strain of model: RESOLVED (PAO1)
 Resolved during audit: gene IDs are PAO1 `PAxxxx` locus tags and the model is

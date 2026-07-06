@@ -93,7 +93,17 @@ rows, no DRAFT, nothing fabricated.
 3. **S-01:** per-condition single-gene deletion predictions.
 4. **V-01:** metrics — **still forbidden** until real labels + media + predictions exist.
 
-## Update 2026-07-07b (latest)
+## Update 2026-07-07c (latest)
+- **L-03 DRAFT reviewed into derived exports** (canonical untouched):
+  `..._READY_ONLY.csv` (2,607) + `..._NEEDS_REVIEW.csv` (2,541, all Lee per-medium).
+  See `L03_REVIEWED_EVIDENCE_SUMMARY.md`.
+- **`LEE2015_PER_MEDIUM_REVIEW.md`:** Lee per-medium rows stay NEEDS_REVIEW
+  (conservative); Min/Sputum near-resolvable, LB ambiguous, singles low-confidence.
+- **`C01B_MEDIA_RECONSTRUCTION_PLAN.md`:** first-batch media planned (MOPS-pyruvate,
+  MOPS-succinate DEFINED; SCFM2, LB-approx PARTIAL; RPMI held). **C-01b NOT started;
+  no bounds; no JSON; no simulation. S-01/V-01 not started; metrics forbidden.**
+
+## Update 2026-07-07b
 - **L03-B3 RESOLVED:** Turner paired-sheet PAO1 blocks parsed (sd05 condition-
   specific-essential + sd09 reduced-fitness); DRAFT now **5,148 rows**. Full
   integrity review in `L03_DRAFT_REVIEW_AUDIT.md` (all checks pass).

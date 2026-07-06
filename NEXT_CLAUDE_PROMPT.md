@@ -26,10 +26,14 @@ or metrics.
   Varadarajan 2020 = verified but **derivative of Lee** (mapping resource only).
   Zhu 2018 = background/model. **meegid2022 removed from active scope.**
 - **L-03 DRAFT parsed** (Lee/Turner/Belanger) →
-  `data/processed/literature_evidence_gene_level_DRAFT.csv` (**5,148 rows**, 6
-  phenotype classes distinct, review flags). **L03-B3 resolved** (Turner paired
-  sheets sd05/sd09 PAO1 blocks parsed). Reviewed in `L03_DRAFT_REVIEW_AUDIT.md`;
-  not yet promoted (Lee per-medium rows still NEEDS_REVIEW).
+  `data/processed/literature_evidence_gene_level_DRAFT.csv` (**5,148 rows**).
+  **L03-B3 resolved.** Reviewed + split into derived exports:
+  `..._READY_ONLY.csv` (**2,607**) and `..._NEEDS_REVIEW.csv` (**2,541**, all Lee
+  per-medium). See `L03_REVIEWED_EVIDENCE_SUMMARY.md`, `LEE2015_PER_MEDIUM_REVIEW.md`.
+  Not promoted; Lee per-medium stays NEEDS_REVIEW (pool↔assay ambiguity).
+- **C-01b planned** in `C01B_MEDIA_RECONSTRUCTION_PLAN.md` (first batch:
+  MOPS-pyruvate, MOPS-succinate DEFINED; SCFM2, LB-approx PARTIAL; RPMI held on
+  vitamin gap). **Not started — no bounds, no JSON, no simulation.**
 - **Poulsen + Basta:** raw supplements present, thresholds sourced
   (`THRESHOLD_METHOD_AUDIT.md`), but **not parsed** — PA14-indexed, no PAO1 in
   either supplement (Poulsen's 9 strains exclude PAO1) → blocked on validated
@@ -39,26 +43,28 @@ or metrics.
   C-01b **not started**.
 
 ## Read first
-`ORTHOLOGY_READINESS_AUDIT.md`, `L03_DRAFT_REVIEW_AUDIT.md`,
-`THRESHOLD_METHOD_AUDIT.md`, `L03_PARSE_BLOCKERS.md`, `POULSEN_BASTA_MAPPING_PLAN.md`,
-`MEDIA_SOURCE_AUDIT.md`, `VALIDATION_READINESS.md`, `BLOCKERS.md`, `TODO.md`,
-`DATA_PROVENANCE.md`, `SUPPLEMENT_INVENTORY_AUDIT.md`, `CLAUDE.md`.
+`L03_REVIEWED_EVIDENCE_SUMMARY.md`, `LEE2015_PER_MEDIUM_REVIEW.md`,
+`C01B_MEDIA_RECONSTRUCTION_PLAN.md`, `ORTHOLOGY_READINESS_AUDIT.md`,
+`L03_DRAFT_REVIEW_AUDIT.md`, `THRESHOLD_METHOD_AUDIT.md`, `L03_PARSE_BLOCKERS.md`,
+`POULSEN_BASTA_MAPPING_PLAN.md`, `MEDIA_SOURCE_AUDIT.md`, `VALIDATION_READINESS.md`,
+`BLOCKERS.md`, `TODO.md`, `DATA_PROVENANCE.md`, `SUPPLEMENT_INVENTORY_AUDIT.md`,
+`CLAUDE.md`.
 
 ## Candidate next tasks (pick per instruction; all gated)
-1. **L-03c (review/promote):** human-review the Lee/Turner/Belanger DRAFT
-   (esp. Lee per-medium `NEEDS_REVIEW` rows — resolve the pool↔assay ambiguity);
-   promote reviewed rows to a validated table — never overwriting canonical
-   `literature_evidence.csv`. (L03-B3 is already resolved.)
+1. **L-03c (promote):** promote the `READY_ONLY` export to a validated table
+   (never overwriting canonical `literature_evidence.csv`); resolve Lee per-medium
+   pool↔assay ambiguity (confirm `X sum (of N)` counts pools) before promoting
+   Min/Sputum. (L03-B3 already resolved.)
 2. **G-01b (orthology):** obtain a validated PA14→PAO1 ortholog table
    (pseudomonas.com / study homolog columns) — unblocks Poulsen + Basta. Blocked by
    B-NET (human-assisted/different-network download); store in `data/raw/ortholog/`
    with provenance. Then L-03b: draft-parse Poulsen (sd05/sd02) and Basta (derive
    calls from sd1/sd2 via read-ratio ≤0.25 & Fisher P≤0.05), keeping
    one-to-many/missing explicit.
-4. **C-01b (only when asked):** begin media reconstruction from the DEFINED/PARTIAL
-   sources in `MEDIA_SOURCE_AUDIT.md` (MOPS-pyruvate, MOPS-succinate, RPMI-1640,
-   M9, pyruvate-minimal; SCFM2 from Turner sd08). Cite every component; do not
-   invent bounds. **Stop before** final condition JSON / S-01 / V-01.
+3. **C-01b (only when asked):** build first-batch media as exchange configs per
+   `C01B_MEDIA_RECONSTRUCTION_PLAN.md` (MOPS-pyruvate, MOPS-succinate DEFINED;
+   SCFM2, LB-approx PARTIAL). Cite every component→flux conversion; do not invent
+   bounds. **Stop before** final condition JSON / S-01 / V-01.
 
 ## Stop conditions
 Tests fail at start → stop. A study's threshold/mapping cannot be sourced → do not

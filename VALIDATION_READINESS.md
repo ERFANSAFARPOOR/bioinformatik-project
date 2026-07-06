@@ -186,14 +186,18 @@ still PENDING).
 - [~] Experimental gene lists downloaded per study, with provenance (B-LIT-01/B-NET)
       — DONE for Lee/Turner/Belanger/Varadarajan/Poulsen/Basta; PENDING source URLs. (meegid2022 removed from active scope.)
 - [~] `literature_evidence.csv` gene-level rows populated, six classes kept distinct (L-03)
-      — DRAFT parsed to `literature_evidence_gene_level_DRAFT.csv` (**5,148 rows**;
-      Lee/Turner/Belanger). **L03-B3 RESOLVED** (Turner paired sheets sd05/sd09
-      PAO1 blocks parsed). Reviewed in `L03_DRAFT_REVIEW_AUDIT.md`; needs human
-      review + promotion (Lee per-medium rows still NEEDS_REVIEW). Varadarajan
-      excluded (Lee-derivative); Poulsen/Basta not parsed (orthology-blocked).
+      — DRAFT (5,148 rows) split into review exports (derived, canonical untouched):
+      `literature_evidence_gene_level_READY_ONLY.csv` (**2,607**) and
+      `..._NEEDS_REVIEW.csv` (**2,541**, all Lee per-medium). See
+      `L03_REVIEWED_EVIDENCE_SUMMARY.md`, `L03_DRAFT_REVIEW_AUDIT.md`,
+      `LEE2015_PER_MEDIUM_REVIEW.md`. Not promoted; Lee per-medium stays NEEDS_REVIEW
+      (pool↔assay ambiguity). Varadarajan excluded; Poulsen/Basta orthology-blocked.
 - [ ] Validated PAO1↔PA14 orthology merged; coverage + ambiguity reported (B-MAP-01;
       see `ORTHOLOGY_READINESS_AUDIT.md` — none present, blocks Poulsen + Basta)
 - [ ] Per-study media reconstructed and cited; model feasible per condition (C-01)
+      — **planned** in `C01B_MEDIA_RECONSTRUCTION_PLAN.md` (first batch: MOPS-pyruvate,
+      MOPS-succinate DEFINED; SCFM2, LB-approx PARTIAL; RPMI held on vitamin gap).
+      **C-01b NOT started; no exchange bounds set; no simulation.**
 - [ ] Per-condition predictions generated at multiple thresholds (S-01)
 - [ ] Only then: confusion matrix / precision / recall / specificity / F1 / MCC,
       per condition × phenotype class, with coverage caveats (V-01)
