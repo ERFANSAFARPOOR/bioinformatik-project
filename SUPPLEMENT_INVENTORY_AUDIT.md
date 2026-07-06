@@ -134,11 +134,16 @@ User-added raw supplement. Full SHA-256 + sizes in
 | `mbo006173591sf1_2.tif`, `sf2.tif` | — | supplementary figures | context (image) |
 
 Strain **PA14 (UCBPP-PA14)**; phenotype = **growth-arrest-survival-determinant**
-(energy-limited growth arrest, carbon- and oxygen-limited). These are **raw
-Tn-seq read counts**, not pre-computed gene-level essential/fitness calls, and are
-PA14-indexed. **Not parsed as evidence:** requires (a) the paper's fitness-call
-analysis/threshold and (b) validated PA14→PAO1 orthology (B-MAP-01). Keep
-deferred.
+(energy-limited growth arrest, carbon- and oxygen-limited). **Structural finding
+(2026-07-07):** sd1/sd2 provide per-locus **read ratios + p-values +
+`Fisher p-value`** (header on Excel row 4); sd3/sd4 are **raw per-TA-site counts**
+(Initial library / Control / limited ×2 reps). There is **no gene-level
+essential/fitness call column**. **Threshold now sourced** (`THRESHOLD_METHOD_AUDIT.md`):
+Mann-Whitney U per replicate + Fisher's combined test; required = mean read ratio
+≤ 0.25 AND combined P ≤ 0.05 (>4-fold), giving 62 required genes. **Not parsed as
+evidence:** the call column must be derived AND validated PA14→PAO1 orthology is
+required (B-MAP-01); phenotype ≠ FBA growth-essentiality. Keep deferred
+(`POULSEN_BASTA_MAPPING_PLAN.md`).
 
 ## poulsen2019 — Poulsen et al. 2019, PNAS (multi-strain core essential) · **PRESENT 2026-07-06** (P1)
 User-added raw supplement. Gene identity is **`PA14_ID` + `Cluster_ID`**
@@ -151,13 +156,18 @@ User-added raw supplement. Gene identity is **`PA14_ID` + `Cluster_ID`**
 | `pnas.1900570116.sd01/03/06/07.xlsx` | various | raw/aux data (sd03 = 23 MB raw) | context / NEEDS_MAPPING |
 | `pnas.1900570116.sapp.pdf` | — | supplementary appendix (methods/context) | context |
 
-Strain: multi-strain (incl. PAO1 in the clusters) but the primary reference tags
-are **PA14_ID**; phenotype = **core-essential**. **Not parsed as evidence:**
-requires (a) sourcing the core-essential definition/threshold (FiTnEss / FWER
-rule) from Methods and (b) PA14→PAO1 orthology, or use of the Cluster_ID PAO1
-members (B-MAP-01). (Note: Poulsen PA14 essentiality is also embedded as a **+/-**
-citation column inside belanger2022 Data_Sheet_1, but that is a re-citation, not
-the primary data — which is now present here.)
+**Structural finding (verified 2026-07-07, scanning sd03 `Dataset S2`, 53,290
+rows):** the **9 strains are BL23, X13273, CF77, BWH005, BWH013, 19660, PA14,
+BWH015, PS75 — PAO1 is NOT among them.** Only PA14 rows carry a standard locus tag
+(`PA14_xxxxx`); there are **zero `PAxxxx`** gene IDs. So `Cluster_ID` **cannot**
+expose a PAO1 member (correcting the earlier "incl. PAO1 in the clusters" note).
+Phenotype = **core-essential**. **Threshold now sourced** (`THRESHOLD_METHOD_AUDIT.md`):
+FiTnEss adjusted P<0.05 in both replicates (FWER max / FDR high); core = essential
+across all 9 strains × 5 media (LB/M9/serum/sputum/urine); 321 core genes; sd02 =
+120 "new core" 0-TA genes. **Not parsed as evidence:** blocked on validated
+PA14→PAO1 orthology (`POULSEN_BASTA_MAPPING_PLAN.md`). (Note: Poulsen PA14
+essentiality is also a **+/-** re-citation column inside belanger2022 Data_Sheet_1;
+that is a re-citation, not the primary data — which is present here.)
 
 ---
 

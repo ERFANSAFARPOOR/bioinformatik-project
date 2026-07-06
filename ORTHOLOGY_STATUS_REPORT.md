@@ -80,3 +80,18 @@ validation, which uses PAO1/MPAO1 datasets by identity.
 
 **Open blockers:** B-MAP-01 (validated orthology), B-NET (egress).
 Nothing in the mapping is fabricated; unresolved entries stay unresolved.
+
+## 7. Poulsen 2019 & Basta 2017 (raw supplements now present) — 2026-07-07
+
+Both are **PA14-indexed** and need validated PA14→PAO1 orthology before any
+PAO1-model comparison (see `POULSEN_BASTA_MAPPING_PLAN.md`):
+- **Basta 2017:** single strain PA14 (`PA14_xxxxx`). Orthology required.
+- **Poulsen 2019:** although "multi-strain," the **9 sequenced strains do NOT
+  include PAO1** (BL23, X13273, CF77, BWH005, BWH013, 19660, PA14, BWH015, PS75;
+  verified by scanning supplement sd03 — only PA14 carries a standard locus tag,
+  zero `PAxxxx`). Gene lists are keyed by `Cluster_ID`+`PA14_ID`; `Cluster_ID`
+  cannot expose a PAO1 member because PAO1 was not clustered. → Poulsen also needs
+  **PA14→PAO1 orthology** (it is **not** a PAO1 identity-join dataset).
+
+Neither is parsed to gene-level evidence until validated orthology exists.
+Symbol-based PA14 mapping remains inadequate for this.

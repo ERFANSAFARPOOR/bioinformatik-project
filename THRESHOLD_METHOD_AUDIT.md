@@ -215,6 +215,96 @@ Readiness legend: `READY_FOR_DRAFT_PARSE` · `PARTIAL_READY` · `STILL_BLOCKED`.
 
 ---
 
+## poulsen2019 — Poulsen et al. 2019, PNAS 116(20):10072–10080
+
+- **study_id:** poulsen2019
+- **citation status:** VERIFIED (corpus; DOI 10.1073/pnas.1900570116, PMID 31036669,
+  PMCID PMC6525520).
+- **strain:** multi-strain (**9 isolates: BL23, X13273, CF77, BWH005, BWH013, 19660,
+  PA14, BWH015, PS75**); gene identity = `Cluster_ID` + `PA14_ID`. **PAO1 is NOT one
+  of the sequenced strains.**
+- **source files inspected:** `papers/poulsen2019.pdf`, `pnas.1900570116.sd01–sd07.xlsx`
+  (`sapp.pdf` = SI Appendix).
+- **essentiality definition (sourced):** Tn-Seq (Himar1) across 9 strains × 5 media
+  analysed with **FiTnEss**, a two-parameter statistical model: reads per TA site
+  are bimodal (essential left / nonessential right); a theoretical "nonessential"
+  distribution is fit **per gene-size category** and each gene's *P* value = the
+  probability it comes from the nonessential distribution.
+- **numeric threshold / statistical rule (sourced):** *"Genes with an adjusted
+  P value < 0.05 in both replicates were predicted to be essential."* Two
+  multiple-testing adjustments give two stringencies: **FWER = maximal stringency**
+  (highest-confidence essentials, few/no reads) and **FDR = high stringency**
+  (statistically significant, low reads). sd04 columns `Essential Call (FWER)` /
+  `(FDR)` are the author calls. A single strain has 354–727 essential genes;
+  **core essential = essential across all 9 strains × 5 media = 321 genes**;
+  conditionally essential = essential in some but not all media. +120 "new core"
+  genes (sd02) have **0 TA sites** so are un-assayable by insertion and inferred
+  essential (flag separately).
+- **meaning of terms:** *core* = essential across all strains/media; *new core
+  (0TA)* = inferred essential (no TA insertion sites); *borderline* (sd04) = genes
+  near the cutoff where FWER and FDR calls disagree; *Essential Call (FWER/FDR)* =
+  E / NE per strain×medium.
+- **PA14_ID vs Cluster_ID:** `PA14_ID` = reference locus tag; `Cluster_ID` =
+  SynerClust ortholog cluster spanning the 9 strains. **No PAO1 member** exists in
+  the clusters (PAO1 not sequenced here) → Cluster_ID cannot expose a PAO1 tag.
+- **PAO1-specific rows?** **None.** Verified by scanning sd03 (`Dataset S2`,
+  53,290 rows): the Strain column holds the 9 strains above; the only standard
+  locus tags are PA14 (5,708 rows); **zero `PAxxxx`**. (Paper Fig. 2 lists "PAO1"
+  in a display heat-map, but the supplement data tables contain no PAO1 gene-level
+  calls — flagged uncertainty.)
+- **can sd05/sd02 map safely to PAO1?** **No** — only via validated PA14→PAO1
+  orthology (B-MAP-01); see `POULSEN_BASTA_MAPPING_PLAN.md`.
+- **source locator:** paper *"Determining Essential Genes from Tn-Seq Data Using
+  FiTnEss"* + *"FiTnEss: A Statistical Model…"* (Results/Methods) and SI Appendix
+  *Additional Methods*; supplement sd05 `Essential Genes`, sd02 (0TA new core),
+  sd04 (per strain×medium calls), sd03 (cluster membership).
+- **L-03 readiness:** **METHODS_READY_BUT_MAPPING_BLOCKED** (STILL_BLOCKED on
+  PA14→PAO1 orthology). Threshold sourced; not parsed this cycle.
+
+---
+
+## basta2017 — Basta et al. 2017, mBio 8(6):e01170-17
+
+- **study_id:** basta2017
+- **citation status:** VERIFIED (corpus; DOI 10.1128/mBio.01170-17, PMID 29184024,
+  PMCID PMC5705914).
+- **strain:** **PA14 (UCBPP-PA14)**; gene identity = `PA14_xxxxx` (+ `IG_…`
+  intergenic).
+- **phenotype:** **growth-arrest-survival-determinant** — fitness during
+  energy-limited growth arrest. **Not** an FBA growth-essentiality phenotype.
+- **source files inspected:** `papers/basta2017.pdf`, `mbo006173591sd1–sd4.xlsx`
+  (no separate SI text PDF in repo; 2 `.tif` figures only).
+- **survival phenotype definition (sourced):** cultures held under **carbon** or
+  **oxygen** limitation (energy-limited growth arrest) for 10 days, then
+  carbon-replete aerobic outgrowth; Tn-seq reads compared to a carbon-replete
+  aerobic control.
+- **how raw counts → calls (sourced):** per-gene reads (limited vs control) tested
+  per replicate with a **Mann-Whitney U test**; the **geometric mean of the read
+  ratio** across replicates is taken and replicate P values are combined by
+  **Fisher's combined probability test** (sd1/sd2 `Fisher p-value` column). sd3/sd4
+  hold the **raw per-TA-site read counts**.
+- **numeric threshold (sourced):** *"We defined a gene as being required for fitness
+  during carbon or oxygen limitation if the mean read ratio of the replicates was
+  ≤ 0.25 and the combined P value was ≤ 0.05"* (i.e. **>4-fold fitness defect**).
+  Fitness **advantage** = read ratio ≥ 4 and combined P ≤ 0.05. Result: **62
+  required genes** (20 carbon-specific, 38 oxygen-specific, 4 both); 25 oxygen
+  fitness-advantage.
+- **final gene-level calls in supplement?** **No** — sd1/sd2 give read ratios +
+  p-values only; the required-gene set must be **derived** by applying the ≤0.25 /
+  P≤0.05 threshold (an analysis step; exclude `IG_` intergenic rows).
+- **comparability to FBA:** growth-arrest **survival** is not the same as growth
+  essentiality; FBA single-gene-deletion growth predictions are **not** the
+  matching comparison — a maintenance/ATP-aware framework would be required. Keep
+  the phenotype class distinct; do not force a growth-essentiality comparison.
+- **source locator:** paper *Results* ("required for fitness … ≤ 0.25 … ≤ 0.05")
+  and *Materials and Methods* (Mann-Whitney U + Fisher's combined test);
+  supplement sd1 (Carbon limited), sd2 (Oxygen limited), sd3/sd4 (raw counts).
+- **L-03 readiness:** **STILL_BLOCKED** — two gates fail: (a) ANALYSIS (no call
+  column; threshold must be applied), (b) MAPPING (PA14→PAO1 orthology absent).
+  Threshold is sourced (not THRESHOLD_PENDING). Not parsed this cycle.
+
+---
+
 ## Summary
 
 | study | citation | threshold sourced? | L-03 readiness | blockers resolved |
@@ -223,7 +313,10 @@ Readiness legend: `READY_FOR_DRAFT_PARSE` · `PARTIAL_READY` · `STILL_BLOCKED`.
 | turner2015 | VERIFIED | YES (P<0.01 + mclust; FC≥4,P<0.05) | READY_FOR_DRAFT_PARSE (PAO1 sheets) | L03-B2 (L03-B3 open) |
 | belanger2022 | VERIFIED | YES (Gumbel/TraDIS ≥4/5, T0 ≥2/3) | READY_FOR_DRAFT_PARSE | L03-B4, L03-B5 |
 | varadarajan2020 | VERIFIED | Lee-derived (not independent) | STILL_BLOCKED as evidence (mapping resource only) | L03-B6 (B7/B8 reframed) |
+| poulsen2019 | VERIFIED | YES (FiTnEss adj. P<0.05 both reps; FWER/FDR) | METHODS_READY_BUT_MAPPING_BLOCKED (PA14→PAO1 orthology) | threshold sourced |
+| basta2017 | VERIFIED | YES (read ratio ≤0.25 & Fisher P≤0.05) | STILL_BLOCKED (analysis + PA14→PAO1 orthology) | threshold sourced |
 | zhu2018 | PENDING_VERIFY | n/a (model) | NOT_RELEVANT_FOR_L03 | — |
 
-No `THRESHOLD_PENDING` studies remain among those parsed. Metrics remain
-**forbidden** (B-SCI-01); this file only sources definitions/thresholds.
+No `THRESHOLD_PENDING` studies remain (Poulsen and Basta thresholds are now
+sourced; they are blocked on **mapping/orthology**, not thresholds). Metrics
+remain **forbidden** (B-SCI-01); this file only sources definitions/thresholds.

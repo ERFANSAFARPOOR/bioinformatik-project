@@ -29,6 +29,20 @@ untouched; all raw files read-only.
 | **L03-B6** | varadarajan2020 | verify DOI/PMID | **RESOLVED** — npj Biofilms Microbiomes 6:46 (2020), DOI 10.1038/s41522-020-00154-8, PMID 33127897, PMCID PMC7603352 (`VARADARAJAN2020_CITATION_CHECK.md`). |
 | **L03-B7** | varadarajan2020 | build/validate MPAO1→PAO1 mapping | **REFRAMED / DEFERRED** — DS1/DS3 provide a native best-hit map; may be built later as a *reference resource*, not evidence. Not needed this run (study not parsed as evidence). |
 | **L03-B8** | varadarajan2020 | "essential in N/16 samples" threshold | **RESOLVED-BUT-DERIVATIVE** — the 16 samples are **Lee 2015's** libraries re-mapped to MPAO1 using Lee's scripts; essentiality is Lee-derived → **do not parse as independent evidence** (double-count). |
+| **L03-B9** | poulsen2019 | core-essential threshold + PAO1 mapping | **THRESHOLD RESOLVED, MAPPING BLOCKED** — FiTnEss adjusted P<0.05 both reps (FWER max / FDR high); core = essential across all 9 strains×5 media (321 genes). But the 9 strains **exclude PAO1** and the supplement has no `PAxxxx` id → needs PA14→PAO1 orthology. Not parsed. |
+| **L03-B10** | basta2017 | survival-determinant threshold + PAO1 mapping | **THRESHOLD RESOLVED, ANALYSIS+MAPPING BLOCKED** — required = mean read ratio ≤0.25 & Fisher combined P≤0.05 (>4-fold). No call column (must derive); PA14-indexed (needs orthology); phenotype = growth-arrest survival ≠ FBA growth-essentiality. Not parsed. |
+
+## Poulsen / Basta parse-gate decision (Phase 5, 2026-07-07)
+Both fail the parse gate — **not parsed to gene-level evidence this cycle**:
+- **poulsen2019** — **STILL_BLOCKED (mapping).** Gates 1–7,9 pass (citation, files,
+  IDs, strain, phenotype, media, threshold, locators) but **gate 8 fails**: no safe
+  PAO1 mapping (9 strains exclude PAO1; PA14-referenced → needs validated
+  PA14→PAO1 orthology). `METHODS_READY_BUT_MAPPING_BLOCKED`.
+- **basta2017** — **STILL_BLOCKED.** Threshold sourced, but (a) no gene-level call
+  column → analysis needed, and (b) PA14→PAO1 orthology absent. Phenotype
+  (growth-arrest survival) also needs a non-growth comparison framework.
+See `POULSEN_BASTA_MAPPING_PLAN.md`, `THRESHOLD_METHOD_AUDIT.md`,
+`SUPPLEMENT_PARSE_NOTES_POULSEN2019.md`, `SUPPLEMENT_PARSE_NOTES_BASTA2017.md`.
 
 ## Why varadarajan2020 is NOT parsed as evidence (record)
 Varadarajan 2020 SI: *"Using the scripts released by Lee and colleagues, Tn-seq
