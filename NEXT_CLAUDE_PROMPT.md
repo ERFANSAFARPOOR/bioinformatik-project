@@ -26,8 +26,10 @@ or metrics.
   Varadarajan 2020 = verified but **derivative of Lee** (mapping resource only).
   Zhu 2018 = background/model. **meegid2022 removed from active scope.**
 - **L-03 DRAFT parsed** (Lee/Turner/Belanger) →
-  `data/processed/literature_evidence_gene_level_DRAFT.csv` (5,093 rows, 6
-  phenotype classes distinct, review flags). Not yet human-reviewed/promoted.
+  `data/processed/literature_evidence_gene_level_DRAFT.csv` (**5,148 rows**, 6
+  phenotype classes distinct, review flags). **L03-B3 resolved** (Turner paired
+  sheets sd05/sd09 PAO1 blocks parsed). Reviewed in `L03_DRAFT_REVIEW_AUDIT.md`;
+  not yet promoted (Lee per-medium rows still NEEDS_REVIEW).
 - **Poulsen + Basta:** raw supplements present, thresholds sourced
   (`THRESHOLD_METHOD_AUDIT.md`), but **not parsed** — PA14-indexed, no PAO1 in
   either supplement (Poulsen's 9 strains exclude PAO1) → blocked on validated
@@ -37,17 +39,17 @@ or metrics.
   C-01b **not started**.
 
 ## Read first
+`ORTHOLOGY_READINESS_AUDIT.md`, `L03_DRAFT_REVIEW_AUDIT.md`,
 `THRESHOLD_METHOD_AUDIT.md`, `L03_PARSE_BLOCKERS.md`, `POULSEN_BASTA_MAPPING_PLAN.md`,
 `MEDIA_SOURCE_AUDIT.md`, `VALIDATION_READINESS.md`, `BLOCKERS.md`, `TODO.md`,
 `DATA_PROVENANCE.md`, `SUPPLEMENT_INVENTORY_AUDIT.md`, `CLAUDE.md`.
 
 ## Candidate next tasks (pick per instruction; all gated)
 1. **L-03c (review/promote):** human-review the Lee/Turner/Belanger DRAFT
-   (esp. Lee per-medium `NEEDS_REVIEW` rows); promote reviewed rows to a validated
-   table — never overwriting canonical `literature_evidence.csv`.
-2. **L03-B3 (Turner paired sheets):** confirm PAO1 column blocks in sd03/04/05/09
-   and extend the parser to extract PAO1-only columns.
-3. **G-01b (orthology):** obtain a validated PA14→PAO1 ortholog table
+   (esp. Lee per-medium `NEEDS_REVIEW` rows — resolve the pool↔assay ambiguity);
+   promote reviewed rows to a validated table — never overwriting canonical
+   `literature_evidence.csv`. (L03-B3 is already resolved.)
+2. **G-01b (orthology):** obtain a validated PA14→PAO1 ortholog table
    (pseudomonas.com / study homolog columns) — unblocks Poulsen + Basta. Blocked by
    B-NET (human-assisted/different-network download); store in `data/raw/ortholog/`
    with provenance. Then L-03b: draft-parse Poulsen (sd05/sd02) and Basta (derive

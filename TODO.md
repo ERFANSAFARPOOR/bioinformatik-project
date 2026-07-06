@@ -303,6 +303,18 @@ Status: TODO / IN-PROGRESS / DONE / BLOCKED.
   per-condition gene deletion; (4) V-01 metrics — still **forbidden** until real
   labels + media + predictions exist.
 
+## Update 2026-07-07b (L03-B3 resolved; DRAFT reviewed; orthology audit)
+- **L03-B3 RESOLVED:** Turner paired-sheet PAO1 blocks parsed (sd05 → 46
+  condition-specific-essential sputum; sd09 → 9 reduced-fitness SCFM2-vs-sputum;
+  sd03/sd04 skipped with reasons). Aggregate DRAFT now **5,148 rows** (Turner 586).
+  Parser header-guarded (fail-safe). `L03_DRAFT_REVIEW_AUDIT.md` records the full
+  integrity review (all checks pass; Lee per-medium rows remain NEEDS_REVIEW).
+- **ORTHOLOGY_READINESS_AUDIT.md created:** no validated PA14→PAO1 orthology exists
+  (only RefSeq symbol layer — inadequate). Poulsen + Basta remain mapping-blocked.
+- **MEDIA_SOURCE_AUDIT.md refined:** added NOT_RECONSTRUCTABLE_AS_GROWTH_MEDIUM
+  (Basta carbon/oxygen arrest); every condition categorized.
+- C-01b/S-01/V-01 still not started; no metrics.
+
 ## Update 2026-07-07 (Poulsen/Basta audited; meegid removed; media-source audit)
 - **meegid2022 removed from active scope** (user decision) across all active docs.
 - **Poulsen 2019 + Basta 2017 audited to L-03 readiness** but **not parsed**:

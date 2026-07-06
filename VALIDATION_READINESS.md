@@ -186,9 +186,13 @@ still PENDING).
 - [~] Experimental gene lists downloaded per study, with provenance (B-LIT-01/B-NET)
       — DONE for Lee/Turner/Belanger/Varadarajan/Poulsen/Basta; PENDING source URLs. (meegid2022 removed from active scope.)
 - [~] `literature_evidence.csv` gene-level rows populated, six classes kept distinct (L-03)
-      — DRAFT parsed to `literature_evidence_gene_level_DRAFT.csv` (Lee/Turner/Belanger);
-      needs human review + promotion; Varadarajan excluded (Lee-derivative), Turner paired sheets pending (L03-B3)
-- [ ] Validated PAO1↔PA14 orthology merged; coverage + ambiguity reported (B-MAP-01)
+      — DRAFT parsed to `literature_evidence_gene_level_DRAFT.csv` (**5,148 rows**;
+      Lee/Turner/Belanger). **L03-B3 RESOLVED** (Turner paired sheets sd05/sd09
+      PAO1 blocks parsed). Reviewed in `L03_DRAFT_REVIEW_AUDIT.md`; needs human
+      review + promotion (Lee per-medium rows still NEEDS_REVIEW). Varadarajan
+      excluded (Lee-derivative); Poulsen/Basta not parsed (orthology-blocked).
+- [ ] Validated PAO1↔PA14 orthology merged; coverage + ambiguity reported (B-MAP-01;
+      see `ORTHOLOGY_READINESS_AUDIT.md` — none present, blocks Poulsen + Basta)
 - [ ] Per-study media reconstructed and cited; model feasible per condition (C-01)
 - [ ] Per-condition predictions generated at multiple thresholds (S-01)
 - [ ] Only then: confusion matrix / precision / recall / specificity / F1 / MCC,

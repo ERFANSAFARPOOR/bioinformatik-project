@@ -93,9 +93,19 @@ rows, no DRAFT, nothing fabricated.
 3. **S-01:** per-condition single-gene deletion predictions.
 4. **V-01:** metrics — **still forbidden** until real labels + media + predictions exist.
 
+## Update 2026-07-07b (latest)
+- **L03-B3 RESOLVED:** Turner paired-sheet PAO1 blocks parsed (sd05 condition-
+  specific-essential + sd09 reduced-fitness); DRAFT now **5,148 rows**. Full
+  integrity review in `L03_DRAFT_REVIEW_AUDIT.md` (all checks pass).
+- **`ORTHOLOGY_READINESS_AUDIT.md`:** no validated PA14→PAO1 orthology exists →
+  Poulsen + Basta stay mapping-blocked (both PA14-referenced; Poulsen's 9 strains
+  exclude PAO1).
+- **`MEDIA_SOURCE_AUDIT.md` refined** (+NOT_RECONSTRUCTABLE_AS_GROWTH_MEDIUM).
+- meegid2022 scope-removal notes tightened. C-01b/S-01/V-01 still not started.
+
 ## Update 2026-07-07 (this cycle)
-- **L-03 DRAFT parsed** for Lee/Turner/Belanger (`literature_evidence_gene_level_DRAFT.csv`,
-  5,093 rows). Varadarajan verified but derivative (mapping resource only). Zhu out of scope.
+- **L-03 DRAFT parsed** for Lee/Turner/Belanger (`literature_evidence_gene_level_DRAFT.csv`).
+  Varadarajan verified but derivative (mapping resource only). Zhu out of scope.
 - **meegid2022 removed from active scope** (user decision) — no local files, no dependency.
 - **Poulsen 2019 + Basta 2017 audited** (thresholds sourced) but **not parsed** —
   PA14-indexed, no PAO1 in either supplement (Poulsen's 9 strains exclude PAO1) →
