@@ -201,6 +201,22 @@ was written for them.
 condition/media locators and reconstructability (DEFINED / PARTIAL /
 MEDIA_GAP_PENDING). C-01b not started; no exchange bounds invented.
 
+**Ortholog candidate table (2026-07-07b):** pseudomonas.com RBBH unreachable
+(403/Cloudflare via curl + WebFetch), so the PAO1↔PA14 ortholog table embedded in
+the peer-reviewed **Turner 2015** supplement was extracted as a **CANDIDATE**:
+
+| Derived file | Rows | Source (SHA-256) |
+|---|---|---|
+| `data/processed/ortholog/pao1_pa14_orthologs_turner2015_CANDIDATE.csv` (SHA-256 `e6ea39a5…d51dec90`) | 5,365 strict-1:1 pairs | `turner2015/pnas.1419677112.sd03.xlsx` (`4723c701…d197a9e2`), consistency-checked vs sd04 (`a1ec2e2d…ecbb91bb`) |
+
+Method: Pseudomonas Genome Database BLAST+synteny 1:1 orthologs (Turner Methods).
+sd03≡sd04 (identical pairing); Belanger DS1 independent cross-check 598/599 agree,
+1 flagged disagreement (`PA2279`). 541 PA14-only + 204 PAO1-only retained as counts
+(not forced into pairs). Reproducible by `scripts/mapping/build_ortholog_candidate.py`.
+**Status: HUMAN_REVIEW_REQUIRED — not merged into `gene_mapping.csv`, not used to
+parse Poulsen/Basta or compute metrics.** Docs: `ORTHOLOG_CANDIDATE_TABLE.md`,
+`LOCAL_ORTHOLOGY_SEARCH_REPORT.md`.
+
 ---
 
 ## 4. Derived / generated data (this repo)

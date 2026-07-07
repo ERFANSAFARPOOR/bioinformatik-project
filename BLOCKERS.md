@@ -80,9 +80,25 @@ and the **non-PAO1 strains of Poulsen 2019**. Downgraded P0→P1.
 contains PAO1 ids (**Poulsen's 9 strains exclude PAO1**, verified). No validated
 orthology source exists here (only the RefSeq symbol layer, which is inadequate).
 See `ORTHOLOGY_READINESS_AUDIT.md`, `POULSEN_BASTA_MAPPING_PLAN.md`.
+**Update 2026-07-07b — CANDIDATE source built (still OPEN):** the authoritative
+pseudomonas.com RBBH export is **unreachable** (HTTP 403/Cloudflare via both local
+curl and WebFetch — re-verified). A **candidate** PAO1↔PA14 table was therefore
+extracted from the peer-reviewed **Turner 2015 supplement** (sd03/sd04; Pseudomonas
+Genome Database BLAST+synteny 1:1 orthologs) →
+`data/processed/ortholog/pao1_pa14_orthologs_turner2015_CANDIDATE.csv` (5,365
+strict-1:1 pairs, 0 one-to-many; 541 PA14-only + 204 PAO1-only excluded as counts).
+sd03≡sd04 (identical). Independent **Belanger DS1 cross-check: 598/599 agree
+(99.8%)**, 1 flagged disagreement (`PA2279`). Script:
+`scripts/mapping/build_ortholog_candidate.py`; doc: `ORTHOLOG_CANDIDATE_TABLE.md`;
+search: `LOCAL_ORTHOLOGY_SEARCH_REPORT.md`. **Marked HUMAN_REVIEW_REQUIRED — NOT
+merged into `gene_mapping.csv`, NOT used to parse Poulsen/Basta or compute metrics.**
+Blocker narrows: source now exists locally; still OPEN pending (a) human sign-off
+approving Turner-embedded orthology as the mapping source vs. the live pseudomonas.com
+table, and (b) coverage of one-to-many / PA14-unique cases beyond the 1:1 subset.
 **Unblock when:** an authoritative PAO1↔PA14 ortholog table is obtained
 (pseudomonas.com orthologs, or study-provided PAO1 homolog columns) and joined,
-retaining one-to-many and missing mappings. See `ORTHOLOGY_STATUS_REPORT.md`.
+retaining one-to-many and missing mappings — OR the Turner candidate is human-approved
+as the interim source. See `ORTHOLOGY_STATUS_REPORT.md`.
 
 ## B-ENV-01 — reccobra39 cannot run the notebooks as-is (P1) — RESOLVED 2026-06-26
 Resolved: E-01 added matplotlib 3.9.4, matplotlib-venn 1.1.2, openpyxl 3.1.5,

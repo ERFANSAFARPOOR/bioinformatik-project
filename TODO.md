@@ -346,6 +346,15 @@ Status: TODO / IN-PROGRESS / DONE / BLOCKED.
 - **New TODO items:**
   - **G-01b · P1 · gene-mapping** — obtain validated PA14→PAO1 orthology
     (pseudomonas.com / study homolog table); unblocks Basta + Poulsen. Blocker: B-NET.
+    **Update 2026-07-07b — CANDIDATE built (awaiting human sign-off):**
+    pseudomonas.com RBBH still 403 (curl+WebFetch); extracted the peer-reviewed
+    **Turner 2015 sd03/sd04** Pseudomonas-Genome-Database ortholog table →
+    `data/processed/ortholog/pao1_pa14_orthologs_turner2015_CANDIDATE.csv` (5,365
+    strict-1:1 pairs; sd03≡sd04; Belanger DS1 cross-check 598/599 agree). Script
+    `scripts/mapping/build_ortholog_candidate.py`; doc `ORTHOLOG_CANDIDATE_TABLE.md`.
+    **HUMAN_REVIEW_REQUIRED — not merged, not used to parse Poulsen/Basta.** Next:
+    human approves candidate → then G-01b joins it into gene_mapping (keeping
+    one-to-many/missing) → unblocks L-03b.
   - **L-03b · P1 · literature** — after orthology, draft-parse Poulsen (sd05/sd02)
     and Basta (derive calls from sd1/sd2), keeping one-to-many/missing explicit.
   - **L-03c · P1 · literature** — human-review the Lee/Turner/Belanger DRAFT and
