@@ -95,6 +95,16 @@ merged into `gene_mapping.csv`, NOT used to parse Poulsen/Basta or compute metri
 Blocker narrows: source now exists locally; still OPEN pending (a) human sign-off
 approving Turner-embedded orthology as the mapping source vs. the live pseudomonas.com
 table, and (b) coverage of one-to-many / PA14-unique cases beyond the 1:1 subset.
+**Update 2026-07-10 — APPROVED_LIMITED (narrowed, still OPEN):** human review
+decision `APPROVED_LIMITED`; conflict `RESOLVED_SUPPORTS_TURNER` via KEGG SSDB
+(PA14_35100↔PA2279, PA14_35130↔PA2277; Belanger PA2279→PA14_35130 rejected for
+this locus). Derived:
+`pao1_pa14_orthologs_turner2015_APPROVED_LIMITED.csv` (5,365 rows,
+`approved_for_l03b=yes`). Status:
+`CANDIDATE_APPROVED_LIMITED_FOR_1TO1_PA14_TO_PAO1_MAPPING_WITH_CONFLICT_POLICY`.
+Still **not** merged into `gene_mapping.csv`; Poulsen/Basta only eligible for
+future controlled L-03b draft mapping; **metrics still blocked**. Docs:
+`ORTHOLOGY_HUMAN_REVIEW_DECISION.md`, `ORTHOLOGY_CONFLICT_RESOLUTION_REPORT.md`.
 **Unblock when:** an authoritative PAO1↔PA14 ortholog table is obtained
 (pseudomonas.com orthologs, or study-provided PAO1 homolog columns) and joined,
 retaining one-to-many and missing mappings — OR the Turner candidate is human-approved

@@ -103,6 +103,15 @@ rows, no DRAFT, nothing fabricated.
   MOPS-succinate DEFINED; SCFM2, LB-approx PARTIAL; RPMI held). **C-01b NOT started;
   no bounds; no JSON; no simulation. S-01/V-01 not started; metrics forbidden.**
 
+## Update 2026-07-10 (orthology APPROVED_LIMITED)
+- Human review: **APPROVED_LIMITED**; conflict **RESOLVED_SUPPORTS_TURNER**
+  (KEGG SSDB: PA14_35100↔PA2279, PA14_35130↔PA2277).
+- Derived: `pao1_pa14_orthologs_turner2015_APPROVED_LIMITED.csv` (5,365 rows).
+- PA14→PAO1 mapping candidate approved for **limited 1:1 draft mapping only**.
+- Poulsen/Basta: eligible for future controlled L-03b draft mapping — **not**
+  validation-ready. Metrics still forbidden. CANDIDATE unchanged; no
+  `gene_mapping.csv` merge.
+
 ## Update 2026-07-07b
 - **L03-B3 RESOLVED:** Turner paired-sheet PAO1 blocks parsed (sd05 condition-
   specific-essential + sd09 reduced-fitness); DRAFT now **5,148 rows**. Full

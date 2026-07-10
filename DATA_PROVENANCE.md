@@ -217,6 +217,21 @@ sd03≡sd04 (identical pairing); Belanger DS1 independent cross-check 598/599 ag
 parse Poulsen/Basta or compute metrics.** Docs: `ORTHOLOG_CANDIDATE_TABLE.md`,
 `LOCAL_ORTHOLOGY_SEARCH_REPORT.md`.
 
+**Ortholog APPROVED_LIMITED (2026-07-10):** human review
+`APPROVED_LIMITED`; conflict `RESOLVED_SUPPORTS_TURNER` (KEGG SSDB Best Search
+2026-07-10: PA14_35100↔PA2279, PA14_35130↔PA2277; Belanger PA2279→PA14_35130
+rejected for this locus). Derived (CANDIDATE unchanged):
+
+| Derived file | Rows | Notes |
+|---|---|---|
+| `data/processed/ortholog/pao1_pa14_orthologs_turner2015_APPROVED_LIMITED.csv` | 5,365 | all `approved_for_l03b=yes` |
+| `data/processed/ortholog/pao1_pa14_orthologs_turner2015_APPROVED_LIMITED_FOR_L03B.csv` | 5,365 | same rows (conflict resolved; none excluded) |
+
+Script: `scripts/mapping/build_ortholog_approved_limited.py`. Docs:
+`ORTHOLOGY_HUMAN_REVIEW_DECISION.md`, `ORTHOLOGY_CONFLICT_RESOLUTION_REPORT.md`.
+**Still limited:** not merged into `gene_mapping.csv`; Poulsen/Basta only eligible
+for future controlled L-03b draft mapping; **metrics not computed**.
+
 ---
 
 ## 4. Derived / generated data (this repo)

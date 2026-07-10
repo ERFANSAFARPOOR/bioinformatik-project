@@ -355,8 +355,16 @@ Status: TODO / IN-PROGRESS / DONE / BLOCKED.
     **HUMAN_REVIEW_REQUIRED — not merged, not used to parse Poulsen/Basta.** Next:
     human approves candidate → then G-01b joins it into gene_mapping (keeping
     one-to-many/missing) → unblocks L-03b.
+    **Update 2026-07-10 — APPROVED_LIMITED:** conflict resolved
+    (`RESOLVED_SUPPORTS_TURNER` via KEGG SSDB). Derived
+    `pao1_pa14_orthologs_turner2015_APPROVED_LIMITED.csv` (5,365 rows,
+    all `approved_for_l03b=yes`). Status:
+    `CANDIDATE_APPROVED_LIMITED_FOR_1TO1_PA14_TO_PAO1_MAPPING_WITH_CONFLICT_POLICY`.
+    Still not merged into `gene_mapping.csv`; metrics still forbidden.
   - **L-03b · P1 · literature** — after orthology, draft-parse Poulsen (sd05/sd02)
     and Basta (derive calls from sd1/sd2), keeping one-to-many/missing explicit.
+    **Eligible only for future controlled draft mapping** using
+    `approved_for_l03b=yes` rows — not validation-ready; no metrics.
   - **L-03c · P1 · literature** — human-review the Lee/Turner/Belanger DRAFT and
     promote reviewed rows (never overwrite canonical `literature_evidence.csv`).
 - Metrics remain **forbidden** (B-SCI-01).
