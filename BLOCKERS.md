@@ -64,7 +64,7 @@ Verified against authoritative sources (ASM/Frontiers + PMC):
 Strains are now **confirmed** from each paper's methods (Basta 2017 = PA14;
 Belanger 2022 = PAO1) — see the resolved strain-correction record **B-STRAIN-02**.
 
-## B-MAP-01 — Validated cross-strain PAO1↔PA14 orthology not built (P1; downgraded from P0) — OPEN
+## B-MAP-01 — Validated cross-strain PAO1↔PA14 orthology not built (P1; downgraded from P0) — **PARTIALLY RESOLVED**
 Model = **PAO1** (`PAxxxx`). `gene_mapping.csv` has the identity mapping
 (model→PAO1, high) plus a symbol-based PA14 layer (386 medium, 22 low, 646
 unmapped) — NOT validated orthology.
@@ -105,10 +105,20 @@ this locus). Derived:
 Still **not** merged into `gene_mapping.csv`; Poulsen/Basta only eligible for
 future controlled L-03b draft mapping; **metrics still blocked**. Docs:
 `ORTHOLOGY_HUMAN_REVIEW_DECISION.md`, `ORTHOLOGY_CONFLICT_RESOLUTION_REPORT.md`.
-**Unblock when:** an authoritative PAO1↔PA14 ortholog table is obtained
-(pseudomonas.com orthologs, or study-provided PAO1 homolog columns) and joined,
-retaining one-to-many and missing mappings — OR the Turner candidate is human-approved
-as the interim source. See `ORTHOLOGY_STATUS_REPORT.md`.
+**Update 2026-07-10b — PGD export available (PARTIALLY RESOLVED):** authoritative
+Pseudomonas Genome Database orthology export merged from `origin/develop`
+(`7cd3dd29`) → `data/raw/ortholog/pao1_pa14_orthologs_pseudomonas.csv` (**5,385
+pairs**) + `Supplementary_Table_S1.csv` + `Orthology_QC_Report.csv`. PGD confirms
+Turner at the disputed locus (PA2279↔PA14_35100, PA2277↔PA14_35130). **Decision
+D-16:** PGD supplements/validates Turner; does **not replace** Turner
+`APPROVED_LIMITED` until PGD↔Turner crosswalk + human review. Remaining: build
+crosswalk script, classify the +20 PGD-only pairs, resolve Review-flagged rows
+(e.g. one-to-many `PA0263`/`hcpC`), relocate `tst ortolog/` to archive. SHA-256 for
+PGD files: PENDING. Doc: `docs/ORTHOLOGY_PSEUDOMONAS_INTEGRATION.md`.
+**Unblock fully when:** the PGD↔Turner crosswalk is built and human-approved as the
+primary mapping source for L-03b; one-to-many/missing retained explicitly; joined
+into a reviewed mapping table (not yet `gene_mapping.csv`). See
+`ORTHOLOGY_STATUS_REPORT.md`.
 
 ## B-ENV-01 — reccobra39 cannot run the notebooks as-is (P1) — RESOLVED 2026-06-26
 Resolved: E-01 added matplotlib 3.9.4, matplotlib-venn 1.1.2, openpyxl 3.1.5,

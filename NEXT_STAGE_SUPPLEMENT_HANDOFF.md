@@ -81,7 +81,7 @@ rows, no DRAFT, nothing fabricated.
 - **B-LIT-01** — narrowed: all corpus supplements now present; OPEN only for
   Poulsen/Basta orthology-threshold gate + DRAFT promotion (meegid2022 out of scope).
 - **B-NET** — OPEN (pseudomonas.com orthology + all `SOURCE_URL_PENDING`).
-- B-MAP-01 — P1/secondary (PA14-only path).
+- B-MAP-01 — P1/secondary (PA14-only path); **PARTIALLY RESOLVED** (PGD export local; crosswalk + human review pending).
 
 ## Next recommended scientific stage
 1. **L-03 (unblock then parse):** extract thresholds from Methods PDFs (read-only) →
@@ -102,6 +102,18 @@ rows, no DRAFT, nothing fabricated.
 - **`C01B_MEDIA_RECONSTRUCTION_PLAN.md`:** first-batch media planned (MOPS-pyruvate,
   MOPS-succinate DEFINED; SCFM2, LB-approx PARTIAL; RPMI held). **C-01b NOT started;
   no bounds; no JSON; no simulation. S-01/V-01 not started; metrics forbidden.**
+
+## Update 2026-07-10b (PGD orthology integration)
+- **PGD ortholog export merged** from `origin/develop` (`7cd3dd29`): **5,385** PAO1↔PA14
+  pairs in `data/raw/ortholog/` (vs Turner APPROVED_LIMITED 5,365; +20 PGD-only).
+- **Decision D-16:** PGD supplements/validates Turner; does **not replace**
+  APPROVED_LIMITED until PGD↔Turner crosswalk + human review.
+- **B-MAP-01 partially resolved:** authoritative source now local; crosswalk pending.
+- PGD confirms Turner locus assignments (PA2279↔PA14_35100, PA2277↔PA14_35130).
+- `tst ortolog/` = exploratory pipeline workspace; relocate to archive later (do not delete).
+- Doc: `docs/ORTHOLOGY_PSEUDOMONAS_INTEGRATION.md`. SHA-256 for PGD files pending.
+- Poulsen/Basta: eligible for future controlled L-03b draft mapping — **not**
+  validation-ready. Metrics still forbidden. No `gene_mapping.csv` merge.
 
 ## Update 2026-07-10 (orthology APPROVED_LIMITED)
 - Human review: **APPROVED_LIMITED**; conflict **RESOLVED_SUPPORTS_TURNER**

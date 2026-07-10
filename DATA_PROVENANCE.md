@@ -107,6 +107,9 @@ journal sites and pseudomonas.com are blocked. See BLOCKER **B-NET**.
 |---|---|---|---|---|
 | `data/raw/ortholog/pao1_feature_table.txt.gz` | https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/006/765/GCF_000006765.1_ASM676v1/GCF_000006765.1_ASM676v1_feature_table.txt.gz | 2026-06-26 | `de6c018f6396fa871da19fa285a6e764a6a7a0cd0b8cd4d8308943c5a1df7abc` | PAO1 RefSeq (ASM676v1); locus_tag = `PA####` (matches model) |
 | `data/raw/ortholog/pa14_feature_table.txt.gz` | https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/014/625/GCF_000014625.1_ASM1462v1/GCF_000014625.1_ASM1462v1_feature_table.txt.gz | 2026-06-26 | `e1ac94630b4a5962d433232ac744c0de4cf4898f323bc8d3c75649160d6bc491` | PA14 RefSeq (ASM1462v1); RefSeq locus = `PA14_RS#####`, classic `PA14_#####` in `old_locus_tag` |
+| `data/raw/ortholog/pao1_pa14_orthologs_pseudomonas.csv` | Pseudomonas Genome Database (https://www.pseudomonas.com) | 2026-07-10 | `PENDING_SHA256` | **PGD raw export:** 5,385 PAO1↔PA14 curated ortholog pairs. Merged from `origin/develop` (`7cd3dd29`, *ortolog table*). Provenance-sensitive; read-only. |
+| `data/raw/ortholog/Supplementary_Table_S1.csv` | Derived from PGD export + gene-name enrichment | 2026-07-10 | `PENDING_SHA256` | Project-standard supplementary table (identity, coverage, e-value, source metadata). Treat as derived until SHA logged. |
+| `data/raw/ortholog/Orthology_QC_Report.csv` | Derived from PGD export + BLAST validation | 2026-07-10 | `PENDING_SHA256` | Per-pair QC report; flags `Review` rows (e.g. one-to-many at `PA0263`/`hcpC`). |
 
 These feed `scripts/mapping/build_gene_mapping.py` → `data/processed/gene_mapping.csv`
 (the gz is read directly; the uncompressed `.txt` is derived and git-ignored).
@@ -170,6 +173,8 @@ modified. Full audit + column structure: `SUPPLEMENT_INVENTORY_AUDIT.md`.
   `giy021`, not yet confirmed via eutils).
 - No corpus supplements remain absent: Poulsen 2019 and Basta 2017 are now present
   (§3d). meegid2022 removed from active scope (user decision 2026-07-06).
+- PGD orthology export SHA-256 pending (`pao1_pa14_orthologs_pseudomonas.csv`,
+  `Supplementary_Table_S1.csv`, `Orthology_QC_Report.csv` — see §3b).
 
 ## 3e. L-03 DRAFT gene-level evidence — derived 2026-07-06 (read-only parse)
 
@@ -231,6 +236,17 @@ Script: `scripts/mapping/build_ortholog_approved_limited.py`. Docs:
 `ORTHOLOGY_HUMAN_REVIEW_DECISION.md`, `ORTHOLOGY_CONFLICT_RESOLUTION_REPORT.md`.
 **Still limited:** not merged into `gene_mapping.csv`; Poulsen/Basta only eligible
 for future controlled L-03b draft mapping; **metrics not computed**.
+
+**Pseudomonas Genome Database export (2026-07-10):** authoritative PGD orthology
+merged from `origin/develop` (`7cd3dd29`, *ortolog table*). Raw export:
+`data/raw/ortholog/pao1_pa14_orthologs_pseudomonas.csv` (**5,385 pairs**). Enriched
+supplementary table (`Supplementary_Table_S1.csv`) and BLAST QC report
+(`Orthology_QC_Report.csv`) also in `data/raw/ortholog/`. PGD **supplements and
+validates** Turner (including PA2279↔PA14_35100 / PA2277↔PA14_35130 confirmation)
+but does **not replace** Turner `APPROVED_LIMITED` until PGD↔Turner crosswalk +
+human review (**D-16**). Exploratory pipeline workspace: `tst ortolog/` (relocate to
+archive later; do not delete). Doc: `docs/ORTHOLOGY_PSEUDOMONAS_INTEGRATION.md`.
+SHA-256 for the three PGD files: **PENDING**.
 
 ---
 

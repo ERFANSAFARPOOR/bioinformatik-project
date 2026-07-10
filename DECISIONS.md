@@ -125,3 +125,23 @@ or supplements are not downloadable (B-NET), record citation/DOI/PMID/PMCID only
 and mark blocked — never fabricate files or gene lists.
 **Rationale:** Integrity rules §1; honest provenance.
 **Status:** Active.
+
+## D-16 · 2026-07-10 · PGD orthology supplements Turner; does not replace APPROVED_LIMITED
+**Decision:** The Pseudomonas Genome Database (PGD) PAO1↔PA14 ortholog export
+(5,385 pairs, merged from `origin/develop`, commit `7cd3dd29`) **supplements and
+validates** the Turner-derived `APPROVED_LIMITED` table (5,365 pairs) but does
+**not replace** it until a formal PGD↔Turner crosswalk and human review are
+complete.
+**Rationale:** PGD is the authoritative live source and confirms Turner at the
+previously disputed locus (PA2279↔PA14_35100, PA2277↔PA14_35130). However: (a)
+pair counts differ (+20 PGD-only pairs), (b) PGD QC flags Review rows (one-to-many,
+e.g. `PA0263`/`hcpC`), (c) Turner `APPROVED_LIMITED` already carries human review
+metadata for L-03b, (d) premature replacement would bypass documented conflict-
+resolution policy. PAO1 remains the project focus; PA14 evidence requires orthology
+support and source labeling (Pseudomonas-derived / Turner-derived / manually
+reviewed / approved-limited-use).
+**Consequence:** Use Turner `APPROVED_LIMITED` for interim L-03b draft mapping.
+Use PGD for cross-validation and future primary-source upgrade after crosswalk.
+Do not merge into `gene_mapping.csv`; do not compute metrics. B-MAP-01 → PARTIALLY
+RESOLVED.
+**Status:** Active. Doc: `docs/ORTHOLOGY_PSEUDOMONAS_INTEGRATION.md`.
