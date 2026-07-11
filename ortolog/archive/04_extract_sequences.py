@@ -1,7 +1,7 @@
 from Bio import SeqIO
 import pandas as pd
 
-# ---------- خواندن فایل FASTA ----------
+#reading FASTA
 def load_fasta_dict(fasta_file):
     seq_dict = {}
 
@@ -20,25 +20,24 @@ pa14 = load_fasta_dict("data/PA14_protein_PGD.faa")
 print("PAO1 proteins:", len(pao1))
 print("PA14 proteins:", len(pa14))
 
-# ---------- خواندن جدول ----------
+# reading the table
 df = pd.read_csv("results/03_supplementary_table.csv")
 
-# ---------- اضافه کردن توالی ----------
+# add sequence
 df["pao1_sequence"] = df["pao1_locus_tag"].map(pao1)
 df["pa14_sequence"] = df["pa14_locus_tag"].map(pa14)
 
-# ---------- آمار ----------
+# static
 print("\nMissing PAO1 sequences:",
       df["pao1_sequence"].isna().sum())
 
 print("Missing PA14 sequences:",
       df["pa14_sequence"].isna().sum())
 
-# ---------- ذخیره ----------
+# save
 df.to_csv(
     "results/04_sequences_added.csv",
     index=False
 )
 
 print("\nDone.")
-print(df.head())

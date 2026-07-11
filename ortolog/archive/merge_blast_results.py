@@ -14,7 +14,7 @@ OUT_SUPP = BASE / "results" / "Supplementary_Table_S1.csv"
 OUT_QC = BASE / "results" / "Orthology_QC_Report.csv"
 
 # ============================================================
-# Read Supplementary table
+# Read Supplementary Table
 # ============================================================
 
 print("Reading supplementary table...")
@@ -23,10 +23,7 @@ supp = pd.read_csv(SUPP_FILE)
 
 print(f"Rows : {len(supp)}")
 
-# ------------------------------------------------------------
-# Remove empty columns (they will be replaced by BLAST values)
-# ------------------------------------------------------------
-
+# Remove previous BLAST-derived columns if they already exist
 supp = supp.drop(
     columns=[
         "identity_percent",
@@ -38,7 +35,7 @@ supp = supp.drop(
 )
 
 # ============================================================
-# Read BLAST
+# Read BLAST Results
 # ============================================================
 
 print("\nReading BLAST results...")
@@ -62,33 +59,30 @@ blast = pd.read_csv(
 print(f"Rows : {len(blast)}")
 
 # ============================================================
-# Coverage
+# Clean numeric columns
 # ============================================================
+
+blast["identity_percent"] = blast["identity_percent"].round(2)
 
 blast["coverage_percent"] = (
-    blast["alignment_length"] /
-    blast["query_length"] * 100
-).round(2)
+    100
+    * blast["alignment_length"]
+    / blast[["query_length", "subject_length"]].min(axis=1)
+).clip(upper=100).round(2)
+
+blast["bit_score"] = blast["bit_score"].round(2)
 
 # ============================================================
-# Best BLAST hit
+# Select Best BLAST Hit
 # ============================================================
 
-print("\nSelecting best hit...")
+print("\nSelecting best BLAST hit...")
 
 best = (
     blast
     .sort_values(
-        by=[
-            "pao1_locus_tag",
-            "bit_score",
-            "evalue"
-        ],
-        ascending=[
-            True,
-            False,
-            True
-        ]
+        ["pao1_locus_tag", "bit_score", "evalue"],
+        ascending=[True, False, True]
     )
     .drop_duplicates(
         subset="pao1_locus_tag",
@@ -102,30 +96,32 @@ print(f"Best hits : {len(best)}")
 # Merge
 # ============================================================
 
-print("\nMerging...")
+print("\nMerging supplementary table with BLAST...")
 
 merged = supp.merge(
     best,
     on="pao1_locus_tag",
-    how="left"
+    how="left",
+    validate="many_to_one"
 )
 
 print(f"Merged rows : {len(merged)}")
 
 # ============================================================
-# Validate orthology
+# Preliminary QC
+# (Final confidence will be assigned after RBH analysis)
 # ============================================================
 
 merged["orthology_confidence"] = merged.apply(
     lambda r:
-        "High"
-        if r["pa14_locus_tag"] == r["blast_pa14_locus_tag"]
-        else "Review",
+    "High"
+    if r["pa14_locus_tag"] == r["blast_pa14_locus_tag"]
+    else "Review",
     axis=1
 )
 
 # ============================================================
-# QC report
+# QC Report
 # ============================================================
 
 qc = merged[
@@ -154,7 +150,7 @@ merged.drop(
 )
 
 # ============================================================
-# Order columns
+# Final column order
 # ============================================================
 
 final_cols = [
@@ -196,27 +192,20 @@ qc.to_csv(
 # ============================================================
 
 print("\n===============================")
-
 print("Finished")
-
 print("===============================")
 
 print(f"Rows : {len(merged):,}")
-
 print(f"High confidence : {(merged['orthology_confidence']=='High').sum():,}")
-
 print(f"Need review : {(merged['orthology_confidence']=='Review').sum():,}")
 
 print()
 
 print(f"Average identity : {merged['identity_percent'].mean():.2f}%")
-
 print(f"Average coverage : {merged['coverage_percent'].mean():.2f}%")
 
 print()
 
 print("Files created:")
-
 print(OUT_SUPP)
-
 print(OUT_QC)

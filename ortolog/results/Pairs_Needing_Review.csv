@@ -1,0 +1,35 @@
+pao1_locus_tag,pao1_gene_name,pa14_locus_tag,pa14_gene_name,orthology_method,reciprocal_best_hit,orthology_confidence,possible_reason
+PA0263,hcpC,PA14_03240,hcpC,Curated ortholog (Pseudomonas Genome Database),No,Review,Multiple Hcp paralogs
+PA0263,hcpC,PA14_03240,hcpC,Curated ortholog (Pseudomonas Genome Database),No,Review,Multiple Hcp paralogs
+PA4277,tufB,PA14_08680,tufB,Curated ortholog (Pseudomonas Genome Database),No,Review,Multiple elongation factor copies
+PA4215,phzF1,PA14_09420,phzF1,Curated ortholog (Pseudomonas Genome Database),No,Review,Phenazine biosynthesis gene family
+PA4060,,PA14_11350,,Curated ortholog (Pseudomonas Genome Database),No,Review,Manual inspection required
+PA2492,mexT,PA14_32410,mexT,Curated ortholog (Pseudomonas Genome Database),No,Review,Regulatory gene family
+PA2170,,PA14_36900,,Curated ortholog (Pseudomonas Genome Database),No,Review,Manual inspection required
+PA0263,hcpC,PA14_43070,hcp2,Curated ortholog (Pseudomonas Genome Database),No,Review,Multiple Hcp paralogs
+PA0263,hcpC,PA14_43070,hcp2,Curated ortholog (Pseudomonas Genome Database),No,Review,Multiple Hcp paralogs
+PA0263,hcpC,PA14_44890,hcpA,Curated ortholog (Pseudomonas Genome Database),No,Review,Multiple Hcp paralogs
+PA0263,hcpC,PA14_44890,hcpA,Curated ortholog (Pseudomonas Genome Database),No,Review,Multiple Hcp paralogs
+PA0263,hcpC,PA14_69560,hcpB,Curated ortholog (Pseudomonas Genome Database),No,Review,Multiple Hcp paralogs
+PA0263,hcpC,PA14_69560,hcpB,Curated ortholog (Pseudomonas Genome Database),No,Review,Multiple Hcp paralogs
+PA0263,hcpC,PA14_69560,hcpB,Curated ortholog (Pseudomonas Genome Database),No,Review,Multiple Hcp paralogs
+PA0263,hcpC,PA14_69560,hcpB,Curated ortholog (Pseudomonas Genome Database),No,Review,Multiple Hcp paralogs
+PA0263,hcpC,PA14_69560,hcpB,Curated ortholog (Pseudomonas Genome Database),No,Review,Multiple Hcp paralogs
+PA0263,hcpC,PA14_69560,hcpB,Curated ortholog (Pseudomonas Genome Database),No,Review,Multiple Hcp paralogs
+PA1512,hcpA,PA14_44890,hcpA,Curated ortholog (Pseudomonas Genome Database),No,Review,Multiple Hcp paralogs
+PA1512,hcpA,PA14_03240,hcpC,Curated ortholog (Pseudomonas Genome Database),No,Review,Multiple Hcp paralogs
+PA1512,hcpA,PA14_43070,hcp2,Curated ortholog (Pseudomonas Genome Database),No,Review,Multiple Hcp paralogs
+PA1901,phzC2,PA14_39945,phzC2,Curated ortholog (Pseudomonas Genome Database),No,Review,Phenazine biosynthesis gene family
+PA1902,phzD2,PA14_09450,phzD1,Curated ortholog (Pseudomonas Genome Database),No,Review,Phenazine biosynthesis gene family
+PA1903,phzE2,PA14_09440,phzE1,Curated ortholog (Pseudomonas Genome Database),No,Review,Phenazine biosynthesis gene family
+PA1904,phzF2,PA14_09420,phzF1,Curated ortholog (Pseudomonas Genome Database),No,Review,Phenazine biosynthesis gene family
+PA1904,phzF2,PA14_39890,phzF2,Curated ortholog (Pseudomonas Genome Database),No,Review,Phenazine biosynthesis gene family
+PA2451,,PA14_32905,,Curated ortholog (Pseudomonas Genome Database),No,Review,Manual inspection required
+PA2728,,PA14_28895,,Curated ortholog (Pseudomonas Genome Database),No,Review,Manual inspection required
+PA3507,,PA14_10840,,Curated ortholog (Pseudomonas Genome Database),No,Review,Manual inspection required
+PA3939,,PA14_12910,,Curated ortholog (Pseudomonas Genome Database),No,Review,Manual inspection required
+PA4216,phzG1,PA14_09410,phzG1,Curated ortholog (Pseudomonas Genome Database),No,Review,Phenazine biosynthesis gene family
+PA4265,tufA,PA14_08830,tufA,Curated ortholog (Pseudomonas Genome Database),No,Review,Multiple elongation factor copies
+PA4525,pilA,PA14_58730,pilA,Curated ortholog (Pseudomonas Genome Database),No,Review,Type IV pilus gene family
+PA5267,hcpB,PA14_03240,hcpC,Curated ortholog (Pseudomonas Genome Database),No,Review,Multiple Hcp paralogs
+PA5267,hcpB,PA14_43070,hcp2,Curated ortholog (Pseudomonas Genome Database),No,Review,Multiple Hcp paralogs

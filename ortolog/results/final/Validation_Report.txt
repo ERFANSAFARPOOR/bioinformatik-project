@@ -1,0 +1,28 @@
+Validation Report
+========================================
+
+File: pao1_pa14_orthologs_pseudomonas_rbbh_20260711.csv
+Rows: 5374
+Duplicate pairs: 0
+
+Missing values
+  pa14_locus_tag: 0
+  pao1_locus_tag: 0
+  orthology_method: 0
+  orthology_confidence: 0
+  source_database: 0
+  download_date: 0
+
+Bad identity: 0
+Bad coverage: 59
+Negative evalue: 0
+Negative bit score: 0
+Invalid confidence: 0
+
+Missing PAO1 gene names: 3142
+Missing PA14 gene names: 3583
+
+Mean identity: 99.12
+Mean coverage: 99.73
+
+Validation Status: FAILED
