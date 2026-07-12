@@ -10,7 +10,7 @@ BASE = Path(__file__).resolve().parent.parent
 FINAL_DIR = BASE / "results" / "final"
 
 csv_files = sorted(
-    FINAL_DIR.glob("pao1_pa14_orthologs_pseudomonas_rbbh_*.csv")
+    FINAL_DIR.glob("pao1_pa14_orthologs_pseudomonas_rbh_*.csv")
 )
 
 if not csv_files:

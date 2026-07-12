@@ -82,7 +82,12 @@ failed.to_csv(
     OUTPUT,
     index=False
 )
-
+failed = failed.drop_duplicates(
+    subset=["pao1_locus_tag", "pa14_locus_tag"]
+)
+failed = failed.sort_values(
+    ["possible_reason", "pao1_locus_tag"]
+)
 # ============================================================
 # Summary
 # ============================================================
