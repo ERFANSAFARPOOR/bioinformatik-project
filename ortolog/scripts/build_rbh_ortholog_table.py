@@ -10,8 +10,8 @@ BASE = Path(__file__).resolve().parent.parent
 
 ORTHOLOG_FILE = BASE / "data" / "processed" / "with_gene_names.csv"
 
-FORWARD_BLAST = BASE / "results" / "blast_results.tsv"
-REVERSE_BLAST = BASE / "results" / "blast_reverse.tsv"
+FORWARD_BLAST = BASE / "blast" / "blast_results.tsv"
+REVERSE_BLAST = BASE / "blast" / "blast_reverse.tsv"
 
 OUT_DIR = BASE / "results" / "final"
 OUT_DIR.mkdir(exist_ok=True)
