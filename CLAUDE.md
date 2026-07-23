@@ -2,7 +2,8 @@
 
 Genome-scale metabolic modeling & gene-essentiality analysis of
 *Pseudomonas aeruginosa*. Keep this file short and factual. Procedures live in
-`.claude/skills/`. Working state lives in `TODO.md` / `BLOCKERS.md` / `DECISIONS.md`.
+local agent skills (`.cursor/skills/` or `.claude/skills/`, both gitignored).
+Working state lives in `TODO.md` / `BLOCKERS.md` / `DECISIONS.md`.
 
 ## Identity
 - **Model:** iMO1056 (Oberhardt et al. 2008), *P. aeruginosa* **PAO1**,
@@ -33,12 +34,14 @@ Genome-scale metabolic modeling & gene-essentiality analysis of
    threshold, and page/table/figure/supplement locator.
 
 ## Git / safety
-- Work only on `claude/revival-audit`. **Never push, force-push, change remotes,
-  delete branches, rewrite history, or `git reset --hard` / `git clean -fdx`.**
-- Local commits only; small, coherent, validated. Never commit secrets, `.env`,
-  large archives (`ipynb.rar`), caches, checkpoints, or `.venv`.
+- Prefer feature branches; never force-push, rewrite history, or run
+  `git reset --hard` / `git clean -fdx`. Do not push directly to `main`/`master`.
+- Local commits only when requested; small, coherent, validated. Never commit
+  secrets, `.env`, large archives (`ipynb.rar`), caches, checkpoints, or `.venv`.
 - No global Python installs; local env changes into reccobra39 only.
-- Hooks in `.claude/hooks/` enforce these; do not bypass with `bypassPermissions`.
+- **Local-only AI tool config:** `.claude/` and `.cursor/` are gitignored and
+  must never be committed. Cursor-native safety hooks (when present) live under
+  `.cursor/hooks/` on the local machine only.
 
 ## Where things are
 - Reports: `PROJECT_AUDIT.md`, `TODO.md`, `BLOCKERS.md`, `DECISIONS.md`,
@@ -47,3 +50,4 @@ Genome-scale metabolic modeling & gene-essentiality analysis of
 - Data: `data/processed/{gene_mapping,literature_evidence}.csv`.
 - Results: `results/essentiality/gene_essentiality_default_medium.csv` (real;
   `gene_id` needs cleaning).
+- Tests: `C:/Users/pro/anaconda3/envs/reccobra39/python.exe -m pytest tests/ -q`

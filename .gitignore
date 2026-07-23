@@ -46,8 +46,6 @@ results/comparison/*.png
 !results/mapping/.gitkeep
 !results/comparison/.gitkeep
 
-
-
 # Data files
 data/experimental/*.csv
 data/experimental/*.xlsx
@@ -66,10 +64,6 @@ data/omics/*.xlsx
 *.7z
 ipynb.rar
 
-# Claude logs (keep dir, ignore contents)
-.claude/logs/*
-!.claude/logs/.gitkeep
-
 # Stray brace-expansion junk dir (scheduled for removal, R-01)
 /{data/
 
@@ -79,16 +73,14 @@ model_audit_clean.json
 
 # Derived (uncompressed) NCBI feature tables — keep only the .gz raw
 data/raw/ortholog/*.txt
-# Legacy / local condition files
-conditian/
 
-<<<<<<< HEAD
-=======
 # Legacy / local condition files
 condition/
 conditian/
 
-# Local AI agent/tool files
+# Local AI agent/tool configuration (never track)
+.claude/
+.cursor/
 .agents/
 .codex/
 AGENTS.md
