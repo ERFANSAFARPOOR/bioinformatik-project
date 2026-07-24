@@ -1,0 +1,12 @@
+medium_id,label,unmodeled_component
+mops_pyruvate_lee2015,DEFINED,MOPS buffer (not a metabolite exchange)
+mops_pyruvate_lee2015,DEFINED,tricine (not a metabolite exchange)
+mops_pyruvate_lee2015,DEFINED,CaCl2 (no EX_ca2_e in iMO1056)
+mops_pyruvate_lee2015,DEFINED,Bacto agar (solid-phase scaffold; not modeled)
+mops_pyruvate_lee2015,DEFINED,tetracycline / chloramphenicol supplements (not nutrients)
+mops_succinate_turner2015,DEFINED,MOPS buffer (not a metabolite exchange)
+mops_succinate_turner2015,DEFINED,Any micronutrients / vitamins from the cited MOPS base that lack exchanges in iMO1056 (e.g. Socransky vitamins if used in related Whiteley-lab MOPS recipes) — not asserted here beyond carbon + mapped ions
+LB_approx_lee2015,PARTIAL,yeast extract (undefined complex; NO exchange — not claimed as modeled)
+LB_approx_lee2015,PARTIAL,tryptone (undefined peptides; NO exchange — only AA proxy used)
+LB_approx_lee2015,PARTIAL,Bacto agar
+LB_approx_lee2015,PARTIAL,"non-amino-acid extract components (vitamins, nucleobases, lipids, etc.)"

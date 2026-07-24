@@ -32,20 +32,19 @@ models/        paeruginosa_MODEL1507180020.xml  (raw, read-only, canonical load 
 papers/        canonical PDFs (juhas2015, turner2015, lee2015, poulsen2019,
                basta2017, belanger2022) + manifest.csv
 conditian/     legacy raw PDF folder (untracked; left untouched, superseded by papers/)
-notebooks/     01_basic_fba · 02_gene_essentiality · 03_experimental_comparison
-  reproduced/  re-executed copies + reproduction report
+notebooks/     research notebooks (04_media_reconstruction · 05_condition_essentiality)
+  reproduced/  historical re-executed teaching copies + reproduction report
 src/           model_io · fba_utils · medium · gene_essentiality · mapping
 scripts/       audit/ · mapping/ · generation scripts (relocated from root)
-tests/         pytest regressions (model identity, WT growth, 166 essential)
+tests/         pytest regressions (model identity, WT growth, media, 166 essential)
 data/
-  raw/literature/  downloaded supplements (per study; none yet — blocked)
+  raw/literature/  downloaded supplements (per study)
   raw/ortholog/    NCBI RefSeq feature tables (PAO1, PA14)
-  processed/       gene_mapping.csv · literature_evidence.csv ·
-                   predicted_essentiality_default_medium.csv (evidence/prediction)
+  processed/       gene_mapping · literature evidence · conditions/ · predictions
 results/       essentiality/ (real prediction) · tables/ · figures/ · comparison/
-docs/          teaching/dev notes · PAO1_LITERATURE_SEARCH_STRATEGY.md · index.html
+docs/          teaching/dev notes · TEAM_WORK_MODEL_AND_NEXT_STEPS.md · index.html
 manuscript/    (empty; drafted at P-01)
-archive/       superseded legacy docs
+archive/       legacy docs + teaching_notebooks/ (01/02/03 archived)
 ```
 Governance/audit (root): `PROJECT_AUDIT.md`, `TODO.md`, `BLOCKERS.md`,
 `DECISIONS.md`, `DATA_PROVENANCE.md`, `PUBLICATION_PLAN.md`,
@@ -73,13 +72,16 @@ conda run -n reccobra39 python -m pytest tests/ -q          # 8 passed
 
 ## Notebooks
 
-1. `01_basic_fba.ipynb` — load model, run FBA, inspect fluxes.
-2. `02_gene_essentiality.ipynb` — single-gene deletion → essential genes
-   (produced the real `results/essentiality/gene_essentiality_default_medium.csv`:
-   166 essential of 1054 at a 1% growth-ratio threshold, default medium).
-3. `03_experimental_comparison.ipynb` — **demonstration only**: currently compares
-   predictions to *randomly simulated* labels. Will be replaced with real,
-   strain-mapped, condition-matched experimental data (`TODO.md` V-01).
+**Research (current):**
+1. `04_media_reconstruction.ipynb` — cited in-model media (Batch A DEFINED + `LB_approx`).
+2. `05_condition_essentiality.ipynb` — per-medium gene-deletion predictions (no validation metrics).
+
+**Teaching (archived under `archive/teaching_notebooks/`):**
+- `01_basic_fba.ipynb` — FBA tutorial; biomass-id bug (`BIOMASS_PAO` ≠ `PA_Biomass6_DM`).
+- `02_gene_essentiality.ipynb` — produced the real default-medium essentiality CSV
+  (166/1054 @ 1%); teaching structure only.
+- `03_experimental_comparison.ipynb` — **simulated labels only**; metrics must not be cited
+  (`BLOCKERS.md` B-SCI-01).
 
 ## Literature (strain re-audited 2026-07-01)
 
@@ -99,8 +101,8 @@ Six studies in `papers/` (see `papers/manifest.csv` and
 **MPAO1**, Belanger is **PAO1**, and Turner has usable **PAO1** rows. Those join
 to the model **by identity** (no orthology). Validated PAO1↔PA14 orthology
 (`BLOCKERS.md` B-MAP-01) is required only for **Basta 2017** and the non-PAO1
-strains of **Poulsen 2019**. Gene-level labels are not yet in the repo — all
-paper supplements are download-blocked here (`BLOCKERS.md` B-NET / B-LIT-01).
+strains of **Poulsen 2019**. Gene-level DRAFT/READY_ONLY evidence tables exist;
+canonical promotion and V-01 metrics remain gated (`VALIDATION_LABEL_MEDIA_OVERLAP.md`).
 
 ## Scientific-integrity rules
 
@@ -110,10 +112,13 @@ experimental phenotype classes are kept distinct. No precision/recall/F1/MCC is
 reported until labels, mappings, and condition media are validated. Full rules in
 `CLAUDE.md`.
 
-## Reproducing the current real result
+## Reproducing the audited default-medium essentiality result
 ```bash
-conda run -n reccobra39 jupyter nbconvert --to notebook --execute \
-  notebooks/02_gene_essentiality.ipynb   # env packages already installed (E-01)
+conda run -n reccobra39 python -m pytest tests/ -q
+# Research notebooks (after media configs exist):
+#   notebooks/04_media_reconstruction.ipynb
+#   notebooks/05_condition_essentiality.ipynb
+# Teaching nb02 lives at archive/teaching_notebooks/02_gene_essentiality.ipynb
 ```
 
 ## License & citation

@@ -67,8 +67,11 @@ Status: TODO / IN-PROGRESS / DONE / BLOCKED.
 ### N-01 · P1 · environment / repo-recovery
 - **Task:** Create a fixed clean copy of `01_basic_fba.ipynb` correcting the hard-coded `BIOMASS_PAO` → `PA_Biomass6_DM`; keep original until verified.
 - **Reason:** E-02 found `cell14 ValueError: Reaction 'BIOMASS_PAO' not found`.
-- **Inputs:** `notebooks/01_basic_fba.ipynb`, model · **Output:** clean notebook that runs error-free
-- **Deps:** E-02 · **Validation:** nbconvert --execute returns 0 cell errors under reccobra39. · **Status:** TODO · **Blocker:** none
+- **Inputs:** `archive/teaching_notebooks/01_basic_fba.ipynb` (archived), model
+- **Output:** clean notebook that runs error-free (optional; research path no longer depends on this)
+- **Deps:** E-02 · **Validation:** nbconvert --execute returns 0 cell errors under reccobra39.
+- **Status:** SUPERSEDED 2026-07-24 — teaching notebooks archived (D-18); research uses `src/` + 04/05.
+  · **Blocker:** none
 
 ---
 
@@ -147,7 +150,15 @@ Status: TODO / IN-PROGRESS / DONE / BLOCKED.
 - **Task:** Define in-model media for each experimental condition (CF sputum/SCFM, LB, defined minimal, C/O2-limited arrest, host-mimicking) with cited composition → exchange bounds.
 - **Reason:** Comparing across mismatched media is invalid (B-COND-01).
 - **Inputs:** papers, `src/medium.py` · **Output:** `data/processed/conditions/*.json` + loader
-- **Deps:** L-03 · **Validation:** each condition cited; model feasible or documented infeasible. · **Status:** BLOCKED · **Blocker:** B-COND-01
+- **Deps:** L-03 · **Validation:** each condition cited; model feasible or documented infeasible.
+- **Status:** PARTIAL 2026-07-24 — Batch A DEFINED (MOPS-pyruvate, MOPS-succinate) + Batch B `LB_approx` implemented in `src/medium.py` + `data/processed/conditions/`; tests in `tests/test_media.py`. Remaining: SCFM2, RPMI, MEDIA_GAP niches. · **Blocker:** B-COND-01 (remaining gaps)
+
+### C-01b · P0 · condition-reconstruction — PAO1 media first
+- **Task:** Reconstruct LB (Lee general), SCFM/MOPS-succinate (Turner), host/SCFM
+  (Belanger) as in-model exchange configs with citations. · **Deps:** L-05
+- **Status:** PARTIAL 2026-07-24 — MOPS-pyruvate, MOPS-succinate, `LB_approx` done;
+  SCFM2 / RPMI / host niches not built (out of this batch). See D-17,
+  `VALIDATION_LABEL_MEDIA_OVERLAP.md`. · **Blocker:** B-COND-01 (remaining)
 
 ---
 
@@ -157,7 +168,12 @@ Status: TODO / IN-PROGRESS / DONE / BLOCKED.
 - **Task:** Run single-gene-deletion per reconstructed condition; export per-condition predicted essential/reduced-growth sets.
 - **Reason:** Basis for validation against the matching experimental class.
 - **Inputs:** model, conditions · **Output:** `results/essentiality/<condition>.csv`
-- **Deps:** C-01, E-02 · **Validation:** reproducible; threshold recorded. · **Status:** BLOCKED
+- **Deps:** C-01, E-02 · **Validation:** reproducible; threshold recorded.
+- **Status:** DONE 2026-07-24 (prediction generation) — CSVs written for three media
+  via `scripts/run_condition_essentiality.py` (threshold 0.01; no metrics).
+  Summary: `results/essentiality/condition_essentiality_summary.csv`
+  (pyruvate 173; succinate 177; LB_approx 133 essential of 1054).
+  · **Blocker:** none for predictions; V-01 still blocked
 
 ### S-02 · P2 · simulation
 - **Task:** Alternate-optima / solver-tolerance robustness (pFBA, multiple solvers if available).
@@ -168,10 +184,11 @@ Status: TODO / IN-PROGRESS / DONE / BLOCKED.
 ## H. Statistical evaluation
 
 ### V-01 · P0 · statistical-evaluation
-- **Task:** Replace the simulated-data comparison in nb03 with real labels; compute confusion matrix, precision, recall, specificity, F1, MCC per matched condition+phenotype class; report mapped/unmapped/absent-gene coverage.
+- **Task:** Replace the simulated-data comparison in archived teaching nb03 with real labels; compute confusion matrix, precision, recall, specificity, F1, MCC per matched condition+phenotype class; report mapped/unmapped/absent-gene coverage.
 - **Reason:** Current metrics are on random data (B-SCI-01) — invalid.
 - **Inputs:** predictions (S-01/R-02), evidence (L-03), mapping (G-01) · **Output:** `results/comparison/metrics_<condition>.csv` + figs
-- **Deps:** L-03, G-01, C-01, S-01 · **Validation:** labels+mappings validated FIRST; metrics only on validated joins. · **Status:** BLOCKED · **Blocker:** B-SCI-01
+- **Deps:** L-03, G-01, C-01, S-01 · **Validation:** labels+mappings validated FIRST; metrics only on validated joins.
+- **Status:** BLOCKED · **Blocker:** B-SCI-01 — gate plan in `VALIDATION_LABEL_MEDIA_OVERLAP.md` (do not run yet)
 
 ---
 
@@ -271,7 +288,9 @@ Status: TODO / IN-PROGRESS / DONE / BLOCKED.
 
 ### C-01b · P0 · condition-reconstruction — PAO1 media first
 - **Task:** Reconstruct LB (Lee general), SCFM/MOPS-succinate (Turner), host/SCFM
-  (Belanger) as in-model exchange configs with citations. · **Deps:** L-05 · **Status:** BLOCKED · **Blocker:** B-COND-01
+  (Belanger) as in-model exchange configs with citations. · **Deps:** L-05
+- **Status:** PARTIAL 2026-07-24 — MOPS-pyruvate, MOPS-succinate, `LB_approx` done;
+  SCFM2 / RPMI / host niches not built. See D-17. · **Blocker:** B-COND-01 (remaining)
 
 ### E-03 (update) · lock env including pytest/matplotlib/openpyxl once N-01/E-04 done.
 
@@ -368,3 +387,12 @@ Status: TODO / IN-PROGRESS / DONE / BLOCKED.
   - **L-03c · P1 · literature** — human-review the Lee/Turner/Belanger DRAFT and
     promote reviewed rows (never overwrite canonical `literature_evidence.csv`).
 - Metrics remain **forbidden** (B-SCI-01).
+
+## Update 2026-07-24 (god-mode: Phase 0–3 media path)
+- Teaching `01`/`02`/`03` → `archive/teaching_notebooks/` + README (D-18).
+- Batch A DEFINED + `LB_approx` PARTIAL in `src/medium.py`; tables in
+  `data/processed/conditions/`; pytest media suite green (17 tests total).
+- Research notebooks: `04_media_reconstruction.ipynb`, `05_condition_essentiality.ipynb`.
+- Label↔media overlap status: `VALIDATION_LABEL_MEDIA_OVERLAP.md` (V-01 still gated).
+- **Next:** finish S-01 CSVs if still running; promote Lee MOPS-pyruvate
+  NEEDS_REVIEW for a clean first V-01 cell; do **not** compute metrics yet.

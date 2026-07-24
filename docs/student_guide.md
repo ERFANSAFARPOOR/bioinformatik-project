@@ -81,7 +81,9 @@ You need a metabolic model file to work with. Here are your options:
 jupyter notebook
 ```
 
-Your browser will open with the Jupyter interface. Navigate to `notebooks/` and start with `01_basic_fba.ipynb`.
+Your browser will open with the Jupyter interface. Teaching notebooks `01`/`02`/`03`
+are archived under `archive/teaching_notebooks/` (legacy; nb03 metrics are not
+scientific results). Start research work with `notebooks/04_media_reconstruction.ipynb`.
 
 ## How to Use the Notebooks
 

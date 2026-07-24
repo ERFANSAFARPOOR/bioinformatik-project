@@ -8,13 +8,16 @@ Legend: severity P0 (blocks validity/reproducibility) · P1 (blocks manuscript/r
 ---
 
 ## B-SCI-01 — No real model-vs-experiment validation (P0) — OPEN
-`notebooks/03_experimental_comparison.ipynb` computes precision/recall/F1/Venn
-against **simulated random labels** (`random.seed(42)`; `random.sample(...)`),
-explicitly labeled "Using simulated data for demonstration."
+`archive/teaching_notebooks/03_experimental_comparison.ipynb` (formerly under
+`notebooks/`) computes precision/recall/F1/Venn against **simulated random labels**
+(`random.seed(42)`; `random.sample(...)`), explicitly labeled "Using simulated
+data for demonstration."
 **Impact:** every comparison metric currently in the project is meaningless.
 **Unblock when:** real experimental essential-gene lists are extracted from the
-papers' supplementary datasets, mapped to model gene IDs, and validated.
-Depends on B-LIT-01, B-MAP-01.
+papers' supplementary datasets, mapped to model gene IDs, condition-matched to
+reconstructed media, and validated. Depends on B-LIT-01, B-COND-01 (remaining
+gaps), and clear label↔media↔prediction overlap
+(`VALIDATION_LABEL_MEDIA_OVERLAP.md`).
 
 ## B-LIT-01 — Supplementary gene-list datasets not downloaded (P0) — NARROWED 2026-07-06
 The experimental essential/fitness gene lists live in supplementary files, not
@@ -173,18 +176,23 @@ artifact of missing formulas, not true imbalances). 0 charge imbalances.
 **Unblock when:** formulas back-filled from BiGG/MetaNetX where the manuscript
 needs balance claims; otherwise scope-limit and state the limitation explicitly.
 
-## B-COND-01 — Experimental media/conditions not reconstructed (P0 for validation) — OPEN
+## B-COND-01 — Experimental media/conditions not reconstructed (P0 for validation) — **PARTIALLY RESOLVED** 2026-07-24
 Studies use specific media (CF sputum / SCFM, LB, defined minimal, carbon- or
 oxygen-limited arrest, host-mimicking). The model default medium is glucose+O2
 aerobic. Comparing essentiality across mismatched media is invalid.
 **Unblock when:** each study's medium is reconstructed as an in-model exchange
 configuration (documented carbon source, electron acceptor, supplements) with a
 citation, before computing any per-condition metric.
-**Update 2026-07-07:** planning done in `C01B_MEDIA_RECONSTRUCTION_PLAN.md`
-(iMO1056 exchange coverage assessed; DEFINED: MOPS-pyruvate/MOPS-succinate;
-PARTIAL: SCFM2/LB-approx/RPMI; GAP: serum/sputum/abscess/skin; Basta arrest =
-NOT_RECONSTRUCTABLE_AS_GROWTH_MEDIUM). **C-01b still not started — no exchange
-bounds set, no condition JSON, no simulation.** Blocker stays OPEN.
+**Update 2026-07-07:** planning done in `C01B_MEDIA_RECONSTRUCTION_PLAN.md`.
+**Update 2026-07-24 (C-01b Batch A/B started):** implemented in `src/medium.py` +
+`data/processed/conditions/`:
+- DEFINED: `mops_pyruvate_lee2015`, `mops_succinate_turner2015`
+- PARTIAL: `LB_approx_lee2015` (yeast extract/tryptone flagged; not true LB)
+Measured WT growth (reccobra39/GLPK): pyruvate ≈0.405 /h; succinate ≈0.553 /h;
+LB_approx ≈14.95 /h (PARTIAL — not physiologically calibrated).
+**Still open for full B-COND-01:** SCFM2, RPMI, native sputum/serum/abscess/skin
+(MEDIA_GAP), and any medium required for a chosen V-01 label set that is not yet
+built. See `VALIDATION_LABEL_MEDIA_OVERLAP.md`.
 
 ## B-STRAIN-01 — Strain of model: RESOLVED (PAO1)
 Resolved during audit: gene IDs are PAO1 `PAxxxx` locus tags and the model is

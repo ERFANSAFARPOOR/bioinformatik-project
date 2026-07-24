@@ -108,7 +108,7 @@ def analyze_gene_essentiality(
     # Print summary
     n_essential = results_df['is_essential'].sum()
     n_total = len(results_df)
-    print(f"\n✓ Analysis complete!")
+    print("\n[OK] Analysis complete!")
     print(f"  Essential genes: {n_essential} / {n_total} ({n_essential/n_total*100:.1f}%)")
     
     return results_df
@@ -154,6 +154,48 @@ def get_essential_genes(results: pd.DataFrame) -> Set[str]:
             clean_ids.add(str(gid))
 
     return clean_ids
+
+
+def analyze_essentiality_for_medium(
+    model: cobra.Model,
+    medium_id: str,
+    threshold_ratio: float = 0.01,
+    processes: int = 1,
+) -> pd.DataFrame:
+    """
+    Apply a documented MediumSpec and run single-gene deletion.
+
+    Returns a DataFrame with cleaned gene_id strings plus medium metadata
+    columns. Does **not** compute validation metrics.
+    """
+    from .medium import apply_medium, get_medium
+
+    spec = get_medium(medium_id)
+    model_copy = model.copy()
+    apply_medium(model_copy, spec, quiet=True)
+    results = analyze_gene_essentiality(
+        model_copy,
+        threshold_ratio=threshold_ratio,
+        processes=processes,
+    )
+    # Clean gene_id set-repr → string
+    cleaned = []
+    for gid in results["gene_id"]:
+        if isinstance(gid, set):
+            cleaned.append(";".join(sorted(str(g) for g in gid)))
+        else:
+            s = str(gid)
+            if s.startswith("{") and s.endswith("}"):
+                inner = s.strip("{}").replace("'", "").replace('"', "")
+                cleaned.append(inner)
+            else:
+                cleaned.append(s)
+    out = results.copy()
+    out["gene_id"] = cleaned
+    out["medium_id"] = spec.medium_id
+    out["medium_label"] = spec.label
+    out["threshold_ratio"] = threshold_ratio
+    return out
 
 
 def compare_essentiality_across_conditions(
@@ -257,4 +299,4 @@ def save_essentiality_results(
     
     # Save to CSV
     results.to_csv(output_path, index=False)
-    print(f"✓ Results saved to: {output_path}")
+    print(f"[OK] Results saved to: {output_path}")

@@ -145,3 +145,27 @@ Use PGD for cross-validation and future primary-source upgrade after crosswalk.
 Do not merge into `gene_mapping.csv`; do not compute metrics. B-MAP-01 → PARTIALLY
 RESOLVED.
 **Status:** Active. Doc: `docs/ORTHOLOGY_PSEUDOMONAS_INTEGRATION.md`.
+
+## D-17 · 2026-07-24 · First media batch + format + LB as sensitivity only
+**Decision:** Implement Batch A DEFINED media **MOPS-pyruvate (Lee)** and
+**MOPS-succinate (Turner)** plus Batch B **`LB_approx` (PARTIAL)** for the
+PAO1-first path. **Do not** implement classic M9 in this batch (no READY_ONLY
+PAO1/MPAO1 study Methods lock M9 as the matched medium). Medium configs live as
+`MediumSpec` objects in `src/medium.py` with derived CSV tables under
+`data/processed/conditions/` (extend existing API; no parallel system). Uptake
+flux magnitudes follow the audited iMO1056 default-medium convention
+(carbon −10, salts/O2 −1000) with recipe concentrations cited separately —
+not invented concentration→flux formulas. `LB_approx` is a sensitivity case
+only (yeast extract/tryptone unmodeled); never claim true LB. SCFM2 / RPMI /
+MEDIA_GAP niches remain out of this batch.
+**Rationale:** Matches `docs/TEAM_WORK_MODEL_AND_NEXT_STEPS.md` decision gate
+and `C01B_MEDIA_RECONSTRUCTION_PLAN.md` / `MEDIA_SOURCE_AUDIT.md`.
+**Status:** Active. Tests in `tests/test_media.py`.
+
+## D-18 · 2026-07-24 · Archive teaching notebooks; research path = 04/05
+**Decision:** Move `01`/`02`/`03` to `archive/teaching_notebooks/` with README
+stating legacy/teaching status, nb01 biomass-id bug, and nb03 metrics forbidden.
+New research notebooks start at `04_media_reconstruction` /
+`05_condition_essentiality`; V-01 notebook gated.
+**Rationale:** `docs/TEAM_WORK_MODEL_AND_NEXT_STEPS.md` §3.
+**Status:** Active.

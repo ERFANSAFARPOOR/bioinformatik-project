@@ -1,0 +1,4 @@
+medium_id,label,solver_status,wt_growth_per_h
+mops_pyruvate_lee2015,DEFINED,optimal,0.40533903063568605
+mops_succinate_turner2015,DEFINED,optimal,0.5528029187572905
+LB_approx_lee2015,PARTIAL,optimal,14.950547856095707

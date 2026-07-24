@@ -16,7 +16,14 @@ __author__ = "Metabolic Modeling Education Team"
 # Make key functions easily accessible
 from .model_io import load_model, save_model
 from .fba_utils import set_biomass_reaction, run_fba
-from .medium import set_medium, reset_medium
+from .medium import (
+    set_medium,
+    reset_medium,
+    apply_medium,
+    get_medium,
+    get_medium_registry,
+    iter_implemented_media,
+)
 from .gene_essentiality import analyze_gene_essentiality
 from .mapping import extract_gene_reaction_mapping
 
@@ -27,6 +34,10 @@ __all__ = [
     'run_fba',
     'set_medium',
     'reset_medium',
+    'apply_medium',
+    'get_medium',
+    'get_medium_registry',
+    'iter_implemented_media',
     'analyze_gene_essentiality',
     'extract_gene_reaction_mapping',
 ]
