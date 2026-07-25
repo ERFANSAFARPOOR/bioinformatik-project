@@ -1,10 +1,20 @@
 import pandas as pd
 
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parents[2]
+
 def clean(s):
     return str(s).strip("{}'\" ")
 
-new = pd.read_csv('results/essentiality/gene_essentiality_default_medium.csv')
-ref = pd.read_csv('data/processed/predicted_essentiality_default_medium.csv')
+new = pd.read_csv(
+    ROOT / "results/essentiality/gene_essentiality_default_medium.csv"
+)
+
+ref = pd.read_csv(
+    ROOT / "data/processed/predicted_essentiality_default_medium.csv"
+)
+
 new_ess = set(new[new['is_essential']]['gene_id'].map(clean))
 ref_ess = set(ref[ref['is_essential']]['gene_id'].astype(str))
 lines = [

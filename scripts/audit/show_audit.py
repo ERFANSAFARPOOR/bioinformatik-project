@@ -1,5 +1,10 @@
 import json
-raw = open('model_audit_clean.json', encoding='utf-8-sig').read()
+ROOT =Path (__file__).resolve().parents[2]
+
+raw = (ROOT / "reports/model_audit_clean.json").read_text(
+    encoding="utf-8-sig"
+)
+
 start = raw.index('{')
 d, _ = json.JSONDecoder().raw_decode(raw[start:])
 keys = ['model_id','model_name','sbml_level','sbml_version','default_objective_value',

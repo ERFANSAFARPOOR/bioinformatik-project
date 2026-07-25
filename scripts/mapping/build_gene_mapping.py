@@ -25,9 +25,10 @@ from pathlib import Path
 import cobra
 from cobra.io import read_sbml_model
 
-ORTHO = Path("data/raw/ortholog")
-OUT = Path("data/processed/gene_mapping.csv")
-REPORT = Path("data/processed/gene_mapping_coverage.txt")
+ROOT = Path(__file__).resolve().parents[2]
+ORTHO = ROOT / "data/raw/ortholog"
+OUT = ROOT / "data/processed/gene_mapping.csv"
+REPORT = ROOT / "reports/gene_mapping_coverage.txt"
 
 PAO1_ASM = "GCF_000006765.1_ASM676v1"
 PA14_ASM = "GCF_000014625.1_ASM1462v1"
@@ -81,7 +82,9 @@ for r in pa14:
     if r["symbol"]:
         pa14_by_symbol[r["symbol"].lower()].append(r)
 
-model = read_sbml_model("models/paeruginosa_MODEL1507180020.xml")
+model = read_sbml_model(
+    ROOT / "models/paeruginosa_MODEL1507180020.xml"
+)
 model_genes = sorted(g.id for g in model.genes)
 
 cols = [

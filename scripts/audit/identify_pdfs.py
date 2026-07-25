@@ -6,7 +6,8 @@ import re
 import zlib
 from pathlib import Path
 
-PDF_DIR = Path("conditian")
+ROOT = Path(__file__).resolve().parents[1]
+PDF_DIR = ROOT / "conditian"
 
 def printable_runs(data: bytes, minlen=6):
     return re.findall(rb"[\x20-\x7e]{%d,}" % minlen, data)
