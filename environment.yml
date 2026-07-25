@@ -1,15 +1,25 @@
-name: metabolic-modeling
+name: reccobra39
+
 channels:
   - conda-forge
   - defaults
+
 dependencies:
-  - python=3.10
-  - cobra>=0.26.0
-  - pandas>=1.5.0
-  - matplotlib>=3.6.0
-  - jupyter>=1.0.0
-  - notebook>=6.5.0
-  - matplotlib-venn>=0.11.7
+  - python=3.9
+  - cobra=0.29.1
+  - pandas=2.3.2
+  - numpy=2.0.2
+  - biopython=1.85
+
+  - matplotlib
+  - matplotlib-venn
+  - scipy
+  - networkx
+  - openpyxl
+
+  - requests
+  - jupyterlab
+  - notebook
+  - ipykernel
+
   - pip
-  - pip:
-    - ipykernel
