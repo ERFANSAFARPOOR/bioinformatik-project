@@ -1,17 +1,35 @@
+from pathlib import Path
 import json
-ROOT =Path (__file__).resolve().parents[2]
 
-raw = (ROOT / "reports/model_audit_clean.json").read_text(
-    encoding="utf-8-sig"
-)
+ROOT = Path(__file__).resolve().parents[2]
 
-start = raw.index('{')
-d, _ = json.JSONDecoder().raw_decode(raw[start:])
-keys = ['model_id','model_name','sbml_level','sbml_version','default_objective_value',
-        'default_status','n_blocked_reactions','n_deadend_metabolites_single_rxn',
-        'n_duplicate_reaction_ids','n_duplicate_metabolite_ids','n_duplicate_gene_ids',
-        'n_demands','default_medium','gene_id_sample','reaction_id_sample',
-        'metabolite_id_sample','model_annotation','gene_annotation_sample']
-for k in keys:
-    print('###', k, '###')
-    print(json.dumps(d[k], indent=1, default=str))
+AUDIT = ROOT / "model_audit_snapshot.json"
+
+data = json.loads(AUDIT.read_text(encoding="utf-8"))
+
+keys = [
+    "model_file",
+    "model_id",
+    "model_name",
+    "strain",
+    "n_reactions",
+    "n_metabolites",
+    "n_genes",
+    "n_exchange_reactions",
+    "n_demand_reactions",
+    "n_sink_reactions",
+    "objective_reactions",
+    "objective_direction",
+    "default_growth_rate",
+    "solver_status",
+    "default_medium",
+    "compartments",
+    "reactions_without_genes",
+    "genes_without_reactions",
+    "metabolites_missing_formula",
+    "metabolites_missing_charge",
+]
+
+for key in keys:
+    print(f"\n### {key} ###")
+    print(json.dumps(data.get(key, "KEY NOT FOUND"), indent=2))

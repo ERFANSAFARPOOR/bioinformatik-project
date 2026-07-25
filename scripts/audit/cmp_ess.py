@@ -1,29 +1,35 @@
 import pandas as pd
-
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
 
+REF = ROOT / "data" / "processed" / "essentiality" / "predicted_essentiality_default_medium.csv"
+
+df = pd.read_csv(REF)
+
+
 def clean(s):
     return str(s).strip("{}'\" ")
 
-new = pd.read_csv(
-    ROOT / "results/essentiality/gene_essentiality_default_medium.csv"
-)
 
-ref = pd.read_csv(
-    ROOT / "data/processed/predicted_essentiality_default_medium.csv"
-)
+df["gene_id"] = df["gene_id"].map(clean)
 
-new_ess = set(new[new['is_essential']]['gene_id'].map(clean))
-ref_ess = set(ref[ref['is_essential']]['gene_id'].astype(str))
-lines = [
-    f"regenerated rows/essential : {len(new)} / {int(new['is_essential'].sum())}",
-    f"R-02 reference essential   : {len(ref_ess)}",
-    f"essential-set identical    : {new_ess == ref_ess}",
-    f"only in regenerated        : {sorted(new_ess - ref_ess)[:10]}",
-    f"only in reference          : {sorted(ref_ess - new_ess)[:10]}",
-    f"WT growth regenerated      : {round(float(new['wildtype_growth'].iloc[0]), 10)}",
-    f"row order identical to ref : {list(new['gene_id'].map(clean)) == list(ref['gene_id'].astype(str))}",
+pattern = r"^PA\d+(\|PA\d+)*$"
+
+non_pa = df.loc[
+    ~df["gene_id"].str.fullmatch(pattern, na=False)
 ]
-print("\n".join(lines))
+
+print(f"reference rows            : {len(df)}")
+print(f"reference essential       : {int(df['is_essential'].sum())}")
+print(
+    f"unique essential genes    : "
+    f"{df.loc[df['is_essential'], 'gene_id'].nunique()}"
+)
+print(f"WT growth                 : {df['wildtype_growth'].iloc[0]:.10f}")
+print(f"duplicate gene IDs        : {df['gene_id'].duplicated().sum()}")
+print(f"non-PA gene IDs           : {len(non_pa)}")
+
+if len(non_pa):
+    print("\nFirst invalid IDs:")
+    print(non_pa["gene_id"].head(20).to_list())
