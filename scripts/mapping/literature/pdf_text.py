@@ -39,21 +39,41 @@ def pdf_text(path: Path) -> str:
 
 
 if __name__ == "__main__":
+
+    if len(sys.argv) < 2:
+        print("Usage:")
+        print("  python pdf_text.py <pdf_path>")
+        print("  python pdf_text.py <pdf_path> <regex> [regex2 ...]")
+        sys.exit(1)
+
     p = Path(sys.argv[1])
+
+    if not p.exists():
+        print(f"PDF not found: {p}")
+        sys.exit(1)
+
     terms = sys.argv[2:]
+
     text = pdf_text(p)
+
     sys.stderr.write(f"[{p.name}: {len(text)} chars extracted]\n")
+
     if not terms:
         print(text)
     else:
         for term in terms:
             print("=" * 72)
             print(f"TERM: {term}")
+
             hits = list(re.finditer(term, text, re.I))
+
             if not hits:
                 print("  (no match)")
+                continue
+
             for m in hits:
                 a = max(0, m.start() - 260)
                 b = min(len(text), m.end() + 360)
+
                 print(f"...{text[a:b]}...")
                 print("-" * 40)
