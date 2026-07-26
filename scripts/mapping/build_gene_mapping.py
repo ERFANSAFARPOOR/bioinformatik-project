@@ -10,12 +10,12 @@ data/raw/ortholog/
     pa14_feature_table.txt.gz
     pao1_pa14_orthologs_pseudomonas.csv
 
+
 Outputs
 -------
-data/processed/gene_mapping.csv
-reports/gene_mapping_coverage.txt
+data/processed/gene_mapping/gene_mapping.csv
+data/processed/gene_mapping/gene_mapping_coverage.txt
 """
-
 import csv
 import gzip
 import io
@@ -28,9 +28,8 @@ ROOT = Path(__file__).resolve().parents[2]
 
 ORTHO = ROOT / "data" / "raw" / "ortholog"
 
-OUT = ROOT / "data" / "processed" / "gene_mapping.csv"
-
-REPORT = ROOT / "reports" / "gene_mapping_coverage.txt"
+OUT = ROOT / "data" / "processed" / "gene_mapping" / "gene_mapping.csv"
+REPORT = ROOT / "data" / "processed" / "gene_mapping" /  "gene_mapping_coverage.txt"
 
 OUT.parent.mkdir(parents=True, exist_ok=True)
 REPORT.parent.mkdir(parents=True, exist_ok=True)
@@ -63,13 +62,13 @@ def parse_feature_table(stem):
 
     with open_table(stem) as f:
 
-        header = f.readline().lstrip("#").rstrip().split("\t")
+        header = f.readline().lstrip("#").rstrip("\r\n").split("\t")
 
         idx = {h:i for i,h in enumerate(header)}
 
         for line in f:
 
-            p = line.rstrip().split("\t")
+            p = line.rstrip("\r\n").split("\t")
 
             if p[0]!="gene":
                 continue

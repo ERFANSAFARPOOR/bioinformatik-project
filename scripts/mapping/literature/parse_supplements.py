@@ -26,11 +26,12 @@ from pathlib import Path
 
 import openpyxl
 
-ROOT = Path(__file__).resolve().parents[2]
+ROOT = Path(__file__).resolve().parents[3]
 RAW = ROOT / "data" / "raw" / "literature"
-OUT = ROOT / "data" / "processed" / "literature"
+OUT = ROOT / "data" / "processed" / "literature" / "parsed"
 OUT.mkdir(parents=True, exist_ok=True)
-AGG = ROOT / "data" / "processed" / "literature_evidence_gene_level_DRAFT.csv"
+AGG = ROOT / "data" / "processed" / "literature" / "gene_level" / "literature_evidence_gene_level_DRAFT.csv"
+AGG.parent.mkdir(parents=True, exist_ok=True)
 
 PA_RE = re.compile(r"^PA\d{4,5}$")
 

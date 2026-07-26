@@ -21,7 +21,7 @@ from cobra.io import read_sbml_model
 ROOT = Path(__file__).resolve().parents[2]
 
 MODEL = ROOT / "models" / "paeruginosa_MODEL1507180020.xml"
-OUTPUT = ROOT / "model_audit_snapshot.json"
+OUTPUT = ROOT /"project_management"/"audit"/"model_audit_snapshot.json"
 
 
 def main():
