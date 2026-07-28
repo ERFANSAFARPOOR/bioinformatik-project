@@ -1,30 +1,75 @@
 # Models Directory
 
-This directory contains the SBML model used in this project. The focus of the
-repository is **Pseudomonas aeruginosa PAO1**, and we use a single curated
-genome-scale metabolic model for all analyses.
+This directory contains the genome-scale metabolic model used throughout this project.
 
-## Primary model — iMO1056 (PAO1)
+The repository focuses on ***Pseudomonas aeruginosa* PAO1**, and all computational analyses are performed using a single curated SBML reconstruction.
 
-- **Identity:** **iMO1056** — Oberhardt MA, Puchałka J, Fryer KE, Martins dos
-  Santos VAP, Papin JA (2008) *Genome-scale metabolic network analysis of the
-  opportunistic pathogen Pseudomonas aeruginosa PAO1.* J Bacteriol 190(8):2790–2803.
-- **Strain:** *P. aeruginosa* **PAO1** (gene IDs are `PAxxxx` PAO1 locus tags).
-- **Source / accession:** BioModels `MODEL1507180020`.
-- **File (raw, read-only):** `paeruginosa_MODEL1507180020.xml`
-  - SHA-256 `0868a5ebb41ebb4967c3c182e686eca7552af9255cba5a6d130cf114d1212ead`
-  - Verified copy also at `models/raw/paeruginosa_MODEL1507180020.xml`.
-- **Scale:** 1110 reactions · 879 metabolites · 1054 genes · compartments `c`, `e`.
-- **Objective:** `PA_Biomass6_DM` (max); default-medium WT growth ≈ 1.0479285528 /h.
+---
 
-> **Correction (2026-07-01):** an earlier version of this README stated the model
-> could be referred to as "iPae1146 (BiGG version)". That is **incorrect** —
-> `iPae1146` is a *different* reconstruction. The model in this repository is
-> **iMO1056** (BioModels `MODEL1507180020`). Do not conflate the two.
+# Primary Model — iMO1056 (PAO1)
 
-## Layout
+* **Model:** **iMO1056**
+* **Reference:** Oberhardt MA, Puchałka J, Fryer KE, Martins dos Santos VAP, Papin JA (2008). *Genome-scale metabolic network analysis of the opportunistic pathogen Pseudomonas aeruginosa PAO1.* Journal of Bacteriology, 190(8), 2790–2803.
+* **Organism:** *Pseudomonas aeruginosa* PAO1
+* **Gene identifiers:** PAO1 locus tags (`PAxxxx`)
+* **BioModels accession:** `MODEL1507180020`
 
-- `paeruginosa_MODEL1507180020.xml` — raw SBML (read-only; canonical load path).
-- `raw/` — byte-identical archived copy of the raw SBML (provenance).
-- `processed/` — derived/cleaned model artifacts only (none yet). Never edit the
-  raw SBML in place.
+### Model Statistics
+
+| Property          | Value              |
+| ----------------- | ------------------ |
+| Reactions         | 1110               |
+| Metabolites       | 879                |
+| Genes             | 1054               |
+| Compartments      | `c`, `e`           |
+| Objective         | `PA_Biomass6_DM`   |
+| Default WT growth | ≈ 1.0479285528 h⁻¹ |
+
+---
+
+# Repository Layout
+
+```text
+models/
+│
+├── paeruginosa_MODEL1507180020.xml
+│   Working SBML model used throughout the project.
+│
+└── raw/
+    └── paeruginosa_MODEL1507180020.xml
+        Archived copy of the original SBML model preserved for
+        provenance and reproducibility.
+```
+
+The primary model (`paeruginosa_MODEL1507180020.xml`) is the model loaded by the project source code.
+
+The archived copy stored under `raw/` is retained for provenance and reproducibility and should not be modified.
+
+---
+
+# File Integrity
+
+**Working model**
+
+* File: `paeruginosa_MODEL1507180020.xml`
+* SHA-256:
+  `0868a5ebb41ebb4967c3c182e686eca7552af9255cba5a6d130cf114d1212ead`
+
+**Archived copy**
+
+* File: `raw/paeruginosa_MODEL1507180020.xml`
+* Verified to be byte-identical to the working model.
+
+---
+
+# Important Note
+
+> **Correction (2026-07-01):** An earlier version of the project documentation incorrectly referred to this model as **iPae1146 (BiGG version)**. This repository uses **iMO1056** (BioModels accession `MODEL1507180020`) exclusively. These are different genome-scale metabolic reconstructions and should not be confused.
+
+---
+
+# Usage Policy
+
+* The SBML model is treated as the canonical metabolic reconstruction used throughout this project.
+* The archived copy under `raw/` is preserved for provenance and reproducibility and should never be edited.
+* Any future modified or condition-specific models should be stored separately without altering either of the original SBML files.

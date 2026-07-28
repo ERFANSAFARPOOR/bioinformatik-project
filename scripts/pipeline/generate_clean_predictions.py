@@ -11,8 +11,10 @@ import re
 import pandas as pd
 from pathlib import Path
 
-RAW = Path("results/essentiality/gene_essentiality_default_medium.csv")
-OUT = Path("data/processed/predicted_essentiality_default_medium.csv")
+ROOT = Path(__file__).resolve().parents[2]
+
+RAW = ROOT / "results" / "essentiality" / "gene_essentiality_default_medium.csv"
+OUT = ROOT / "data" / "processed" / "predicted_essentiality_default_medium.csv"
 
 df = pd.read_csv(RAW)
 n_raw = len(df)

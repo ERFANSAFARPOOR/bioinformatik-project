@@ -1,20 +1,13 @@
 """
-Metabolic Modeling Education Package
+Research utilities for iMO1056 (PAO1) metabolic modeling.
 
-A clean, educational package for learning metabolic modeling with COBRApy.
-This package provides simple, well-documented functions for:
-- Loading and saving models
-- Running FBA simulations
-- Analyzing gene essentiality
-- Managing growth media
-- Extracting gene-reaction mappings
+Prefer importing from submodules directly in research notebooks/scripts.
+This package exports the stable public surface used by notebooks 04/05.
 """
 
 __version__ = "1.0.0"
-__author__ = "Metabolic Modeling Education Team"
 
-# Make key functions easily accessible
-from .model_io import load_model, save_model
+from .load_model import load_model, save_model, get_model_summary
 from .fba_utils import set_biomass_reaction, run_fba
 from .medium import (
     set_medium,
@@ -28,16 +21,17 @@ from .gene_essentiality import analyze_gene_essentiality
 from .mapping import extract_gene_reaction_mapping
 
 __all__ = [
-    'load_model',
-    'save_model',
-    'set_biomass_reaction',
-    'run_fba',
-    'set_medium',
-    'reset_medium',
-    'apply_medium',
-    'get_medium',
-    'get_medium_registry',
-    'iter_implemented_media',
-    'analyze_gene_essentiality',
-    'extract_gene_reaction_mapping',
+    "load_model",
+    "save_model",
+    "get_model_summary",
+    "set_biomass_reaction",
+    "run_fba",
+    "set_medium",
+    "reset_medium",
+    "apply_medium",
+    "get_medium",
+    "get_medium_registry",
+    "iter_implemented_media",
+    "analyze_gene_essentiality",
+    "extract_gene_reaction_mapping",
 ]

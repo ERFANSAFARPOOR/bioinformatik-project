@@ -11,8 +11,8 @@ from pathlib import Path
 import cobra
 from cobra.io import read_sbml_model
 
-MODEL_PATH = Path("models/paeruginosa_MODEL1507180020.xml")
-
+ROOT = Path(__file__).resolve().parents[2]
+MODEL_PATH = ROOT / "models" / "paeruginosa_MODEL1507180020.xml"
 out = {}
 
 # File hash (provenance, read-only)

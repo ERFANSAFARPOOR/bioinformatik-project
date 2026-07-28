@@ -74,6 +74,7 @@ def main():
 
     pao1_counts = Counter(b for _, b, _, _ in sd03)
     pa14_counts = Counter(a for a, _, _, _ in sd03)
+    assert sd03, "No ortholog pairs loaded from Turner sd03."
     assert max(pao1_counts.values()) == 1 and max(pa14_counts.values()) == 1, \
         "table is not strict 1:1 — handle one-to-many explicitly before using"
 
@@ -100,9 +101,15 @@ def main():
                 "candidate_medium", "HUMAN_REVIEW_REQUIRED",
             ])
 
-    agree = sum(1 for p, x in bel.items()
-                if p in {b for _, b, _, _ in sd03}
-                and {b: a for a, b, _, _ in sd03}[p] == x)
+turner_map = {b: a for a, b, _, _ in sd03}
+
+agree = sum(
+    1
+    for p, x in bel.items()
+    if p in turner_map and turner_map[p] == x
+)
+for pa14, pao1, g14, g01 in sorted(sd03, key=lambda x: x[1]):
+    
     print(f"pairs={len(sd03)} pa14_only={only14} pao1_only={only01}")
     print(f"belanger_shared_agree={agree}/"
           f"{sum(1 for p in bel if p in pao1_counts)}")

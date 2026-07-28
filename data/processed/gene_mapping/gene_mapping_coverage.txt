@@ -1,0 +1,14 @@
+Gene Mapping Report
+===================
+Model genes              : 1054
+Unique mappings          : 1023
+Ambiguous mappings       : 2
+Unmapped                 : 29
+
+Mapping source:
+Official pseudomonas.com orthology table
+
+Confidence:
+High    = unique ortholog
+Medium  = multiple orthologs
+Unmapped= no ortholog

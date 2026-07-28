@@ -14,7 +14,9 @@ import pytest
 ROOT = Path(__file__).resolve().parents[1]
 MODEL_PATH = ROOT / "models" / "paeruginosa_MODEL1507180020.xml"
 MODEL_RAW_COPY = ROOT / "models" / "raw" / "paeruginosa_MODEL1507180020.xml"
-PRED_CSV = ROOT / "data" / "processed" / "predicted_essentiality_default_medium.csv"
+PRED_CSV = (
+    ROOT / "data" / "processed" / "essentiality" / "predicted_essentiality_default_medium.csv"
+)
 EXPECTED_SHA = "0868a5ebb41ebb4967c3c182e686eca7552af9255cba5a6d130cf114d1212ead"
 EXPECTED_WT = 1.0479285528184004
 WT_TOL = 1e-6

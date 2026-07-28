@@ -9,7 +9,8 @@ import sys
 import zlib
 from pathlib import Path
 
-PDF_DIR = Path("conditian")
+ROOT = Path(__file__).resolve().parents[1]
+PDF_DIR = ROOT / "conditian"
 
 # Keyword groups we care about for the PAO1-focus re-audit
 KEYS = [

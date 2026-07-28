@@ -169,3 +169,24 @@ New research notebooks start at `04_media_reconstruction` /
 `05_condition_essentiality`; V-01 notebook gated.
 **Rationale:** `docs/TEAM_WORK_MODEL_AND_NEXT_STEPS.md` §3.
 **Status:** Active.
+
+## D-19 · 2026-07-28 · Merge develop reorg into media branch (media wins science path)
+**Decision:** Merge `origin/develop` (Saba repo-sort commits) into
+`media/c01b-batch-ab-v01-prep` with **media as scientific base**:
+- Keep `archive/teaching_notebooks/` (+ README); drop duplicate
+  `archive/old_notebooks/`.
+- Keep research notebooks `04`/`05` content from media; remove empty
+  `06_pao1_validation.ipynb` placeholder (V-01 still gated).
+- Keep `src/medium.py` MediumSpec / Batch A–B, `data/processed/conditions/`,
+  `tests/test_media.py`, `VALIDATION_LABEL_MEDIA_OVERLAP.md`.
+- Restore `models/raw/paeruginosa_MODEL1507180020.xml` (do not leave raw only
+  under `archive/legacy_docs/raw model/`).
+- Fix `src/__init__.py` to import `src.load_model` + `src.mapping` (not archive).
+- Keep develop's folder sort for audit/docs/scripts/data where non-conflicting;
+  restore canonical `TODO.md` + `DECISIONS.md` to repo root (`CLAUDE.md`).
+- Accept develop `data/processed/gene_mapping/gene_mapping.csv` as present, but
+  treat `official_orthology` provenance as **still needing human review** before
+  V-01 / L-03b claims (does not reopen metrics).
+**Rationale:** Unblock team integration without discarding media Batch A/B work
+or reintroducing empty/broken entry points.
+**Status:** Active.
