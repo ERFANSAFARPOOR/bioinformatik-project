@@ -7,17 +7,23 @@ Legend: severity P0 (blocks validity/reproducibility) · P1 (blocks manuscript/r
 
 ---
 
-## B-SCI-01 — No real model-vs-experiment validation (P0) — OPEN
+## B-SCI-01 — No real model-vs-experiment validation (P0) — OPEN (narrowed 2026-07-29)
 `archive/teaching_notebooks/03_experimental_comparison.ipynb` (formerly under
 `notebooks/`) computes precision/recall/F1/Venn against **simulated random labels**
 (`random.seed(42)`; `random.sample(...)`), explicitly labeled "Using simulated
 data for demonstration."
-**Impact:** every comparison metric currently in the project is meaningless.
-**Unblock when:** real experimental essential-gene lists are extracted from the
-papers' supplementary datasets, mapped to model gene IDs, condition-matched to
-reconstructed media, and validated. Depends on B-LIT-01, B-COND-01 (remaining
-gaps), and clear label↔media↔prediction overlap
-(`VALIDATION_LABEL_MEDIA_OVERLAP.md`).
+**Impact:** every comparison metric currently in the project is meaningless as
+*full validation*. Teaching nb03 metrics remain forbidden.
+**Update 2026-07-29 (D-20):** Lee2015 MOPS-pyruvate **positive** labels are
+promoted to a derived READY file (437 `PAxxxx`); medium `mops_pyruvate_lee2015`
+and predictions exist; **positive-overlap-only** outputs written under
+`results/comparison/lee2015_mops_pyruvate_POSITIVE_OVERLAP_ONLY_*`.
+**Still blocked for full V-01:** experimental **non-essential universe** is
+undefined — specificity / precision / F1 / MCC / full confusion matrix remain
+forbidden. Depends on a separate human decision for negatives; also B-COND-01
+remaining gaps for other cells.
+**Unblock full metrics when:** negative universe reviewed + documented for the
+chosen cell, then compute metrics only on that validated join.
 
 ## B-LIT-01 — Supplementary gene-list datasets not downloaded (P0) — NARROWED 2026-07-06
 The experimental essential/fitness gene lists live in supplementary files, not

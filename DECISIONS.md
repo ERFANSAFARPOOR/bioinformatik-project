@@ -190,3 +190,25 @@ New research notebooks start at `04_media_reconstruction` /
 **Rationale:** Unblock team integration without discarding media Batch A/B work
 or reintroducing empty/broken entry points.
 **Status:** Active.
+
+## D-20 · 2026-07-29 · Lee2015 MOPS-pyruvate positives APPROVED_FOR_PROMOTION
+**Decision:** Promote the **437 standard `PAxxxx`** Lee 2015 MOPS-pyruvate
+**positive** condition-specific-essential labels (`source_column` =
+`Min sum (of 3)`, values 2 or 3) from NEEDS_REVIEW to a **derived** READY file:
+`data/processed/literature/gene_level/literature_evidence_gene_level_READY_mops_pyruvate_lee2015.csv`.
+Human review (2026-07-29) confirms SI Sequence Data Analysis: consensus =
+≥2 of 3 MOPS-pyruvate pools; workbook `Min sum (of 3)` holds those counts
+(`project_management/audit/LEE2015_PER_MEDIUM_REVIEW.md`).
+**Scope limits:**
+- Positives only — does **not** define an experimental non-essential universe.
+- `PA0728.1` stays in raw source unchanged; classified `absent_from_model/unmapped`;
+  not renamed to PA0728; excluded from identity join only.
+- Blank Min sum = missing evidence, **not** zero / not non-essential.
+- Full V-01 metrics (specificity, precision, F1, MCC, confusion matrix) remain
+  **forbidden** until a separately reviewed negative universe exists.
+- Allowed now: positive-label coverage + overlap with
+  `mops_pyruvate_lee2015` predictions @ 0.01 only
+  (`results/comparison/lee2015_mops_pyruvate_POSITIVE_OVERLAP_ONLY_*`).
+**Rationale:** Unblocks the first condition-matched positive-overlap cell without
+fabricating negatives or claiming full validation.
+**Status:** Active.

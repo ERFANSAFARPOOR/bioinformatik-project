@@ -188,7 +188,10 @@ Status: TODO / IN-PROGRESS / DONE / BLOCKED.
 - **Reason:** Current metrics are on random data (B-SCI-01) — invalid.
 - **Inputs:** predictions (S-01/R-02), evidence (L-03), mapping (G-01) · **Output:** `results/comparison/metrics_<condition>.csv` + figs
 - **Deps:** L-03, G-01, C-01, S-01 · **Validation:** labels+mappings validated FIRST; metrics only on validated joins.
-- **Status:** BLOCKED · **Blocker:** B-SCI-01 — gate plan in `VALIDATION_LABEL_MEDIA_OVERLAP.md` (do not run yet)
+- **Status:** PARTIAL 2026-07-29 — Lee MOPS-pyruvate **positives** promoted (D-20);
+  positive-overlap-only report written (`POSITIVE_OVERLAP_ONLY_*`). Full
+  confusion-matrix metrics still **BLOCKED** until experimental negative universe
+  is defined. · **Blocker:** B-SCI-01 (negative-universe gate)
 
 ---
 
@@ -396,3 +399,15 @@ Status: TODO / IN-PROGRESS / DONE / BLOCKED.
 - Label↔media overlap status: `VALIDATION_LABEL_MEDIA_OVERLAP.md` (V-01 still gated).
 - **Next:** finish S-01 CSVs if still running; promote Lee MOPS-pyruvate
   NEEDS_REVIEW for a clean first V-01 cell; do **not** compute metrics yet.
+
+## Update 2026-07-29 (D-20: MOPS-pyruvate positives promoted; overlap only)
+- Human review APPROVED_FOR_PROMOTION (positives only) recorded in
+  `LEE2015_PER_MEDIUM_REVIEW.md` + **D-20**.
+- Derived READY:
+  `data/processed/literature/gene_level/literature_evidence_gene_level_READY_mops_pyruvate_lee2015.csv`
+  (437 `PAxxxx`; `PA0728.1` absent_from_model note beside it).
+- Positive-overlap-only (no precision/recall/F1/MCC):
+  `results/comparison/lee2015_mops_pyruvate_POSITIVE_OVERLAP_ONLY_*`
+  (437 labels; 228 in model; 209 absent; 173 predicted essential; 123 recovered).
+- **Next human decision:** define experimental **negative universe** for
+  MOPS-pyruvate before full V-01 confusion-matrix metrics.

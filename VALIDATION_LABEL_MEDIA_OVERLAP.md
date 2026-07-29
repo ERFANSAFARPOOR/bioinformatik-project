@@ -1,79 +1,68 @@
 # Label ↔ media ↔ prediction overlap (status note)
 
-**Date:** 2026-07-24  
-**Purpose:** document which READY_ONLY experimental rows can be matched to media
-actually built in this run, and what remains before V-01 metrics are allowed.  
-**Rule:** no precision/recall/F1/MCC in this document or this session.
+**Date:** 2026-07-24 (updated **2026-07-29**)  
+**Purpose:** document which experimental rows can be matched to media actually
+built, and what remains before **full** V-01 metrics are allowed.  
+**Rule:** no precision/recall/F1/MCC/specificity / full confusion matrix until an
+experimental **negative universe** is separately reviewed (D-20).
 
-## Media implemented (this run)
+## Media implemented
 
 | medium_id | label | strain_context | Experimental match intent |
 |---|---|---|---|
 | `mops_pyruvate_lee2015` | DEFINED | MPAO1 | Lee MOPS-pyruvate / “Min” |
 | `mops_succinate_turner2015` | DEFINED | PAO1 | Turner MOPS-succinate comparator |
-| `LB_approx_lee2015` | PARTIAL | MPAO1 | Lee LB rich context (approximation only) |
+| `LB_approx_lee2015` | PARTIAL | MPAO1 | Lee LB rich context (approximation only; not primary) |
 
-Derived configs: `data/processed/conditions/`.  
-WT growth (measured, reccobra39/GLPK): see `media_wt_growth.csv`.
+Derived configs: `data/processed/conditions/`.
 
-## READY_ONLY rows (`literature_evidence_gene_level_READY_ONLY.csv`, n=2607)
+## First validation cell (updated 2026-07-29)
 
-### Direct / partial condition match to built media
+| Item | Status |
+|---|---|
+| Labels | **Promoted** derived READY: `literature_evidence_gene_level_READY_mops_pyruvate_lee2015.csv` (**437** standard `PAxxxx` positives; D-20) |
+| `PA0728.1` | Raw retained; `absent_from_model/unmapped`; not in READY set |
+| Medium | `mops_pyruvate_lee2015` (DEFINED) |
+| Predictions | `results/essentiality/gene_essentiality_mops_pyruvate_lee2015.csv` (173 essential @ 0.01; WT ≈ 0.405 /h) |
+| Allowed analysis | **Positive-overlap only** → `results/comparison/lee2015_mops_pyruvate_POSITIVE_OVERLAP_ONLY_*` |
+| Full V-01 metrics | **Still gated** — experimental non-essential universe undefined |
 
-| Study | READY_ONLY subset | Phenotype class | Built medium | Match quality |
-|---|---|---|---|---|
-| lee2015 | 351 generally-essential (“three primary media: LB + MOPS-pyruvate + CF sputum”) | generally-essential | Needs **intersection** of predictions under LB_approx ∩ MOPS-pyruvate ∩ (sputum not built) | **WEAK** — sputum medium not built; general-essential is cross-media consensus, not a single medium |
-| lee2015 per-medium MOPS-pyruvate / LB | in **NEEDS_REVIEW** (not READY_ONLY) | condition-specific-essential | `mops_pyruvate_lee2015` / `LB_approx` | **HELD** — excluded from first validation by `LEE2015_PER_MEDIUM_REVIEW.md` |
-| turner2015 | CF sputum vs MOPS-succinate (104 + 52 biosynthetic) | reduced-fitness / condition context | `mops_succinate_turner2015` is the **minimal comparator**, not the sputum condition | **PARTIAL** — can predict essentials on MOPS-succinate; sputum/SCFM2 side not built in this run |
-| turner2015 | initial library general essential (336) | generally-essential | rich / complex initial medium — **not** MOPS-succinate | **NO clean match** to Batch A DEFINED media |
-| belanger2022 | RPMI / RPMI+serum / abscess / skin / T0 rich | various | none built (RPMI held; niches = MEDIA_GAP) | **NO match** this run |
+### Measured positive overlap (2026-07-29)
 
-### Gene ID overlap (identity join, PAO1/MPAO1)
+| Metric | Value |
+|---|---|
+| n_positive_labels | 437 |
+| n_in_model | 228 |
+| n_absent_from_model | 209 |
+| n_predicted_essential @0.01 | 173 |
+| positives recovered (labels ∩ predicted essential) | 123 |
+| in-model positives not recovered | 105 |
+| predicted essential not in positive set | 50 (**not** called FP) |
 
-- Model genes: 1054 `PAxxxx`.
-- READY_ONLY mapped PAO1 IDs are identity-joined (Lee MPAO1 / Turner PAO1 /
-  Belanger PAO1) — orthology not required for these rows.
-- Exact gene-list sizes for metric-ready joins are **not** finalized here because
-  condition matching is incomplete (table above).
+Precision / recall / specificity / F1 / MCC / full confusion matrix were **not**
+computed (policy).
 
-## What is still required before V-01 is allowed
+## Other READY_ONLY rows (`literature_evidence_gene_level_READY_ONLY.csv`, n=2607)
 
-1. **Condition-matched label set** for at least one medium that is both
-   READY_ONLY (or promoted) **and** built as DEFINED (preferred) or honestly
-   PARTIAL with documented caveats.
-2. **Strongest near-term candidates after this run:**
-   - Promote / resolve Lee per-medium **MOPS-pyruvate** NEEDS_REVIEW → then
-     compare to `mops_pyruvate_lee2015` predictions.
-   - Optionally build SCFM2 PARTIAL (out of scope this run) for Turner sputum-side
-     contrasts; MOPS-succinate alone is only half of Turner’s contrast design.
-3. **Predictions** under those media written to `results/essentiality/` (S-01).
-4. Explicit decision that PARTIAL `LB_approx` is or is not allowed in V-01
-   (recommendation: **sensitivity only**, not primary).
-5. Only then: confusion matrix + precision/recall/F1/MCC **per phenotype class**,
-   never pooled binary collapse; never cite teaching nb03.
+| Study | READY_ONLY subset | Built medium | Match quality |
+|---|---|---|---|
+| lee2015 | 351 generally-essential (LB + MOPS-pyruvate + sputum) | needs sputum + multi-medium intersection | WEAK |
+| lee2015 per-medium LB / sputum / BHI / serum / 0.1×LB | still NEEDS_REVIEW (not in D-20) | — | HELD |
+| turner2015 | sputum vs MOPS-succinate / SCFM2 / … | succinate only half of contrast | PARTIAL |
+| belanger2022 | RPMI / host niches | not built | NO match |
 
-## V-01 design (gated plan only — do not run)
+## What remains before full V-01 metrics
 
-```
-IF labels_ready AND media_built AND predictions_exist AND condition_ids_match:
-    for each (medium_id, phenotype_class):
-        join on mapped_pao1_gene_id
-        compute confusion matrix + precision/recall/specificity/F1/MCC
-        report coverage (mapped / unmapped / absent / no-GPR)
-ELSE:
-    refuse metrics (B-SCI-01)
-```
-
-Primary proposed first metric cell (when unlocked):  
-**Lee MOPS-pyruvate condition-specific essentials (after READY promotion) ×
-`mops_pyruvate_lee2015` predictions @ threshold 0.01 (with sensitivity).**
-
-Secondary (sensitivity): Lee generally-essential vs intersection of predictions —
-only with sputum gap documented.
+1. ~~Promote Lee MOPS-pyruvate positives~~ **DONE (D-20)**  
+2. ~~Predictions under that medium~~ **DONE**  
+3. **Define experimental negative universe** for MOPS-pyruvate (human decision)  
+4. Only then: confusion matrix + precision/recall/specificity/F1/MCC for this cell  
+5. Other media/phenotypes remain separate cells with their own gates  
 
 ## Explicitly still out of scope
 
-- PA14 path (Poulsen/Basta), PGD↔Turner merge into `gene_mapping.csv`
-- Claiming paper-ready validation
-- Building native sputum / serum / abscess / skin as DEFINED
-- Citing nb03 simulated metrics
+- Treating absence-from-essential-list as non-essential without review  
+- PA14 path / orthology merges into `gene_mapping.csv` for this cell  
+- Claiming paper-ready full validation  
+- Citing teaching nb03 simulated metrics  
+- Using `LB_approx` as the primary validation medium  

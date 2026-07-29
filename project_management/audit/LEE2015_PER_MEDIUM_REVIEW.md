@@ -72,3 +72,114 @@
 - Lee **general-essential** rows (the `General essential genes` sheet) remain
   **READY** — their definition + consensus threshold are fully sourced and
   unambiguous; they are already in `READY_ONLY`.
+## Human review note: MOPS-pyruvate row-count reconciliation
+
+**Review date:** 2026-07-29  
+**Reviewer:** Human review
+
+The `General essential genes` worksheet in the Lee2015 supplementary
+workbook was manually filtered using the column:
+
+`Min sum (of 3)`
+
+Only rows with values `2` or `3` were retained as candidate positive
+MOPS-pyruvate essentiality calls.
+
+### Manual result
+
+- Visible positive rows in the source workbook: **438**
+- Rows retained in the processed `PAxxxx` evidence set: **437**
+- Non-standard source identifier identified: **PA0728.1**
+
+### Identifier review
+
+Searches for both `PA0728.1` and `PA0728` in the model prediction file
+returned no matches.
+
+Therefore:
+
+- `PA0728.1` is retained unchanged in the raw source workbook.
+- It is not renamed to `PA0728`.
+- It is not deleted from the source evidence.
+- It is excluded only from the direct model identity join.
+- It is classified as `absent_from_model / unmapped`.
+- No automatic mapping is permitted without an authoritative annotation source.
+
+### Blank-value policy
+
+Blank values in `Min sum (of 3)` are treated as missing or unavailable
+condition-specific evidence, not as zero and not as non-essential calls.
+
+### Human interpretation and promotion decision
+
+**Human review decision:** `APPROVED_FOR_PROMOTION`  
+**Scope:** Lee2015 MOPS-pyruvate positive essentiality labels only
+
+The Lee2015 Supporting Information explicitly states that the
+MOPS-pyruvate consensus essential-gene set was derived from genes found
+in at least two of the three MOPS-pyruvate mutant pools.
+
+The workbook column `Min sum (of 3)` contains the corresponding
+three-pool MOPS-pyruvate essentiality counts. Therefore, rows with:
+
+`Min sum (of 3) >= 2`
+
+are accepted as experimentally supported positive MOPS-pyruvate
+essentiality calls.
+
+### Row-count reconciliation
+
+Manual filtering of the source workbook produced:
+
+- **438 source-positive rows** with `Min sum (of 3)` equal to `2` or `3`
+- **437 standard `PAxxxx` identifiers** eligible for processed gene-level evidence
+- **1 non-standard identifier:** `PA0728.1`
+
+`PA0728.1` has `Min sum (of 3) = 3` and remains preserved unchanged
+in the raw source evidence. Neither `PA0728.1` nor `PA0728` was found
+in the iMO1056 model-gene universe. It is therefore classified as
+`absent_from_model / unmapped` and excluded only from the direct
+model identity join. No automatic renaming or remapping is performed.
+
+### Promotion authorization
+
+The **437 standard `PAxxxx` positive labels** are approved for promotion
+from:
+
+`NEEDS_REVIEW / PENDING_HUMAN_SIGNOFF`
+
+to:
+
+`READY`
+
+for the Lee2015 MOPS-pyruvate validation cell only.
+
+### Scope limitation
+
+This decision approves only experimentally positive essential labels.
+
+It does not define an experimental non-essential universe. Absence from
+the Lee2015 MOPS-pyruvate essential-gene list must not be interpreted as
+experimental non-essentiality by default.
+
+Therefore, this approval does not yet authorize calculation of:
+
+- specificity
+- precision
+- F1 score
+- MCC
+- a full confusion matrix
+
+Until a separately reviewed experimental negative universe is defined,
+the permitted analysis is limited to positive-label coverage and overlap
+with model predictions.
+
+### Source confirmation
+
+- **Study:** Lee et al. (2015)
+- **Document:** Supporting Information
+- **Section:** SI Materials and Methods → Sequence Data Analysis
+- **Location:** page 1 of 7
+- **Confirmed rule:** MOPS-pyruvate consensus requires detection in at
+  least two of three MOPS-pyruvate pools
+- **Human review date:** 2026-07-29

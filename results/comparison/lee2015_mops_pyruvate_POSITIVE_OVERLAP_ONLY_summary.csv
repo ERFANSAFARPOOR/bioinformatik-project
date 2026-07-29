@@ -1,0 +1,11 @@
+metric,value
+n_positive_labels,437.0
+n_in_model,228.0
+n_absent_from_model,209.0
+n_predicted_essential_at_0.01,173.0
+n_positive_recovered_by_model,123.0
+n_positive_in_model_not_recovered,105.0
+n_predicted_essential_not_in_positive_label_set,50.0
+threshold_ratio,0.01
+wildtype_growth_per_h,0.405339030635686
+n_model_genes,1054.0
