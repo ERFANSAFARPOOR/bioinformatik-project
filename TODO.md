@@ -188,12 +188,17 @@ Status: TODO / IN-PROGRESS / DONE / BLOCKED.
 - **Reason:** Current metrics are on random data (B-SCI-01) — invalid.
 - **Inputs:** predictions (S-01/R-02), evidence (L-03), mapping (G-01) · **Output:** `results/comparison/metrics_<condition>.csv` + figs
 - **Deps:** L-03, G-01, C-01, S-01 · **Validation:** labels+mappings validated FIRST; metrics only on validated joins.
-- **Status:** **READY_FOR_BINARY_METRICS** 2026-08-01 — D-21 approved;
-  Varadarajan2020 Minimal READY labels + frozen primary binary universe (1025
-  genes: 214 POS / 811 NEG; 18 AMBIGUOUS excluded). D-20 Lee-original positives
-  remain a separate positive-overlap-only layer. Full confusion-matrix metrics
-  **not yet executed** (next gate). · **Blocker:** B-SCI-01 narrowed (metrics
-  execution pending; negative-universe scientific gate resolved for this cell)
+- **Status:** **V01_ERROR_ANALYSIS_COMPLETED_PENDING_HUMAN_REVIEW**
+  2026-08-01 — primary binary confusion matrix + metrics computed on D-21
+  frozen universe (1025 genes) vs `mops_pyruvate_lee2015` @ 0.01. Artifacts:
+  `data/processed/validation/v01_mops_pyruvate_*` +
+  `project_management/audit/v01_mops_pyruvate/V01_BINARY_VALIDATION_REPORT.md`.
+  Structural FP/FN error audit completed (diagnostic only; no model/media/threshold
+  edits): `v01_mops_pyruvate_error_audit.csv` +
+  `project_management/audit/v01_mops_pyruvate/V01_ERROR_STRUCTURE_AUDIT.md`.
+  Does **not** claim the model is scientifically validated or approve model edits.
+  Next: human review of prioritized error genes. · **Blocker:** B-SCI-01 narrowed
+  to human interpretation / other cells
 
 ---
 
@@ -426,6 +431,8 @@ Status: TODO / IN-PROGRESS / DONE / BLOCKED.
   (214 POSITIVE + 811 NEGATIVE = 1025; 18 AMBIGUOUS excluded).
 - Integrity: `tests/test_d21_varadarajan_binary_universe.py` +
   `project_management/audit/negative_universe_lee2015/D21_PROMOTION_INTEGRITY_REPORT.json`.
-- **Next:** execute V-01 binary metrics on the frozen universe vs
-  `mops_pyruvate_lee2015` predictions. Do **not** mark V-01 COMPLETE until that
-  step finishes.
+- V-01 binary metrics executed; structural error audit status:
+  `V01_ERROR_ANALYSIS_COMPLETED_PENDING_HUMAN_REVIEW`.
+- **Next:** human review of prioritized FP/FN genes. Do **not** mark V-01
+  scientifically complete; do **not** approve model modifications from the audit
+  alone.

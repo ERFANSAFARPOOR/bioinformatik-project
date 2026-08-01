@@ -1,0 +1,3705 @@
+{
+  "meta": {
+    "medium": "mops_pyruvate_lee2015",
+    "objective": "PA_Biomass6_DM",
+    "wt_growth": 0.40533903148065115,
+    "blocked_reaction_count": 506,
+    "model_path": "I:\\Bioinfo\\karvarzi\\ipynb\\models\\paeruginosa_MODEL1507180020.xml"
+  },
+  "biomass": {
+    "reaction_id": "PA_Biomass6_DM",
+    "metabolite_count": 54,
+    "amino_acid_constituents": [
+      "ala__L_c",
+      "arg__L_c",
+      "asn__L_c",
+      "asp__L_c",
+      "cys__L_c",
+      "gln__L_c",
+      "glu__L_c",
+      "gly_c",
+      "his__L_c",
+      "ile__L_c",
+      "leu__L_c",
+      "lys__L_c",
+      "met__L_c",
+      "phe__L_c",
+      "pro__L_c",
+      "ser__L_c",
+      "thr__L_c",
+      "trp__L_c",
+      "tyr__L_c",
+      "val__L_c"
+    ],
+    "trna_or_charged_constituents": [],
+    "protein_rna_dna_lipid_proxy": [
+      "PA_core_lipidA_c"
+    ],
+    "all_metabolites": [
+      "5mthf_c",
+      "PA_core_lipidA_c",
+      "accoa_c",
+      "adp_c",
+      "ala__L_c",
+      "amp_c",
+      "arg__L_c",
+      "asn__L_c",
+      "asp__L_c",
+      "atp_c",
+      "cdlp_PA_c",
+      "coa_c",
+      "ctp_c",
+      "cys__L_c",
+      "datp_c",
+      "dctp_c",
+      "dgtp_c",
+      "dttp_c",
+      "fad_c",
+      "gln__L_c",
+      "glu__L_c",
+      "gly_c",
+      "glycogen_c",
+      "gtp_c",
+      "h2o_c",
+      "h_c",
+      "his__L_c",
+      "ile__L_c",
+      "leu__L_c",
+      "lys__L_c",
+      "met__L_c",
+      "nad_c",
+      "nadh_c",
+      "nadp_c",
+      "nadph_c",
+      "pe_PA_c",
+      "peptido_EC_c",
+      "pg_PA_c",
+      "phe__L_c",
+      "pheme_c",
+      "pi_c",
+      "ppi_c",
+      "pro__L_c",
+      "ps_PA_c",
+      "ptrc_c",
+      "ser__L_c",
+      "spmd_c",
+      "succoa_c",
+      "thr__L_c",
+      "trp__L_c",
+      "tyr__L_c",
+      "udpg_c",
+      "utp_c",
+      "val__L_c"
+    ],
+    "sample_stoichiometry_negatives": {
+      "5mthf_c": -0.045754,
+      "PA_core_lipidA_c": -0.007686,
+      "accoa_c": -4.5e-05,
+      "ala__L_c": -0.446559,
+      "amp_c": -0.000915,
+      "arg__L_c": -0.25714,
+      "asn__L_c": -0.20955,
+      "asp__L_c": -0.20955,
+      "atp_c": -41.84827,
+      "cdlp_PA_c": -9.6e-05,
+      "coa_c": -5e-06,
+      "ctp_c": -0.1153,
+      "cys__L_c": -0.079612,
+      "datp_c": -0.022602,
+      "dctp_c": -0.023243,
+      "dgtp_c": -0.023243,
+      "dttp_c": -0.022602,
+      "fad_c": -4.5e-05,
+      "gln__L_c": -0.22877,
+      "glu__L_c": -0.22877,
+      "gly_c": -0.532577,
+      "glycogen_c": -0.140922,
+      "gtp_c": -0.185761,
+      "h2o_c": -41.6918,
+      "his__L_c": -0.082357,
+      "ile__L_c": -0.252562,
+      "leu__L_c": -0.391654,
+      "lys__L_c": -0.298316,
+      "met__L_c": -0.133601,
+      "nad_c": -0.001967,
+      "nadh_c": -4.5e-05,
+      "nadp_c": -0.000118,
+      "nadph_c": -0.000366,
+      "pe_PA_c": -0.001462,
+      "peptido_EC_c": -0.025256,
+      "pg_PA_c": -0.000353,
+      "phe__L_c": -0.161054,
+      "pheme_c": -1e-06,
+      "pro__L_c": -0.192166,
+      "ps_PA_c": -3.9e-05,
+      "ptrc_c": -0.032027,
+      "ser__L_c": -0.18759,
+      "spmd_c": -0.006405,
+      "succoa_c": -2e-06,
+      "thr__L_c": -0.220534,
+      "trp__L_c": -0.049414,
+      "tyr__L_c": -0.119875,
+      "udpg_c": -0.002745,
+      "utp_c": -0.124451,
+      "val__L_c": -0.367862
+    }
+  },
+  "trs_reactions_in_model": [
+    {
+      "id": "ALATRS",
+      "name": "Alanyl-tRNA synthetase",
+      "gpr": "PA0903",
+      "blocked": true,
+      "wt_flux": 0.0,
+      "stoichiometry": {
+        "ala__L_c": -1.0,
+        "atp_c": -1.0,
+        "trnaala_c": -1.0,
+        "alatrna_c": 1.0,
+        "amp_c": 1.0,
+        "ppi_c": 1.0
+      }
+    },
+    {
+      "id": "ARGTRS",
+      "name": "Arginyl-tRNA synthetase",
+      "gpr": "PA5051",
+      "blocked": true,
+      "wt_flux": 0.0,
+      "stoichiometry": {
+        "arg__L_c": -1.0,
+        "atp_c": -1.0,
+        "trnaarg_c": -1.0,
+        "amp_c": 1.0,
+        "argtrna_c": 1.0,
+        "ppi_c": 1.0
+      }
+    },
+    {
+      "id": "ASPTRS",
+      "name": "Aspartyl-tRNA synthetase",
+      "gpr": "PA0963",
+      "blocked": true,
+      "wt_flux": 0.0,
+      "stoichiometry": {
+        "asp__L_c": -1.0,
+        "atp_c": -1.0,
+        "trnaasp_c": -1.0,
+        "amp_c": 1.0,
+        "asptrna_c": 1.0,
+        "ppi_c": 1.0
+      }
+    },
+    {
+      "id": "CYSTRS",
+      "name": "Cysteinyl-tRNA synthetase",
+      "gpr": "PA1795",
+      "blocked": true,
+      "wt_flux": 0.0,
+      "stoichiometry": {
+        "atp_c": -1.0,
+        "cys__L_c": -1.0,
+        "trnacys_c": -1.0,
+        "amp_c": 1.0,
+        "cystrna_c": 1.0,
+        "ppi_c": 1.0
+      }
+    },
+    {
+      "id": "GLUTRS",
+      "name": "Glutamyl-tRNA synthetase",
+      "gpr": "PA4724 or PA3134",
+      "blocked": false,
+      "wt_flux": 3.242712251850564e-06,
+      "stoichiometry": {
+        "atp_c": -1.0,
+        "glu__L_c": -1.0,
+        "trnaglu_c": -1.0,
+        "amp_c": 1.0,
+        "glutrna_c": 1.0,
+        "ppi_c": 1.0
+      }
+    },
+    {
+      "id": "GLYTRS",
+      "name": "Glycyl-tRNA synthetase",
+      "gpr": "PA0009 and PA0008",
+      "blocked": true,
+      "wt_flux": 0.0,
+      "stoichiometry": {
+        "atp_c": -1.0,
+        "gly_c": -1.0,
+        "trnagly_c": -1.0,
+        "amp_c": 1.0,
+        "glytrna_c": 1.0,
+        "ppi_c": 1.0
+      }
+    },
+    {
+      "id": "HISTRS",
+      "name": "Histidyl-tRNA synthetase",
+      "gpr": "PA4939 or PA3802",
+      "blocked": true,
+      "wt_flux": 0.0,
+      "stoichiometry": {
+        "atp_c": -1.0,
+        "his__L_c": -1.0,
+        "trnahis_c": -1.0,
+        "amp_c": 1.0,
+        "histrna_c": 1.0,
+        "ppi_c": 1.0
+      }
+    },
+    {
+      "id": "ILETRS",
+      "name": "Isoleucyl-tRNA synthetase",
+      "gpr": "PA4560",
+      "blocked": true,
+      "wt_flux": 0.0,
+      "stoichiometry": {
+        "atp_c": -1.0,
+        "ile__L_c": -1.0,
+        "trnaile_c": -1.0,
+        "amp_c": 1.0,
+        "iletrna_c": 1.0,
+        "ppi_c": 1.0
+      }
+    },
+    {
+      "id": "LEUTRS",
+      "name": "Leucyl-tRNA synthetase",
+      "gpr": "PA3987",
+      "blocked": true,
+      "wt_flux": 0.0,
+      "stoichiometry": {
+        "atp_c": -1.0,
+        "leu__L_c": -1.0,
+        "trnaleu_c": -1.0,
+        "amp_c": 1.0,
+        "leutrna_c": 1.0,
+        "ppi_c": 1.0
+      }
+    },
+    {
+      "id": "LYSTRS",
+      "name": "Lysyl-tRNA synthetase",
+      "gpr": "PA3700",
+      "blocked": true,
+      "wt_flux": 0.0,
+      "stoichiometry": {
+        "atp_c": -1.0,
+        "lys__L_c": -1.0,
+        "trnalys_c": -1.0,
+        "amp_c": 1.0,
+        "lystrna_c": 1.0,
+        "ppi_c": 1.0
+      }
+    },
+    {
+      "id": "METTRS",
+      "name": "Methionyl-tRNA synthetase",
+      "gpr": "PA3482",
+      "blocked": true,
+      "wt_flux": 0.0,
+      "stoichiometry": {
+        "atp_c": -1.0,
+        "met__L_c": -1.0,
+        "trnamet_c": -1.0,
+        "amp_c": 1.0,
+        "mettrna_c": 1.0,
+        "ppi_c": 1.0
+      }
+    },
+    {
+      "id": "PHETRS",
+      "name": "Phenylalanyl-tRNA synthetase",
+      "gpr": "PA2740 and PA2739",
+      "blocked": true,
+      "wt_flux": 0.0,
+      "stoichiometry": {
+        "atp_c": -1.0,
+        "phe__L_c": -1.0,
+        "trnaphe_c": -1.0,
+        "amp_c": 1.0,
+        "phetrna_c": 1.0,
+        "ppi_c": 1.0
+      }
+    },
+    {
+      "id": "PROTRS",
+      "name": "Prolyl-tRNA synthetase",
+      "gpr": "PA0956",
+      "blocked": true,
+      "wt_flux": 0.0,
+      "stoichiometry": {
+        "atp_c": -1.0,
+        "pro__L_c": -1.0,
+        "trnapro_c": -1.0,
+        "amp_c": 1.0,
+        "ppi_c": 1.0,
+        "protrna_c": 1.0
+      }
+    },
+    {
+      "id": "SERTRS",
+      "name": "Seryl-tRNA synthetase",
+      "gpr": "PA2612",
+      "blocked": true,
+      "wt_flux": 0.0,
+      "stoichiometry": {
+        "atp_c": -1.0,
+        "ser__L_c": -1.0,
+        "trnaser_c": -1.0,
+        "amp_c": 1.0,
+        "ppi_c": 1.0,
+        "sertrna_c": 1.0
+      }
+    },
+    {
+      "id": "THRTRS",
+      "name": "Threonyl-tRNA synthetase",
+      "gpr": "PA2744",
+      "blocked": true,
+      "wt_flux": 0.0,
+      "stoichiometry": {
+        "atp_c": -1.0,
+        "thr__L_c": -1.0,
+        "trnathr_c": -1.0,
+        "amp_c": 1.0,
+        "ppi_c": 1.0,
+        "thrtrna_c": 1.0
+      }
+    },
+    {
+      "id": "TRPTRS",
+      "name": "Tryptophanyl-tRNA synthetase",
+      "gpr": "PA4439",
+      "blocked": true,
+      "wt_flux": 0.0,
+      "stoichiometry": {
+        "atp_c": -1.0,
+        "trnatrp_c": -1.0,
+        "trp__L_c": -1.0,
+        "amp_c": 1.0,
+        "ppi_c": 1.0,
+        "trptrna_c": 1.0
+      }
+    },
+    {
+      "id": "TYRTRS",
+      "name": "Tyrosyl-tRNA synthetase",
+      "gpr": "PA4138 or PA0668",
+      "blocked": true,
+      "wt_flux": 0.0,
+      "stoichiometry": {
+        "atp_c": -1.0,
+        "trnatyr_c": -1.0,
+        "tyr__L_c": -1.0,
+        "amp_c": 1.0,
+        "ppi_c": 1.0,
+        "tyrtrna_c": 1.0
+      }
+    },
+    {
+      "id": "VALTRS",
+      "name": "Valyl-tRNA synthetase",
+      "gpr": "PA3834",
+      "blocked": true,
+      "wt_flux": 0.0,
+      "stoichiometry": {
+        "atp_c": -1.0,
+        "trnaval_c": -1.0,
+        "val__L_c": -1.0,
+        "amp_c": 1.0,
+        "ppi_c": 1.0,
+        "valtrna_c": 1.0
+      }
+    }
+  ],
+  "sulfate_related_reactions": [
+    {
+      "id": "DM_so4_c",
+      "name": "Sulfate demand",
+      "gpr": "",
+      "subsystem": "",
+      "bounds": [
+        0.0,
+        0.0
+      ],
+      "reversibility": false,
+      "stoichiometry": {
+        "so4_c": -1.0
+      },
+      "flux": 0.0
+    },
+    {
+      "id": "EX_so4_e",
+      "name": "Sulfate exchange",
+      "gpr": "",
+      "subsystem": "",
+      "bounds": [
+        -1000.0,
+        1000.0
+      ],
+      "reversibility": true,
+      "stoichiometry": {
+        "so4_e": -1.0
+      },
+      "flux": -0.0864446285487211
+    },
+    {
+      "id": "ADSK",
+      "name": "adenylyl-sulfate kinase",
+      "gpr": "PA1393",
+      "subsystem": "",
+      "bounds": [
+        0.0,
+        1000.0
+      ],
+      "reversibility": false,
+      "stoichiometry": {
+        "aps_c": -1.0,
+        "atp_c": -1.0,
+        "adp_c": 1.0,
+        "h_c": 1.0,
+        "paps_c": 1.0
+      },
+      "flux": 0.0864446285487211
+    },
+    {
+      "id": "CYSabc",
+      "name": "L-cysteine transport via ABC system",
+      "gpr": "PA0314 and PA0313",
+      "subsystem": "",
+      "bounds": [
+        0.0,
+        1000.0
+      ],
+      "reversibility": false,
+      "stoichiometry": {
+        "atp_c": -1.0,
+        "cys__L_e": -1.0,
+        "h2o_c": -1.0,
+        "adp_c": 1.0,
+        "cys__L_c": 1.0,
+        "h_c": 1.0,
+        "pi_c": 1.0
+      },
+      "flux": 0.0
+    },
+    {
+      "id": "PAPSR",
+      "name": "phosphoadenylyl-sulfate reductase (thioredoxin)",
+      "gpr": "PA1756",
+      "subsystem": "",
+      "bounds": [
+        0.0,
+        1000.0
+      ],
+      "reversibility": false,
+      "stoichiometry": {
+        "paps_c": -1.0,
+        "trdrd_c": -1.0,
+        "h_c": 2.0,
+        "pap_c": 1.0,
+        "so3_c": 1.0,
+        "trdox_c": 1.0
+      },
+      "flux": 0.0864446285487211
+    },
+    {
+      "id": "PASR",
+      "name": "Phosphoadenylyl-sulfate reductase (thioredoxin).",
+      "gpr": "PA1756",
+      "subsystem": "",
+      "bounds": [
+        -1000.0,
+        1000.0
+      ],
+      "reversibility": true,
+      "stoichiometry": {
+        "paps_c": -1.0,
+        "trdrd_c": -1.0,
+        "h_c": 2.0,
+        "pap_c": 1.0,
+        "so3_c": 1.0,
+        "trdox_c": 1.0
+      },
+      "flux": 0.0
+    },
+    {
+      "id": "SADT2",
+      "name": "sulfate adenylyltransferase",
+      "gpr": "PA4443 and PA4442",
+      "subsystem": "",
+      "bounds": [
+        0.0,
+        1000.0
+      ],
+      "reversibility": false,
+      "stoichiometry": {
+        "atp_c": -1.0,
+        "gtp_c": -1.0,
+        "h2o_c": -1.0,
+        "so4_c": -1.0,
+        "aps_c": 1.0,
+        "gdp_c": 1.0,
+        "pi_c": 1.0,
+        "ppi_c": 1.0
+      },
+      "flux": 0.0864446285487211
+    },
+    {
+      "id": "SULabc",
+      "name": "sulfate transport via ABC system",
+      "gpr": "PA0280 and PA1493 and PA0282 and PA0281 and PA0283",
+      "subsystem": "",
+      "bounds": [
+        0.0,
+        1000.0
+      ],
+      "reversibility": false,
+      "stoichiometry": {
+        "atp_c": -1.0,
+        "h2o_c": -1.0,
+        "so4_e": -1.0,
+        "adp_c": 1.0,
+        "h_c": 1.0,
+        "pi_c": 1.0,
+        "so4_c": 1.0
+      },
+      "flux": 0.0864446285487211
+    },
+    {
+      "id": "TSULST",
+      "name": "thiosulfate sulfurtransferase",
+      "gpr": "PA4956",
+      "subsystem": "",
+      "bounds": [
+        0.0,
+        1000.0
+      ],
+      "reversibility": false,
+      "stoichiometry": {
+        "cyan_c": -1.0,
+        "tsul_c": -1.0,
+        "h_c": 1.0,
+        "so3_c": 1.0,
+        "tcynt_c": 1.0
+      },
+      "flux": 0.0
+    }
+  ],
+  "cluster_A_sulfate": [
+    {
+      "gene": "PA0280",
+      "gene_name": "cysA",
+      "fp_fn": "FP",
+      "experimental_label": "NEGATIVE_0_OF_3_NOT_CALLED_ESSENTIAL",
+      "experimental_class": "NEGATIVE",
+      "minimal_sum": 0,
+      "ko_wt_ratio": 1.063644418923784e-17,
+      "wt_growth_pred": 0.405339030635686,
+      "ko_growth_pred": 4.311365977076241e-18,
+      "ko_growth_recomputed": 5.158231451219347e-16,
+      "associated_reactions": [
+        {
+          "id": "SULabc",
+          "name": "sulfate transport via ABC system",
+          "gpr": "PA0280 and PA1493 and PA0282 and PA0281 and PA0283",
+          "subsystem": "",
+          "bounds": [
+            0.0,
+            1000.0
+          ],
+          "reversibility": false,
+          "stoichiometry": {
+            "atp_c": -1.0,
+            "h2o_c": -1.0,
+            "so4_e": -1.0,
+            "adp_c": 1.0,
+            "h_c": 1.0,
+            "pi_c": 1.0,
+            "so4_c": 1.0
+          },
+          "flux": 0.0864446285487211,
+          "blocked": false,
+          "flux_after_ko": 0.0
+        }
+      ],
+      "biomass_direct_mets": [
+        "adp_c",
+        "atp_c",
+        "h2o_c",
+        "h_c",
+        "pi_c"
+      ],
+      "biomass_direct_link": true,
+      "in_model": true
+    },
+    {
+      "gene": "PA0281",
+      "gene_name": "cysW",
+      "fp_fn": "FP",
+      "experimental_label": "NEGATIVE_0_OF_3_NOT_CALLED_ESSENTIAL",
+      "experimental_class": "NEGATIVE",
+      "minimal_sum": 0,
+      "ko_wt_ratio": 3.1348697706274367e-15,
+      "wt_growth_pred": 0.405339030635686,
+      "ko_growth_pred": 1.2706850739952405e-15,
+      "ko_growth_recomputed": 5.158231451219347e-16,
+      "associated_reactions": [
+        {
+          "id": "SULabc",
+          "name": "sulfate transport via ABC system",
+          "gpr": "PA0280 and PA1493 and PA0282 and PA0281 and PA0283",
+          "subsystem": "",
+          "bounds": [
+            0.0,
+            1000.0
+          ],
+          "reversibility": false,
+          "stoichiometry": {
+            "atp_c": -1.0,
+            "h2o_c": -1.0,
+            "so4_e": -1.0,
+            "adp_c": 1.0,
+            "h_c": 1.0,
+            "pi_c": 1.0,
+            "so4_c": 1.0
+          },
+          "flux": 0.0864446285487211,
+          "blocked": false,
+          "flux_after_ko": 0.0
+        }
+      ],
+      "biomass_direct_mets": [
+        "adp_c",
+        "atp_c",
+        "h2o_c",
+        "h_c",
+        "pi_c"
+      ],
+      "biomass_direct_link": true,
+      "in_model": true
+    },
+    {
+      "gene": "PA0282",
+      "gene_name": "cysT",
+      "fp_fn": "FP",
+      "experimental_label": "NEGATIVE_0_OF_3_NOT_CALLED_ESSENTIAL",
+      "experimental_class": "NEGATIVE",
+      "minimal_sum": 0,
+      "ko_wt_ratio": 6.422374676369604e-15,
+      "wt_growth_pred": 0.405339030635686,
+      "ko_growth_pred": 2.6032391256988328e-15,
+      "ko_growth_recomputed": 5.158231451219347e-16,
+      "associated_reactions": [
+        {
+          "id": "SULabc",
+          "name": "sulfate transport via ABC system",
+          "gpr": "PA0280 and PA1493 and PA0282 and PA0281 and PA0283",
+          "subsystem": "",
+          "bounds": [
+            0.0,
+            1000.0
+          ],
+          "reversibility": false,
+          "stoichiometry": {
+            "atp_c": -1.0,
+            "h2o_c": -1.0,
+            "so4_e": -1.0,
+            "adp_c": 1.0,
+            "h_c": 1.0,
+            "pi_c": 1.0,
+            "so4_c": 1.0
+          },
+          "flux": 0.0864446285487211,
+          "blocked": false,
+          "flux_after_ko": 0.0
+        }
+      ],
+      "biomass_direct_mets": [
+        "adp_c",
+        "atp_c",
+        "h2o_c",
+        "h_c",
+        "pi_c"
+      ],
+      "biomass_direct_link": true,
+      "in_model": true
+    },
+    {
+      "gene": "PA0283",
+      "gene_name": "sbp",
+      "fp_fn": "FP",
+      "experimental_label": "NEGATIVE_0_OF_3_NOT_CALLED_ESSENTIAL",
+      "experimental_class": "NEGATIVE",
+      "minimal_sum": 0,
+      "ko_wt_ratio": 3.308899723457974e-32,
+      "wt_growth_pred": 0.405339030635686,
+      "ko_growth_pred": 1.3412262063771446e-32,
+      "ko_growth_recomputed": 5.158231451219347e-16,
+      "associated_reactions": [
+        {
+          "id": "SULabc",
+          "name": "sulfate transport via ABC system",
+          "gpr": "PA0280 and PA1493 and PA0282 and PA0281 and PA0283",
+          "subsystem": "",
+          "bounds": [
+            0.0,
+            1000.0
+          ],
+          "reversibility": false,
+          "stoichiometry": {
+            "atp_c": -1.0,
+            "h2o_c": -1.0,
+            "so4_e": -1.0,
+            "adp_c": 1.0,
+            "h_c": 1.0,
+            "pi_c": 1.0,
+            "so4_c": 1.0
+          },
+          "flux": 0.0864446285487211,
+          "blocked": false,
+          "flux_after_ko": 0.0
+        }
+      ],
+      "biomass_direct_mets": [
+        "adp_c",
+        "atp_c",
+        "h2o_c",
+        "h_c",
+        "pi_c"
+      ],
+      "biomass_direct_link": true,
+      "in_model": true
+    },
+    {
+      "gene": "PA1493",
+      "gene_name": "cysP",
+      "fp_fn": "FP",
+      "experimental_label": "NEGATIVE_0_OF_3_NOT_CALLED_ESSENTIAL",
+      "experimental_class": "NEGATIVE",
+      "minimal_sum": 0,
+      "ko_wt_ratio": 6.46826244404477e-16,
+      "wt_growth_pred": 0.405339030635686,
+      "ko_growth_pred": 2.6218392289663195e-16,
+      "ko_growth_recomputed": 5.158231451219347e-16,
+      "associated_reactions": [
+        {
+          "id": "SULabc",
+          "name": "sulfate transport via ABC system",
+          "gpr": "PA0280 and PA1493 and PA0282 and PA0281 and PA0283",
+          "subsystem": "",
+          "bounds": [
+            0.0,
+            1000.0
+          ],
+          "reversibility": false,
+          "stoichiometry": {
+            "atp_c": -1.0,
+            "h2o_c": -1.0,
+            "so4_e": -1.0,
+            "adp_c": 1.0,
+            "h_c": 1.0,
+            "pi_c": 1.0,
+            "so4_c": 1.0
+          },
+          "flux": 0.0864446285487211,
+          "blocked": false,
+          "flux_after_ko": 0.0
+        }
+      ],
+      "biomass_direct_mets": [
+        "adp_c",
+        "atp_c",
+        "h2o_c",
+        "h_c",
+        "pi_c"
+      ],
+      "biomass_direct_link": true,
+      "in_model": true
+    }
+  ],
+  "cluster_B_translation": [
+    {
+      "gene": "PA0008",
+      "gene_name": "glyS",
+      "fp_fn": "FN",
+      "experimental_label": "POSITIVE_CONSENSUS_ESSENTIAL",
+      "experimental_class": "POSITIVE",
+      "minimal_sum": 2,
+      "ko_wt_ratio": 1.0000000020864952,
+      "wt_growth_pred": 0.405339030635686,
+      "ko_growth_pred": 0.405339031481424,
+      "ko_growth_recomputed": 0.4053390314813474,
+      "associated_reactions": [
+        {
+          "id": "GLYTRS",
+          "name": "Glycyl-tRNA synthetase",
+          "gpr": "PA0009 and PA0008",
+          "subsystem": "",
+          "bounds": [
+            0.0,
+            1000.0
+          ],
+          "reversibility": false,
+          "stoichiometry": {
+            "atp_c": -1.0,
+            "gly_c": -1.0,
+            "trnagly_c": -1.0,
+            "amp_c": 1.0,
+            "glytrna_c": 1.0,
+            "ppi_c": 1.0
+          },
+          "flux": 0.0,
+          "blocked": true,
+          "flux_after_ko": 0.0
+        }
+      ],
+      "biomass_direct_mets": [
+        "amp_c",
+        "atp_c",
+        "gly_c",
+        "ppi_c"
+      ],
+      "biomass_direct_link": true,
+      "in_model": true
+    },
+    {
+      "gene": "PA0009",
+      "gene_name": "glyQ",
+      "fp_fn": "FN",
+      "experimental_label": "POSITIVE_CONSENSUS_ESSENTIAL",
+      "experimental_class": "POSITIVE",
+      "minimal_sum": 3,
+      "ko_wt_ratio": 1.0000000020863211,
+      "wt_growth_pred": 0.405339030635686,
+      "ko_growth_pred": 0.4053390314813535,
+      "ko_growth_recomputed": 0.4053390314813474,
+      "associated_reactions": [
+        {
+          "id": "GLYTRS",
+          "name": "Glycyl-tRNA synthetase",
+          "gpr": "PA0009 and PA0008",
+          "subsystem": "",
+          "bounds": [
+            0.0,
+            1000.0
+          ],
+          "reversibility": false,
+          "stoichiometry": {
+            "atp_c": -1.0,
+            "gly_c": -1.0,
+            "trnagly_c": -1.0,
+            "amp_c": 1.0,
+            "glytrna_c": 1.0,
+            "ppi_c": 1.0
+          },
+          "flux": 0.0,
+          "blocked": true,
+          "flux_after_ko": 0.0
+        }
+      ],
+      "biomass_direct_mets": [
+        "amp_c",
+        "atp_c",
+        "gly_c",
+        "ppi_c"
+      ],
+      "biomass_direct_link": true,
+      "in_model": true
+    },
+    {
+      "gene": "PA0903",
+      "gene_name": "alaS",
+      "fp_fn": "FN",
+      "experimental_label": "POSITIVE_CONSENSUS_ESSENTIAL",
+      "experimental_class": "POSITIVE",
+      "minimal_sum": 3,
+      "ko_wt_ratio": 1.0000000020863198,
+      "wt_growth_pred": 0.405339030635686,
+      "ko_growth_pred": 0.4053390314813528,
+      "ko_growth_recomputed": 0.4053390314813474,
+      "associated_reactions": [
+        {
+          "id": "ALATRS",
+          "name": "Alanyl-tRNA synthetase",
+          "gpr": "PA0903",
+          "subsystem": "",
+          "bounds": [
+            -1000.0,
+            1000.0
+          ],
+          "reversibility": true,
+          "stoichiometry": {
+            "ala__L_c": -1.0,
+            "atp_c": -1.0,
+            "trnaala_c": -1.0,
+            "alatrna_c": 1.0,
+            "amp_c": 1.0,
+            "ppi_c": 1.0
+          },
+          "flux": 0.0,
+          "blocked": true,
+          "flux_after_ko": 0.0
+        }
+      ],
+      "biomass_direct_mets": [
+        "ala__L_c",
+        "amp_c",
+        "atp_c",
+        "ppi_c"
+      ],
+      "biomass_direct_link": true,
+      "in_model": true
+    },
+    {
+      "gene": "PA0956",
+      "gene_name": "proS",
+      "fp_fn": "FN",
+      "experimental_label": "POSITIVE_CONSENSUS_ESSENTIAL",
+      "experimental_class": "POSITIVE",
+      "minimal_sum": 3,
+      "ko_wt_ratio": 1.0000000020863913,
+      "wt_growth_pred": 0.405339030635686,
+      "ko_growth_pred": 0.4053390314813818,
+      "ko_growth_recomputed": 0.4053390314813474,
+      "associated_reactions": [
+        {
+          "id": "PROTRS",
+          "name": "Prolyl-tRNA synthetase",
+          "gpr": "PA0956",
+          "subsystem": "",
+          "bounds": [
+            0.0,
+            1000.0
+          ],
+          "reversibility": false,
+          "stoichiometry": {
+            "atp_c": -1.0,
+            "pro__L_c": -1.0,
+            "trnapro_c": -1.0,
+            "amp_c": 1.0,
+            "ppi_c": 1.0,
+            "protrna_c": 1.0
+          },
+          "flux": 0.0,
+          "blocked": true,
+          "flux_after_ko": 0.0
+        }
+      ],
+      "biomass_direct_mets": [
+        "amp_c",
+        "atp_c",
+        "ppi_c",
+        "pro__L_c"
+      ],
+      "biomass_direct_link": true,
+      "in_model": true
+    },
+    {
+      "gene": "PA0963",
+      "gene_name": "aspS",
+      "fp_fn": "FN",
+      "experimental_label": "POSITIVE_CONSENSUS_ESSENTIAL",
+      "experimental_class": "POSITIVE",
+      "minimal_sum": 3,
+      "ko_wt_ratio": 1.0000000020862898,
+      "wt_growth_pred": 0.405339030635686,
+      "ko_growth_pred": 0.4053390314813407,
+      "ko_growth_recomputed": 0.4053390314813474,
+      "associated_reactions": [
+        {
+          "id": "ASPTRS",
+          "name": "Aspartyl-tRNA synthetase",
+          "gpr": "PA0963",
+          "subsystem": "",
+          "bounds": [
+            0.0,
+            1000.0
+          ],
+          "reversibility": false,
+          "stoichiometry": {
+            "asp__L_c": -1.0,
+            "atp_c": -1.0,
+            "trnaasp_c": -1.0,
+            "amp_c": 1.0,
+            "asptrna_c": 1.0,
+            "ppi_c": 1.0
+          },
+          "flux": 0.0,
+          "blocked": true,
+          "flux_after_ko": 0.0
+        }
+      ],
+      "biomass_direct_mets": [
+        "amp_c",
+        "asp__L_c",
+        "atp_c",
+        "ppi_c"
+      ],
+      "biomass_direct_link": true,
+      "in_model": true
+    },
+    {
+      "gene": "PA1795",
+      "gene_name": "cysS",
+      "fp_fn": "FN",
+      "experimental_label": "POSITIVE_CONSENSUS_ESSENTIAL",
+      "experimental_class": "POSITIVE",
+      "minimal_sum": 3,
+      "ko_wt_ratio": 1.0000000020863231,
+      "wt_growth_pred": 0.405339030635686,
+      "ko_growth_pred": 0.4053390314813543,
+      "ko_growth_recomputed": 0.4053390314813474,
+      "associated_reactions": [
+        {
+          "id": "CYSTRS",
+          "name": "Cysteinyl-tRNA synthetase",
+          "gpr": "PA1795",
+          "subsystem": "",
+          "bounds": [
+            0.0,
+            1000.0
+          ],
+          "reversibility": false,
+          "stoichiometry": {
+            "atp_c": -1.0,
+            "cys__L_c": -1.0,
+            "trnacys_c": -1.0,
+            "amp_c": 1.0,
+            "cystrna_c": 1.0,
+            "ppi_c": 1.0
+          },
+          "flux": 0.0,
+          "blocked": true,
+          "flux_after_ko": 0.0
+        }
+      ],
+      "biomass_direct_mets": [
+        "amp_c",
+        "atp_c",
+        "cys__L_c",
+        "ppi_c"
+      ],
+      "biomass_direct_link": true,
+      "in_model": true
+    },
+    {
+      "gene": "PA2612",
+      "gene_name": "serS",
+      "fp_fn": "FN",
+      "experimental_label": "POSITIVE_CONSENSUS_ESSENTIAL",
+      "experimental_class": "POSITIVE",
+      "minimal_sum": 3,
+      "ko_wt_ratio": 1.0000000020863304,
+      "wt_growth_pred": 0.405339030635686,
+      "ko_growth_pred": 0.4053390314813572,
+      "ko_growth_recomputed": 0.4053390314813474,
+      "associated_reactions": [
+        {
+          "id": "SERTRS",
+          "name": "Seryl-tRNA synthetase",
+          "gpr": "PA2612",
+          "subsystem": "",
+          "bounds": [
+            0.0,
+            1000.0
+          ],
+          "reversibility": false,
+          "stoichiometry": {
+            "atp_c": -1.0,
+            "ser__L_c": -1.0,
+            "trnaser_c": -1.0,
+            "amp_c": 1.0,
+            "ppi_c": 1.0,
+            "sertrna_c": 1.0
+          },
+          "flux": 0.0,
+          "blocked": true,
+          "flux_after_ko": 0.0
+        }
+      ],
+      "biomass_direct_mets": [
+        "amp_c",
+        "atp_c",
+        "ppi_c",
+        "ser__L_c"
+      ],
+      "biomass_direct_link": true,
+      "in_model": true
+    },
+    {
+      "gene": "PA2739",
+      "gene_name": "pheT",
+      "fp_fn": "FN",
+      "experimental_label": "POSITIVE_CONSENSUS_ESSENTIAL",
+      "experimental_class": "POSITIVE",
+      "minimal_sum": 3,
+      "ko_wt_ratio": 1.0000000020863071,
+      "wt_growth_pred": 0.405339030635686,
+      "ko_growth_pred": 0.4053390314813478,
+      "ko_growth_recomputed": 0.4053390314813474,
+      "associated_reactions": [
+        {
+          "id": "PHETRS",
+          "name": "Phenylalanyl-tRNA synthetase",
+          "gpr": "PA2740 and PA2739",
+          "subsystem": "",
+          "bounds": [
+            0.0,
+            1000.0
+          ],
+          "reversibility": false,
+          "stoichiometry": {
+            "atp_c": -1.0,
+            "phe__L_c": -1.0,
+            "trnaphe_c": -1.0,
+            "amp_c": 1.0,
+            "phetrna_c": 1.0,
+            "ppi_c": 1.0
+          },
+          "flux": 0.0,
+          "blocked": true,
+          "flux_after_ko": 0.0
+        }
+      ],
+      "biomass_direct_mets": [
+        "amp_c",
+        "atp_c",
+        "phe__L_c",
+        "ppi_c"
+      ],
+      "biomass_direct_link": true,
+      "in_model": true
+    },
+    {
+      "gene": "PA2740",
+      "gene_name": "pheS",
+      "fp_fn": "FN",
+      "experimental_label": "POSITIVE_CONSENSUS_ESSENTIAL",
+      "experimental_class": "POSITIVE",
+      "minimal_sum": 3,
+      "ko_wt_ratio": 1.000000002086305,
+      "wt_growth_pred": 0.405339030635686,
+      "ko_growth_pred": 0.4053390314813467,
+      "ko_growth_recomputed": 0.4053390314813474,
+      "associated_reactions": [
+        {
+          "id": "PHETRS",
+          "name": "Phenylalanyl-tRNA synthetase",
+          "gpr": "PA2740 and PA2739",
+          "subsystem": "",
+          "bounds": [
+            0.0,
+            1000.0
+          ],
+          "reversibility": false,
+          "stoichiometry": {
+            "atp_c": -1.0,
+            "phe__L_c": -1.0,
+            "trnaphe_c": -1.0,
+            "amp_c": 1.0,
+            "phetrna_c": 1.0,
+            "ppi_c": 1.0
+          },
+          "flux": 0.0,
+          "blocked": true,
+          "flux_after_ko": 0.0
+        }
+      ],
+      "biomass_direct_mets": [
+        "amp_c",
+        "atp_c",
+        "phe__L_c",
+        "ppi_c"
+      ],
+      "biomass_direct_link": true,
+      "in_model": true
+    },
+    {
+      "gene": "PA2744",
+      "gene_name": "thrS",
+      "fp_fn": "FN",
+      "experimental_label": "POSITIVE_CONSENSUS_ESSENTIAL",
+      "experimental_class": "POSITIVE",
+      "minimal_sum": 3,
+      "ko_wt_ratio": 1.0000000020862798,
+      "wt_growth_pred": 0.405339030635686,
+      "ko_growth_pred": 0.4053390314813366,
+      "ko_growth_recomputed": 0.4053390314813474,
+      "associated_reactions": [
+        {
+          "id": "THRTRS",
+          "name": "Threonyl-tRNA synthetase",
+          "gpr": "PA2744",
+          "subsystem": "",
+          "bounds": [
+            0.0,
+            1000.0
+          ],
+          "reversibility": false,
+          "stoichiometry": {
+            "atp_c": -1.0,
+            "thr__L_c": -1.0,
+            "trnathr_c": -1.0,
+            "amp_c": 1.0,
+            "ppi_c": 1.0,
+            "thrtrna_c": 1.0
+          },
+          "flux": 0.0,
+          "blocked": true,
+          "flux_after_ko": 0.0
+        }
+      ],
+      "biomass_direct_mets": [
+        "amp_c",
+        "atp_c",
+        "ppi_c",
+        "thr__L_c"
+      ],
+      "biomass_direct_link": true,
+      "in_model": true
+    },
+    {
+      "gene": "PA3134",
+      "gene_name": "gltX",
+      "fp_fn": "FN",
+      "experimental_label": "POSITIVE_CONSENSUS_ESSENTIAL",
+      "experimental_class": "POSITIVE",
+      "minimal_sum": 2,
+      "ko_wt_ratio": 1.000000002086303,
+      "wt_growth_pred": 0.405339030635686,
+      "ko_growth_pred": 0.405339031481346,
+      "ko_growth_recomputed": 0.4053390314813474,
+      "associated_reactions": [
+        {
+          "id": "GLUTRS",
+          "name": "Glutamyl-tRNA synthetase",
+          "gpr": "PA4724 or PA3134",
+          "subsystem": "",
+          "bounds": [
+            0.0,
+            1000.0
+          ],
+          "reversibility": false,
+          "stoichiometry": {
+            "atp_c": -1.0,
+            "glu__L_c": -1.0,
+            "trnaglu_c": -1.0,
+            "amp_c": 1.0,
+            "glutrna_c": 1.0,
+            "ppi_c": 1.0
+          },
+          "flux": 3.242712251850564e-06,
+          "blocked": false,
+          "flux_after_ko": 3.2427122519780244e-06
+        }
+      ],
+      "biomass_direct_mets": [
+        "amp_c",
+        "atp_c",
+        "glu__L_c",
+        "ppi_c"
+      ],
+      "biomass_direct_link": true,
+      "in_model": true
+    },
+    {
+      "gene": "PA3700",
+      "gene_name": "lysS",
+      "fp_fn": "FN",
+      "experimental_label": "POSITIVE_CONSENSUS_ESSENTIAL",
+      "experimental_class": "POSITIVE",
+      "minimal_sum": 3,
+      "ko_wt_ratio": 1.0000000020862798,
+      "wt_growth_pred": 0.405339030635686,
+      "ko_growth_pred": 0.4053390314813366,
+      "ko_growth_recomputed": 0.4053390314813474,
+      "associated_reactions": [
+        {
+          "id": "LYSTRS",
+          "name": "Lysyl-tRNA synthetase",
+          "gpr": "PA3700",
+          "subsystem": "",
+          "bounds": [
+            0.0,
+            1000.0
+          ],
+          "reversibility": false,
+          "stoichiometry": {
+            "atp_c": -1.0,
+            "lys__L_c": -1.0,
+            "trnalys_c": -1.0,
+            "amp_c": 1.0,
+            "lystrna_c": 1.0,
+            "ppi_c": 1.0
+          },
+          "flux": 0.0,
+          "blocked": true,
+          "flux_after_ko": 0.0
+        }
+      ],
+      "biomass_direct_mets": [
+        "amp_c",
+        "atp_c",
+        "lys__L_c",
+        "ppi_c"
+      ],
+      "biomass_direct_link": true,
+      "in_model": true
+    },
+    {
+      "gene": "PA3802",
+      "gene_name": "hisS",
+      "fp_fn": "FN",
+      "experimental_label": "POSITIVE_CONSENSUS_ESSENTIAL",
+      "experimental_class": "POSITIVE",
+      "minimal_sum": 2,
+      "ko_wt_ratio": 1.0000000020862798,
+      "wt_growth_pred": 0.405339030635686,
+      "ko_growth_pred": 0.4053390314813366,
+      "ko_growth_recomputed": 0.4053390314813474,
+      "associated_reactions": [
+        {
+          "id": "HISTRS",
+          "name": "Histidyl-tRNA synthetase",
+          "gpr": "PA4939 or PA3802",
+          "subsystem": "",
+          "bounds": [
+            0.0,
+            1000.0
+          ],
+          "reversibility": false,
+          "stoichiometry": {
+            "atp_c": -1.0,
+            "his__L_c": -1.0,
+            "trnahis_c": -1.0,
+            "amp_c": 1.0,
+            "histrna_c": 1.0,
+            "ppi_c": 1.0
+          },
+          "flux": 0.0,
+          "blocked": true,
+          "flux_after_ko": 0.0
+        }
+      ],
+      "biomass_direct_mets": [
+        "amp_c",
+        "atp_c",
+        "his__L_c",
+        "ppi_c"
+      ],
+      "biomass_direct_link": true,
+      "in_model": true
+    },
+    {
+      "gene": "PA3834",
+      "gene_name": "valS",
+      "fp_fn": "FN",
+      "experimental_label": "POSITIVE_CONSENSUS_ESSENTIAL",
+      "experimental_class": "POSITIVE",
+      "minimal_sum": 3,
+      "ko_wt_ratio": 1.000000002086318,
+      "wt_growth_pred": 0.405339030635686,
+      "ko_growth_pred": 0.4053390314813521,
+      "ko_growth_recomputed": 0.4053390314813474,
+      "associated_reactions": [
+        {
+          "id": "VALTRS",
+          "name": "Valyl-tRNA synthetase",
+          "gpr": "PA3834",
+          "subsystem": "",
+          "bounds": [
+            0.0,
+            1000.0
+          ],
+          "reversibility": false,
+          "stoichiometry": {
+            "atp_c": -1.0,
+            "trnaval_c": -1.0,
+            "val__L_c": -1.0,
+            "amp_c": 1.0,
+            "ppi_c": 1.0,
+            "valtrna_c": 1.0
+          },
+          "flux": 0.0,
+          "blocked": true,
+          "flux_after_ko": 0.0
+        }
+      ],
+      "biomass_direct_mets": [
+        "amp_c",
+        "atp_c",
+        "ppi_c",
+        "val__L_c"
+      ],
+      "biomass_direct_link": true,
+      "in_model": true
+    },
+    {
+      "gene": "PA3987",
+      "gene_name": "leuS",
+      "fp_fn": "FN",
+      "experimental_label": "POSITIVE_CONSENSUS_ESSENTIAL",
+      "experimental_class": "POSITIVE",
+      "minimal_sum": 2,
+      "ko_wt_ratio": 1.0000000020863875,
+      "wt_growth_pred": 0.405339030635686,
+      "ko_growth_pred": 0.4053390314813804,
+      "ko_growth_recomputed": 0.4053390314813474,
+      "associated_reactions": [
+        {
+          "id": "LEUTRS",
+          "name": "Leucyl-tRNA synthetase",
+          "gpr": "PA3987",
+          "subsystem": "",
+          "bounds": [
+            0.0,
+            1000.0
+          ],
+          "reversibility": false,
+          "stoichiometry": {
+            "atp_c": -1.0,
+            "leu__L_c": -1.0,
+            "trnaleu_c": -1.0,
+            "amp_c": 1.0,
+            "leutrna_c": 1.0,
+            "ppi_c": 1.0
+          },
+          "flux": 0.0,
+          "blocked": true,
+          "flux_after_ko": 0.0
+        }
+      ],
+      "biomass_direct_mets": [
+        "amp_c",
+        "atp_c",
+        "leu__L_c",
+        "ppi_c"
+      ],
+      "biomass_direct_link": true,
+      "in_model": true
+    },
+    {
+      "gene": "PA4560",
+      "gene_name": "ileS",
+      "fp_fn": "FN",
+      "experimental_label": "POSITIVE_CONSENSUS_ESSENTIAL",
+      "experimental_class": "POSITIVE",
+      "minimal_sum": 2,
+      "ko_wt_ratio": 1.0000000020863176,
+      "wt_growth_pred": 0.405339030635686,
+      "ko_growth_pred": 0.4053390314813519,
+      "ko_growth_recomputed": 0.4053390314813474,
+      "associated_reactions": [
+        {
+          "id": "ILETRS",
+          "name": "Isoleucyl-tRNA synthetase",
+          "gpr": "PA4560",
+          "subsystem": "",
+          "bounds": [
+            0.0,
+            1000.0
+          ],
+          "reversibility": false,
+          "stoichiometry": {
+            "atp_c": -1.0,
+            "ile__L_c": -1.0,
+            "trnaile_c": -1.0,
+            "amp_c": 1.0,
+            "iletrna_c": 1.0,
+            "ppi_c": 1.0
+          },
+          "flux": 0.0,
+          "blocked": true,
+          "flux_after_ko": 0.0
+        }
+      ],
+      "biomass_direct_mets": [
+        "amp_c",
+        "atp_c",
+        "ile__L_c",
+        "ppi_c"
+      ],
+      "biomass_direct_link": true,
+      "in_model": true
+    },
+    {
+      "gene": "PA4939",
+      "gene_name": "nan",
+      "fp_fn": "FN",
+      "experimental_label": "POSITIVE_CONSENSUS_ESSENTIAL",
+      "experimental_class": "POSITIVE",
+      "minimal_sum": 2,
+      "ko_wt_ratio": 1.0000000020863355,
+      "wt_growth_pred": 0.405339030635686,
+      "ko_growth_pred": 0.4053390314813592,
+      "ko_growth_recomputed": 0.4053390314813474,
+      "associated_reactions": [
+        {
+          "id": "HISTRS",
+          "name": "Histidyl-tRNA synthetase",
+          "gpr": "PA4939 or PA3802",
+          "subsystem": "",
+          "bounds": [
+            0.0,
+            1000.0
+          ],
+          "reversibility": false,
+          "stoichiometry": {
+            "atp_c": -1.0,
+            "his__L_c": -1.0,
+            "trnahis_c": -1.0,
+            "amp_c": 1.0,
+            "histrna_c": 1.0,
+            "ppi_c": 1.0
+          },
+          "flux": 0.0,
+          "blocked": true,
+          "flux_after_ko": 0.0
+        }
+      ],
+      "biomass_direct_mets": [
+        "amp_c",
+        "atp_c",
+        "his__L_c",
+        "ppi_c"
+      ],
+      "biomass_direct_link": true,
+      "in_model": true
+    },
+    {
+      "gene": "PA5051",
+      "gene_name": "argS",
+      "fp_fn": "FN",
+      "experimental_label": "POSITIVE_CONSENSUS_ESSENTIAL",
+      "experimental_class": "POSITIVE",
+      "minimal_sum": 3,
+      "ko_wt_ratio": 1.0000000020862898,
+      "wt_growth_pred": 0.405339030635686,
+      "ko_growth_pred": 0.4053390314813407,
+      "ko_growth_recomputed": 0.4053390314813474,
+      "associated_reactions": [
+        {
+          "id": "ARGTRS",
+          "name": "Arginyl-tRNA synthetase",
+          "gpr": "PA5051",
+          "subsystem": "",
+          "bounds": [
+            0.0,
+            1000.0
+          ],
+          "reversibility": false,
+          "stoichiometry": {
+            "arg__L_c": -1.0,
+            "atp_c": -1.0,
+            "trnaarg_c": -1.0,
+            "amp_c": 1.0,
+            "argtrna_c": 1.0,
+            "ppi_c": 1.0
+          },
+          "flux": 0.0,
+          "blocked": true,
+          "flux_after_ko": 0.0
+        }
+      ],
+      "biomass_direct_mets": [
+        "amp_c",
+        "arg__L_c",
+        "atp_c",
+        "ppi_c"
+      ],
+      "biomass_direct_link": true,
+      "in_model": true
+    }
+  ],
+  "cluster_C_isoenzyme": [
+    {
+      "gene": "PA1580",
+      "gene_name": "gltA",
+      "fp_fn": "FN",
+      "experimental_label": "POSITIVE_CONSENSUS_ESSENTIAL",
+      "experimental_class": "POSITIVE",
+      "minimal_sum": 2,
+      "ko_wt_ratio": 1.0000000020862798,
+      "wt_growth_pred": 0.405339030635686,
+      "ko_growth_pred": 0.4053390314813366,
+      "ko_growth_recomputed": 0.4053390314813474,
+      "associated_reactions": [
+        {
+          "id": "CS",
+          "name": "citrate synthase",
+          "gpr": "PA0795 or PA1580",
+          "subsystem": "",
+          "bounds": [
+            0.0,
+            1000.0
+          ],
+          "reversibility": false,
+          "stoichiometry": {
+            "accoa_c": -1.0,
+            "h2o_c": -1.0,
+            "oaa_c": -1.0,
+            "cit_c": 1.0,
+            "coa_c": 1.0,
+            "h_c": 1.0
+          },
+          "flux": 4.9445868736745275,
+          "blocked": false,
+          "flux_after_ko": 4.944586873683716
+        }
+      ],
+      "biomass_direct_mets": [
+        "accoa_c",
+        "coa_c",
+        "h2o_c",
+        "h_c"
+      ],
+      "biomass_direct_link": true,
+      "in_model": true
+    },
+    {
+      "gene": "PA1787",
+      "gene_name": "acnB",
+      "fp_fn": "FN",
+      "experimental_label": "POSITIVE_CONSENSUS_ESSENTIAL",
+      "experimental_class": "POSITIVE",
+      "minimal_sum": 2,
+      "ko_wt_ratio": 1.0000000020863062,
+      "wt_growth_pred": 0.405339030635686,
+      "ko_growth_pred": 0.4053390314813473,
+      "ko_growth_recomputed": 0.4053390314813474,
+      "associated_reactions": [
+        {
+          "id": "ACONT",
+          "name": "aconitase",
+          "gpr": "PA1787 or PA1562",
+          "subsystem": "",
+          "bounds": [
+            -1000.0,
+            1000.0
+          ],
+          "reversibility": true,
+          "stoichiometry": {
+            "cit_c": -1.0,
+            "icit_c": 1.0
+          },
+          "flux": 4.9445868736745275,
+          "blocked": false,
+          "flux_after_ko": 4.944586873683716
+        }
+      ],
+      "biomass_direct_mets": [],
+      "biomass_direct_link": false,
+      "in_model": true
+    },
+    {
+      "gene": "PA0944",
+      "gene_name": "purN",
+      "fp_fn": "FN",
+      "experimental_label": "POSITIVE_CONSENSUS_ESSENTIAL",
+      "experimental_class": "POSITIVE",
+      "minimal_sum": 2,
+      "ko_wt_ratio": 1.0000000020863926,
+      "wt_growth_pred": 0.405339030635686,
+      "ko_growth_pred": 0.4053390314813824,
+      "ko_growth_recomputed": 0.4053390314813474,
+      "associated_reactions": [
+        {
+          "id": "GARFTi",
+          "name": "phosphoribosylglycinamide formyltransferase, irreversible",
+          "gpr": "PA0944 or (PA3751 or PA0836)",
+          "subsystem": "",
+          "bounds": [
+            0.0,
+            1000.0
+          ],
+          "reversibility": false,
+          "stoichiometry": {
+            "10fthf_c": -1.0,
+            "gar_c": -1.0,
+            "fgam_c": 1.0,
+            "h_c": 1.0,
+            "thf_c": 1.0
+          },
+          "flux": 0.1560916022940667,
+          "blocked": false,
+          "flux_after_ko": 0.15609160229411728
+        }
+      ],
+      "biomass_direct_mets": [
+        "h_c"
+      ],
+      "biomass_direct_link": true,
+      "in_model": true
+    }
+  ],
+  "cluster_C_partners": {
+    "PA0795": {
+      "in_model": true,
+      "gene_name": "prpC",
+      "reactions": [
+        {
+          "id": "CS",
+          "name": "citrate synthase",
+          "gpr": "PA0795 or PA1580",
+          "subsystem": "",
+          "bounds": [
+            0.0,
+            1000.0
+          ],
+          "reversibility": false,
+          "stoichiometry": {
+            "accoa_c": -1.0,
+            "h2o_c": -1.0,
+            "oaa_c": -1.0,
+            "cit_c": 1.0,
+            "coa_c": 1.0,
+            "h_c": 1.0
+          },
+          "flux": 4.9445868736745275
+        }
+      ]
+    },
+    "PA1562": {
+      "in_model": true,
+      "gene_name": "acnA",
+      "reactions": [
+        {
+          "id": "ACONT",
+          "name": "aconitase",
+          "gpr": "PA1787 or PA1562",
+          "subsystem": "",
+          "bounds": [
+            -1000.0,
+            1000.0
+          ],
+          "reversibility": true,
+          "stoichiometry": {
+            "cit_c": -1.0,
+            "icit_c": 1.0
+          },
+          "flux": 4.9445868736745275
+        }
+      ]
+    },
+    "PA3751": {
+      "in_model": true,
+      "gene_name": "purT",
+      "reactions": [
+        {
+          "id": "GARFTi",
+          "name": "phosphoribosylglycinamide formyltransferase, irreversible",
+          "gpr": "PA0944 or (PA3751 or PA0836)",
+          "subsystem": "",
+          "bounds": [
+            0.0,
+            1000.0
+          ],
+          "reversibility": false,
+          "stoichiometry": {
+            "10fthf_c": -1.0,
+            "gar_c": -1.0,
+            "fgam_c": 1.0,
+            "h_c": 1.0,
+            "thf_c": 1.0
+          },
+          "flux": 0.1560916022940667
+        },
+        {
+          "id": "GART",
+          "name": "Phosphoribosylglycinamide formyltransferase 2",
+          "gpr": "PA3751 or PA0836",
+          "subsystem": "",
+          "bounds": [
+            0.0,
+            1000.0
+          ],
+          "reversibility": false,
+          "stoichiometry": {
+            "atp_c": -1.0,
+            "for_c": -1.0,
+            "gar_c": -1.0,
+            "adp_c": 1.0,
+            "fgam_c": 1.0,
+            "h_c": 1.0,
+            "pi_c": 1.0
+          },
+          "flux": 0.02119679931228492
+        },
+        {
+          "id": "ACKr",
+          "name": "acetate kinase",
+          "gpr": "PA0836 or (PA3751 or PA0836)",
+          "subsystem": "",
+          "bounds": [
+            -1000.0,
+            1000.0
+          ],
+          "reversibility": true,
+          "stoichiometry": {
+            "ac_c": -1.0,
+            "atp_c": -1.0,
+            "actp_c": 1.0,
+            "adp_c": 1.0
+          },
+          "flux": 0.07631317945698839
+        }
+      ]
+    },
+    "PA0836": {
+      "in_model": true,
+      "gene_name": "ackA",
+      "reactions": [
+        {
+          "id": "GARFTi",
+          "name": "phosphoribosylglycinamide formyltransferase, irreversible",
+          "gpr": "PA0944 or (PA3751 or PA0836)",
+          "subsystem": "",
+          "bounds": [
+            0.0,
+            1000.0
+          ],
+          "reversibility": false,
+          "stoichiometry": {
+            "10fthf_c": -1.0,
+            "gar_c": -1.0,
+            "fgam_c": 1.0,
+            "h_c": 1.0,
+            "thf_c": 1.0
+          },
+          "flux": 0.1560916022940667
+        },
+        {
+          "id": "GART",
+          "name": "Phosphoribosylglycinamide formyltransferase 2",
+          "gpr": "PA3751 or PA0836",
+          "subsystem": "",
+          "bounds": [
+            0.0,
+            1000.0
+          ],
+          "reversibility": false,
+          "stoichiometry": {
+            "atp_c": -1.0,
+            "for_c": -1.0,
+            "gar_c": -1.0,
+            "adp_c": 1.0,
+            "fgam_c": 1.0,
+            "h_c": 1.0,
+            "pi_c": 1.0
+          },
+          "flux": 0.02119679931228492
+        },
+        {
+          "id": "ACKr",
+          "name": "acetate kinase",
+          "gpr": "PA0836 or (PA3751 or PA0836)",
+          "subsystem": "",
+          "bounds": [
+            -1000.0,
+            1000.0
+          ],
+          "reversibility": true,
+          "stoichiometry": {
+            "ac_c": -1.0,
+            "atp_c": -1.0,
+            "actp_c": 1.0,
+            "adp_c": 1.0
+          },
+          "flux": 0.07631317945698839
+        }
+      ]
+    }
+  },
+  "cluster_D_lipid": [
+    {
+      "gene": "PA0005",
+      "gene_name": "lptA",
+      "fp_fn": "FP",
+      "experimental_label": "NEGATIVE_0_OF_3_NOT_CALLED_ESSENTIAL",
+      "experimental_class": "NEGATIVE",
+      "minimal_sum": 0,
+      "ko_wt_ratio": 2.25793796173966e-16,
+      "wt_growth_pred": 0.405339030635686,
+      "ko_growth_pred": 9.152303846470704e-17,
+      "ko_growth_recomputed": 6.692152634511084e-16,
+      "associated_reactions": [
+        {
+          "id": "12DAG3Ps_PA",
+          "name": "1,2-diacyl-sn-glycerol 3-phosphate synthesis",
+          "gpr": "PA0005 and PA3673",
+          "subsystem": "",
+          "bounds": [
+            0.0,
+            1000.0
+          ],
+          "reversibility": false,
+          "stoichiometry": {
+            "2tocdACP_c": -0.51,
+            "glyc3p_c": -0.5,
+            "hdeACP_c": -0.13,
+            "ocdACP_c": -0.03,
+            "palmACP_c": -0.33,
+            "12dag3p_PA_c": 0.01,
+            "ACP_c": 1.0
+          },
+          "flux": 0.08293236584095397,
+          "blocked": false,
+          "flux_after_ko": 0.0
+        }
+      ],
+      "biomass_direct_mets": [],
+      "biomass_direct_link": false,
+      "in_model": true
+    },
+    {
+      "gene": "PA3673",
+      "gene_name": "plsB",
+      "fp_fn": "FP",
+      "experimental_label": "NEGATIVE_0_OF_3_NOT_CALLED_ESSENTIAL",
+      "experimental_class": "NEGATIVE",
+      "minimal_sum": 0,
+      "ko_wt_ratio": -3.684534359338182e-16,
+      "wt_growth_pred": 0.405339030635686,
+      "ko_growth_pred": -1.4934855855580171e-16,
+      "ko_growth_recomputed": 6.692152634511084e-16,
+      "associated_reactions": [
+        {
+          "id": "12DAG3Ps_PA",
+          "name": "1,2-diacyl-sn-glycerol 3-phosphate synthesis",
+          "gpr": "PA0005 and PA3673",
+          "subsystem": "",
+          "bounds": [
+            0.0,
+            1000.0
+          ],
+          "reversibility": false,
+          "stoichiometry": {
+            "2tocdACP_c": -0.51,
+            "glyc3p_c": -0.5,
+            "hdeACP_c": -0.13,
+            "ocdACP_c": -0.03,
+            "palmACP_c": -0.33,
+            "12dag3p_PA_c": 0.01,
+            "ACP_c": 1.0
+          },
+          "flux": 0.08293236584095397,
+          "blocked": false,
+          "flux_after_ko": 0.0
+        }
+      ],
+      "biomass_direct_mets": [],
+      "biomass_direct_link": false,
+      "in_model": true
+    }
+  ],
+  "cluster_E_bypass": [
+    {
+      "gene": "PA0024",
+      "gene_name": "hemF",
+      "fp_fn": "FN",
+      "experimental_label": "POSITIVE_CONSENSUS_ESSENTIAL",
+      "experimental_class": "POSITIVE",
+      "minimal_sum": 3,
+      "ko_wt_ratio": 0.999999552835754,
+      "wt_growth_pred": 0.405339030635686,
+      "ko_growth_pred": 0.405338849382564,
+      "ko_growth_recomputed": 0.40533884938256254,
+      "associated_reactions": [
+        {
+          "id": "CPPPGO",
+          "name": "coproporphyrinogen oxidase",
+          "gpr": "PA0024",
+          "subsystem": "",
+          "bounds": [
+            0.0,
+            1000.0
+          ],
+          "reversibility": false,
+          "stoichiometry": {
+            "cpppg3_c": -1.0,
+            "h_c": -2.0,
+            "o2_c": -1.0,
+            "co2_c": 2.0,
+            "h2o_c": 2.0,
+            "pppg9_c": 1.0
+          },
+          "flux": 4.053390314813205e-07,
+          "blocked": false,
+          "flux_after_ko": 0.0
+        }
+      ],
+      "biomass_direct_mets": [
+        "h2o_c",
+        "h_c"
+      ],
+      "biomass_direct_link": true,
+      "in_model": true
+    },
+    {
+      "gene": "PA0607",
+      "gene_name": "rpe",
+      "fp_fn": "FN",
+      "experimental_label": "POSITIVE_CONSENSUS_ESSENTIAL",
+      "experimental_class": "POSITIVE",
+      "minimal_sum": 3,
+      "ko_wt_ratio": 0.99367046180385,
+      "wt_growth_pred": 0.405339030635686,
+      "ko_growth_pred": 0.402773421758887,
+      "ko_growth_recomputed": 0.4027734217587492,
+      "associated_reactions": [
+        {
+          "id": "RPE",
+          "name": "ribulose 5-phosphate 3-epimerase",
+          "gpr": "PA0607",
+          "subsystem": "",
+          "bounds": [
+            -1000.0,
+            1000.0
+          ],
+          "reversibility": true,
+          "stoichiometry": {
+            "ru5p__D_c": -1.0,
+            "xu5p__D_c": 1.0
+          },
+          "flux": -0.29119353352089816,
+          "blocked": false,
+          "flux_after_ko": 0.0
+        }
+      ],
+      "biomass_direct_mets": [],
+      "biomass_direct_link": false,
+      "in_model": true
+    },
+    {
+      "gene": "PA3107",
+      "gene_name": "metZ",
+      "fp_fn": "FN",
+      "experimental_label": "POSITIVE_CONSENSUS_ESSENTIAL",
+      "experimental_class": "POSITIVE",
+      "minimal_sum": 2,
+      "ko_wt_ratio": 0.9967688030017248,
+      "wt_growth_pred": 0.405339030635686,
+      "ko_growth_pred": 0.4040293003766121,
+      "ko_growth_recomputed": 0.40402930037657653,
+      "associated_reactions": [
+        {
+          "id": "SHSL2",
+          "name": "O-succinylhomoserine lyase (H2S)",
+          "gpr": "PA3107",
+          "subsystem": "",
+          "bounds": [
+            0.0,
+            1000.0
+          ],
+          "reversibility": false,
+          "stoichiometry": {
+            "h2s_c": -1.0,
+            "suchms_c": -1.0,
+            "hcys__L_c": 1.0,
+            "succ_c": 1.0
+          },
+          "flux": 0.0864446285487211,
+          "blocked": false,
+          "flux_after_ko": 0.0
+        }
+      ],
+      "biomass_direct_mets": [],
+      "biomass_direct_link": false,
+      "in_model": true
+    },
+    {
+      "gene": "PA1049",
+      "gene_name": "pdxH",
+      "fp_fn": "FN",
+      "experimental_label": "POSITIVE_CONSENSUS_ESSENTIAL",
+      "experimental_class": "POSITIVE",
+      "minimal_sum": 3,
+      "ko_wt_ratio": 1.000000002086304,
+      "wt_growth_pred": 0.405339030635686,
+      "ko_growth_pred": 0.4053390314813465,
+      "ko_growth_recomputed": 0.4053390314813485,
+      "associated_reactions": [
+        {
+          "id": "PYAM5PO",
+          "name": "pyridoxamine-phosphate oxidase",
+          "gpr": "PA1049",
+          "subsystem": "",
+          "bounds": [
+            0.0,
+            1000.0
+          ],
+          "reversibility": false,
+          "stoichiometry": {
+            "h2o_c": -1.0,
+            "o2_c": -1.0,
+            "pyam5p_c": -1.0,
+            "h2o2_c": 1.0,
+            "nh4_c": 1.0,
+            "pydx5p_c": 1.0
+          },
+          "flux": 0.0,
+          "blocked": false,
+          "flux_after_ko": 0.0
+        },
+        {
+          "id": "PYDXNO",
+          "name": "pyridoxine oxidase",
+          "gpr": "PA1049",
+          "subsystem": "",
+          "bounds": [
+            -1000.0,
+            1000.0
+          ],
+          "reversibility": true,
+          "stoichiometry": {
+            "o2_c": -1.0,
+            "pydxn_c": -1.0,
+            "h2o2_c": 1.0,
+            "pydx_c": 1.0
+          },
+          "flux": 0.0,
+          "blocked": false,
+          "flux_after_ko": 0.0
+        },
+        {
+          "id": "PDX5PO",
+          "name": "pyridoxine 5'-phosphate oxidase",
+          "gpr": "PA1049",
+          "subsystem": "",
+          "bounds": [
+            -1000.0,
+            1000.0
+          ],
+          "reversibility": true,
+          "stoichiometry": {
+            "o2_c": -1.0,
+            "pdx5p_c": -1.0,
+            "h2o2_c": 1.0,
+            "h_c": 1.0,
+            "pydx5p_c": 1.0
+          },
+          "flux": 0.0,
+          "blocked": false,
+          "flux_after_ko": 0.0
+        },
+        {
+          "id": "PYDXO",
+          "name": "pyridoxal oxidase",
+          "gpr": "PA1049",
+          "subsystem": "",
+          "bounds": [
+            -1000.0,
+            1000.0
+          ],
+          "reversibility": true,
+          "stoichiometry": {
+            "h2o_c": -2.0,
+            "nh4_c": -1.0,
+            "o2_c": -0.5,
+            "pydx_c": -1.0,
+            "h2o2_c": 2.0,
+            "h_c": 1.0,
+            "pydam_c": 1.0
+          },
+          "flux": 0.0,
+          "blocked": false,
+          "flux_after_ko": 0.0
+        }
+      ],
+      "biomass_direct_mets": [
+        "h2o_c",
+        "h_c"
+      ],
+      "biomass_direct_link": true,
+      "in_model": true
+    },
+    {
+      "gene": "PA3480",
+      "gene_name": "nan",
+      "fp_fn": "FN",
+      "experimental_label": "POSITIVE_CONSENSUS_ESSENTIAL",
+      "experimental_class": "POSITIVE",
+      "minimal_sum": 3,
+      "ko_wt_ratio": 1.0000000020863231,
+      "wt_growth_pred": 0.405339030635686,
+      "ko_growth_pred": 0.4053390314813543,
+      "ko_growth_recomputed": 0.4053390314813485,
+      "associated_reactions": [
+        {
+          "id": "DCTPD",
+          "name": "dCTP deaminase",
+          "gpr": "PA3480",
+          "subsystem": "",
+          "bounds": [
+            0.0,
+            1000.0
+          ],
+          "reversibility": false,
+          "stoichiometry": {
+            "dctp_c": -1.0,
+            "h2o_c": -1.0,
+            "h_c": -1.0,
+            "dutp_c": 1.0,
+            "nh4_c": 1.0
+          },
+          "flux": 0.0,
+          "blocked": false,
+          "flux_after_ko": 0.0
+        }
+      ],
+      "biomass_direct_mets": [
+        "dctp_c",
+        "h2o_c",
+        "h_c"
+      ],
+      "biomass_direct_link": true,
+      "in_model": true
+    }
+  ],
+  "pa1647_presence": {
+    "in_model_genes": false,
+    "reactions": [],
+    "name_hits": [
+      {
+        "id": "SULabc",
+        "name": "sulfate transport via ABC system",
+        "gpr": "PA0280 and PA1493 and PA0282 and PA0281 and PA0283"
+      }
+    ]
+  },
+  "cluster_E_bypass_traces": {
+    "PA0024": {
+      "ko_growth": 0.40533884938256254,
+      "primary_reactions": [
+        {
+          "id": "CPPPGO",
+          "wt_flux": 4.053390314813205e-07,
+          "ko_flux": 0.0,
+          "blocked": false
+        }
+      ],
+      "top_flux_deltas": [
+        {
+          "id": "VALTA",
+          "name": "valine transaminase",
+          "gpr": "PA5013",
+          "wt_flux": 0.08468553315289232,
+          "ko_flux": 2.613174974695956,
+          "delta": 2.5284894415430634,
+          "is_primary_associated": false
+        },
+        {
+          "id": "VALDHr",
+          "name": "valine dehydrogenase",
+          "gpr": "PA3418",
+          "wt_flux": -0.2337943599514276,
+          "ko_flux": -2.762283734507524,
+          "delta": -2.528489374556097,
+          "is_primary_associated": false
+        },
+        {
+          "id": "GLUDy",
+          "name": "glutamate dehydrogenase (NADP)",
+          "gpr": "PA4588",
+          "wt_flux": -2.5284877781370394,
+          "ko_flux": 0.0,
+          "delta": 2.5284877781370394,
+          "is_primary_associated": false
+        },
+        {
+          "id": "THD5",
+          "name": "NAD transhydrogenase",
+          "gpr": "PA0195 and PA0196",
+          "wt_flux": 0.0,
+          "ko_flux": 1.4516848365703199,
+          "delta": 1.4516848365703199,
+          "is_primary_associated": false
+        },
+        {
+          "id": "MDH",
+          "name": "malate dehydrogenase",
+          "gpr": "PA1252",
+          "wt_flux": 4.905970224145865,
+          "ko_flux": 5.982776919219908,
+          "delta": 1.0768066950740423,
+          "is_primary_associated": false
+        },
+        {
+          "id": "HCO3E",
+          "name": "carbonate dehydratase (HCO3 equilibration reaction)",
+          "gpr": "PA2053",
+          "wt_flux": 1.7893480768417938,
+          "ko_flux": 0.7125419206188051,
+          "delta": -1.0768061562229887,
+          "is_primary_associated": false
+        },
+        {
+          "id": "PC",
+          "name": "pyruvate carboxylase",
+          "gpr": "PA1400",
+          "wt_flux": 1.0768058361141126,
+          "ko_flux": 0.0,
+          "delta": -1.0768058361141126,
+          "is_primary_associated": false
+        },
+        {
+          "id": "ICDHy",
+          "name": "isocitrate dehydrogenase (NADP)",
+          "gpr": "PA2623",
+          "wt_flux": 4.9445868736745275,
+          "ko_flux": 3.8677812253245056,
+          "delta": -1.076805648350022,
+          "is_primary_associated": false
+        },
+        {
+          "id": "AKGD",
+          "name": "2-oxoglutarate dehydrogenase",
+          "gpr": "PA4829 and PA1585 and PA1586",
+          "wt_flux": 4.532642437336868,
+          "ko_flux": 3.4558369740524046,
+          "delta": -1.0768054632844635,
+          "is_primary_associated": false
+        },
+        {
+          "id": "SUCOAS",
+          "name": "succinyl-CoA synthetase (ADP-forming)",
+          "gpr": "PA1588 and PA1589",
+          "wt_flux": -4.3150406370158265,
+          "ko_flux": -3.238235271488719,
+          "delta": 1.0768053655271075,
+          "is_primary_associated": false
+        },
+        {
+          "id": "ICL",
+          "name": "Isocitrate lyase",
+          "gpr": "PA2634",
+          "wt_flux": 0.0,
+          "ko_flux": 1.076805352360339,
+          "delta": 1.076805352360339,
+          "is_primary_associated": false
+        },
+        {
+          "id": "MALS",
+          "name": "malate synthase",
+          "gpr": "PA0482",
+          "wt_flux": 0.0,
+          "ko_flux": 1.0768053523603365,
+          "delta": 1.0768053523603365,
+          "is_primary_associated": false
+        },
+        {
+          "id": "PDH",
+          "name": "pyruvate dehydrogenase",
+          "gpr": "PA5015 and PA5016 and PA4829 and PA3417 and PA3416",
+          "wt_flux": 5.937999473468889,
+          "ko_flux": 7.014804083550093,
+          "delta": 1.0768046100812043,
+          "is_primary_associated": false
+        },
+        {
+          "id": "EX_h2o_e",
+          "name": "H2O exchange",
+          "gpr": "",
+          "wt_flux": 12.78229689279038,
+          "ko_flux": 12.782300946022646,
+          "delta": 4.05323226537746e-06,
+          "is_primary_associated": false
+        },
+        {
+          "id": "H2Ot5",
+          "name": "H2O transport via diffusion",
+          "gpr": "",
+          "wt_flux": -12.78229689279038,
+          "ko_flux": -12.782300946022646,
+          "delta": -4.05323226537746e-06,
+          "is_primary_associated": false
+        },
+        {
+          "id": "ADK1",
+          "name": "adenylate kinase",
+          "gpr": "PA3686",
+          "wt_flux": 2.7710459732884423,
+          "ko_flux": 2.771048916899505,
+          "delta": 2.9436110628999756e-06,
+          "is_primary_associated": false
+        },
+        {
+          "id": "EX_h_e",
+          "name": "H+ exchange",
+          "gpr": "",
+          "wt_flux": -6.6022779956659505,
+          "ko_flux": -6.602275468770117,
+          "delta": 2.526895833909748e-06,
+          "is_primary_associated": false
+        },
+        {
+          "id": "ATPS4r",
+          "name": "ATP synthase (four protons for one ATP)",
+          "gpr": "PA1104 or PA1697 or (PA5556 and PA5560 and PA5553 and PA5554 and PA5559 and PA5558 and PA5555 and PA5557 and PA5561)",
+          "wt_flux": 24.8002605407456,
+          "ko_flux": 24.800262876768514,
+          "delta": 2.3360229128854826e-06,
+          "is_primary_associated": false
+        },
+        {
+          "id": "EX_nh4_e",
+          "name": "Ammonium exchange",
+          "gpr": "",
+          "wt_flux": -3.9567214145289715,
+          "ko_flux": -3.9567236903637264,
+          "delta": -2.2758347548723634e-06,
+          "is_primary_associated": false
+        },
+        {
+          "id": "NH4t",
+          "name": "ammonium transport via diffusion",
+          "gpr": "PA5287 or PA3039 or PA5287",
+          "wt_flux": 3.9567214145289715,
+          "ko_flux": 3.9567236903637264,
+          "delta": 2.2758347548723634e-06,
+          "is_primary_associated": false
+        },
+        {
+          "id": "NADH11",
+          "name": "NADH dehydrogenase (ubiquinone-8 & 2 protons)",
+          "gpr": "PA2637 and PA2638 and PA2639 and PA2640 and PA2641 and PA2642 and PA2643 and PA2644 and PA2645 and PA2646 and PA2647 and PA2648 and PA2649",
+          "wt_flux": 14.055895487338432,
+          "ko_flux": 14.05589754974789,
+          "delta": 2.0624094574372975e-06,
+          "is_primary_associated": false
+        },
+        {
+          "id": "CYRUBQ8",
+          "name": "cytochrome-c reductase (ubiquinone)",
+          "gpr": "PA4431 and PA4430 and PA4429",
+          "wt_flux": 18.706424701917594,
+          "ko_flux": 18.7064266004208,
+          "delta": 1.8985032070872876e-06,
+          "is_primary_associated": false
+        },
+        {
+          "id": "CYOO3_2",
+          "name": "cytochrome-c oxidase",
+          "gpr": "(PA4133 and PA0108 and PA1553 and PA1552) or (PA0108 and PA1554 and PA1553 and PA1555) or (PA0108 and PA1557 and PA1556 and PA1552) or (PA1856 and PA0108 and PA1556 and PA1555) or (PA0108 and PA1557 and PA1553 and PA1552) or (PA0108 and PA1554 and PA1556 and PA1555) or (PA1856 and PA0108 and PA1556 and PA1552) or (PA0108 and PA1554 and PA1556 and PA1552) or (PA4133 and PA0108 and PA1553 and PA1555) or (PA0108 and PA1557 and PA1556 and PA1555) or (PA0108 and PA1557 and PA1553 and PA1555) or (PA0108 and PA1554 and PA1553 and PA1552) or (PA1856 and PA0108 and PA1553 and PA1555) or (PA4133 and PA0108 and PA1556 and PA1552) or (PA1856 and PA0108 and PA1553 and PA1552) or (PA4133 and PA0108 and PA1556 and PA1555)",
+          "wt_flux": 18.706424701917598,
+          "ko_flux": 18.7064266004208,
+          "delta": 1.898503203534574e-06,
+          "is_primary_associated": false
+        },
+        {
+          "id": "ENO",
+          "name": "enolase",
+          "gpr": "PA3635",
+          "wt_flux": -1.6059876965447042,
+          "ko_flux": -1.6059895422019523,
+          "delta": -1.8456572481451161e-06,
+          "is_primary_associated": false
+        },
+        {
+          "id": "PGM",
+          "name": "phosphoglycerate mutase",
+          "gpr": "PA5131",
+          "wt_flux": -1.6059876965447042,
+          "ko_flux": -1.6059895422019523,
+          "delta": -1.8456572481451161e-06,
+          "is_primary_associated": false
+        },
+        {
+          "id": "PPS",
+          "name": "phosphoenolpyruvate synthase",
+          "gpr": "PA1770",
+          "wt_flux": 1.9273493981612575,
+          "ko_flux": 1.9273510994471343,
+          "delta": 1.7012858768428174e-06,
+          "is_primary_associated": false
+        },
+        {
+          "id": "MTHFC",
+          "name": "methenyltetrahydrofolate cyclohydrolase",
+          "gpr": "PA1796",
+          "wt_flux": 0.36676251051607034,
+          "ko_flux": 0.3667639671033793,
+          "delta": 1.4565873089344983e-06,
+          "is_primary_associated": false
+        },
+        {
+          "id": "MTHFD",
+          "name": "methylenetetrahydrofolate dehydrogenase (NADP)",
+          "gpr": "PA1796",
+          "wt_flux": 0.36676251051607034,
+          "ko_flux": 0.3667639671033793,
+          "delta": 1.4565873089344983e-06,
+          "is_primary_associated": false
+        },
+        {
+          "id": "EX_co2_e",
+          "name": "CO2 exchange",
+          "gpr": "",
+          "wt_flux": 14.954220490415935,
+          "ko_flux": 14.954219142991729,
+          "delta": -1.3474242059885455e-06,
+          "is_primary_associated": false
+        },
+        {
+          "id": "CO2t",
+          "name": "CO2 transport out via diffusion",
+          "gpr": "",
+          "wt_flux": -14.954220490415935,
+          "ko_flux": -14.954219142991729,
+          "delta": 1.3474242059885455e-06,
+          "is_primary_associated": false
+        },
+        {
+          "id": "FUM",
+          "name": "fumarase",
+          "gpr": "PA0854 or PA4470 or PA4333",
+          "wt_flux": 4.905970224145865,
+          "ko_flux": 4.905971566859571,
+          "delta": 1.342713705554388e-06,
+          "is_primary_associated": false
+        },
+        {
+          "id": "GLNS_i",
+          "name": "glutamine synthetase",
+          "gpr": "(PA3356 or PA0296 or PA2040 or PA5522 or PA5508) or PA0298 or PA5119",
+          "wt_flux": 0.7903466624817643,
+          "ko_flux": 0.7903479287743489,
+          "delta": 1.2662925845674522e-06,
+          "is_primary_associated": false
+        },
+        {
+          "id": "ASPTA1",
+          "name": "aspartate transaminase",
+          "gpr": "PA4976",
+          "wt_flux": -1.0381891865854511,
+          "ko_flux": -1.0381903415350653,
+          "delta": -1.154949614168288e-06,
+          "is_primary_associated": false
+        },
+        {
+          "id": "PPA",
+          "name": "inorganic diphosphatase",
+          "gpr": "PA4031",
+          "wt_flux": 1.202670090813615,
+          "ko_flux": 1.2026711718705978,
+          "delta": 1.081056982821238e-06,
+          "is_primary_associated": false
+        },
+        {
+          "id": "GHMT",
+          "name": "glycine hydroxymethyltransferase",
+          "gpr": "PA5415 or PA2444 or PA4602",
+          "wt_flux": 0.4209036449508338,
+          "ko_flux": 0.4209046718765571,
+          "delta": 1.0269257232908835e-06,
+          "is_primary_associated": false
+        }
+      ]
+    },
+    "PA0607": {
+      "ko_growth": 0.4027734217587492,
+      "primary_reactions": [
+        {
+          "id": "RPE",
+          "wt_flux": -0.29119353352089816,
+          "ko_flux": 0.0,
+          "blocked": false
+        }
+      ],
+      "top_flux_deltas": [
+        {
+          "id": "GLUDy",
+          "name": "glutamate dehydrogenase (NADP)",
+          "gpr": "PA4588",
+          "wt_flux": -2.5284877781370394,
+          "ko_flux": 0.0,
+          "delta": 2.5284877781370394,
+          "is_primary_associated": false
+        },
+        {
+          "id": "VALTA",
+          "name": "valine transaminase",
+          "gpr": "PA5013",
+          "wt_flux": 0.08468553315289232,
+          "ko_flux": 2.596633125588312,
+          "delta": 2.5119475924354195,
+          "is_primary_associated": false
+        },
+        {
+          "id": "VALDHr",
+          "name": "valine dehydrogenase",
+          "gpr": "PA3418",
+          "wt_flux": -0.2337943599514276,
+          "ko_flux": -2.744798162063329,
+          "delta": -2.511003802111901,
+          "is_primary_associated": false
+        },
+        {
+          "id": "THD5",
+          "name": "NAD transhydrogenase",
+          "gpr": "PA0195 and PA0196",
+          "wt_flux": 0.0,
+          "ko_flux": 2.2291648962205217,
+          "delta": 2.2291648962205217,
+          "is_primary_associated": false
+        },
+        {
+          "id": "ICDHy",
+          "name": "isocitrate dehydrogenase (NADP)",
+          "gpr": "PA2623",
+          "wt_flux": 4.9445868736745275,
+          "ko_flux": 3.7619199582702687,
+          "delta": -1.1826669154042588,
+          "is_primary_associated": false
+        },
+        {
+          "id": "AKGD",
+          "name": "2-oxoglutarate dehydrogenase",
+          "gpr": "PA4829 and PA1585 and PA1586",
+          "wt_flux": 4.532642437336868,
+          "ko_flux": 3.3525829408305383,
+          "delta": -1.1800594965063298,
+          "is_primary_associated": false
+        },
+        {
+          "id": "SUCOAS",
+          "name": "succinyl-CoA synthetase (ADP-forming)",
+          "gpr": "PA1588 and PA1589",
+          "wt_flux": -4.3150406370158265,
+          "ko_flux": -3.136358459866993,
+          "delta": 1.1786821771488336,
+          "is_primary_associated": false
+        },
+        {
+          "id": "HCO3E",
+          "name": "carbonate dehydratase (HCO3 equilibration reaction)",
+          "gpr": "PA2053",
+          "wt_flux": 1.7893480768417938,
+          "ko_flux": 0.708032175922324,
+          "delta": -1.0813159009194697,
+          "is_primary_associated": false
+        },
+        {
+          "id": "PC",
+          "name": "pyruvate carboxylase",
+          "gpr": "PA1400",
+          "wt_flux": 1.0768058361141126,
+          "ko_flux": 0.0,
+          "delta": -1.0768058361141126,
+          "is_primary_associated": false
+        },
+        {
+          "id": "ICL",
+          "name": "Isocitrate lyase",
+          "gpr": "PA2634",
+          "wt_flux": 0.0,
+          "ko_flux": 1.0699901502137292,
+          "delta": 1.0699901502137292,
+          "is_primary_associated": false
+        },
+        {
+          "id": "MALS",
+          "name": "malate synthase",
+          "gpr": "PA0482",
+          "wt_flux": 0.0,
+          "ko_flux": 1.069990150213727,
+          "delta": 1.069990150213727,
+          "is_primary_associated": false
+        },
+        {
+          "id": "MDH",
+          "name": "malate dehydrogenase",
+          "gpr": "PA1252",
+          "wt_flux": 4.905970224145865,
+          "ko_flux": 5.863528034806772,
+          "delta": 0.9575578106609068,
+          "is_primary_associated": false
+        },
+        {
+          "id": "PDH",
+          "name": "pyruvate dehydrogenase",
+          "gpr": "PA5015 and PA5016 and PA4829 and PA3417 and PA3416",
+          "wt_flux": 5.937999473468889,
+          "ko_flux": 6.88902501343907,
+          "delta": 0.951025539970181,
+          "is_primary_associated": false
+        },
+        {
+          "id": "G6PDHy",
+          "name": "glucose 6-phosphate dehydrogenase",
+          "gpr": "PA3183 or PA5439",
+          "wt_flux": -1.1363826546428868e-13,
+          "ko_flux": 0.4340256184865655,
+          "delta": 0.43402561848667914,
+          "is_primary_associated": false
+        },
+        {
+          "id": "PGDH",
+          "name": "phosphogluconate dehydrogenase",
+          "gpr": "PA0743",
+          "wt_flux": 0.0,
+          "ko_flux": 0.4340256184865655,
+          "delta": 0.4340256184865655,
+          "is_primary_associated": false
+        },
+        {
+          "id": "PGL",
+          "name": "6-phosphogluconolactonase",
+          "gpr": "PA3182",
+          "wt_flux": 0.0,
+          "ko_flux": 0.4340256184865655,
+          "delta": 0.4340256184865655,
+          "is_primary_associated": false
+        },
+        {
+          "id": "PGI",
+          "name": "glucose-6-phosphate isomerase",
+          "gpr": "PA4732",
+          "wt_flux": -0.08004189320716892,
+          "ko_flux": -0.5135608833078441,
+          "delta": -0.4335189901006752,
+          "is_primary_associated": false
+        },
+        {
+          "id": "ATPS4r",
+          "name": "ATP synthase (four protons for one ATP)",
+          "gpr": "PA1104 or PA1697 or (PA5556 and PA5560 and PA5553 and PA5554 and PA5559 and PA5558 and PA5555 and PA5557 and PA5561)",
+          "wt_flux": 24.8002605407456,
+          "ko_flux": 25.158691714946116,
+          "delta": 0.35843117420051485,
+          "is_primary_associated": false
+        },
+        {
+          "id": "NADH11",
+          "name": "NADH dehydrogenase (ubiquinone-8 & 2 protons)",
+          "gpr": "PA2637 and PA2638 and PA2639 and PA2640 and PA2641 and PA2642 and PA2643 and PA2644 and PA2645 and PA2646 and PA2647 and PA2648 and PA2649",
+          "wt_flux": 14.055895487338432,
+          "ko_flux": 14.364784947797423,
+          "delta": 0.3088894604589907,
+          "is_primary_associated": false
+        },
+        {
+          "id": "RPE",
+          "name": "ribulose 5-phosphate 3-epimerase",
+          "gpr": "PA0607",
+          "wt_flux": -0.29119353352089816,
+          "ko_flux": 0.0,
+          "delta": 0.29119353352089816,
+          "is_primary_associated": true
+        },
+        {
+          "id": "CYRUBQ8",
+          "name": "cytochrome-c reductase (ubiquinone)",
+          "gpr": "PA4431 and PA4430 and PA4429",
+          "wt_flux": 18.706424701917594,
+          "ko_flux": 18.904498646958885,
+          "delta": 0.1980739450412905,
+          "is_primary_associated": false
+        },
+        {
+          "id": "CYOO3_2",
+          "name": "cytochrome-c oxidase",
+          "gpr": "(PA4133 and PA0108 and PA1553 and PA1552) or (PA0108 and PA1554 and PA1553 and PA1555) or (PA0108 and PA1557 and PA1556 and PA1552) or (PA1856 and PA0108 and PA1556 and PA1555) or (PA0108 and PA1557 and PA1553 and PA1552) or (PA0108 and PA1554 and PA1556 and PA1555) or (PA1856 and PA0108 and PA1556 and PA1552) or (PA0108 and PA1554 and PA1556 and PA1552) or (PA4133 and PA0108 and PA1553 and PA1555) or (PA0108 and PA1557 and PA1556 and PA1555) or (PA0108 and PA1557 and PA1553 and PA1555) or (PA0108 and PA1554 and PA1553 and PA1552) or (PA1856 and PA0108 and PA1553 and PA1555) or (PA4133 and PA0108 and PA1556 and PA1552) or (PA1856 and PA0108 and PA1553 and PA1552) or (PA4133 and PA0108 and PA1556 and PA1555)",
+          "wt_flux": 18.706424701917598,
+          "ko_flux": 18.904498646958885,
+          "delta": 0.19807394504128695,
+          "is_primary_associated": false
+        },
+        {
+          "id": "TKT2",
+          "name": "transketolase",
+          "gpr": "PA0548",
+          "wt_flux": -0.2249355994177986,
+          "ko_flux": -0.07883665432123586,
+          "delta": 0.14609894509656274,
+          "is_primary_associated": false
+        },
+        {
+          "id": "TAL",
+          "name": "transaldolase",
+          "gpr": "PA2796",
+          "wt_flux": -0.07248880569502014,
+          "ko_flux": 0.07264522128196192,
+          "delta": 0.14513402697698208,
+          "is_primary_associated": false
+        },
+        {
+          "id": "TKT1",
+          "name": "transketolase",
+          "gpr": "PA0548",
+          "wt_flux": -0.06625793410308932,
+          "ko_flux": 0.07883665432123703,
+          "delta": 0.14509458842432635,
+          "is_primary_associated": false
+        },
+        {
+          "id": "RPI",
+          "name": "ribose-5-phosphate isomerase",
+          "gpr": "PA0330",
+          "wt_flux": -0.28496266192869385,
+          "ko_flux": -0.4278341854472897,
+          "delta": -0.14287152351859583,
+          "is_primary_associated": false
+        },
+        {
+          "id": "FBA",
+          "name": "fructose-bisphosphate aldolase",
+          "gpr": "PA0555",
+          "wt_flux": -0.4041716550700589,
+          "ko_flux": -0.5462886404662692,
+          "delta": -0.14211698539621032,
+          "is_primary_associated": false
+        },
+        {
+          "id": "FBP",
+          "name": "fructose-bisphosphatase",
+          "gpr": "PA5110",
+          "wt_flux": 0.4041716550700589,
+          "ko_flux": 0.5462886404662692,
+          "delta": 0.14211698539621032,
+          "is_primary_associated": false
+        },
+        {
+          "id": "TPI",
+          "name": "triose-phosphate isomerase",
+          "gpr": "PA4748",
+          "wt_flux": -0.45574942546985536,
+          "ko_flux": -0.5975399472913738,
+          "delta": -0.14179052182151847,
+          "is_primary_associated": false
+        },
+        {
+          "id": "GAPD",
+          "name": "glyceraldehyde-3-phosphate dehydrogenase (NAD)",
+          "gpr": "PA3195",
+          "wt_flux": -1.0585963854642073,
+          "ko_flux": -1.1965711631768172,
+          "delta": -0.1379747777126099,
+          "is_primary_associated": false
+        },
+        {
+          "id": "PGK",
+          "name": "phosphoglycerate kinase",
+          "gpr": "PA0552",
+          "wt_flux": -1.0585963854642073,
+          "ko_flux": -1.1965711631768172,
+          "delta": -0.1379747777126099,
+          "is_primary_associated": false
+        },
+        {
+          "id": "ENO",
+          "name": "enolase",
+          "gpr": "PA3635",
+          "wt_flux": -1.6059876965447042,
+          "ko_flux": -1.7404977389111904,
+          "delta": -0.13451004236648623,
+          "is_primary_associated": false
+        },
+        {
+          "id": "PGM",
+          "name": "phosphoglycerate mutase",
+          "gpr": "PA5131",
+          "wt_flux": -1.6059876965447042,
+          "ko_flux": -1.7404977389111904,
+          "delta": -0.13451004236648623,
+          "is_primary_associated": false
+        },
+        {
+          "id": "PPS",
+          "name": "phosphoenolpyruvate synthase",
+          "gpr": "PA1770",
+          "wt_flux": 1.9273493981612575,
+          "ko_flux": 2.0598253686968073,
+          "delta": 0.13247597053554983,
+          "is_primary_associated": false
+        },
+        {
+          "id": "ADK1",
+          "name": "adenylate kinase",
+          "gpr": "PA3686",
+          "wt_flux": 2.7710459732884423,
+          "ko_flux": 2.89818173237734,
+          "delta": 0.12713575908889752,
+          "is_primary_associated": false
+        },
+        {
+          "id": "ACONT",
+          "name": "aconitase",
+          "gpr": "PA1787 or PA1562",
+          "wt_flux": 4.9445868736745275,
+          "ko_flux": 4.831910108483996,
+          "delta": -0.11267676519053182,
+          "is_primary_associated": false
+        },
+        {
+          "id": "CS",
+          "name": "citrate synthase",
+          "gpr": "PA0795 or PA1580",
+          "wt_flux": 4.9445868736745275,
+          "ko_flux": 4.831910108483996,
+          "delta": -0.11267676519053182,
+          "is_primary_associated": false
+        },
+        {
+          "id": "FUM",
+          "name": "fumarase",
+          "gpr": "PA0854 or PA4470 or PA4333",
+          "wt_flux": 4.905970224145865,
+          "ko_flux": 4.793537884593045,
+          "delta": -0.11243233955282061,
+          "is_primary_associated": false
+        },
+        {
+          "id": "SUCD4",
+          "name": "succinate dehyrdogenase",
+          "gpr": "PA1583 and PA1584 and PA1581 and PA1582",
+          "wt_flux": 4.53365335288138,
+          "ko_flux": 4.423577607958123,
+          "delta": -0.11007574492325745,
+          "is_primary_associated": false
+        },
+        {
+          "id": "SUCD1",
+          "name": "succinate dehydrogenase",
+          "gpr": "PA1581 and PA1582 and PA1583 and PA1584",
+          "wt_flux": 4.532641626658805,
+          "ko_flux": 4.422572285497422,
+          "delta": -0.1100693411613829,
+          "is_primary_associated": false
+        }
+      ]
+    },
+    "PA3107": {
+      "ko_growth": 0.40402930037657653,
+      "primary_reactions": [
+        {
+          "id": "SHSL2",
+          "wt_flux": 0.0864446285487211,
+          "ko_flux": 0.0,
+          "blocked": false
+        }
+      ],
+      "top_flux_deltas": [
+        {
+          "id": "VALTA",
+          "name": "valine transaminase",
+          "gpr": "PA5013",
+          "wt_flux": 0.08468553315289232,
+          "ko_flux": 2.6908949368444652,
+          "delta": 2.606209403691573,
+          "is_primary_associated": false
+        },
+        {
+          "id": "VALDHr",
+          "name": "valine dehydrogenase",
+          "gpr": "PA3418",
+          "wt_flux": -0.2337943599514276,
+          "ko_flux": -2.8395219633395934,
+          "delta": -2.605727603388166,
+          "is_primary_associated": false
+        },
+        {
+          "id": "GLUDy",
+          "name": "glutamate dehydrogenase (NADP)",
+          "gpr": "PA4588",
+          "wt_flux": -2.5284877781370394,
+          "ko_flux": 0.0,
+          "delta": 2.5284877781370394,
+          "is_primary_associated": false
+        },
+        {
+          "id": "THD5",
+          "name": "NAD transhydrogenase",
+          "gpr": "PA0195 and PA0196",
+          "wt_flux": 0.0,
+          "ko_flux": 1.4793032594510969,
+          "delta": 1.4793032594510969,
+          "is_primary_associated": false
+        },
+        {
+          "id": "MDH",
+          "name": "malate dehydrogenase",
+          "gpr": "PA1252",
+          "wt_flux": 4.905970224145865,
+          "ko_flux": 5.995756510560352,
+          "delta": 1.089786286414487,
+          "is_primary_associated": false
+        },
+        {
+          "id": "PDH",
+          "name": "pyruvate dehydrogenase",
+          "gpr": "PA5015 and PA5016 and PA4829 and PA3417 and PA3416",
+          "wt_flux": 5.937999473468889,
+          "ko_flux": 7.024451067926837,
+          "delta": 1.086451594457948,
+          "is_primary_associated": false
+        },
+        {
+          "id": "HCO3E",
+          "name": "carbonate dehydratase (HCO3 equilibration reaction)",
+          "gpr": "PA2053",
+          "wt_flux": 1.7893480768417938,
+          "ko_flux": 0.7102398748975773,
+          "delta": -1.0791082019442164,
+          "is_primary_associated": false
+        },
+        {
+          "id": "PC",
+          "name": "pyruvate carboxylase",
+          "gpr": "PA1400",
+          "wt_flux": 1.0768058361141126,
+          "ko_flux": 0.0,
+          "delta": -1.0768058361141126,
+          "is_primary_associated": false
+        },
+        {
+          "id": "ICL",
+          "name": "Isocitrate lyase",
+          "gpr": "PA2634",
+          "wt_flux": 0.0,
+          "ko_flux": 1.0733264620911938,
+          "delta": 1.0733264620911938,
+          "is_primary_associated": false
+        },
+        {
+          "id": "MALS",
+          "name": "malate synthase",
+          "gpr": "PA0482",
+          "wt_flux": 0.0,
+          "ko_flux": 1.0733264620911913,
+          "delta": 1.0733264620911913,
+          "is_primary_associated": false
+        },
+        {
+          "id": "ICDHy",
+          "name": "isocitrate dehydrogenase (NADP)",
+          "gpr": "PA2623",
+          "wt_flux": 4.9445868736745275,
+          "ko_flux": 3.8875954578248373,
+          "delta": -1.0569914158496903,
+          "is_primary_associated": false
+        },
+        {
+          "id": "AKGD",
+          "name": "2-oxoglutarate dehydrogenase",
+          "gpr": "PA4829 and PA1585 and PA1586",
+          "wt_flux": 4.532642437336868,
+          "ko_flux": 3.476982095969324,
+          "delta": -1.055660341367544,
+          "is_primary_associated": false
+        },
+        {
+          "id": "SUCOAS",
+          "name": "succinyl-CoA synthetase (ADP-forming)",
+          "gpr": "PA1588 and PA1589",
+          "wt_flux": -4.3150406370158265,
+          "ko_flux": -3.346248719129274,
+          "delta": 0.9687919178865525,
+          "is_primary_associated": false
+        },
+        {
+          "id": "ACKr",
+          "name": "acetate kinase",
+          "gpr": "PA0836 or (PA3751 or PA0836)",
+          "wt_flux": 0.07631317945698839,
+          "ko_flux": 0.24839721387151867,
+          "delta": 0.1720840344145303,
+          "is_primary_associated": false
+        },
+        {
+          "id": "PTAr",
+          "name": "phosphotransacetylase",
+          "gpr": "PA0835",
+          "wt_flux": -0.07631317945698839,
+          "ko_flux": -0.24839721387151867,
+          "delta": -0.1720840344145303,
+          "is_primary_associated": false
+        },
+        {
+          "id": "ATPS4r",
+          "name": "ATP synthase (four protons for one ATP)",
+          "gpr": "PA1104 or PA1697 or (PA5556 and PA5560 and PA5553 and PA5554 and PA5559 and PA5558 and PA5555 and PA5557 and PA5561)",
+          "wt_flux": 24.8002605407456,
+          "ko_flux": 24.946309897245975,
+          "delta": 0.14604935650037376,
+          "is_primary_associated": false
+        },
+        {
+          "id": "CYRUBQ8",
+          "name": "cytochrome-c reductase (ubiquinone)",
+          "gpr": "PA4431 and PA4430 and PA4429",
+          "wt_flux": 18.706424701917594,
+          "ko_flux": 18.807540473578385,
+          "delta": 0.10111577166079044,
+          "is_primary_associated": false
+        },
+        {
+          "id": "CYOO3_2",
+          "name": "cytochrome-c oxidase",
+          "gpr": "(PA4133 and PA0108 and PA1553 and PA1552) or (PA0108 and PA1554 and PA1553 and PA1555) or (PA0108 and PA1557 and PA1556 and PA1552) or (PA1856 and PA0108 and PA1556 and PA1555) or (PA0108 and PA1557 and PA1553 and PA1552) or (PA0108 and PA1554 and PA1556 and PA1555) or (PA1856 and PA0108 and PA1556 and PA1552) or (PA0108 and PA1554 and PA1556 and PA1552) or (PA4133 and PA0108 and PA1553 and PA1555) or (PA0108 and PA1557 and PA1556 and PA1555) or (PA0108 and PA1557 and PA1553 and PA1555) or (PA0108 and PA1554 and PA1553 and PA1552) or (PA1856 and PA0108 and PA1553 and PA1555) or (PA4133 and PA0108 and PA1556 and PA1552) or (PA1856 and PA0108 and PA1553 and PA1552) or (PA4133 and PA0108 and PA1556 and PA1555)",
+          "wt_flux": 18.706424701917598,
+          "ko_flux": 18.807540473578385,
+          "delta": 0.10111577166078689,
+          "is_primary_associated": false
+        },
+        {
+          "id": "HSST",
+          "name": "homoserine O-succinyltransferase",
+          "gpr": "PA0390",
+          "wt_flux": 0.0864446285487211,
+          "ko_flux": 0.0,
+          "delta": -0.0864446285487211,
+          "is_primary_associated": false
+        },
+        {
+          "id": "SHSL2",
+          "name": "O-succinylhomoserine lyase (H2S)",
+          "gpr": "PA3107",
+          "wt_flux": 0.0864446285487211,
+          "ko_flux": 0.0,
+          "delta": -0.0864446285487211,
+          "is_primary_associated": true
+        },
+        {
+          "id": "CYSTLr",
+          "name": "cystathionine b-lyase reversible",
+          "gpr": "PA0400",
+          "wt_flux": -0.03229092860387464,
+          "ko_flux": 0.05397871855961101,
+          "delta": 0.08626964716348565,
+          "is_primary_associated": false
+        },
+        {
+          "id": "CYSS",
+          "name": "cysteine synthase",
+          "gpr": "PA2104 or PA2709 or PA0932",
+          "wt_flux": 0.0,
+          "ko_flux": 0.0861653087448107,
+          "delta": 0.0861653087448107,
+          "is_primary_associated": false
+        },
+        {
+          "id": "SERAT",
+          "name": "serine O-acetyltransferase",
+          "gpr": "PA3816",
+          "wt_flux": 0.0,
+          "ko_flux": 0.0861653087448107,
+          "delta": 0.0861653087448107,
+          "is_primary_associated": false
+        },
+        {
+          "id": "HSAT",
+          "name": "Acetyl-CoA:L-homoserine O-acetyltransferase",
+          "gpr": "PA0390",
+          "wt_flux": 0.07008230786494157,
+          "ko_flux": 0.15602116672131996,
+          "delta": 0.08593885885637839,
+          "is_primary_associated": false
+        },
+        {
+          "id": "SHSL5",
+          "name": "O-acetylhomoserine lysase (L-cysteine)",
+          "gpr": "PA0400",
+          "wt_flux": 0.07008230786494157,
+          "ko_flux": 0.15602116672131996,
+          "delta": 0.08593885885637839,
+          "is_primary_associated": false
+        },
+        {
+          "id": "PGCD",
+          "name": "phosphoglycerate dehydrogenase",
+          "gpr": "",
+          "wt_flux": 0.5473913110804969,
+          "ko_flux": 0.6317878895262663,
+          "delta": 0.08439657844576942,
+          "is_primary_associated": false
+        },
+        {
+          "id": "PSERT",
+          "name": "phosphoserine transaminase",
+          "gpr": "",
+          "wt_flux": 0.5473913110804969,
+          "ko_flux": 0.6317878895262663,
+          "delta": 0.08439657844576942,
+          "is_primary_associated": false
+        },
+        {
+          "id": "PSP_L",
+          "name": "phosphoserine phosphatase (L-serine)",
+          "gpr": "",
+          "wt_flux": 0.5473913110804969,
+          "ko_flux": 0.6317878895262663,
+          "delta": 0.08439657844576942,
+          "is_primary_associated": false
+        },
+        {
+          "id": "NADH11",
+          "name": "NADH dehydrogenase (ubiquinone-8 & 2 protons)",
+          "gpr": "PA2637 and PA2638 and PA2639 and PA2640 and PA2641 and PA2642 and PA2643 and PA2644 and PA2645 and PA2646 and PA2647 and PA2648 and PA2649",
+          "wt_flux": 14.055895487338432,
+          "ko_flux": 14.139726053942855,
+          "delta": 0.08383056660442278,
+          "is_primary_associated": false
+        },
+        {
+          "id": "ENO",
+          "name": "enolase",
+          "gpr": "PA3635",
+          "wt_flux": -1.6059876965447042,
+          "ko_flux": -1.6869637393273358,
+          "delta": -0.0809760427826316,
+          "is_primary_associated": false
+        },
+        {
+          "id": "PGM",
+          "name": "phosphoglycerate mutase",
+          "gpr": "PA5131",
+          "wt_flux": -1.6059876965447042,
+          "ko_flux": -1.6869637393273358,
+          "delta": -0.0809760427826316,
+          "is_primary_associated": false
+        },
+        {
+          "id": "PPS",
+          "name": "phosphoenolpyruvate synthase",
+          "gpr": "PA1770",
+          "wt_flux": 1.9273493981612575,
+          "ko_flux": 2.007287057310496,
+          "delta": 0.07993765914923867,
+          "is_primary_associated": false
+        },
+        {
+          "id": "ADK1",
+          "name": "adenylate kinase",
+          "gpr": "PA3686",
+          "wt_flux": 2.7710459732884423,
+          "ko_flux": 2.8482574808430225,
+          "delta": 0.07721150755458028,
+          "is_primary_associated": false
+        },
+        {
+          "id": "EX_o2_e",
+          "name": "O2 exchange",
+          "gpr": "",
+          "wt_flux": -9.35580956080301,
+          "ko_flux": -9.406359054531356,
+          "delta": -0.050549493728345496,
+          "is_primary_associated": false
+        },
+        {
+          "id": "O2t",
+          "name": "O2 transport in via diffusion",
+          "gpr": "",
+          "wt_flux": 9.35580956080301,
+          "ko_flux": 9.406359054531356,
+          "delta": 0.050549493728345496,
+          "is_primary_associated": false
+        },
+        {
+          "id": "EX_co2_e",
+          "name": "CO2 exchange",
+          "gpr": "",
+          "wt_flux": 14.954220490415935,
+          "ko_flux": 15.002836399321891,
+          "delta": 0.04861590890595657,
+          "is_primary_associated": false
+        },
+        {
+          "id": "CO2t",
+          "name": "CO2 transport out via diffusion",
+          "gpr": "",
+          "wt_flux": -14.954220490415935,
+          "ko_flux": -15.002836399321891,
+          "delta": -0.04861590890595657,
+          "is_primary_associated": false
+        },
+        {
+          "id": "EX_h2o_e",
+          "name": "H2O exchange",
+          "gpr": "",
+          "wt_flux": 12.78229689279038,
+          "ko_flux": 12.805618728412608,
+          "delta": 0.023321835622226672,
+          "is_primary_associated": false
+        },
+        {
+          "id": "H2Ot5",
+          "name": "H2O transport via diffusion",
+          "gpr": "",
+          "wt_flux": -12.78229689279038,
+          "ko_flux": -12.805618728412608,
+          "delta": -0.023321835622226672,
+          "is_primary_associated": false
+        },
+        {
+          "id": "SUCD1",
+          "name": "succinate dehydrogenase",
+          "gpr": "PA1581 and PA1582 and PA1583 and PA1584",
+          "wt_flux": 4.532641626658805,
+          "ko_flux": 4.550307750001914,
+          "delta": 0.01766612334310924,
+          "is_primary_associated": false
+        }
+      ]
+    },
+    "PA1049": {
+      "ko_growth": 0.4053390314813484,
+      "primary_reactions": [
+        {
+          "id": "PYAM5PO",
+          "wt_flux": 0.0,
+          "ko_flux": 0.0,
+          "blocked": false
+        },
+        {
+          "id": "PYDXNO",
+          "wt_flux": 0.0,
+          "ko_flux": 0.0,
+          "blocked": false
+        },
+        {
+          "id": "PDX5PO",
+          "wt_flux": 0.0,
+          "ko_flux": 0.0,
+          "blocked": false
+        },
+        {
+          "id": "PYDXO",
+          "wt_flux": 0.0,
+          "ko_flux": 0.0,
+          "blocked": false
+        }
+      ],
+      "top_flux_deltas": [
+        {
+          "id": "VALDHr",
+          "name": "valine dehydrogenase",
+          "gpr": "PA3418",
+          "wt_flux": -0.2337943599514276,
+          "ko_flux": -2.7622821380923694,
+          "delta": -2.528487778140942,
+          "is_primary_associated": false
+        },
+        {
+          "id": "VALTA",
+          "name": "valine transaminase",
+          "gpr": "PA5013",
+          "wt_flux": 0.08468553315289232,
+          "ko_flux": 2.6131733112935778,
+          "delta": 2.5284877781406854,
+          "is_primary_associated": false
+        },
+        {
+          "id": "GLUDy",
+          "name": "glutamate dehydrogenase (NADP)",
+          "gpr": "PA4588",
+          "wt_flux": -2.5284877781370394,
+          "ko_flux": 0.0,
+          "delta": 2.5284877781370394,
+          "is_primary_associated": false
+        },
+        {
+          "id": "THD5",
+          "name": "NAD transhydrogenase",
+          "gpr": "PA0195 and PA0196",
+          "wt_flux": 0.0,
+          "ko_flux": 1.4516819420243103,
+          "delta": 1.4516819420243103,
+          "is_primary_associated": false
+        },
+        {
+          "id": "PDH",
+          "name": "pyruvate dehydrogenase",
+          "gpr": "PA5015 and PA5016 and PA4829 and PA3417 and PA3416",
+          "wt_flux": 5.937999473468889,
+          "ko_flux": 7.014805309595759,
+          "delta": 1.0768058361268702,
+          "is_primary_associated": false
+        },
+        {
+          "id": "MDH",
+          "name": "malate dehydrogenase",
+          "gpr": "PA1252",
+          "wt_flux": 4.905970224145865,
+          "ko_flux": 5.982776060270458,
+          "delta": 1.076805836124593,
+          "is_primary_associated": false
+        },
+        {
+          "id": "ICL",
+          "name": "Isocitrate lyase",
+          "gpr": "PA2634",
+          "wt_flux": 0.0,
+          "ko_flux": 1.0768058361159618,
+          "delta": 1.0768058361159618,
+          "is_primary_associated": false
+        },
+        {
+          "id": "MALS",
+          "name": "malate synthase",
+          "gpr": "PA0482",
+          "wt_flux": 0.0,
+          "ko_flux": 1.0768058361159591,
+          "delta": 1.0768058361159591,
+          "is_primary_associated": false
+        },
+        {
+          "id": "PC",
+          "name": "pyruvate carboxylase",
+          "gpr": "PA1400",
+          "wt_flux": 1.0768058361141126,
+          "ko_flux": 0.0,
+          "delta": -1.0768058361141126,
+          "is_primary_associated": false
+        },
+        {
+          "id": "HCO3E",
+          "name": "carbonate dehydratase (HCO3 equilibration reaction)",
+          "gpr": "PA2053",
+          "wt_flux": 1.7893480768417938,
+          "ko_flux": 0.7125422407288053,
+          "delta": -1.0768058361129884,
+          "is_primary_associated": false
+        },
+        {
+          "id": "SUCOAS",
+          "name": "succinyl-CoA synthetase (ADP-forming)",
+          "gpr": "PA1588 and PA1589",
+          "wt_flux": -4.3150406370158265,
+          "ko_flux": -3.2382348009079758,
+          "delta": 1.0768058361078507,
+          "is_primary_associated": false
+        },
+        {
+          "id": "AKGD",
+          "name": "2-oxoglutarate dehydrogenase",
+          "gpr": "PA4829 and PA1585 and PA1586",
+          "wt_flux": 4.532642437336868,
+          "ko_flux": 3.4558366012293917,
+          "delta": -1.0768058361074764,
+          "is_primary_associated": false
+        },
+        {
+          "id": "ICDHy",
+          "name": "isocitrate dehydrogenase (NADP)",
+          "gpr": "PA2623",
+          "wt_flux": 4.9445868736745275,
+          "ko_flux": 3.8677810375677604,
+          "delta": -1.0768058361067672,
+          "is_primary_associated": false
+        }
+      ]
+    },
+    "PA3480": {
+      "ko_growth": 0.4053390314813484,
+      "primary_reactions": [
+        {
+          "id": "DCTPD",
+          "wt_flux": 0.0,
+          "ko_flux": 0.0,
+          "blocked": false
+        }
+      ],
+      "top_flux_deltas": [
+        {
+          "id": "VALDHr",
+          "name": "valine dehydrogenase",
+          "gpr": "PA3418",
+          "wt_flux": -0.2337943599514276,
+          "ko_flux": -2.7622821380923694,
+          "delta": -2.528487778140942,
+          "is_primary_associated": false
+        },
+        {
+          "id": "VALTA",
+          "name": "valine transaminase",
+          "gpr": "PA5013",
+          "wt_flux": 0.08468553315289232,
+          "ko_flux": 2.6131733112935778,
+          "delta": 2.5284877781406854,
+          "is_primary_associated": false
+        },
+        {
+          "id": "GLUDy",
+          "name": "glutamate dehydrogenase (NADP)",
+          "gpr": "PA4588",
+          "wt_flux": -2.5284877781370394,
+          "ko_flux": 0.0,
+          "delta": 2.5284877781370394,
+          "is_primary_associated": false
+        },
+        {
+          "id": "THD5",
+          "name": "NAD transhydrogenase",
+          "gpr": "PA0195 and PA0196",
+          "wt_flux": 0.0,
+          "ko_flux": 1.4516819420243103,
+          "delta": 1.4516819420243103,
+          "is_primary_associated": false
+        },
+        {
+          "id": "PDH",
+          "name": "pyruvate dehydrogenase",
+          "gpr": "PA5015 and PA5016 and PA4829 and PA3417 and PA3416",
+          "wt_flux": 5.937999473468889,
+          "ko_flux": 7.014805309595759,
+          "delta": 1.0768058361268702,
+          "is_primary_associated": false
+        },
+        {
+          "id": "MDH",
+          "name": "malate dehydrogenase",
+          "gpr": "PA1252",
+          "wt_flux": 4.905970224145865,
+          "ko_flux": 5.982776060270458,
+          "delta": 1.076805836124593,
+          "is_primary_associated": false
+        },
+        {
+          "id": "ICL",
+          "name": "Isocitrate lyase",
+          "gpr": "PA2634",
+          "wt_flux": 0.0,
+          "ko_flux": 1.0768058361159618,
+          "delta": 1.0768058361159618,
+          "is_primary_associated": false
+        },
+        {
+          "id": "MALS",
+          "name": "malate synthase",
+          "gpr": "PA0482",
+          "wt_flux": 0.0,
+          "ko_flux": 1.0768058361159591,
+          "delta": 1.0768058361159591,
+          "is_primary_associated": false
+        },
+        {
+          "id": "PC",
+          "name": "pyruvate carboxylase",
+          "gpr": "PA1400",
+          "wt_flux": 1.0768058361141126,
+          "ko_flux": 0.0,
+          "delta": -1.0768058361141126,
+          "is_primary_associated": false
+        },
+        {
+          "id": "HCO3E",
+          "name": "carbonate dehydratase (HCO3 equilibration reaction)",
+          "gpr": "PA2053",
+          "wt_flux": 1.7893480768417938,
+          "ko_flux": 0.7125422407288053,
+          "delta": -1.0768058361129884,
+          "is_primary_associated": false
+        },
+        {
+          "id": "SUCOAS",
+          "name": "succinyl-CoA synthetase (ADP-forming)",
+          "gpr": "PA1588 and PA1589",
+          "wt_flux": -4.3150406370158265,
+          "ko_flux": -3.2382348009079758,
+          "delta": 1.0768058361078507,
+          "is_primary_associated": false
+        },
+        {
+          "id": "AKGD",
+          "name": "2-oxoglutarate dehydrogenase",
+          "gpr": "PA4829 and PA1585 and PA1586",
+          "wt_flux": 4.532642437336868,
+          "ko_flux": 3.4558366012293917,
+          "delta": -1.0768058361074764,
+          "is_primary_associated": false
+        },
+        {
+          "id": "ICDHy",
+          "name": "isocitrate dehydrogenase (NADP)",
+          "gpr": "PA2623",
+          "wt_flux": 4.9445868736745275,
+          "ko_flux": 3.8677810375677604,
+          "delta": -1.0768058361067672,
+          "is_primary_associated": false
+        }
+      ]
+    }
+  },
+  "cluster_C_isoenzyme_rescue": {
+    "PA1580": {
+      "partner_hint": "PA0795",
+      "ko_growth": 0.4053390314813484,
+      "reactions": [
+        {
+          "id": "CS",
+          "gpr": "PA0795 or PA1580",
+          "wt_flux": 4.9445868736745275,
+          "ko_flux": 4.944586873683719
+        }
+      ]
+    },
+    "PA1787": {
+      "partner_hint": "PA1562",
+      "ko_growth": 0.4053390314813484,
+      "reactions": [
+        {
+          "id": "ACONT",
+          "gpr": "PA1787 or PA1562",
+          "wt_flux": 4.9445868736745275,
+          "ko_flux": 4.944586873683719
+        }
+      ]
+    },
+    "PA0944": {
+      "partner_hint": "PA3751",
+      "ko_growth": 0.4053390314813484,
+      "reactions": [
+        {
+          "id": "GARFTi",
+          "gpr": "PA0944 or (PA3751 or PA0836)",
+          "wt_flux": 0.1560916022940667,
+          "ko_flux": 0.15609160229412494
+        }
+      ]
+    }
+  },
+  "cluster_D_reaction_details": {
+    "12DAG3Ps_PA": {
+      "id": "12DAG3Ps_PA",
+      "name": "1,2-diacyl-sn-glycerol 3-phosphate synthesis",
+      "gpr": "PA0005 and PA3673",
+      "subsystem": "",
+      "bounds": [
+        0.0,
+        1000.0
+      ],
+      "reversibility": false,
+      "stoichiometry": {
+        "2tocdACP_c": -0.51,
+        "glyc3p_c": -0.5,
+        "hdeACP_c": -0.13,
+        "ocdACP_c": -0.03,
+        "palmACP_c": -0.33,
+        "12dag3p_PA_c": 0.01,
+        "ACP_c": 1.0
+      },
+      "flux": 0.08293236584095397
+    }
+  },
+  "SULabc_reaction_ko_growth": -6.316189003358776e-16,
+  "EX_so4_e": {
+    "bounds": [
+      -1000.0,
+      1000.0
+    ],
+    "wt_flux": -0.0864446285487211
+  },
+  "trs_coupling_summary": {
+    "n_trs": 18,
+    "n_blocked": 17,
+    "n_with_nonzero_wt_flux": 1,
+    "any_trna_in_biomass": false,
+    "n_aa_in_biomass": 20
+  }
+}

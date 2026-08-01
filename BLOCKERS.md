@@ -12,23 +12,23 @@ Legend: severity P0 (blocks validity/reproducibility) · P1 (blocks manuscript/r
 `notebooks/`) computes precision/recall/F1/Venn against **simulated random labels**
 (`random.seed(42)`; `random.sample(...)`), explicitly labeled "Using simulated
 data for demonstration."
-**Impact:** every comparison metric currently in the project is meaningless as
-*full validation*. Teaching nb03 metrics remain forbidden.
-**Update 2026-07-29 (D-20):** Lee2015 MOPS-pyruvate **positive** labels are
-promoted to a derived READY file (437 `PAxxxx`); medium `mops_pyruvate_lee2015`
-and predictions exist; **positive-overlap-only** outputs written under
+**Impact:** teaching nb03 metrics remain forbidden / meaningless.
+**Update 2026-07-29 (D-20):** Lee2015 MOPS-pyruvate **positive** labels READY;
+positive-overlap-only outputs under
 `results/comparison/lee2015_mops_pyruvate_POSITIVE_OVERLAP_ONLY_*`.
-**Update 2026-08-01 (D-21):** experimental **binary universe** for MOPS-pyruvate
-is human-approved and frozen from Varadarajan2020 remapping of Lee2015 Tn-seq
-(214 POSITIVE + 811 NEGATIVE = **1025** primary binary genes; 18 AMBIGUOUS
-excluded). Negative-universe scientific gate for this cell is **resolved**.
-**Still blocked for full V-01 metrics:** confusion matrix / precision / recall /
-specificity / F1 / MCC have **not yet been executed** — status is
-`READY_FOR_V01_BINARY_METRICS`, not V-01 COMPLETE. Teaching nb03 remains invalid.
-Also B-COND-01 remaining gaps for other cells.
-**Unblock full metrics when:** run the gated V-01 binary metrics step on the
-D-21 frozen universe vs `mops_pyruvate_lee2015` predictions only (do not mix
-D-20 Lee-original positives with D-21 negatives).
+**Update 2026-08-01 (D-21):** experimental binary universe frozen (1025 genes).
+**Update 2026-08-01 (V-01 execution):** primary binary confusion matrix + metrics
+**computed** on D-21 universe vs `mops_pyruvate_lee2015` @ threshold 0.01 →
+`data/processed/validation/v01_mops_pyruvate_*`. Status was
+`V01_BINARY_METRICS_COMPUTED_PENDING_HUMAN_INTERPRETATION`.
+**Update 2026-08-01 (V-01 error structure audit):** diagnostic FP/FN structural
+audit completed → `V01_ERROR_ANALYSIS_COMPLETED_PENDING_HUMAN_REVIEW`
+(`v01_mops_pyruvate_*_audit.csv` +
+`project_management/audit/v01_mops_pyruvate/V01_ERROR_STRUCTURE_AUDIT.md`).
+No model/media/threshold changes. This does **not** declare the model validated
+or authorize GPR/network edits. Teaching nb03 remains invalid.
+**Still open:** human review of prioritized FP/FN mechanisms; other condition
+cells; B-COND-01 remaining media gaps.
 
 ## B-LIT-01 — Supplementary gene-list datasets not downloaded (P0) — NARROWED 2026-07-06
 The experimental essential/fitness gene lists live in supplementary files, not
