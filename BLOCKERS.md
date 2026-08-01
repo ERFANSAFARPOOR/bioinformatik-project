@@ -7,7 +7,7 @@ Legend: severity P0 (blocks validity/reproducibility) · P1 (blocks manuscript/r
 
 ---
 
-## B-SCI-01 — No real model-vs-experiment validation (P0) — OPEN (narrowed 2026-07-29)
+## B-SCI-01 — No real model-vs-experiment validation (P0) — OPEN (narrowed 2026-08-01)
 `archive/teaching_notebooks/03_experimental_comparison.ipynb` (formerly under
 `notebooks/`) computes precision/recall/F1/Venn against **simulated random labels**
 (`random.seed(42)`; `random.sample(...)`), explicitly labeled "Using simulated
@@ -18,12 +18,17 @@ data for demonstration."
 promoted to a derived READY file (437 `PAxxxx`); medium `mops_pyruvate_lee2015`
 and predictions exist; **positive-overlap-only** outputs written under
 `results/comparison/lee2015_mops_pyruvate_POSITIVE_OVERLAP_ONLY_*`.
-**Still blocked for full V-01:** experimental **non-essential universe** is
-undefined — specificity / precision / F1 / MCC / full confusion matrix remain
-forbidden. Depends on a separate human decision for negatives; also B-COND-01
-remaining gaps for other cells.
-**Unblock full metrics when:** negative universe reviewed + documented for the
-chosen cell, then compute metrics only on that validated join.
+**Update 2026-08-01 (D-21):** experimental **binary universe** for MOPS-pyruvate
+is human-approved and frozen from Varadarajan2020 remapping of Lee2015 Tn-seq
+(214 POSITIVE + 811 NEGATIVE = **1025** primary binary genes; 18 AMBIGUOUS
+excluded). Negative-universe scientific gate for this cell is **resolved**.
+**Still blocked for full V-01 metrics:** confusion matrix / precision / recall /
+specificity / F1 / MCC have **not yet been executed** — status is
+`READY_FOR_V01_BINARY_METRICS`, not V-01 COMPLETE. Teaching nb03 remains invalid.
+Also B-COND-01 remaining gaps for other cells.
+**Unblock full metrics when:** run the gated V-01 binary metrics step on the
+D-21 frozen universe vs `mops_pyruvate_lee2015` predictions only (do not mix
+D-20 Lee-original positives with D-21 negatives).
 
 ## B-LIT-01 — Supplementary gene-list datasets not downloaded (P0) — NARROWED 2026-07-06
 The experimental essential/fitness gene lists live in supplementary files, not

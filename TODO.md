@@ -188,10 +188,12 @@ Status: TODO / IN-PROGRESS / DONE / BLOCKED.
 - **Reason:** Current metrics are on random data (B-SCI-01) — invalid.
 - **Inputs:** predictions (S-01/R-02), evidence (L-03), mapping (G-01) · **Output:** `results/comparison/metrics_<condition>.csv` + figs
 - **Deps:** L-03, G-01, C-01, S-01 · **Validation:** labels+mappings validated FIRST; metrics only on validated joins.
-- **Status:** PARTIAL 2026-07-29 — Lee MOPS-pyruvate **positives** promoted (D-20);
-  positive-overlap-only report written (`POSITIVE_OVERLAP_ONLY_*`). Full
-  confusion-matrix metrics still **BLOCKED** until experimental negative universe
-  is defined. · **Blocker:** B-SCI-01 (negative-universe gate)
+- **Status:** **READY_FOR_BINARY_METRICS** 2026-08-01 — D-21 approved;
+  Varadarajan2020 Minimal READY labels + frozen primary binary universe (1025
+  genes: 214 POS / 811 NEG; 18 AMBIGUOUS excluded). D-20 Lee-original positives
+  remain a separate positive-overlap-only layer. Full confusion-matrix metrics
+  **not yet executed** (next gate). · **Blocker:** B-SCI-01 narrowed (metrics
+  execution pending; negative-universe scientific gate resolved for this cell)
 
 ---
 
@@ -411,3 +413,19 @@ Status: TODO / IN-PROGRESS / DONE / BLOCKED.
   (437 labels; 228 in model; 209 absent; 173 predicted essential; 123 recovered).
 - **Next human decision:** define experimental **negative universe** for
   MOPS-pyruvate before full V-01 confusion-matrix metrics.
+
+## Update 2026-08-01 (D-21: binary universe approved; metrics not yet run)
+- Human review **APPROVED_FOR_PRIMARY_BINARY_VALIDATION** recorded as **D-21**.
+- Varadarajan2020 remapping of Lee2015 Tn-seq is the primary binary label source
+  (not independent replication). D-20 Lee-original positives unchanged / separate.
+- READY:
+  `data/processed/literature/gene_level/varadarajan2020_lee2015_minimal_gene_labels_READY.csv`
+  (5799 rows; CANDIDATE preserved).
+- Frozen primary binary:
+  `…/varadarajan2020_lee2015_minimal_PRIMARY_BINARY_UNIVERSE.csv`
+  (214 POSITIVE + 811 NEGATIVE = 1025; 18 AMBIGUOUS excluded).
+- Integrity: `tests/test_d21_varadarajan_binary_universe.py` +
+  `project_management/audit/negative_universe_lee2015/D21_PROMOTION_INTEGRITY_REPORT.json`.
+- **Next:** execute V-01 binary metrics on the frozen universe vs
+  `mops_pyruvate_lee2015` predictions. Do **not** mark V-01 COMPLETE until that
+  step finishes.

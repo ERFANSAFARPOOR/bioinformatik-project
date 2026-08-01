@@ -1,0 +1,85 @@
+{
+  "decision_id": "D-21",
+  "status": "APPROVED_FOR_PRIMARY_BINARY_VALIDATION",
+  "source_counts": {
+    "master_cds_count_ds1": 5799,
+    "ds4_essential_union_count": 1117,
+    "valid_pao1_unique_std_mappings": 5474,
+    "minimal_1": 410,
+    "minimal_2": 351,
+    "minimal_3": 427,
+    "minimal_sum_0": 5312,
+    "minimal_sum_1": 72,
+    "minimal_sum_2": 129,
+    "minimal_sum_3": 286,
+    "positive_genome": 415,
+    "negative_genome": 5312,
+    "ambiguous_genome": 72,
+    "imo1056_model_genes_std_PA": 1054,
+    "prediction_evaluable_genes": 1054
+  },
+  "universe_stats": {
+    "model_overlap_n": 1043,
+    "model_overlap_positive": 214,
+    "model_overlap_negative": 811,
+    "model_overlap_ambiguous": 18,
+    "primary_binary_positive": 214,
+    "primary_binary_negative": 811,
+    "primary_binary_total": 1025,
+    "ambiguous_excluded_from_binary": 18,
+    "many_mpao1_to_one_pao1_unique_ids": 0
+  },
+  "exclusion_reason_counts": {
+    "absent_from_imo1056": 4400,
+    "IN_PRIMARY_BINARY": 1025,
+    "no_PAO1_homolog": 223,
+    "nonstandard_only": 60,
+    "absent_from_imo1056;AMBIGUOUS_1_OF_3": 31,
+    "no_PAO1_homolog;AMBIGUOUS_1_OF_3": 22,
+    "one_to_many_std_PAO1": 19,
+    "EXCLUDED_PRIMARY_BINARY_DISCORDANT_1_OF_3": 18,
+    "nonstandard_only;AMBIGUOUS_1_OF_3": 1
+  },
+  "mapping_status_counts": {
+    "unique_std_PAO1": 5474,
+    "no_PAO1_homolog": 245,
+    "nonstandard_only": 61,
+    "one_to_many_std_PAO1": 19
+  },
+  "label_counts_ready": {
+    "NEGATIVE_0_OF_3_NOT_CALLED_ESSENTIAL": 5312,
+    "POSITIVE_CONSENSUS_ESSENTIAL": 415,
+    "AMBIGUOUS_1_OF_3": 72
+  },
+  "review_status_counts": {
+    "READY": 5799
+  },
+  "integrity_checks": {
+    "no_duplicate_primary_pao1": "PASS",
+    "primary_pao1_id_policy": "PASS",
+    "primary_all_in_imo1056": "PASS",
+    "primary_all_model_evaluable": "PASS",
+    "no_ambiguous_in_primary": "PASS",
+    "no_minimal_sum_1_in_primary": "PASS",
+    "negatives_are_sum_0": "PASS",
+    "positives_are_sum_ge_2": "PASS",
+    "both_labels_from_varadarajan": "PASS",
+    "every_ready_row_has_provenance": "PASS",
+    "primary_counts_214_811": "PASS",
+    "candidate_file_preserved": "PASS",
+    "no_metrics_columns": "PASS",
+    "no_lee_s1_absence_as_negative": "PASS"
+  },
+  "artifacts": {
+    "candidate_preserved": "data\\processed\\literature\\gene_level\\varadarajan2020_lee2015_minimal_gene_labels_CANDIDATE.csv",
+    "candidate_sha256": "c04c630fb7c0ccb8a167f08d6375c8273040248171909186e2b49b0743313ee2",
+    "ready": "data\\processed\\literature\\gene_level\\varadarajan2020_lee2015_minimal_gene_labels_READY.csv",
+    "ready_sha256": "1c4cd9ddb6d14bd6f56ba5c20454bad61c35ae2eb8f997db4b3f791d00c9b79f",
+    "primary_binary_universe": "data\\processed\\literature\\gene_level\\varadarajan2020_lee2015_minimal_PRIMARY_BINARY_UNIVERSE.csv",
+    "primary_binary_sha256": "e3174cb0975cd39c210ebfb86e26f87a3a2e5904664f7d8c5c6663fe93a5649e",
+    "lee_d20_ready_sha256": "578b9a29583d4e8580996908ec9b1a6d0f9410125cecc2d6a7d9c0dfbb2929a3",
+    "lee_d20_rows": 437
+  },
+  "metrics_computed": false,
+  "gate": "READY_FOR_V01_BINARY_METRICS"
+}

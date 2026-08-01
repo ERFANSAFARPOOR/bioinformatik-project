@@ -212,3 +212,74 @@ Human review (2026-07-29) confirms SI Sequence Data Analysis: consensus =
 **Rationale:** Unblocks the first condition-matched positive-overlap cell without
 fabricating negatives or claiming full validation.
 **Status:** Active.
+
+## D-21 · 2026-08-01 · MOPS-pyruvate experimental binary universe (Varadarajan2020)
+**Decision:** For **primary binary** gene-essentiality validation of iMO1056 under
+MOPS-pyruvate / Minimal, use the **Varadarajan et al. 2020** published reanalysis
+of the Lee et al. 2015 Tn-seq experiment (`SRP052838`) as the internally
+consistent experimental-label source.
+**Status:** **APPROVED_FOR_PRIMARY_BINARY_VALIDATION** (human review complete
+2026-08-01).
+
+**Evidence source / relationship:**
+- Source = Varadarajan2020 Supplementary Dataset 1 (`MPAO1_CDS` master, 5799 CDS)
+  + Dataset 4 (`essentialGenes_MPAO1`, Minimal-1/2/3 columns).
+- Varadarajan **reuses/reanalyses** Lee2015 Tn-seq with Lee’s released scripts on
+  the complete MPAO1 genome. It is **not** an independent experimental replicate
+  and must never be presented as one.
+- Condition: Minimal-1 / Minimal-2 / Minimal-3 ≡ Lee MOPS-pyruvate pools.
+
+**Label definitions (assay-/condition-specific):**
+- **POSITIVE** (`POSITIVE_CONSENSUS_ESSENTIAL`): `minimal_sum >= 2`
+  (called essential in ≥2 of 3 Minimal libraries).
+- **NEGATIVE** (`NEGATIVE_0_OF_3_NOT_CALLED_ESSENTIAL`): `minimal_sum == 0`
+  (not called essential in any of the three Minimal libraries under this
+  reanalysis). Do **not** generalize to unconditional biological non-essentiality.
+- **AMBIGUOUS** (`AMBIGUOUS_1_OF_3`): `minimal_sum == 1` — retained in provenance
+  with explicit exclusion; **excluded** from the primary binary validation
+  universe. Do **not** convert to negative.
+
+**Master experimental universe:** all DS1 MPAO1 CDS; DS4 blanks/absence for a
+Minimal library encode **not called essential** in that library (Lee-script
+remap encoding), not “missing evidence” and not Lee Dataset-S1 absence.
+
+**PAO1 mapping policy:** DS1 `best_hit protein`; primary join requires
+`mapping_status = unique_std_PAO1` (`^PA\d{4}$`, single hit). Retain
+one-to-many / nonstandard / MPAO1-unique / unmapped explicitly; no silent drop;
+no auto-rename of nonstandard IDs.
+
+**iMO1056 evaluable-universe policy:** genes present among `model.genes` /
+knockout results (`src/gene_essentiality.py` evaluates all model genes; **no**
+extra GPR-only filter). Primary binary = unique-std PAO1 ∩ in iMO1056 ∩
+(POSITIVE ∪ NEGATIVE).
+
+**Exclusion policy:** AMBIGUOUS (`EXCLUDED_PRIMARY_BINARY_DISCORDANT_1_OF_3`);
+non-unique/nonstandard/no-PAO1 maps; absent from iMO1056; many-MPAO1→one-PAO1
+conflicts if observed.
+
+**Separation from D-20:** Keep Lee2015 original-analysis READY positives
+(`literature_evidence_gene_level_READY_mops_pyruvate_lee2015.csv`) unchanged as a
+separate `POSITIVE_OVERLAP_ONLY` evidence layer. **Do not** mix D-20 Lee-original
+positives with D-21 Varadarajan-derived negatives in one primary binary dataset.
+For D-21, **both** positives and negatives must come from Varadarajan2020.
+
+**Artifacts:**
+- Candidate (preserved): `varadarajan2020_lee2015_minimal_gene_labels_CANDIDATE.csv`
+- READY evidence: `varadarajan2020_lee2015_minimal_gene_labels_READY.csv`
+- Frozen primary binary: `varadarajan2020_lee2015_minimal_PRIMARY_BINARY_UNIVERSE.csv`
+  (expected 214 POSITIVE + 811 NEGATIVE = **1025**; 18 AMBIGUOUS excluded)
+- Scripts: `scripts/build_varadarajan2020_minimal_negative_universe_candidate.py`,
+  `scripts/promote_varadarajan2020_minimal_labels_ready.py`
+- Audit: `project_management/audit/negative_universe_lee2015/`
+
+**Permitted downstream use:** condition-matched binary confusion matrix and
+precision/recall/specificity/F1/MCC **only after** a separate V-01 metrics
+execution step against `mops_pyruvate_lee2015` predictions. This decision unlocks
+that step; it does **not** itself compute or claim those metrics.
+
+**Limitations / caveats:** Negatives are CDS-master complements of Minimal
+essential calls from a published essentials-union matrix (DS4), not a separately
+published non-essential spreadsheet; remap/annotation differences vs Lee-original
+positives exist; MPAO1-unique essentials cannot validate the PAO1 model.
+**Rationale:** Human-approved replacement for the deferred negative-universe gate
+without fabricating negatives from Lee Dataset-S1 absence or model complements.
