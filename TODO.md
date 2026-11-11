@@ -1,5 +1,28 @@
 # TODO — evidence-based, derived from the Phase A audit
 
+## Current priorities (reconciled 2026-11-11)
+
+This summary supersedes earlier cycle gates below. The dated update log is
+historical; completed work is not reopened by its old wording.
+
+| Work | Current state |
+|---|---|
+| L-01 / L-05 supplement acquisition | Six collections present; missing exact source URLs remain provenance follow-up |
+| L-03 label review | D-20 Lee-original positives and D-21 Varadarajan-derived primary binary labels ready as separate layers; other subsets remain separately gated |
+| C-01 / C-01b media | MOPS-pyruvate, MOPS-succinate and `LB_approx` implemented computationally; SCFM2/RPMI/host gaps remain |
+| S-01 predictions | Three media completed; essential counts 173 / 177 / 133 at 0.01 |
+| V-01 | D-21 matrix/metrics and FP/FN audit exist; human interpretation/sign-off pending |
+| G-01 mapping artifacts | Current PGD-based mapping: 1023 unique, 2 ambiguous, 29 unmapped; Turner APPROVED_LIMITED and RBH5374 artifacts also present; broad PA14 comparison approval not established by file existence |
+
+Next scientific task: human review of **47 FP and 98 FN**, then a defensible
+presentation of the existing MOPS-pyruvate comparison. No automatic model,
+GPR, medium or threshold tuning. Metrics do not establish final model validity.
+See `VALIDATION_LABEL_MEDIA_OVERLAP.md`, `BLOCKERS.md` and
+`project_management/audit/v01_mops_pyruvate/V01_BINARY_VALIDATION_REPORT.md`.
+
+Poulsen2019 has no experimentally screened PAO1 subset. Its PA14-indexed
+cross-strain path is separate from the completed MPAO1-derived D-21 comparison.
+
 Every task below is grounded in an observed fact from `PROJECT_AUDIT.md`.
 No invented completion percentages. Fields per task:
 **ID · Priority · Category · Task · Reason · Inputs · Expected output · Dependencies · Validation · Status · Blocker · Commit**
@@ -102,7 +125,9 @@ Status: TODO / IN-PROGRESS / DONE / BLOCKED.
 - **Reason:** Gene-level experimental labels live only in supplements.
 - **Inputs:** DOIs in `papers/manifest.csv` · **Output:** `data/raw/literature/<study>/...`
 - **Deps:** network + human OK · **Validation:** files present, hashed, logged in DATA_PROVENANCE.
-- **Status:** PARTIAL — raw dirs created; DOIs verified. PNAS supplements **403-blocked** and pseudomonas.com unreachable from this environment (see B-NET). NCBI RefSeq feature tables downloaded instead (for G-01). · **Blocker:** B-LIT-01, B-NET
+- **Status:** DONE for acquisition — all six study supplement collections are
+  present and inventoried in `DATA_PROVENANCE.md §3d`; exact source-download
+  URLs remain pending. Historical 403 failures no longer imply local absence.
 
 ### L-02 · P1 · literature
 - **Task:** Verify Basta & Belanger citation/DOI/year/strain against CrossRef/journal.
@@ -121,12 +146,16 @@ Status: TODO / IN-PROGRESS / DONE / BLOCKED.
   lee2015, turner2015 (PAO1 single-strain sheets sd01/06/07/10) and belanger2022 →
   `data/processed/literature/*_parsed_gene_evidence.csv` +
   `data/processed/literature_evidence_gene_level_DRAFT.csv` (5,093 rows; 6 classes
-  distinct; validation Turner=336 exact, Lee=351≈352). **varadarajan2020 NOT parsed
-  as evidence** (DS4 essentiality = Lee re-mapped → double-count; citation verified,
-  mapping resource only). Remaining: human review + promote DRAFT; Turner paired
+  distinct; validation Turner=336 exact, Lee=351≈352). **Historical July policy:**
+  Varadarajan was held as a mapping resource to avoid double-counting Lee.
+  **D-21 supersedes that restriction for one primary binary comparison:** DS1+DS4
+  now supply both label classes, not an independent replication. Remaining:
+  review/promote other subsets; Turner paired
   sheets sd03/04/05/09 (L03-B3); canonical `literature_evidence.csv` still not
   populated (intentionally — DRAFT is unreviewed). · **Blocker:** L03-B3 open;
-  B-SCI-01 (no metrics on unvalidated draft).
+  B-SCI-01 (no metrics on unvalidated draft). D-20/D-21 separate READY artifacts
+  and the completed V-01 execution are recorded in the current summary above;
+  L03-B3 was resolved in the 2026-07-07b update.
 
 ---
 
@@ -134,9 +163,17 @@ Status: TODO / IN-PROGRESS / DONE / BLOCKED.
 
 ### G-01 · P1 · gene-mapping
 - **Task:** Obtain authoritative PAO1↔PA14 ortholog table (pseudomonas.com / study homolog columns) and join into `gene_mapping.csv`; retain one-to-many & missing.
-- **Reason:** Needed **only** for the PA14-only path — Basta 2017 (PA14) and the non-PAO1 strains of Poulsen 2019 — whose gene IDs are not interchangeable with the PAO1 model. The PAO1/MPAO1 sources (Lee, Turner PAO1 rows, Belanger) join by identity and do **not** require this, so it is off the critical path for the first validation (downgraded P0→P1; see B-MAP-01, B-STRAIN-02).
+- **Reason:** Needed for the PA14 path — Basta2017 and Poulsen2019 PA14-indexed
+  cross-strain lists (none of Poulsen's nine screened strains is PAO1). This is
+  separate from PAO1-tagged identity joins and D-21 MPAO1-to-PAO1 DS1 mapping.
 - **Inputs:** `gene_mapping.csv`, ortholog source · **Output:** populated PA14/gene_name/uniprot + confidence
-- **Deps:** network + human OK · **Validation:** mapping coverage report; ambiguous cases listed. · **Status:** PARTIAL — `build_gene_mapping.py` → `gene_mapping.csv` + `gene_mapping_coverage.txt`. All 1054 model genes → PAO1 (high); 386 → PA14 unique-symbol (medium); 22 ambiguous (candidates retained); 646 PA14-unmapped. Source = NCBI RefSeq symbols (annotation, NOT validated orthology). Upgrade to pseudomonas.com orthology pending B-NET. · **Blocker:** B-MAP-01, B-NET
+- **Validation:** coverage and ambiguity report. **Status:** mapping artifacts
+  generated: `data/processed/gene_mapping/gene_mapping.csv` uses official PGD
+  orthology (1023 unique, 2 ambiguous, 29 unmapped), superseding the original
+  386-symbol-match layer. Turner limited approval, PGD integration and RBH5374
+  structural validation are distinct records; broader use still requires review
+  of the actual mapping/condition/phenotype policy. · **Blocker:** B-MAP-01 for
+  PA14 comparisons, not D-21.
 
 ### G-02 · P1 · gene-mapping
 - **Task:** Add gene names / UniProt for model PAO1 genes from a versioned source.
@@ -173,7 +210,8 @@ Status: TODO / IN-PROGRESS / DONE / BLOCKED.
   via `scripts/run_condition_essentiality.py` (threshold 0.01; no metrics).
   Summary: `results/essentiality/condition_essentiality_summary.csv`
   (pyruvate 173; succinate 177; LB_approx 133 essential of 1054).
-  · **Blocker:** none for predictions; V-01 still blocked
+  · **Blocker:** none for these predictions; MOPS-pyruvate V-01 metrics have
+  since been executed. Other comparison cells retain separate gates.
 
 ### S-02 · P2 · simulation
 - **Task:** Alternate-optima / solver-tolerance robustness (pFBA, multiple solvers if available).
@@ -184,9 +222,14 @@ Status: TODO / IN-PROGRESS / DONE / BLOCKED.
 ## H. Statistical evaluation
 
 ### V-01 · P0 · statistical-evaluation
-- **Task:** Replace the simulated-data comparison in archived teaching nb03 with real labels; compute confusion matrix, precision, recall, specificity, F1, MCC per matched condition+phenotype class; report mapped/unmapped/absent-gene coverage.
-- **Reason:** Current metrics are on random data (B-SCI-01) — invalid.
-- **Inputs:** predictions (S-01/R-02), evidence (L-03), mapping (G-01) · **Output:** `results/comparison/metrics_<condition>.csv` + figs
+- **Task:** Evaluate real experimental labels through the separate V-01 script;
+  keep archived teaching nb03 explicitly simulated. Report metrics and coverage
+  per matched condition/source/phenotype.
+- **Reason:** Synthetic teaching metrics are not experimental evidence; the
+  separate D-21/V-01 evaluation now supplies an initial real comparison.
+- **Inputs:** predictions, D-21 labels and their reviewed mapping. **Existing
+  output:** `data/processed/validation/v01_mops_pyruvate_*`; figures remain a
+  separate publication task.
 - **Deps:** L-03, G-01, C-01, S-01 · **Validation:** labels+mappings validated FIRST; metrics only on validated joins.
 - **Status:** **V01_ERROR_ANALYSIS_COMPLETED_PENDING_HUMAN_REVIEW**
   2026-08-01 — primary binary confusion matrix + metrics computed on D-21
@@ -304,7 +347,13 @@ Status: TODO / IN-PROGRESS / DONE / BLOCKED.
 
 ### E-03 (update) · lock env including pytest/matplotlib/openpyxl once N-01/E-04 done.
 
-## TOP 10 (updated 2026-07-01, by priority and unblock-ability)
+## Historical cycle/update log
+
+The entries below preserve the state and instructions at their stated dates.
+Statements that metrics were forbidden, media unbuilt or orthology unavailable
+are superseded for the completed work by the current summary and later decisions.
+
+## TOP 10 (historical 2026-07-01, by priority and unblock-ability)
 1. **L-05** download PAO1/MPAO1 supplements (P0, human-assisted) — DONE (all present)
 2. **L-03** parse supplements → gene-level `literature_evidence.csv` (P0, after L-05)
 4. **C-01b** reconstruct PAO1 media (LB/SCFM/MOPS) (P0, after L-05)
@@ -419,7 +468,7 @@ Status: TODO / IN-PROGRESS / DONE / BLOCKED.
 - **Next human decision:** define experimental **negative universe** for
   MOPS-pyruvate before full V-01 confusion-matrix metrics.
 
-## Update 2026-08-01 (D-21: binary universe approved; metrics not yet run)
+## Update 2026-08-01 (D-21 approval followed by V-01 execution)
 - Human review **APPROVED_FOR_PRIMARY_BINARY_VALIDATION** recorded as **D-21**.
 - Varadarajan2020 remapping of Lee2015 Tn-seq is the primary binary label source
   (not independent replication). D-20 Lee-original positives unchanged / separate.

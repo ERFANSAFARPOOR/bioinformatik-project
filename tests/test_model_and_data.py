@@ -2,8 +2,9 @@
 
 Run under the canonical env:  conda run -n reccobra39 pytest -q
 These lock model identity, WT growth, and the cleaned predicted-essentiality file
-so repository reorganization cannot silently change the science. No validation
-metrics are tested here (none are valid yet — see BLOCKERS B-SCI-01).
+so repository reorganization cannot silently change the science. V-01 metrics
+are tested separately in test_v01_mops_pyruvate_binary_validation.py; this module
+guards against unreviewed legacy metrics exports.
 """
 import hashlib
 from pathlib import Path
@@ -76,12 +77,12 @@ def test_predicted_essentiality_file():
     assert n_essential == 166, "166 predicted essential at 1% threshold"
 
 
-def test_no_validation_metrics_yet():
-    """Guard: no real model-vs-experiment metrics file should exist yet.
+def test_no_unreviewed_legacy_metrics_exports():
+    """Guard the unused legacy results/comparison/metrics_*.csv namespace.
 
-    Validation is gated (B-SCI-01/B-LIT-01/B-COND-01/B-MAP-01). If a metrics file
-    appears, it must be produced deliberately by V-01 with validated labels, and
-    this guard updated at that time.
+    Deliberately generated D-21/V-01 metrics live under data/processed/validation
+    and have their own integrity tests. A legacy export requires a documented
+    promotion decision and an accompanying update to this guard.
     """
     metrics_dir = ROOT / "results" / "comparison"
     stray = [p for p in metrics_dir.glob("metrics_*.csv")] if metrics_dir.exists() else []

@@ -1,5 +1,30 @@
 # PROJECT AUDIT — *Pseudomonas aeruginosa* genome-scale metabolic modeling
 
+**Historical snapshot notice — reconciled 2026-11-11:** this audit records
+2026-06-26 observations, with selected July annotations. Statements such as
+"no real validation exists", missing supplements, absent media or missing
+packages describe that earlier state, not the current project. The model
+measurements below are retained unchanged. Current status is in
+`VALIDATION_LABEL_MEDIA_OVERLAP.md` and
+`v01_mops_pyruvate/V01_BINARY_VALIDATION_REPORT.md`: local supplements,
+computational MOPS-pyruvate medium and D-21/V-01 metrics exist, pending human
+interpretation. Archived teaching notebook 03 still uses simulated labels
+and remains unsuitable as experimental evidence.
+
+**Strain correction:** Poulsen 2019 screened nine strains including PA14,
+**not PAO1** ([primary paper Table 1](https://www.pnas.org/doi/10.1073/pnas.1900570116)).
+PAO1 reference mentions and mapped locus coordinates do not establish PAO1
+assays. The July 10 Turner orthology decision is **APPROVED_LIMITED** for
+controlled drafts only; old missing-source statements do not override it.
+The canonical mapping now uses official PGD orthology (1023 unique, 2
+ambiguous, 29 unmapped model genes); a separate final RBH table has 5374 pairs
+and passed its structural checks. These are observed artifact facts, not an
+inferred new unrestricted study-use decision. Current files are
+`data/processed/gene_mapping/gene_mapping.csv` and
+`data/processed/ortholog/final/pao1_pa14_orthologs_pseudomonas_rbh_20260712.csv`.
+D-21 uses MPAO1→PAO1 DS1 best-hit mappings, distinct from Lee-original PA-tag
+identity joins and from PA14 orthology.
+
 **Audit type:** Read-only repository + model audit (Phase A)
 **Date:** 2026-06-26
 **Branch:** `claude/revival-audit`
@@ -23,7 +48,7 @@
 | **Critical integrity issue** | `notebooks/03_experimental_comparison.ipynb` computes precision/recall/F1 against **simulated random data** (`random.sample`, seed 42), explicitly labeled "Using simulated data for demonstration." **No real model-vs-experiment validation exists.** |
 | Literature | 6 relevant PDFs present (in `conditian/`), all identified. **No gene-level experimental data extracted yet**; supplementary `.xlsx` datasets not downloaded. |
 | Environment | Mandated env `reccobra39` (Py 3.9, cobra 0.29.1) is confirmed active, but notebooks were authored under `.venv` (Py 3.12.6) and `reccobra39` is **missing matplotlib/venn/openpyxl** needed to run them. |
-| Strain integrity | Model = PAO1. **CORRECTED 2026-07-01 (B-STRAIN-02):** the corpus is *not* mostly PA14 — Lee 2015=**MPAO1**, Belanger 2022=**PAO1**, Turner 2015=**PAO1+PA14** (usable PAO1 rows); only Basta 2017=PA14 and non-PAO1 Poulsen strains need orthology. See `PAO1_PAPER_RELEVANCE_AUDIT.md`. |
+| Strain integrity | Model = PAO1. **CORRECTED 2026-07-01 (B-STRAIN-02):** the corpus is *not* mostly PA14 — Lee 2015=**MPAO1**, Belanger 2022=**PAO1**, Turner 2015=**PAO1+PA14** (usable PAO1 rows); Basta 2017=PA14 and Poulsen's PA14-indexed lists need cross-strain mapping (Poulsen has no screened PAO1 subset). See `PAO1_PAPER_RELEVANCE_AUDIT.md`. |
 
 ---
 
@@ -130,9 +155,9 @@ the papers, not condition definitions.
 | File | Study | Strain | DOI | Phenotype class |
 |---|---|---|---|---|
 | `juhas2015.pdf` | Juhas et al. 2015, *P. aeruginosa* essentials update (Microbiology) | review | 10.1099/mic.0.000161 | generally essential (review) |
-| `keith H.pdf` | Turner et al. 2015, essential genome in CF sputum (PNAS) | **PA14** | 10.1073/pnas.1419677112 | condition-specific essential |
-| `samuelA.pdf` | Lee et al. 2015, general & condition-specific essential functions (PNAS) | **PA14** | 10.1073/pnas.1422186112 | general + condition-specific |
-| `polsun2019.pdf` | Poulsen et al. 2019, core essential genome (PNAS) | **PA14 / multi-strain** | 10.1073/pnas.1900570116 | core essential |
+| `keith H.pdf` | Turner et al. 2015, essential genome in CF sputum (PNAS) | **PAO1 + PA14** (corrected from initial PA14-only label) | 10.1073/pnas.1419677112 | condition-specific essential |
+| `samuelA.pdf` | Lee et al. 2015, general & condition-specific essential functions (PNAS) | **MPAO1 (PAO1-derived)** (corrected from initial PA14 label) | 10.1073/pnas.1422186112 | general + condition-specific |
+| `polsun2019.pdf` | Poulsen et al. 2019, core essential genome (PNAS) | **9 strains incl. PA14; excludes PAO1** (reconciled 2026-11-11) | 10.1073/pnas.1900570116 | core essential |
 | `davidW.pdf` | Basta et al., carbon/oxygen-limited growth-arrest fitness | PA14 (verify) | PENDING_VERIFY | survival-during-growth-arrest |
 | `corrieR.pdf` | Belanger et al., "Surviving the host: … physiologically-relevant conditions" | PAO1 (verify) | PENDING_VERIFY | host-condition fitness |
 
@@ -181,7 +206,7 @@ high-confidence (appear in PDF `/Title` and headers).
 
 ---
 
-## 10. What is and is NOT established
+## 10. What was and was NOT established at the original audit date
 
 **Established (evidence-backed):**
 - Model identity (iMO1056/PAO1), size, objective, feasibility, default medium.

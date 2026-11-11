@@ -1,6 +1,6 @@
 # Project work model and next steps (for the team)
 
-**Date:** 2026-07-21  
+**Date:** 2026-07-21; status reconciled **2026-11-11**
 **Audience:** Project teammates (anyone continuing the scientific path)  
 **Scope:** Guidance and decisions only — no code, notebooks, or media configs are created by this document.  
 **Scientific focus:** Model iMO1056 = **PAO1**; first validation path uses PAO1/MPAO1 evidence only.
@@ -16,9 +16,10 @@ model (*P. aeruginosa* PAO1, iMO1056). The scientific goals are:
 2. Compare condition-matched predictions to **PAO1/MPAO1** experimental evidence  
 3. Report limitations honestly (no fabricated metrics)
 
-The three existing notebooks (`01` / `02` / `03`) were written for **teaching**.
-The group’s goal is now **research / reviewer-defensible**. Those teaching notebooks
-should be archived and a new research notebook path should be built.
+The three teaching notebooks (`01` / `02` / `03`) are archived under
+`archive/teaching_notebooks/`. Research notebooks `04_media_reconstruction` and
+`05_condition_essentiality` exist. The first real binary evaluation is implemented
+by the V-01 script and reports; its final human interpretation is pending.
 
 ---
 
@@ -35,7 +36,7 @@ not possible yet, these outputs are still worth listing and showing:
 | Reproducible repo (locked env, tests, provenance) | Shows scientific engineering skill |
 | Documented orthology (Turner APPROVED_LIMITED + PGD) | Real mapping work with scientific decisions |
 | Literature evidence tables with provenance | Systematic curation skill |
-| Media reconstruction plan + cited bounds | Applied FBA skill |
+| Implemented media configurations + cited bounds and assumptions | Applied FBA skill |
 | Multi-medium essentiality predictions (without fake validation claims) | Explainable interview demo |
 | Explicit limitation reports | Scientific maturity, not just “pretty numbers” |
 
@@ -46,7 +47,7 @@ not possible yet, these outputs are still worth listing and showing:
 For a reviewer-defensible model validation, this chain is required:
 
 ```
-real PAO1 labels (READY_ONLY)
+reviewed condition-specific PAO1/MPAO1 labels (D-21 for the first cell)
         +
 documented in-model media (C-01b)
         +
@@ -89,8 +90,8 @@ Decision: keep **Jupyter** for readability, but put reusable logic in **`src/`**
 - `02_gene_essentiality`: numerically solid, but teaching-structured
 - `03_experimental_comparison`: compares to **random labels** — scientifically forbidden
 
-**Recommendation:** move them to `archive/teaching_notebooks/` with a README marked
-legacy/teaching; do not build new research on top of them.
+**Completed:** moved to `archive/teaching_notebooks/`; retain their teaching role
+and do not report nb03 random-label metrics.
 
 ### 3.2 New research notebooks — required traits
 
@@ -103,12 +104,13 @@ Each notebook should be **self-contained** (a reader understands it without the 
 5. Outputs saved under `results/` or `data/processed/`  
 6. A “limitations / what we do not claim” section  
 
-Suggested build order (when implementation starts):
+Implementation status:
 
-1. Media logic in `src/` first  
-2. `04_media_reconstruction.ipynb` — show and save medium configs  
-3. `05_condition_essentiality.ipynb` — predictions per medium  
-4. `06_pao1_validation.ipynb` — only when labels + media + predictions exist  
+1. Media logic in `src/medium.py` — implemented.
+2. `04_media_reconstruction.ipynb` — implemented.
+3. `05_condition_essentiality.ipynb` — implemented; three media exported.
+4. `06_pao1_validation.ipynb` — not created. The evaluation already exists as
+   `scripts/validation/run_v01_mops_pyruvate_binary_validation.py` and V-01 reports.
 
 ---
 
@@ -155,12 +157,12 @@ Here is the honest model/paper reality so format is not locked too early.
 
 Instead of forcing “must be JSON” or “exactly these three media” up front:
 
-**Batch A — build first (DEFINED, close to existing PAO1 evidence):**
-1. MOPS-pyruvate (Lee) — if it matches Lee labels  
-2. MOPS-succinate (Turner) — if it matches Turner tables  
+**Batch A — DEFINED (first two implemented; M9 remains conditional future work):**
+1. MOPS-pyruvate (Lee experimental context) — used in the D-21/V-01 cell.
+2. MOPS-succinate (Turner comparator) — predictions exist; not a complete sputum contrast.
 3. M9 + specified carbon — only if that study’s Methods use it  
 
-**Batch B — approximation with honest labels (PARTIAL):**
+**Batch B — implemented approximation with honest labels (PARTIAL):**
 4. `LB_approx` for comparison to “general essential in LB”  
 5. Explicitly state yeast extract/tryptone are not modeled  
 
@@ -176,11 +178,12 @@ table/dict with provenance:
 - `exchange_id → bound` with concentration→flux rationale  
 - `unmodeled_components` (e.g. yeast extract)  
 
-Choose CSV / YAML / JSON after team agreement. More important than format:
-**citations and honest PARTIAL labels**.
+CSV exports now exist in `data/processed/conditions/`. Keep citations, documented
+concentration-to-bound assumptions and honest PARTIAL labels when extending them.
 
-Existing technical docs: `C01B_MEDIA_RECONSTRUCTION_PLAN.md`,
-`MEDIA_SOURCE_AUDIT.md`, current API in `src/medium.py`.
+Existing technical docs: [media plan](../audit/C01B_MEDIA_RECONSTRUCTION_PLAN.md),
+[media source audit](../audit/MEDIA_SOURCE_AUDIT.md),
+[current tables](../../data/processed/conditions/README.md), and API in `src/medium.py`.
 
 ---
 
@@ -188,7 +191,8 @@ Existing technical docs: `C01B_MEDIA_RECONSTRUCTION_PLAN.md`,
 
 - Model = PAO1 (`PAxxxx` locus tags)  
 - Lee = MPAO1, Belanger = PAO1, Turner has usable PAO1 rows → join by **identity**  
-- Poulsen/Basta are largely PA14 → need orthology; orthology is
+- Basta is PA14; Poulsen screens nine strains excluding PAO1 and uses PA14/cluster
+  coordinates → both need explicit cross-strain mapping; Turner orthology is
   `APPROVED_LIMITED` but not required for the first PAO1 validation  
 
 **Team decision:** first path = PAO1-only. PA14 later (L-03b), after PGD↔Turner
@@ -196,51 +200,54 @@ crosswalk if needed.
 
 ---
 
-## 6. Current status (team snapshot)
+## 6. Current status (reconciled 2026-11-11)
 
 | Item | Status |
 |---|---|
-| Model + pytest | Reproducible; nb02 = 166 essential |
-| Lee/Turner/Belanger evidence | DRAFT; subset READY_ONLY |
-| Turner orthology | APPROVED_LIMITED (5,365 pairs) |
-| PGD orthology | Present (5,385); supplements Turner (D-16) |
-| In-model media | Plan only; not built yet |
-| Validation metrics | **Forbidden** until labels + media + predictions |
+| Model / baseline | Reproducible iMO1056; default-medium 166 essentials. |
+| Media | MOPS-pyruvate and MOPS-succinate DEFINED; LB approximation PARTIAL, all implemented. |
+| Predictions | All 1054 genes evaluated per medium; 173/177/133 essentials respectively at 1%. |
+| Primary experimental labels | D-21 approved: 214 positive + 811 negative = 1025; 18 ambiguous in-model genes excluded. |
+| V-01 metrics | Computed: TP116/FN98/TN764/FP47; human interpretation pending. |
+| Review evidence | Error-structure audit and source-backed evidence pack exist; no final sign-off or model edits implied. |
+| Other experimental evidence | D-20 positives are a separate overlap-only layer; other conditions keep their own gates. |
+| Turner / PGD orthology | Current `data/processed/gene_mapping/gene_mapping.csv` uses official PGD orthology: 1023 unique, 2 ambiguous, 29 unmapped. Final RBH table = 5374 pairs, technical PASSED report. Documented Turner APPROVED_LIMITED policy and later artifact lineage/approval require reconciliation before new PA14 comparisons. |
 
-Open blockers: `B-SCI-01` (no real metrics), `B-COND-01` (media),
-`B-MAP-01` partially resolved (PA14 path).
+D-21 uses Varadarajan2020's reanalysis of Lee2015 Tn-seq, not independent
+replication. Negative means not called essential in any of three Minimal
+libraries; positive means called in at least two; discordant one-of-three calls
+are excluded. MPAO1-to-PAO1 mapping/sublineage limitations remain documented.
+
+B-SCI-01 now concerns interpretation and incomplete condition coverage, not
+absence of any real comparison. B-COND-01 concerns the remaining media, not the
+implemented MOPS configurations. B-MAP-01 concerns the secondary PA14 path.
+See [current readiness](../audit/VALIDATION_READINESS.md) and
+[label/media overlap](../../VALIDATION_LABEL_MEDIA_OVERLAP.md).
 
 ---
 
-## 7. NEXT STEPS — recommended order
+## 7. Next steps
 
-### Phase 0 — housekeeping (short)
-1. Archive teaching notebooks `01`/`02`/`03` → `archive/teaching_notebooks/` + README  
-2. Enforce: nobody cites nb03 validation numbers  
+1. Review the 98 FN and 47 FP explanations in the
+   [error audit](../audit/v01_mops_pyruvate/V01_ERROR_STRUCTURE_AUDIT.md) and
+   [review evidence](../audit/v01_mops_pyruvate/V01_HUMAN_REVIEW_EVIDENCE.md).
+   Diagnostic categories remain hypotheses, not proven causes.
+2. Produce a supervisor-facing narrative of the existing methods/results,
+   condition matching, coverage and limitations; obtain final human sign-off.
+3. Extend other media or phenotype cells only after their own labels, mappings,
+   medium assumptions and predictions are reviewed.
+4. Reconcile the secondary PGD/Turner/RBH artifact lineage and documented
+   approval scope before controlled Poulsen/Basta comparison; this is independent
+   of the executed first cell.
 
-### Phase 1 — media infrastructure in `src/` (scientific priority)
-3. Extend/stabilize medium API in `src/medium.py` (or related module)  
-4. Implement Batch A (DEFINED) with citations  
-5. Implement `LB_approx` with yeast-extract/tryptone flags  
-6. Tests: WT growth per medium; no crashes; no invented bounds without sources  
+Continuing constraints:
 
-### Phase 2 — self-contained research notebooks
-7. Media notebook: load, display composition, save derived outputs  
-8. Multi-medium essentiality notebook (CSV under `results/`)  
-
-### Phase 3 — prepare validation (still no rushed metrics)
-9. Lock READY_ONLY labels for conditions that have media  
-10. Only when label↔media↔prediction overlap is clear → design V-01  
-
-### Phase 4 — optional / parallel (PA14)
-11. PGD↔Turner crosswalk  
-12. Later controlled Poulsen/Basta draft mapping — **not** the first validation  
-
-### Forbidden until further notice
-- Reporting precision/recall/F1/MCC from simulated data  
-- Claiming “true LB” when only an approximation exists  
-- Merging orthology into `gene_mapping.csv` without a separate decision  
-- Building sputum/serum media without MEDIA_GAP labeling  
+- Never cite teaching nb03's simulated-label metrics.
+- Do not mix D-20 Lee-original positives with D-21 Varadarajan negatives.
+- Do not claim the model is fully validated while interpretation is pending.
+- Keep `LB_approx` separate from true LB and from the primary comparison.
+- Do not edit model/GPR/media/thresholds to improve frozen metrics automatically.
+- Orthology promotion and any future model changes need their own sourced decisions.
 
 ---
 
@@ -253,29 +260,28 @@ Open blockers: `B-SCI-01` (no real metrics), `B-COND-01` (media),
 | Data | READY_ONLY ↔ media conditions; overlap gene lists |
 | Repo | Archive teaching notebooks; README; env |
 
-Next team meeting should decide only this:
-
-> For the first validation, which two/three DEFINED media are locked, and do we
-> keep LB as a separate approximation case?
+The next team meeting should review the existing first-cell discrepancies and
+interpretation. MOPS-pyruvate is already the locked primary medium; LB remains a
+separate approximation case.
 
 ---
 
 ## 9. Related files in the repo
 
 - `CLAUDE.md` / `TODO.md` / `BLOCKERS.md` / `DECISIONS.md`  
-- `C01B_MEDIA_RECONSTRUCTION_PLAN.md`  
-- `MEDIA_SOURCE_AUDIT.md`  
-- `L03_REVIEWED_EVIDENCE_SUMMARY.md`  
-- `docs/ORTHOLOGY_PSEUDOMONAS_INTEGRATION.md`  
-- `ORTHOLOGY_HUMAN_REVIEW_DECISION.md`  
-- `PUBLICATION_PLAN.md`  
+- [Media reconstruction plan](../audit/C01B_MEDIA_RECONSTRUCTION_PLAN.md)
+- [Media source audit](../audit/MEDIA_SOURCE_AUDIT.md)
+- [Reviewed literature evidence](../audit/L03_REVIEWED_EVIDENCE_SUMMARY.md)
+- [PGD integration](../../docs/methods/ORTHOLOGY_PSEUDOMONAS_INTEGRATION.md)
+- [Orthology decision](../audit/ORTHOLOGY_HUMAN_REVIEW_DECISION.md)
+- [Publication plan](../publication/PUBLICATION_PLAN.md)
 
 ---
 
 ## 10. One sentence for the team
 
-> Keep Jupyter for narrative; lock science in `src/` and tests; archive teaching
-> notebooks; build DEFINED media and an honest LB approximation for PAO1 first;
-> compute metrics only after real labels + media + predictions.
+> Keep Jupyter for narrative and `src/` for reusable science; present the executed
+> MOPS-pyruvate comparison with its limitations, review discrepancies, and extend
+> conditions through separate evidence gates.
 
 *Guidance document only — no new research notebooks or media files were created in this step.*

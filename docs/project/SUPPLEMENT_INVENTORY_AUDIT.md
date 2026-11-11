@@ -3,6 +3,20 @@
 **Date:** 2026-07-06 · **Branch:** `claude/revival-audit` · **Env:** `reccobra39`
 (openpyxl read-only inspection). **No raw file was modified, moved, or deleted.**
 
+**Current-status reconciliation (2026-11-11):** this is a historical file and
+column inventory, not the current validation gate. D-21 subsequently approved
+Varadarajan2020 DS1+DS4 as the Lee-derived primary Minimal binary label source;
+V-01 metrics were computed on 1025 genes, with interpretation pending. The
+mapping step is implemented for that cell. Varadarajan must not be counted as
+independent replication. Turner PA14↔PAO1 mapping now has `APPROVED_LIMITED`
+use for controlled L-03b drafts. The PGD-based builder has already produced
+`data/processed/gene_mapping/gene_mapping.csv` (1023 unique, 2 ambiguous, 29
+unmapped model genes); the 5374-pair RBH artifact and passing structural report
+are under `data/processed/ortholog/final/`. Artifact existence/structural checks
+do not supply the missing recorded approval for unrestricted use. PA14 evidence
+promotion/metrics still require their separate reviews. Current decisions are
+in root `DECISIONS.md` and `VALIDATION_LABEL_MEDIA_OVERLAP.md`.
+
 ## Folder-location check
 - `data/raw/literature/` — **EXISTS** ✅ (7 study folders).
 - `data/raw/lituare/` (typo path) — **DOES NOT EXIST** ✅. No files to move; no

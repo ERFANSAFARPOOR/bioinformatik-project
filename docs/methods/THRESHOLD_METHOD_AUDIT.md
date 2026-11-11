@@ -12,6 +12,24 @@ names.
 
 Readiness legend: `READY_FOR_DRAFT_PARSE` · `PARTIAL_READY` · `STILL_BLOCKED`.
 
+**Current-status reconciliation (2026-11-11):** source-method findings and
+July parse-readiness history below are retained. D-21 (2026-08-01) supersedes
+the former mapping-only restriction on Varadarajan2020: its DS1+DS4 provide
+both positive and negative labels for the primary MOPS-pyruvate evaluation.
+Positive = essential in at least 2/3 Minimal libraries; negative = zero essential
+calls across the three libraries (0/3); 1/3 calls are ambiguous and excluded. V-01 metrics
+exist for 1025 genes (TP=116, FN=98, TN=764, FP=47), pending biological
+interpretation. This is Lee2015-derived evidence, not an independent screen.
+Turner PA14↔PAO1 orthology is now `APPROVED_LIMITED` for controlled L-03b
+drafts. The PGD-based builder and
+`data/processed/gene_mapping/gene_mapping.csv` already contain official
+orthology (1023 unique, 2 ambiguous, 29 unmapped model genes); a 5374-pair RBH
+artifact and passing structural report exist under `data/processed/ortholog/final/`.
+These observed outputs do not establish unrestricted scientific-use approval;
+reconcile the D-16 scope/review gap before broader PA14 evidence promotion.
+Neither mapping source alone approves PA14 validation metrics. See the root `DECISIONS.md` and
+`VALIDATION_LABEL_MEDIA_OVERLAP.md` for current decisions.
+
 ---
 
 ## lee2015 — Lee et al. 2015, PNAS 112(16):5189–5194
@@ -197,15 +215,18 @@ Readiness legend: `READY_FOR_DRAFT_PARSE` · `PARTIAL_READY` · `STILL_BLOCKED`.
   MPAO1-unique general-essential) has **no PAO1 homolog** → cannot map to the
   PAO1 iMO1056 model anyway.
 - **usable content:** DS1/DS3 provide a native **MPAO1 → PAO1** best-hit mapping
-  (`best_hit`/`PAO1_gene_name`) — a legitimate *reference resource* for later
-  (retain one-to-many / missing per rule 3), **not** an evidence source.
+  (`best_hit`/`PAO1_gene_name`) — a legitimate *reference resource* (retain
+  one-to-many / missing per rule 3). D-21 later combined DS1 with DS4 as a
+  single, internally consistent derivative evidence source.
 - **interpretation rule for parsing:** **do NOT parse DS4 as independent
   gene-level evidence.** Optionally build the MPAO1→PAO1 map later as a reference
-  table (not this run).
+  table (not this July audit run). D-21 later authorized the Minimal binary
+  labels from this reanalysis without counting it as independent evidence.
 - **unresolved uncertainties:** L03-B7 (MPAO1→PAO1 mapping) may be built later as
   a resource; L03-B8 threshold is Lee-derived (documented above).
 - **L-03 readiness:** **STILL_BLOCKED as independent evidence** (derivative of
-  Lee 2015). Citation now VERIFIED; usable only as a mapping resource.
+  Lee 2015). Citation VERIFIED. The July mapping-only restriction is superseded
+  by D-21 for the primary Minimal binary labels; independence remains disallowed.
 
 ---
 
@@ -319,11 +340,13 @@ Readiness legend: `READY_FOR_DRAFT_PARSE` · `PARTIAL_READY` · `STILL_BLOCKED`.
 | lee2015 | VERIFIED | YES (P<0.001; consensus pools) | READY_FOR_DRAFT_PARSE (cond=PARTIAL) | L03-B1 |
 | turner2015 | VERIFIED | YES (P<0.01 + mclust; FC≥4,P<0.05) | READY_FOR_DRAFT_PARSE (PAO1 single + paired sheets) | L03-B2, **L03-B3 (resolved 2026-07-07)** |
 | belanger2022 | VERIFIED | YES (Gumbel/TraDIS ≥4/5, T0 ≥2/3) | READY_FOR_DRAFT_PARSE | L03-B4, L03-B5 |
-| varadarajan2020 | VERIFIED | Lee-derived (not independent) | STILL_BLOCKED as evidence (mapping resource only) | L03-B6 (B7/B8 reframed) |
+| varadarajan2020 | VERIFIED | Lee-derived (not independent) | D-21 Minimal binary labels approved; V-01 computed, interpretation pending | July mapping-only restriction superseded by D-21 |
 | poulsen2019 | VERIFIED | YES (FiTnEss adj. P<0.05 both reps; FWER/FDR) | METHODS_READY_BUT_MAPPING_BLOCKED (PA14→PAO1 orthology) | threshold sourced |
 | basta2017 | VERIFIED | YES (read ratio ≤0.25 & Fisher P≤0.05) | STILL_BLOCKED (analysis + PA14→PAO1 orthology) | threshold sourced |
 | zhu2018 | PENDING_VERIFY | n/a (model) | NOT_RELEVANT_FOR_L03 | — |
 
-No `THRESHOLD_PENDING` studies remain (Poulsen and Basta thresholds are now
-sourced; they are blocked on **mapping/orthology**, not thresholds). Metrics
-remain **forbidden** (B-SCI-01); this file only sources definitions/thresholds.
+No `THRESHOLD_PENDING` studies remain in this audit. Poulsen/Basta threshold
+definitions are sourced; evidence promotion still needs their controlled
+mapping/phenotype analysis. Turner limited orthology approval does not itself
+approve their metrics. MOPS-pyruvate/D-21 metrics were subsequently computed
+outside this methods audit; other cells retain their own gates.

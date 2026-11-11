@@ -4,13 +4,34 @@
 **Branch:** `erfan/orthology-human-review`  
 **Scope:** Integration audit for Pseudomonas Genome Database (PGD) orthology export merged from `origin/develop` (commit `7cd3dd29`, *ortolog table*).
 
+**Current-status reconciliation (2026-11-11):** restrictions in this document
+apply to the PGD/PA14 evidence-transfer path. They do not block the separate
+D-21 MPAO1→PAO1 Minimal evaluation, whose V-01 metrics already exist (1025
+genes; TP=116, FN=98, TN=764, FP=47), pending human interpretation. Turner
+`APPROVED_LIMITED` permits controlled L-03b draft mapping; it does not authorize
+unrestricted evidence promotion or PA14 metrics.
+
+**Observed implementation differs from the historical D-16 plan below:**
+`scripts/mapping/build_gene_mapping.py` now reads the official PGD export;
+`data/processed/gene_mapping/gene_mapping.csv` has 1023 unique official mappings,
+2 ambiguous and 29 unmapped model genes. The separate final RBH file
+`data/processed/ortholog/final/pao1_pa14_orthologs_pseudomonas_rbh_20260712.csv`
+contains 5374 pairs, and its `Validation_Report.txt` passes structural checks.
+Turner files now reside under `data/processed/ortholog/working/`. These observed
+artifacts correct the historical claims of no PGD merge/no final output; their
+existence and structural validation do not establish unrestricted biological
+approval or approve PA14 metrics. Reconcile the implementation with the recorded
+D-16 scope and review before broader evidence promotion. See root `DECISIONS.md`
+D-16/D-21 and `VALIDATION_LABEL_MEDIA_OVERLAP.md`. Sections below retain the
+dated integration plan and its remaining scientific-review requirements.
+
 ---
 
 ## 1. What orthology source is now available
 
 An authoritative **Pseudomonas Genome Database (PGD)** PAO1↔PA14 ortholog export is now present locally under `data/raw/ortholog/`. It provides **5,385 curated 1:1 pairs** between PAO1 locus tags (`PA####`) and PA14 locus tags (`PA14_#####`), with gene descriptions and optional inparalog flags in the raw export.
 
-This is the live database source that was previously unreachable via automated download (B-NET / HTTP 403). It **supplements and validates** the Turner 2015–derived mapping; it does **not** replace the human-reviewed Turner `APPROVED_LIMITED` table until a formal crosswalk and review are complete.
+This is the database source that was previously unreachable via automated download (B-NET / HTTP 403). The recorded D-16 policy was to use it to supplement the Turner 2015–derived mapping pending formal crosswalk/review. The observed PGD-based builder and final artifacts are recorded above; scientific-use authorization must be distinguished from implementation.
 
 **Source labels in use:**
 
@@ -35,9 +56,11 @@ This is the live database source that was previously unreachable via automated d
 
 | Path | Rows | Status |
 |---|---|---|
-| `data/processed/ortholog/pao1_pa14_orthologs_turner2015_CANDIDATE.csv` | 5,365 | Turner-derived candidate (read-only) |
-| `data/processed/ortholog/pao1_pa14_orthologs_turner2015_APPROVED_LIMITED.csv` | 5,365 | Manually reviewed, **approved limited use** |
-| `data/processed/ortholog/pao1_pa14_orthologs_turner2015_APPROVED_LIMITED_FOR_L03B.csv` | 5,365 | Filtered export (same rows; conflict resolved) |
+| `data/processed/ortholog/working/pao1_pa14_orthologs_turner2015_CANDIDATE.csv` | 5,365 | Turner-derived candidate (read-only) |
+| `data/processed/ortholog/working/pao1_pa14_orthologs_turner2015_APPROVED_LIMITED.csv` | 5,365 | Manually reviewed, **approved limited use** |
+| `data/processed/ortholog/working/pao1_pa14_orthologs_turner2015_APPROVED_LIMITED_FOR_L03B.csv` | 5,365 | Filtered export (same rows; conflict resolved) |
+| `data/processed/gene_mapping/gene_mapping.csv` | 1,054 model genes | PGD-derived output already present; 1023 unique, 2 ambiguous, 29 unmapped |
+| `data/processed/ortholog/final/pao1_pa14_orthologs_pseudomonas_rbh_20260712.csv` | 5,374 | Final RBH artifact; structural checks pass, broader scientific approval not inferred |
 
 **Exploratory workspace:** `tst ortolog/` — see §6.
 
@@ -76,8 +99,8 @@ This is the live database source that was previously unreachable via automated d
 
 - Direct replacement of Turner `APPROVED_LIMITED` (no PGD human review record yet).
 - Unrestricted genome-wide PA14→PAO1 transfer (strict 1:1 policy still applies).
-- Merge into `gene_mapping.csv` (explicitly forbidden until separate approval).
-- Validation metrics (B-SCI-01 still blocks).
+- Unrestricted scientific use of the already generated PGD-based mapping without reconciling the recorded D-16 review/approval scope.
+- Validation metrics based on PGD/PA14 evidence transfer (their label/media/promotion gates remain open).
 
 PAO1 remains the project focus. PA14 experimental evidence still requires orthology support and must be labeled by source.
 
@@ -92,7 +115,7 @@ PAO1 remains the project focus. PA14 experimental evidence still requires orthol
 | **Duplicate QC rows** | Some loci appear multiple times in `Orthology_QC_Report.csv` | Deduplicate in crosswalk script; document policy |
 | **Provenance gaps** | `Supplementary_Table_S1.csv` and QC report lack logged SHA-256 in `DATA_PROVENANCE.md` | Add hashes on next provenance pass |
 | **Exploratory folder** | `tst ortolog/` contains BLAST DBs, NCBI zips, intermediate CSVs | Relocate to `archive/` after pipeline is documented (do not delete yet) |
-| **Premature validation** | Temptation to compute metrics once mapping exists | Metrics remain forbidden (B-SCI-01) |
+| **Premature validation** | Temptation to compute PA14 metrics once mapping exists | PA14 metrics remain gated; D-21/V-01 is a separate MPAO1 evaluation |
 
 ---
 
@@ -138,7 +161,7 @@ data/
 archive/
   tst_ortholog_exploratory/            # FUTURE: relocated from tst ortolog/
 
-docs/
+docs/methods/
   ORTHOLOGY_PSEUDOMONAS_INTEGRATION.md  # this file
 
 scripts/mapping/
@@ -156,10 +179,17 @@ scripts/mapping/
 1. Build PGD↔Turner crosswalk script (`scripts/mapping/build_ortholog_pgd_crosswalk.py`).
 2. Classify shared / PGD-only / Turner-only / Review-flagged pairs.
 3. Human review of crosswalk results; decide whether to extend `APPROVED_LIMITED` or create separate PGD-approved table.
-4. Only then: controlled L-03b draft mapping for Poulsen/Basta (no metrics).
+4. Use reviewed mapping under its scope: Turner `APPROVED_LIMITED` already
+   permits controlled L-03b draft mapping; PGD replacement waits for steps 1–3.
+   Evidence promotion and PA14 metrics require separate decisions.
 5. Relocate `tst ortolog/` to `archive/` with README.
 
-**Forbidden until further notice:** merge into `gene_mapping.csv`, compute validation metrics, parse Poulsen/Basta as evidence, run simulations, create condition JSON.
+**PGD-path scientific-use restrictions:** reconcile the already generated
+PGD-based mapping/final artifacts with the recorded D-16 review scope before
+unrestricted scientific use; no automatic promotion of
+Poulsen/Basta drafts or PA14 validation metrics. This integration audit does
+not authorize new simulations or condition configurations. Existing
+MOPS-pyruvate/D-21 results are unaffected.
 
 ---
 

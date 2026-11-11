@@ -1,5 +1,28 @@
 # NEXT_CLAUDE_PROMPT.md — ready-to-paste prompt for the next run
 
+**Current-status notice - 2026-11-11:** the operational instructions below are a
+historical July snapshot, not the current continuation plan or a new approval
+requirement. All active corpus supplements are present; two DEFINED media and a
+PARTIAL LB approximation are implemented; per-medium gene deletions and D-21/V-01
+binary metrics exist (1025 genes; TP116/FN98/TN764/FP47). The error audit and review
+evidence are prepared; final human interpretation/sign-off remains pending.
+Varadarajan2020 is now the approved D-21 binary-label source as a published Lee2015
+reanalysis, not independent replication. The current PGD-based integrated mapping
+has 1023 unique, 2 ambiguous and 29 unmapped genes; later mapping artifacts do not
+automatically broaden the recorded Turner APPROVED_LIMITED policy.
+
+Use the [current readiness report](../audit/VALIDATION_READINESS.md),
+[current handoff](../planning/NEXT_STAGE_HANDOFF_REPORT.md),
+[label/media alignment](../../VALIDATION_LABEL_MEDIA_OVERLAP.md), and
+[decisions](../../DECISIONS.md) before continuing. Earlier “never compute metrics”,
+“media not started”, fixed branch/test-count and proposed commit instructions
+below describe the old stage only. Preserve the source-data and scientific
+integrity constraints, and use current user authorization for the present task.
+
+---
+
+## Historical July snapshot
+
 *(Rewritten 2026-07-07. Supersedes all earlier versions.)*
 
 ---

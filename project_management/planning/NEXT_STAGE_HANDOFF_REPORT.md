@@ -1,4 +1,4 @@
-# NEXT-STAGE HANDOFF REPORT
+# Next-stage handoff: current state and archived Cycle 2
 
 **Date:** 2026-07-01 · **Cycle:** 2 (PAO1-focused organization) ·
 **Branch:** `claude/revival-audit`
@@ -8,6 +8,50 @@ reading the whole repo. Project = validating the *P. aeruginosa* **PAO1**
 genome-scale model **iMO1056** against PAO1 experimental essentiality/fitness data.
 
 ---
+
+## Current handoff - reconciled 2026-11-11
+
+The first condition-specific experimental comparison is **computed, pending human
+interpretation**, not absent and not a completed claim of model validation.
+
+| Stage | Current evidence |
+|---|---|
+| Media | Two DEFINED configurations (`mops_pyruvate_lee2015`, `mops_succinate_turner2015`) and PARTIAL `LB_approx_lee2015` implemented in `src/medium.py` and exported to `data/processed/conditions/`. |
+| Predictions | 1054 single-gene predictions per medium; essential counts at 1% = 173 pyruvate, 177 succinate, 133 LB approximation. Default-medium baseline = 166. |
+| D-20 | Lee-original 437 MOPS-pyruvate positives promoted for a separate positive-overlap-only analysis. |
+| D-21 / V-01 | Published Varadarajan2020 reanalysis of Lee2015 Tn-seq; 214 positives + 811 negatives = 1025 in-model genes, 18 ambiguous excluded. Both binary classes use this same source. TP=116, FN=98, TN=764, FP=47. |
+| Review | Error-structure audit and source-backed review evidence exist. Final human interpretation/sign-off is still pending; no retuning or model changes follow automatically. |
+| Supplements | All active corpus supplements present; source-URL/provenance follow-up remains. |
+| PA14 path | Current `data/processed/gene_mapping/gene_mapping.csv` uses official PGD orthology: 1023 unique, 2 ambiguous, 29 unmapped. Final RBH table has 5374 pairs and a technical PASSED report. Turner APPROVED_LIMITED policy remains distinct; later artifact lineage/approval must be reconciled before a PA14 comparison. Not a dependency of the executed D-21 cell. |
+
+Varadarajan is not an independent Lee replication; MPAO1 is a PAO1 derivative;
+negative means not called essential in any of three Minimal libraries under this
+reanalysis, not universally non-essential. `LB_approx` is not true LB. Poulsen's
+nine tested strains exclude PAO1; mapping coordinates do not establish direct
+PAO1 experimental evidence. Teaching nb03's random-label metrics remain unusable.
+
+**Next:** review the 98 FN/47 FP explanations, document assumptions and coverage,
+and produce the supervisor-facing account. Gate other condition cells separately.
+Do not restart already completed downloads/media/deletions for the first cell.
+
+Use these current sources first:
+
+- [Validation readiness](../audit/VALIDATION_READINESS.md)
+- [Label/media/prediction overlap](../../VALIDATION_LABEL_MEDIA_OVERLAP.md)
+- [V-01 binary report](../audit/v01_mops_pyruvate/V01_BINARY_VALIDATION_REPORT.md)
+- [V-01 review evidence](../audit/v01_mops_pyruvate/V01_HUMAN_REVIEW_EVIDENCE.md)
+- [Decisions D-20/D-21](../../DECISIONS.md)
+- [Media tables](../../data/processed/conditions/README.md)
+- [Blocker scope](../../BLOCKERS.md)
+
+## Archived Cycle-2 snapshot - 2026-07-01
+
+The sections below preserve the earlier cycle's branch, git, test and readiness
+history. They are **not current status or active prohibitions**. Later July/August
+artifacts summarized above supersede the old download, media and V-01 gates.
+Root-level report paths in the archived narrative reflect their old locations;
+current audit/planning documents live under `project_management/` and methods
+notes under `docs/methods/`.
 
 ## 1. Current branch & git status
 - Branch: `claude/revival-audit` (never pushed; no remote changes).
@@ -78,7 +122,7 @@ root: governance .md (README, CLAUDE, TODO, BLOCKERS, DECISIONS, DATA_PROVENANCE
 | Belanger 2022 | **PAO1** | 1 | yes |
 | Lee 2015 | **MPAO1** | 2 | yes (PAO1-derived) |
 | Turner 2015 | **PAO1+PA14** | 3 | yes (PAO1 rows) |
-| Poulsen 2019 | multi (incl PAO1) | 3/5 | partial |
+| Poulsen 2019 | multi (nine screened strains exclude PAO1; corrected 2026-11-11) | 5 | no direct PAO1 assay; mapping required |
 | Basta 2017 | **PA14** | 4 | no (orthology) |
 | Juhas 2015 | review | 6 | no |
 Corrections from PDF evidence: **Lee=MPAO1 (was PA14)**, **Belanger=PAO1**,
@@ -94,12 +138,13 @@ Corrections from PDF evidence: **Lee=MPAO1 (was PA14)**, **Belanger=PAO1**,
 - Others (Tier 2 background): PMIDs 20233082, 24707203, 37233700, 33972355.
 
 ## 11. Papers rejected/deferred
-- MPAO1 biofilm-AMR model (PMID 33127897): no gene-level essentiality → defer.
+- MPAO1 biofilm-AMR model (PMID 33127897): deferred in Cycle 2; superseded by
+  D-21, which uses its published gene-level Lee Tn-seq reanalysis for the primary cell.
 - ~11 single-gene/virulence/resistance/transcription hits with no genome-wide
   PAO1 essentiality table → excluded (not added to inflate count).
 Details + PMIDs: `docs/PAO1_LITERATURE_SEARCH_STRATEGY.md`.
 
-## 12. Supplementary datasets downloaded
+## 12. Supplementary datasets downloaded (Cycle-2 history)
 **None.** No supplement or full-text PDF was retrievable this cycle.
 
 ## 13. Supplementary datasets blocked *(historical snapshot; superseded)*
@@ -116,8 +161,7 @@ parsed to DRAFT. Priority order in `PAO1_VALIDATION_DATA_INVENTORY.md`.
 (meegid2022 removed from active scope by user decision 2026-07-06.)
 
 ## 15. PA14-only datasets requiring orthology
-Basta 2017 (PA14, growth-arrest — also conceptually non-growth) and the non-PAO1
-strains of Poulsen 2019. Need validated PAO1↔PA14 orthology (B-MAP-01).
+Basta 2017 (PA14, growth-arrest — also conceptually non-growth) and Poulsen 2019 (none of its nine screened strains is PAO1). Need validated PAO1↔PA14 orthology (B-MAP-01).
 
 ## 16. State of `gene_mapping.csv`
 1054 model genes → PAO1 identity (high). PA14 layer = symbol-based only: 386
@@ -129,11 +173,11 @@ Unchanged this cycle (no source reachable); see `ORTHOLOGY_STATUS_REPORT.md`.
 PMIDs/PMCIDs added. **All gene-level rows still `PENDING_EXTRACTION`** (supplements
 blocked). Nothing fabricated.
 
-## 18. Remaining P0 blockers
+## 18. Remaining P0 blockers (Cycle-2 history; superseded above)
 - **B-SCI-01** — only simulated comparison exists (invalid).
 - **B-LIT-01 / B-NET** — supplements + OA full text not downloadable here.
 - **B-COND-01** — experimental media not reconstructed.
-(B-MAP-01 downgraded to P1: needed only for PA14/Basta + non-PAO1 Poulsen.)
+(B-MAP-01 downgraded to P1: needed for PA14/Basta + Poulsen PA14-indexed cross-strain evidence.)
 
 ## 19. Remaining P1/P2 tasks
 P1: L-05/L-06 (human-assisted downloads), L-03 (parse to gene-level), C-01b
@@ -141,7 +185,7 @@ P1: L-05/L-06 (human-assisted downloads), L-03 (parse to gene-level), C-01b
 kernels), B-MAP-01 (orthology). P2: M-01 (blocked reactions), M-02 (threshold
 sensitivity), M-03 (formulas), results→results/tables migration.
 
-## 20. What to do next, in order
+## 20. What to do next, in order (Cycle-2 plan; progress summarized above)
 1. **Human-assisted download** of PAO1/MPAO1 supplements — **DONE** (Lee, Turner,
    Belanger, Varadarajan, Poulsen, Basta all present, hashed, audited).
    (meegid2022 removed from active scope by user decision 2026-07-06.)
@@ -149,9 +193,9 @@ sensitivity), M-03 (formulas), results→results/tables migration.
 3. Reconstruct PAO1 media (LB; SCFM/MOPS-succinate; host/SCFM) as exchange bounds.
 4. Per-condition single-gene deletion at thresholds 0/1/5/10%.
 5. **Only then** compute metrics per condition × phenotype class, with coverage.
-6. Separately: obtain validated PAO1↔PA14 orthology to add Basta/Poulsen(non-PAO1).
+6. Separately: obtain validated PAO1↔PA14 orthology to add Basta/Poulsen PA14-indexed evidence.
 
-## 21. ⚠️ Validation-metrics warning
+## 21. Validation-metrics warning (historical gate; D-21/V-01 supersedes it for one cell)
 **No real validation metrics are ready.** The only model-vs-experiment comparison
 in the repo (nb03) uses **simulated random labels (B-SCI-01)** and must not be
 reported. Do not compute precision/recall/F1/MCC/specificity/confusion matrices

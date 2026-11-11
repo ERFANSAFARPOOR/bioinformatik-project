@@ -1,5 +1,13 @@
 # Teaching Notes for Instructors
 
+> **Teaching archive notice (2026-11-11):** The three teaching notebooks live at
+> `archive/teaching_notebooks/`. Notebook 03 demonstrates comparison metrics with
+> simulated labels; do not cite its values as experimental results. The current
+> MOPS-pyruvate evaluation uses D-21 experimental labels in the separate V-01
+> script and report (`scripts/validation/run_v01_mops_pyruvate_binary_validation.py`;
+> `project_management/audit/v01_mops_pyruvate/V01_BINARY_VALIDATION_REPORT.md`).
+> Its FP/FN interpretation and human sign-off remain pending.
+
 ## Overview
 
 This repository is designed as a self-contained module for teaching metabolic modeling. Students progress through three notebooks over approximately 2-4 hours.
@@ -61,8 +69,8 @@ This repository is designed as a self-contained module for teaching metabolic mo
 ### Notebook 3: Experimental Comparison
 
 **Objectives:**
-1. Compare computational predictions with experimental data
-2. Calculate validation metrics
+1. Demonstrate comparison of predictions with simulated labels; explain the requirements for real experimental labels
+2. Calculate demonstration metrics and distinguish them from research validation results
 3. Understand sources of prediction errors
 4. Interpret model limitations
 
@@ -75,7 +83,7 @@ This repository is designed as a self-contained module for teaching metabolic mo
 **Common Questions:**
 - *"Why don't predictions match perfectly?"* → Models are simplified; missing reactions, regulation
 - *"Is high accuracy always good?"* → No - high TN rate can inflate accuracy for imbalanced datasets
-- *"What's a good F1 score?"* → Depends on application; 0.7-0.9 is typical for metabolic models
+- *"What's a good F1 score?"* → Assess it against the condition, assay, class balance and baseline; no universal cutoff establishes model validity
 
 **Estimated Time**: 45-60 minutes
 

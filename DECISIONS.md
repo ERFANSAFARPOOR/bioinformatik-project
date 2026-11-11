@@ -283,3 +283,43 @@ published non-essential spreadsheet; remap/annotation differences vs Lee-origina
 positives exist; MPAO1-unique essentials cannot validate the PAO1 model.
 **Rationale:** Human-approved replacement for the deferred negative-universe gate
 without fabricating negatives from Lee Dataset-S1 absence or model complements.
+
+## D-22 · 2026-11-11 · Documentation reconciliation with existing artifacts
+
+**Scope:** factual documentation correction requested by the user. This entry
+preserves the append-only decision history; it is not a new human scientific
+sign-off and does not change the model, data, medium, threshold or results.
+
+**Corrections/supersession:**
+- **D-11 Poulsen strain classification is corrected:** Table 1 of Poulsen2019
+  lists nine screened strains (BL23, BWH005, BWH013, BWH015, CF77, PS75, PA14,
+  X13273, 19660), **excluding PAO1**. Treat its PA14-indexed/cluster evidence as
+  cross-strain secondary evidence, not a PAO1 experimental subset
+  ([primary source](https://www.pnas.org/doi/10.1073/pnas.1900570116)). The other
+  D-11 strain classifications remain unchanged.
+- **D-12 mapping scope:** PAO1-tagged Lee-original, Turner PAO1 and Belanger
+  lists may join by identity. D-21 Varadarajan labels use the DS1 unique-standard
+  MPAO1-to-PAO1 mapping; this is distinct from PA14 orthology. The remap remains
+  Lee-derived, not an independent experimental replication.
+- **D-17 media and S-01 predictions exist:** MOPS-pyruvate, MOPS-succinate and
+  `LB_approx` have computational definitions and knockout outputs. Defined
+  recipes still have documented unmodeled components and assumed uptake rates.
+- **D-21 approval was followed by V-01 execution:** the primary 1025-gene
+  comparison yields TP116/FN98/TN764/FP47. Error audit and evidence exist;
+  interpretation/sign-off remains pending. Early global statements that no
+  real metrics exist are superseded for this cell. D-20 remains separate.
+- **D-14 guard scope:** the legacy test protects against unreviewed
+  `results/comparison/metrics_*.csv` outputs; existing V-01 artifacts live under
+  `data/processed/validation/` and have their own integrity tests. Archived
+  teaching nb03 remains simulated and cannot be cited as real validation.
+- **D-16 policy versus observed implementation:** current
+  `data/processed/gene_mapping/gene_mapping.csv` uses official PGD orthology
+  (1023 unique, 2 ambiguous, 29 unmapped model genes), and the final RBH5374
+  artifact has a structural `PASSED` report. These observed artifacts supersede
+  descriptions of a purely symbol-based/not-yet-generated mapping. They do not
+  themselves supply a documented new scientific approval for broader
+  PA14/Poulsen metrics; that implementation/policy reconciliation remains open.
+
+**Status:** documentation corrected. Remaining scientific review is unchanged.
+Current summary: `VALIDATION_LABEL_MEDIA_OVERLAP.md`; detailed comparison:
+`project_management/audit/v01_mops_pyruvate/V01_BINARY_VALIDATION_REPORT.md`.

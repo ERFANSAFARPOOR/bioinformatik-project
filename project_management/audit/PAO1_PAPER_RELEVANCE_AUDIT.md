@@ -1,6 +1,13 @@
 # PAO1 PAPER RELEVANCE AUDIT
 
-**Date:** 2026-07-01 · **Branch:** `claude/revival-audit`
+**Original audit:** 2026-07-01 · **Reconciled:** 2026-11-11
+
+**Current status:** supplements are local; the MOPS-pyruvate D-21 binary
+comparison has been executed (V-01, interpretation pending). Historical download
+and whole-project metric gates are superseded by
+`VALIDATION_LABEL_MEDIA_OVERLAP.md` and
+`v01_mops_pyruvate/V01_BINARY_VALIDATION_REPORT.md`.
+Poulsen is corrected below against the primary paper Table 1.
 **Method:** read-only strain/method evidence extraction from the six legacy PDFs
 (`scripts/audit/extract_strain_evidence.py`, stdlib FlateDecode text recovery),
 plus DOI→PMID→PMCID verification via NCBI E-utilities (reachable this session).
@@ -21,7 +28,7 @@ plus DOI→PMID→PMCID verification via NCBI E-utilities (reachable this sessio
 | belanger2022 | **PAO1** | **1** | yes | no | host-condition-fitness |
 | lee2015 | **MPAO1 (PAO1-derived)** | **2** | yes (PAO1-derived caveat) | no | general + condition-specific essential |
 | turner2015 | **PAO1 + PA14 (mixed)** | **3** | yes (PAO1 rows) | only for PA14 rows | condition-specific essential |
-| poulsen2019 | multi-strain (incl. PAO1, PA14) | **3 / 5** | partial (PAO1-strain rows, unverified) | for non-PAO1 strains | core-essential |
+| poulsen2019 | **9 strains incl. PA14; excludes PAO1** | **5** | **no** (cross-strain evidence) | yes, via PA14 reference IDs | core-essential |
 | basta2017 | **PA14 (UCBPP-PA14)** | **4** | no | yes | growth-arrest survival determinant |
 | juhas2015 | review (PAO1/MPAO1/PA14) | **6** | no (review) | n/a | generally-essential (review) |
 
@@ -40,10 +47,10 @@ mixed PAO1+PA14 with usable PAO1 data**. See §"Corrections" below.
 - **Method:** Tn-seq under physiologically-relevant / host-mimicking conditions (SCFM among them).
 - **Media/conditions:** host-relevant media (tissue-culture ± serum, SCFM, etc.) — to be enumerated from methods when reconstructing media (C-01).
 - **Phenotype class:** host-condition-fitness.
-- **Supplement:** PENDING download (Frontiers supplementary; B-LIT-01).
-- **Direct PAO1 validation:** **YES** once gene list obtained.
+- **Supplement:** present: `Data_Sheet_1.XLSX`, `Data_Sheet_2.XLSX`, `Data_Sheet_3.docx` (logged 2026-07-06).
+- **Direct PAO1 evidence:** **YES**, subject to matched condition and phenotype; not an automatically completed validation.
 - **PA14→PAO1 mapping:** not needed.
-- **Confidence:** high (strain explicit). **Uncertainties:** exact per-condition media compositions; supplement column semantics not yet inspected.
+- **Confidence:** high (strain explicit). **Remaining comparison limits:** exact host-medium reconstruction, phenotype-specific interpretation and model scope; local supplement parsing does not establish a completed matched comparison.
 
 ## 2. lee2015 — Tier 2 (MPAO1, PAO1-derived)
 
@@ -52,12 +59,12 @@ mixed PAO1+PA14 with usable PAO1 data**. See §"Corrections" below.
 - **Strain evidence (PDF):** *"Materials and Methods. Strains and Plasmid. The P. aeruginosa parent strain was **MPAO1**. The donor strain for transposon mutagenesis was E. coli SM10 λpir/pIT2…"*. A comparison table lists this study's strain as **PAO1** (vs PA14 comparators). Manoil-lab system.
 - **Locus-tag system:** PAO1/MPAO1 (`PAxxxx`).
 - **Method:** Tn-seq (transposon mutant library; ISlacZ/two-allele lineage).
-- **Media/conditions:** rich (LB) "general" essentiality + defined/nutrient conditions for condition-specific essentiality.
+- **Media/conditions:** LB, MOPS-pyruvate and sputum are the three primary conditions; general essentials span these conditions, while condition-specific essentials retain their medium.
 - **Phenotype class:** general + condition-specific essential (keep both distinct).
-- **Supplement:** `pnas.1422186112.sd01.xlsx` — PENDING download (B-LIT-01/B-NET).
-- **Direct PAO1 validation:** **YES** (PAO1-derived; record MPAO1 sublineage caveat).
+- **Supplement:** `pnas.1422186112.sd01.xlsx` and Supporting Information are present (logged 2026-07-06).
+- **PAO1-derived evidence:** **YES**, with MPAO1 sublineage caveat. Lee-original `PAxxxx` labels join directly; D-21 uses Varadarajan2020 DS1 unique-standard-PAO1 best-hit mapping from MPAO1, not an identity join for all genes. Both D-21 polarities come from that reanalysis, which is not independent replication.
 - **PA14→PAO1 mapping:** not needed.
-- **Confidence:** high (strain explicit). **Uncertainties:** MPAO1-vs-reference-PAO1 genomic differences; per-condition thresholds not yet extracted.
+- **Confidence:** high (strain explicit). **Remaining comparison limits:** MPAO1-vs-reference-PAO1 differences, source/threshold semantics and medium assumptions. The first MOPS-pyruvate cell is documented in D-21/V-01; other conditions remain separate.
 
 ## 3. turner2015 — Tier 3 (PAO1 + PA14, mixed; usable PAO1 rows)
 
@@ -68,24 +75,23 @@ mixed PAO1+PA14 with usable PAO1 data**. See §"Corrections" below.
 - **Method:** Tn-seq in SCFM/SCFM2 and MOPS-sputum vs MOPS-succinate minimal.
 - **Media/conditions:** synthetic CF sputum (SCFM/SCFM2), MOPS-sputum, MOPS-succinate minimal.
 - **Phenotype class:** condition-specific essential (CF-sputum).
-- **Supplement:** `pnas.1419677112.sd01–sd04.xlsx` — PENDING download (B-LIT-01/B-NET).
-- **Direct PAO1 validation:** **YES for the PAO1 rows** (condition-specific, sputum vs minimal).
+- **Supplement:** `pnas.1419677112.sd01–sd10.xlsx` are present (logged 2026-07-06).
+- **Direct PAO1 evidence:** **YES for the PAO1 rows**; each condition/fitness contrast still needs a matching prediction before a validation claim.
 - **PA14→PAO1 mapping:** only for the PA14 rows.
-- **Confidence:** high (PAO1 data present and explicit). **Uncertainties:** which supplement sheet/columns hold the PAO1 (vs PA14) fitness values; threshold definitions.
+- **Confidence:** high (PAO1 data present and explicit). **Remaining comparison limits:** matching each source sheet/column and phenotype to its modeled condition; no completed sputum/SCFM2 validation is claimed here.
 
-## 4. poulsen2019 — Tier 3 / Tier 5 (multi-strain incl. PAO1)
+## 4. poulsen2019 — Tier 5 (multi-strain; PAO1 not screened)
 
-- **Citation:** Poulsen BE, Yang R, Clatworthy AE, White T, Osmulski SJ, Li L, Penaranda C, Lander ES, Shoresh N, Hung DT (2019) *Defining the core essential genome of Pseudomonas aeruginosa.* PNAS 116(20):10072–10080.
-- **DOI:** 10.1073/pnas.1900570116 · **PMID:** 31036669 · **PMCID:** PMC6525520 · **Year:** 2019 · **Journal:** PNAS
-- **Strain evidence (PDF):** *"Previous transposon mutagenesis studies of two common laboratory strains, **PA14 and PAO1**, have found varying numbers of essential genes…"*; *"…while a single strain has ~400–800 essential genes, the core essential genome across all strains analyzed is ~321 genes…"*. Nine strains analyzed (incl. PAO1, PA14).
-- **Locus-tag system:** multi-strain (per-strain tags; PAO1 = `PAxxxx`).
-- **Method:** Tn-seq + FiTnEss statistical framework (code: github.com/broadinstitute/FiTnEss; data: data.broadinstitute.org/fitness/).
-- **Media/conditions:** rich-medium essentiality (per methods).
-- **Phenotype class:** core-essential.
-- **Supplement:** PNAS SI + Broad fitness portal — PENDING download (B-LIT-01).
-- **Direct PAO1 validation:** **partial** — usable only if the **PAO1-strain** per-strain essential list is separable in the supplement (unverified).
-- **PA14→PAO1 mapping:** needed for the non-PAO1 strains; the core set is strain-agnostic background.
-- **Confidence:** high (strains explicit). **Uncertainties:** availability of a clean PAO1-only essential list in the supplement.
+- **Citation:** Poulsen BE et al. (2019) *Defining the core essential genome of Pseudomonas aeruginosa.* PNAS 116(20):10072–10080.
+- **DOI:** 10.1073/pnas.1900570116 · **PMID:** 31036669 · **PMCID:** PMC6525520.
+- **Primary strain evidence:** [Table 1](https://www.pnas.org/doi/10.1073/pnas.1900570116) lists **BL23, BWH005, BWH013, BWH015, CF77, PS75, PA14, X13273, 19660**. **PAO1 is not among the nine screened strains.** Its mention in the discussion of earlier studies is reference context, not a sample in this experiment.
+- **Locus-tag system:** study-strain identifiers; local essential lists use `PA14_ID` and `Cluster_ID`. These clusters relate the nine study strains and do not contain a PAO1 member. Mapping to a `PAxxxx` coordinate would not turn the measurement into a PAO1 assay.
+- **Method / conditions:** Tn-seq + FiTnEss; LB, M9 minimal, serum, sputum, urine.
+- **Phenotype class:** core-essential (across the study strains/conditions); per-strain calls must retain their own strain and condition.
+- **Supplement:** local `pnas.1900570116.sd01–sd07.xlsx` plus SI (logged 2026-07-06).
+- **Direct PAO1 evidence:** **NO**. Do not search for a PAO1 identity-join subset in these clusters.
+- **PA14→PAO1 mapping:** required when using the `PA14_ID` reference coordinate; controlled draft mapping can use the **APPROVED_LIMITED** Turner strict 1:1 subset under `ORTHOLOGY_HUMAN_REVIEW_DECISION.md`. This is not unrestricted approval or completed validation.
+- **Confidence:** high for screened-strain classification (primary Table 1). Orthology, model coverage, medium and phenotype comparability still need explicit handling for any cross-strain analysis.
 
 ## 5. basta2017 — Tier 4 (PA14, UCBPP-PA14)
 
@@ -96,9 +102,9 @@ mixed PAO1+PA14 with usable PAO1 data**. See §"Corrections" below.
 - **Method:** Tn-seq during energy-limited growth arrest (pyruvate-carbon or oxygen limitation).
 - **Media/conditions:** minimal medium + 40 mM pyruvate; carbon-/oxygen-limited arrest.
 - **Phenotype class:** growth-arrest survival determinant (**distinct** from growth essentiality).
-- **Supplement:** PENDING download (B-LIT-01).
+- **Supplement:** local `mbo006173591sd1–sd4.xlsx` and figure TIFFs (logged 2026-07-06).
 - **Direct PAO1 validation:** **NO** — PA14 only.
-- **PA14→PAO1 mapping:** **required** (validated orthology; B-MAP-01/B-NET).
+- **PA14→PAO1 mapping:** **required**; the Turner strict 1:1 subset is **APPROVED_LIMITED** for controlled draft mapping only (`ORTHOLOGY_HUMAN_REVIEW_DECISION.md`).
 - **Confidence:** high (strain explicit). **Uncertainties:** whether the phenotype maps onto FBA growth-essentiality at all (arrest ≠ growth).
 
 ## 6. juhas2015 — Tier 6 (review)
@@ -118,22 +124,29 @@ mixed PAO1+PA14 with usable PAO1 data**. See §"Corrections" below.
 
 ## Corrections (explicit)
 
-| study | Earlier classification | Corrected classification (2026-07-01) | Evidence |
+| study | Earlier classification | Corrected classification (reconciled 2026-11-11) | Evidence |
 |---|---|---|---|
 | **lee2015** | "PA14" | **MPAO1 (PAO1-derived), Tier 2** | *"The P. aeruginosa parent strain was MPAO1"* |
 | **belanger2022** | "confirm" strain | **PAO1, Tier 1** | *"…transposon insertion mutant pool of P. aeruginosa strain PAO1…"* |
 | **turner2015** | "PA14" | **PAO1 + PA14 mixed, Tier 3** | *"Wild-type PAO1 and individual transposon mutants…"*; *"…in both PAO1 and PA14…"* |
-| poulsen2019 | "PA14 (multi-strain core)" | multi-strain **incl. PAO1** (Tier 3/5) | *"…two common laboratory strains, PA14 and PAO1…"* |
+| poulsen2019 | July audit incorrectly inferred PAO1 inclusion from background discussion | **Nine strains including PA14; PAO1 not screened (Tier 5)** | Primary paper **Table 1**; local supplement strain list |
 | basta2017 | "PA14 (confirm)" | **PA14 confirmed, Tier 4** | *"the PA14 wild-type (WT) strain"*; *"UCBPP-PA14 genome"* |
 | juhas2015 | "review" | review, **Tier 6** (unchanged) | multi-strain review |
 
 ## Impact on the validation plan
 
-- The PAO1 validation path is **no longer strain-blocked** for the first
-  comparison: **belanger2022 (PAO1)**, **lee2015 (MPAO1)**, and the **PAO1 rows of
-  turner2015** provide experimental labels in PAO1 `PAxxxx` tags that join
-  directly to the model.
-- Remaining blockers for those three are **supplement download (B-NET/B-LIT-01)**
-  and **per-condition media reconstruction (B-COND-01)** — not orthology.
-- Validated **PAO1↔PA14 orthology (B-MAP-01)** is still required only to use
-  **basta2017** and the non-PAO1 strains of **poulsen2019**.
+- **Belanger PAO1** and **Turner PAO1 rows** use PAO1 locus IDs. **Lee-original** labels also use PAO1 tags, with an MPAO1 sublineage caveat. These paths need no PA14 orthology.
+- **D-21** instead uses Varadarajan2020 DS1 MPAO1→PAO1 unique best-hit mappings and DS4 Minimal calls; mappings are not universal. The primary join has **1025 genes** (214 positive, 811 negative); **18 ambiguous** and **11 other model genes** are excluded. V-01 metrics are computed, pending interpretation. Do not mix D-20 Lee-original positives with D-21 negatives.
+- Supplements are present and MOPS-pyruvate is computationally reconstructed. Other conditions and phenotype classes require their own evidence/media checks; presence of a supplement alone is not validation.
+- **Poulsen and Basta remain cross-strain paths.** The approved-limited Turner 1:1 subset supports future controlled drafts, not a PAO1 identity join or automatic metric permission. Basta additionally measures growth-arrest survival rather than standard FBA growth essentiality.
+
+**Observed mapping artifacts (2026-11-11):**
+`data/processed/gene_mapping/gene_mapping.csv` uses `official_orthology`; its
+coverage report records **1023 unique, 2 ambiguous, 29 unmapped** model genes.
+The builder reads the official PGD raw export. The separate
+`data/processed/ortholog/final/pao1_pa14_orthologs_pseudomonas_rbh_20260712.csv`
+has **5374 pairs** and a `Validation_Report.txt` marked **PASSED** (structural
+checks). These artifacts exist and the canonical mapping is no longer merely
+the old symbol-based layer. This observed integration does not by itself
+establish a reviewed Poulsen/Basta comparison or supersede the documented
+D-16 limited-use decision with a new unrestricted approval.

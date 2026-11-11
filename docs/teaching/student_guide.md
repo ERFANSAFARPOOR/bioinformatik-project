@@ -1,5 +1,13 @@
 # Student Guide: Metabolic Modeling with Python
 
+> **Teaching archive notice (2026-11-11):** Notebooks 01–03 are under
+> `archive/teaching_notebooks/`. Notebook 03 uses simulated labels to demonstrate
+> comparison methods; its metrics are not experimental validation results.
+> Current research uses notebooks 04/05 and the separate V-01 script/report at
+> `scripts/validation/run_v01_mops_pyruvate_binary_validation.py` and
+> `project_management/audit/v01_mops_pyruvate/V01_BINARY_VALIDATION_REPORT.md`.
+> That condition-specific experimental evaluation exists; interpretation is pending.
+
 Welcome! This guide will help you get started with metabolic modeling using this repository.
 
 ## What is Metabolic Modeling?
@@ -25,10 +33,10 @@ You'll complete three notebooks that build on each other:
 **Time**: ~45-60 minutes  
 **Key skill**: Computational gene knockout experiments
 
-### 📙 Notebook 3: Model Validation
-**What you'll do**: Compare predictions with real experiments  
+### 📙 Notebook 3: Validation Methods Demonstration
+**What you'll do**: Compare predictions with simulated labels; real experimental data must be sourced separately
 **Time**: ~45-60 minutes  
-**Key skill**: Scientific model validation
+**Key skill**: Understanding comparison metrics and their limitations
 
 ## Getting Started: Step-by-Step
 

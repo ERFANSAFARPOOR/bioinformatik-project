@@ -1,8 +1,38 @@
 # DATA PROVENANCE
 
-Provenance of every model, dataset, and document. Phase A records what is
-*present and verifiable*; download provenance for supplements is PENDING until
-files are actually retrieved (B-LIT-01).
+Provenance of model, datasets and derived artifacts. Dated sections preserve
+the state when each audit was performed; pending downloads in early sections
+are historical attempts, not claims that the later local files are absent.
+
+## Current-state reconciliation (2026-11-11)
+
+- All six study supplement collections are present (§3d). Missing exact source
+  download URLs remain `SOURCE_URL_PENDING`; no URLs or dates are invented.
+- Three computational media and prediction sets exist: MOPS-pyruvate,
+  MOPS-succinate and `LB_approx`. Recipes and uptake assumptions are recorded in
+  `src/medium.py` and `data/processed/conditions/`. `DEFINED` does not imply
+  complete experimental equivalence or measured uptake fluxes.
+- D-21 uses Varadarajan2020 DS1+DS4 (Lee2015 Tn-seq remap, **not independent
+  replication**). Primary binary labels are 214 POS + 811 NEG = 1025; 18
+  in-model ambiguous calls are excluded. Both classes come from this reanalysis;
+  D-20 Lee-original positives stay separate.
+- V-01 metrics and FP/FN audit exist in `data/processed/validation/` and
+  `project_management/audit/v01_mops_pyruvate/`: TP116, FN98, TN764, FP47.
+  Human interpretation/sign-off is pending; no final validated-model claim.
+- Poulsen2019 screened nine strains including PA14, **excluding PAO1**.
+  The corrected strain tables below supersede the initial July classification
+  ([paper Table 1](https://www.pnas.org/doi/10.1073/pnas.1900570116)).
+- Current `data/processed/gene_mapping/gene_mapping.csv` records
+  `official_orthology`; its coverage report lists 1023 unique, 2 ambiguous and
+  29 unmapped model genes. This supersedes the early RefSeq-symbol snapshot.
+  Turner `APPROVED_LIMITED` files are under `data/processed/ortholog/working/`.
+  A later 5374-row RBH table and structural validation report are under
+  `data/processed/ortholog/final/`. Artifact integration/structural checks do
+  not supply a new scientific sign-off for PA14/Poulsen comparisons: the
+  restricted D-16 use policy remains recorded pending a superseding review.
+
+Current comparison details: `VALIDATION_LABEL_MEDIA_OVERLAP.md` and
+`project_management/audit/v01_mops_pyruvate/V01_BINARY_VALIDATION_REPORT.md`.
 
 ---
 
@@ -46,14 +76,15 @@ NCBI eutils. See `papers/manifest.csv` for the machine-readable manifest.
 
 **`papers/` is the canonical location** for the corpus; **`conditian/` is legacy,
 preserved untouched** (byte-identical copies; do not edit — see §2b). Strain and
-year/DOI values below are the **corrected 2026-07-01 audit** (B-STRAIN-02).
+year/DOI values originate from the 2026-07-01 audit (B-STRAIN-02), with the
+Poulsen direct-strain classification corrected on 2026-11-11.
 
 | papers/ file (legacy) | Study | First author | Year | DOI | Journal | Strain (corrected) | ID confidence | Provenance |
 |---|---|---|---|---|---|---|---|---|
 | `papers/juhas2015.pdf` (`conditian/juhas2015.pdf`) | *P. aeruginosa* essentials: an update on investigation of essential genes | Juhas | 2015 | 10.1099/mic.0.000161 | Microbiology | **review** | high (DOI in stream) | provided in repo |
 | `papers/turner2015.pdf` (`conditian/keith H.pdf`) | Essential genome of *P. aeruginosa* in cystic fibrosis sputum | Turner | 2015 | 10.1073/pnas.1419677112 | PNAS | **PAO1 + PA14** | high (DOI+supp in /Title) | provided in repo |
 | `papers/lee2015.pdf` (`conditian/samuelA.pdf`) | General and condition-specific essential functions of *P. aeruginosa* | Lee | 2015 | 10.1073/pnas.1422186112 | PNAS | **MPAO1** (PAO1-derived) | high (DOI in headers) | provided in repo |
-| `papers/poulsen2019.pdf` (`conditian/polsun2019.pdf`) | Defining the core essential genome of *P. aeruginosa* | Poulsen | 2019 | 10.1073/pnas.1900570116 | PNAS | **multi-strain (incl. PAO1)** | high (DOI+title in /Title) | provided in repo |
+| `papers/poulsen2019.pdf` (`conditian/polsun2019.pdf`) | Defining the core essential genome of *P. aeruginosa* | Poulsen | 2019 | 10.1073/pnas.1900570116 | PNAS | **nine strains including PA14; PAO1 not screened** | high (DOI+title; strain verified against Table 1) | provided in repo |
 | `papers/basta2017.pdf` (`conditian/davidW.pdf`) | Identification of fitness determinants during energy-limited growth arrest | Basta | 2017 | 10.1128/mBio.01170-17 | mBio | **PA14** (UCBPP-PA14) | high (verified) | provided in repo |
 | `papers/belanger2022.pdf` (`conditian/corrieR.pdf`) | Surviving the host: metabolic genes required in physiologically-relevant conditions | Belanger | 2022 | 10.3389/fmicb.2022.1055512 | Front Microbiol | **PAO1** | high (verified) | provided in repo |
 
@@ -74,7 +105,7 @@ See `papers/manifest.csv`, `PAO1_PAPER_RELEVANCE_AUDIT.md`.
 | `papers/juhas2015.pdf` | Juhas 2015 | 26311069 | PMC10960635 | review | 6 | `5a8ae3a755fbbd840842cc537bd6d16c08aa66a6017a9005ae21b41a8d7cd83a` |
 | `papers/turner2015.pdf` | Turner 2015 | 25775563 | PMC4386324 | **PAO1+PA14** | 3 | `71b943435a8808e212ce8d0b353532b24d2cdb64491f9ef4405c07933ad6fb10` |
 | `papers/lee2015.pdf` | Lee 2015 | 25848053 | PMC4413342 | **MPAO1** | 2 | `f046b9d875b006dd75b0ce09f8b3c0442547be583d7595038640ceba91b14090` |
-| `papers/poulsen2019.pdf` | Poulsen 2019 | 31036669 | PMC6525520 | multi (incl PAO1) | 3/5 | `408b627032e3297d1e69056553ffe13002218ff1313f96b7783650b98da1801c` |
+| `papers/poulsen2019.pdf` | Poulsen 2019 | 31036669 | PMC6525520 | nine strains incl. PA14; **PAO1 excluded** | 5 | `408b627032e3297d1e69056553ffe13002218ff1313f96b7783650b98da1801c` |
 | `papers/basta2017.pdf` | Basta 2017 | 29184024 | PMC5705914 | **PA14** | 4 | `097a0fd57ebd5bcad63b0d7be94f4fcdbaa887d7ddb1654ee965b7dbd6d5d23d` |
 | `papers/belanger2022.pdf` | Belanger 2022 | 36504765 | PMC9732424 | **PAO1** | 1 | `f1bb27065624b43e553f53dca43e28b80c35c05e6d5306423179f10be22f011e` |
 
@@ -86,6 +117,9 @@ labels; see B-STRAIN-02.
 ---
 
 ## 3. Supplementary datasets — download attempts (2026-06-26)
+
+**Historical attempt log.** The present supplement inventory is in §3d;
+these failures are not current missing-file blockers.
 
 Network egress from this environment is **restricted**: NCBI FTP and GitHub work;
 journal sites and pseudomonas.com are blocked. See BLOCKER **B-NET**.
@@ -115,6 +149,10 @@ These feed `scripts/mapping/build_gene_mapping.py` → `data/processed/gene_mapp
 (the gz is read directly; the uncompressed `.txt` is derived and git-ignored).
 
 ## 3c. Literature search + download re-check (2026-07-01)
+
+**Historical snapshot:** acquisition and mapping states below were superseded
+by §3d and the later orthology records. Network observations were not re-tested
+by this documentation reconciliation.
 
 - **Metadata retrieval WORKS:** NCBI eutils used to verify all corpus PMIDs/PMCIDs
   (§2b) and to run PubMed searches (`scripts/audit/pubmed_search.py`).
@@ -176,7 +214,11 @@ modified. Full audit + column structure: `SUPPLEMENT_INVENTORY_AUDIT.md`.
 - PGD orthology export SHA-256 pending (`pao1_pa14_orthologs_pseudomonas.csv`,
   `Supplementary_Table_S1.csv`, `Orthology_QC_Report.csv` — see §3b).
 
-## 3e. L-03 DRAFT gene-level evidence — derived 2026-07-06 (read-only parse)
+## 3e. L-03 DRAFT gene-level evidence — historical derivation and later transitions
+
+The July derivation is preserved below. Current D-20/D-21 READY labels are
+separate promoted files (§4); the old DRAFT prohibition does not apply to the
+reviewed D-21 primary universe.
 
 `scripts/literature/parse_supplements.py` read the raw supplements **read-only**
 (no raw file modified) and emitted DRAFT gene-level evidence. Thresholds sourced
@@ -204,7 +246,8 @@ was written for them.
 
 **Media sources (2026-07-07):** `MEDIA_SOURCE_AUDIT.md` records per-study
 condition/media locators and reconstructability (DEFINED / PARTIAL /
-MEDIA_GAP_PENDING). C-01b not started; no exchange bounds invented.
+MEDIA_GAP_PENDING). At that July audit C-01b had not started; the later media
+implementation is recorded in the current-state section and §4.
 
 **Ortholog candidate table (2026-07-07b):** pseudomonas.com RBBH unreachable
 (403/Cloudflare via curl + WebFetch), so the PAO1↔PA14 ortholog table embedded in
@@ -254,20 +297,23 @@ SHA-256 for the three PGD files: **PENDING**.
 
 | File | Origin | Reproducible by |
 |---|---|---|
-| `results/essentiality/gene_essentiality_default_medium.csv` | Single-gene deletion on iMO1056, default medium, 1% threshold (real). WT growth 1.0479; 166 essential. `gene_id` stored as set-repr (needs cleaning). | `notebooks/02_gene_essentiality.ipynb` / `src.gene_essentiality` |
-| `data/processed/gene_mapping.csv` | Generated from model genes; identity PAO1 mapping (PA14/name/uniprot PENDING). | `generate_phasea_data.py` |
-| `data/processed/literature_evidence.csv` | Study-level provenance rows; gene-level PENDING. | `generate_phasea_data.py` |
-| `papers/manifest.csv` | PDF identification (this audit). | `generate_phasea_data.py` |
-| `model_audit_snapshot.json` | Read-only model audit summary. | `generate_phasea_data.py` / `audit_model.py` |
+| `results/essentiality/gene_essentiality_default_medium.csv` | Real default-medium knockout predictions: WT 1.0479; 166 essential; legacy set-repr IDs retained. | `archive/teaching_notebooks/02_gene_essentiality.ipynb` / `src.gene_essentiality` |
+| `data/processed/essentiality/predicted_essentiality_default_medium.csv` | Cleaned default-medium copy, 1054 standard PAO1 IDs; 166 essential unchanged. | `scripts/generate_clean_predictions.py` |
+| `data/processed/gene_mapping/gene_mapping.csv` | Current PGD/official-orthology mapping; coverage 1023 unique, 2 ambiguous, 29 unmapped. | `scripts/mapping/build_gene_mapping.py` |
+| `data/processed/literature/literature_registry.csv` | Study-level registry; gene-level DRAFT/READY evidence is stored separately, not absent. | historical `scripts/generate_phasea_data.py` |
+| `papers/manifest.csv` | Canonical PDF identification; Poulsen direct-strain metadata corrected 2026-11-11. | historical audit plus documented metadata correction |
 | `data/processed/literature/gene_level/literature_evidence_gene_level_READY_mops_pyruvate_lee2015.csv` | D-20 Lee2015 original-analysis MOPS-pyruvate **positives only** (437 `PAxxxx`); separate evidence layer | `scripts/promote_lee2015_mops_pyruvate_ready.py` |
 | `data/processed/literature/gene_level/varadarajan2020_lee2015_minimal_gene_labels_CANDIDATE.csv` | D-21 audit candidate (preserved); DS1+DS4 Minimal labels | `scripts/build_varadarajan2020_minimal_negative_universe_candidate.py` |
 | `data/processed/literature/gene_level/varadarajan2020_lee2015_minimal_gene_labels_READY.csv` | D-21 READY evidence (5799 MPAO1 CDS; POS/NEG/AMBIGUOUS) | `scripts/promote_varadarajan2020_minimal_labels_ready.py` |
 | `data/processed/literature/gene_level/varadarajan2020_lee2015_minimal_PRIMARY_BINARY_UNIVERSE.csv` | D-21 frozen primary binary join (1025 genes: 214 POS + 811 NEG) | same promote script |
 | `project_management/audit/negative_universe_lee2015/D21_PROMOTION_INTEGRITY_REPORT.json` | Recomputed counts + integrity PASS/FAIL for D-21 | same promote script |
+| `data/processed/conditions/*.csv` | Medium recipes, exchange assumptions, unmodeled components and simulated WT growth | `scripts/export_media_tables.py` / `src/medium.py` |
+| `results/essentiality/gene_essentiality_{mops_pyruvate_lee2015,mops_succinate_turner2015,LB_approx_lee2015}.csv` | Per-medium predictions; 173 / 177 / 133 essential at 0.01 across 1054 genes | `scripts/run_condition_essentiality.py` |
+| `data/processed/validation/v01_mops_pyruvate_*` | D-21 primary binary comparison and error-set artifacts; TP116/FN98/TN764/FP47, n1025; human interpretation pending | `scripts/validation/run_v01_mops_pyruvate_binary_validation.py` (comparison); diagnostic scripts for subsequent audits |
 
 > **D-21 note (2026-08-01):** metrics (MCC/F1/etc.) were **not** computed when these
-> artifacts were frozen. Varadarajan2020 is a remap of Lee2015 Tn-seq, not an
-> independent screen.
+> label artifacts were frozen; V-01 computed them in the subsequent execution
+> step. Varadarajan2020 is a remap of Lee2015 Tn-seq, not an independent screen.
 
 ---
 

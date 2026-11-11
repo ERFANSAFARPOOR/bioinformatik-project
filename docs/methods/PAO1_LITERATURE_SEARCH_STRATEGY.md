@@ -1,10 +1,25 @@
 # PAO1 LITERATURE SEARCH STRATEGY & RESULTS
 
-**Date:** 2026-07-01 · **Branch:** `claude/revival-audit`
+**Search date:** 2026-07-01 · **Branch at search:** `claude/revival-audit`
 **Tooling:** NCBI E-utilities (esearch/esummary/elink) via
 `scripts/audit/pubmed_search.py` (reachable this session). Journal/publisher
 supplement pages and PMC full-text package downloads are **blocked** here
-(B-NET); only metadata retrieval succeeded.
+(B-NET); only metadata retrieval succeeded in that search cycle.
+
+**Current-status reconciliation (2026-11-11):** the search/download outcomes
+below are historical. Corpus supplements are now present. D-21 approved
+Varadarajan2020 DS1+DS4 as Lee-derived experimental binary labels for Minimal /
+MOPS-pyruvate; V-01 metrics have been computed (1025 genes), with FP/FN
+interpretation pending. Varadarajan is not independent replication. The local
+PGD export is present. The current builder already uses it and
+`data/processed/gene_mapping/gene_mapping.csv` contains official-orthology
+results (1023 unique, 2 ambiguous and 29 unmapped model genes). A 5374-pair RBH
+file and passing structural report also exist under
+`data/processed/ortholog/final/`. These are observed artifacts, not a recorded
+unrestricted scientific-use approval. Turner retains `APPROVED_LIMITED` scope
+for controlled L-03b drafts; the D-16 review/approval gap must be reconciled
+before broader PA14 evidence promotion. See `DECISIONS.md` and
+`VALIDATION_LABEL_MEDIA_OVERLAP.md` at root.
 
 ---
 
@@ -67,7 +82,7 @@ these queries and are already in the corpus.)*
 | PMID | Year | Journal | DOI | Note |
 |---|---|---|---|---|
 | 33972355 | 2021 | J Bacteriol | 10.1128/JB.00179-21 | *Reconstructing a Wild-Type P. aeruginosa Reference Strain PAO1* — useful for PAO1/MPAO1 reference-genome caveats (supports strain-mapping notes). Background. |
-| 33127897 | 2020 | NPJ Biofilms Microbiomes | 10.1038/s41522-020-00154-8 | **MPAO1** biofilm-AMR model system; not gene-level essentiality → **defer** (Tier 4/6 background). |
+| 33127897 | 2020 | NPJ Biofilms Microbiomes | 10.1038/s41522-020-00154-8 | **MPAO1** model system including a gene-level remap of Lee2015 Tn-seq. D-21 uses DS1+DS4 for the primary Minimal binary labels; derivative evidence, never an independent screen. Supersedes the initial background-only classification. |
 
 ### Excluded (off-scope for the queries that returned them)
 
@@ -79,20 +94,24 @@ validation labels and were not selected merely to inflate count.
 
 ## 6. Download status (Part F)
 
-**No new full-text PDF or supplement was downloadable in this environment.**
+**Historical 2026-07-01 outcome: no new full-text PDF or supplement was downloadable in that search cycle.**
 - eutils metadata (PMID/PMCID/DOI/title/journal/year): **retrieved** (reliable).
 - PMC OA package fetch: `ftp://ftp.ncbi.nlm.nih.gov/...` → access denied (curl
   exit 9); `https://ftp.ncbi.nlm.nih.gov/pub/pmc/oa_package/...` → *Object not
   found*. Publisher supplement pages (PNAS/Frontiers/mBio) remain 403/unreachable.
 - Recorded in `BLOCKERS.md` (B-NET, extended) and `DATA_PROVENANCE.md`.
 
-## 7. Recommended next actions (human-assisted / different network)
+## 7. Follow-up status (reconciled 2026-11-11)
 
 1. All corpus supplements are now present (Lee, Turner, Belanger, Varadarajan,
    Poulsen, Basta). (meegid2022 removed from active scope by user decision
    2026-07-06 — no longer a target.)
-2. Obtain the authoritative **pseudomonas.com PAO1↔PA14 orthology** table (needed
-   for Basta/Poulsen) via human-assisted/different-network download.
+2. PGD PAO1↔PA14 export is now present at
+   `data/raw/ortholog/pao1_pa14_orthologs_pseudomonas.csv` and official mapping
+   has already been generated at `data/processed/gene_mapping/gene_mapping.csv`.
+   Reconcile these artifacts and RBH structural checks with the recorded D-16
+   scope/review before broader PA14 evidence promotion; acquisition is no
+   longer the blocker.
 3. Retrieve **Oberhardt 2008** (model source) for methods/medium details.
 4. Optional Tier 2: Bartell 2017 / GigaScience 2018 GEMs for comparison.
 5. Store PDFs in `papers/`, supplements in `data/raw/literature/<study_id>/`,
